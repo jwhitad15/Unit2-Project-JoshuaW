@@ -1,14 +1,7 @@
 package com.foths.FOTHS.repositories;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.foths.FOTHS.models.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-
-@SpringBootApplication
-public class UserRepository {
-
-    public static void main(String[] args) {
-        SpringApplication.run(UserRepository.class, args);
-    }
-
+public interface UserRepository extends JpaRepository<User, Integer> {
 }

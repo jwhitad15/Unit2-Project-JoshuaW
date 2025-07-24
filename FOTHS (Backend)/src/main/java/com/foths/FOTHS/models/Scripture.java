@@ -1,14 +1,20 @@
 package com.foths.FOTHS.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 public class Scripture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "verse")
     private String verse;
     @Column(name = "scripture")
@@ -23,42 +29,14 @@ public class Scripture {
     private String category;
 
 
-    public Scripture(String verse, String scripture, String lod, String translation, String fruit, String category) {
-        this.verse = verse;
-        this.scripture = scripture;
-        this.lod = lod;
-        this.translation = translation;
-        this.fruit = fruit;
-        this.category = category;
-    }
+    public Scripture(String verse, String scripture, String lod, String translation, String fruit, String category) {}
     public Scripture() {};
 
-    public int getId() { return id; }
-    public String getVerse() { return verse; }
-    public void setVerse(String verse) { this.verse = verse; }
-    public String getScripture() { return scripture; }
-    public void setScripture(String scripture) { this.scripture = scripture; }
-    public String getLod() { return lod; }
-    public void setLod(String lod) { this.lod = lod; }
-    public String getTranslation() { return translation; }
-    public void setTranslation(String translation) { this.translation = translation; }
-    public String getFruit() { return fruit; }
-    public void setFruit(String fruit) { this.fruit = fruit; }
-    public String getCategory() { return category; }
-    public void setCategory(String category) { this.category = category; }
 
 
     @Override
     public String toString() {
-        return fruit + "_" + id
-                + ") " +
-                verse + " - " + scripture
-                + " | " +
-                lod
-                + " | " +
-                translation
-                + " | " +
-                category ;
+        return STR."\{fruit}_\{id}) \{verse} - \{scripture} | \{lod} | \{translation} | \{category}";
     }
 
     @Override

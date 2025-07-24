@@ -28,13 +28,13 @@ public class QuestionController {
 
     // GET a single question using its id
     // Corresponds to http://localhost:8080/questions/details/3 (for example)
-    @GetMapping(value="/details/{questionId}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/{questionId}", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getQuestionById(@PathVariable(value="questionId") int questionId) {
-        Question currentQuestion = questionRepository.findById(questionId).orElse(null);
+        Question currentQuestion = (Question) questionRepository.findById(questionId).orElse(null);
         if (currentQuestion != null) {
             return new ResponseEntity<>(currentQuestion, HttpStatus.OK); // 200
         } else {
-            String response = "Question with ID of " + questionId + " not found.";
+            String response = STR."Question with ID of \{questionId} not found.";
             return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
         }
     }
@@ -50,9 +50,9 @@ public class QuestionController {
 
     // DELETE an existing question
     // Corresponds to http://localhost:8080/questions/delete/6 (for example)
-    @DeleteMapping(value="/delete/{questionId}", produces=MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value="/delete/question-{questionId}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteQuestion(@PathVariable(value="questionId") int questionId) {
-        Question currentQuestion = questionRepository.findById(questionId).orElse(null);
+        Question currentQuestion = (Question) questionRepository.findById(questionId).orElse(null);
         if (currentQuestion != null) {
             questionRepository.deleteById(questionId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204

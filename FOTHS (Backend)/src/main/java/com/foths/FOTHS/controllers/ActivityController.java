@@ -28,20 +28,20 @@ public class ActivityController {
 
     // GET a single activity using its id
     // Corresponds to http://localhost:8080/activities/details/3 (for example)
-    @GetMapping(value="/details/{activityId}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/activity-{activityId}", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getActivityById(@PathVariable(value="activityId") int activityId) {
-        Activity currentActivity = activityRepository.findById(activityId).orElse(null);
+        Activity currentActivity = (Activity) activityRepository.findById(activityId).orElse(null);
         if (currentActivity != null) {
             return new ResponseEntity<>(currentActivity, HttpStatus.OK); // 200
         } else {
-            String response = "Activity with ID of " + activityId + " not found.";
+            String response = STR."Activity with ID of \{activityId} not found.";
             return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
         }
     }
 
     // POST a new activity
     // Endpoint http://localhost:8080/activities/add?type=login&timestamp=18:47:03 (for example)
-    @PostMapping("/add")
+    @PostMapping("/create-activity")
     public ResponseEntity<?> createNewActivity(@RequestParam(value="type") String type, @RequestParam(value="timestamp") String timestamp) {
         Activity newActivity = new Activity(type, timestamp);
         activityRepository.save(newActivity);
@@ -50,14 +50,14 @@ public class ActivityController {
 
     // DELETE an existing activity
     // Corresponds to http://localhost:8080/activities/delete/6 (for example)
-    @DeleteMapping(value="/delete/{activityId}", produces=MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value="/delete/activity-{activityId}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteActivity(@PathVariable(value="activityId") int activityId) {
-        Activity currentActivity = activityRepository.findById(activityId).orElse(null);
+        Activity currentActivity = (Activity) activityRepository.findById(activityId).orElse(null);
         if (currentActivity != null) {
             activityRepository.deleteById(activityId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204
         } else {
-            String response = "Activity with ID of " + activityId + " not found.";
+            String response = STR."Activity with ID of \{activityId} not found.";
             return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
         }
     }

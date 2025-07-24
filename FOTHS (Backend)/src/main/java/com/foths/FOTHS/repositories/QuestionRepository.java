@@ -1,14 +1,8 @@
+
 package com.foths.FOTHS.repositories;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.foths.FOTHS.models.Question;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-
-@SpringBootApplication
-public class QuestionRepository {
-
-    public static void main(String[] args) {
-        SpringApplication.run(QuestionRepository.class, args);
-    }
-
+public interface QuestionRepository extends JpaRepository<Question, Integer> {
 }
