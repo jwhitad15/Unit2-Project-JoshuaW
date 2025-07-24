@@ -32,7 +32,7 @@ public class Scripture {
     public Scripture(String verse, String scripture, String lod, String translation, String fruit, String category) {}
     public Scripture() {};
 
-
+    public void setPassword(String password) {}
 
     @Override
     public String toString() {
@@ -51,5 +51,20 @@ public class Scripture {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+
+    public void setEmail(String email) {
+        
+    }
+
+    public void setUsername(String username) {
+    }
+
+    public void setLastName(String lastName) {
+    }
+
+    public void setFirstName(String firstName) {
+
     }
 }

@@ -40,7 +40,7 @@ public class ScriptureController {
         }
     }
 
-    // POST a new scripture - Endpoint http://localhost:8080/scriptures/add
+    // POST a new scripture - Endpoint http://localhost:8080/scripture/add
     @PostMapping("/add")
     public ResponseEntity<?> createNewScripture(@RequestBody Scripture scripture) {
         Scripture newScripture = new Scripture();
@@ -48,11 +48,27 @@ public class ScriptureController {
         return new ResponseEntity<>(newScripture, HttpStatus.CREATED); // 201
     }
 
+    @PutMapping("/update/{scriptureId}")
+    public ResponseEntity<?> updateScripture(@PathVariable(value="scriptureId") int scriptureId, @RequestBody Scripture scripture) {
+        Scripture currentScripture = scriptureRepository.findById(scriptureId).orElse(null);
+    if (currentScripture != null) {
+        currentScripture.setVerse(scripture.getVerse());
+        currentScripture.setScripture(scripture.getScripture());
+        currentScripture.setLod(scripture.getLod());
+        currentScripture.setTranslation(scripture.getTranslation());
+        currentScripture.setFruit(scripture.getFruit());
+        currentScripture.setCategory(scripture.getCategory());
+        scriptureRepository.save(currentScripture);
+        return new ResponseEntity<>(currentScripture, HttpStatus.OK); // 200
+    }
+        String response = STR."User with ID of \{scriptureId} not found.";
+        return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
+    }
     // DELETE an existing scripture
-    // Corresponds to http://localhost:8080/scriptures/delete/6 (for example)
+    // Corresponds to http://localhost:8080/scripture/delete/6 (for example)
     @DeleteMapping(value="/delete/{scriptureId}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteScripture(@PathVariable(value="scriptureId") int scriptureId) {
-        Scripture currentScripture = (Scripture) scriptureRepository.findById(scriptureId).orElse(null);
+        Scripture currentScripture = scriptureRepository.findById(scriptureId).orElse(null);
         if (currentScripture != null) {
             scriptureRepository.deleteById(scriptureId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204

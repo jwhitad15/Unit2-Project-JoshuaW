@@ -1,8 +1,13 @@
 package com.foths.FOTHS.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 public class Question {
 
@@ -33,34 +38,11 @@ public class Question {
     }
     public Question() {};
 
-    public int getId() { return id; }
-    public String getVerse() { return questions; }
-    public void setVerse(String verse) { this.questions = questions; }
-    public String getScripture() { return answer; }
-    public void setScripture(String scripture) { this.answer = answer; }
-    public String getLod() { return lod; }
-    public void setLod(String lod) { this.lod = lod; }
-    public String getTranslation() { return translation; }
-    public void setTranslation(String translation) { this.translation = translation; }
-    public String getFruit() { return fruit; }
-    public void setFruit(String fruit) { this.fruit = fruit; }
-    public String getCategory() { return category; }
-    public void setCategory(String category) { this.category = category; }
 
 
     @Override
     public String toString() {
-        return fruit + "_" + id
-                + " | " +
-                category
-                + " | " +
-                questions + "[" + answer + "]"
-                + " | " +
-                lod
-                + " | " +
-                translation
-                + " | " +
-                category ;
+        return STR."\{fruit}_\{id} | \{category} | \{questions}[\{answer}] | \{lod} | \{translation} | \{category}";
     }
 
     @Override
