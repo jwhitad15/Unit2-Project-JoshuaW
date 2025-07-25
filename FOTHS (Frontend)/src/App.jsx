@@ -1,4 +1,5 @@
 import './App.css'
+import './components/user-accounts/user-account.css'
 import {Routes, Route, HashRouter } from 'react-router-dom'
 import Dashboard from './components/dashboard';
 import FOTHSMain from './components/foths/foths-main-page';
@@ -14,6 +15,7 @@ import Recall from './components/recall/recall';
 import UserLogin from './components/Miscellaneous/LI/SU/user-login';
 import UserRegistration from './components/Miscellaneous/LI/SU/user-registration';
 import Registration from './components/Miscellaneous/LI/SU/registration';
+import UserAccount from './components/user-accounts/user-account';
 
 // I plug all of my main components into the App component
 // each route has a specific parameter ID
@@ -37,6 +39,7 @@ function App() {
           <Route path="/user-login" element={ <UserLogin/>} />
           <Route path="/user-registration" element={ <UserRegistration/>} />
           <Route path="/registration" element={ <Registration/>} />
+          <Route path="/user-account" element={ <UserAccount/>} />
         </Routes>
       </HashRouter>
     </>

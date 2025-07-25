@@ -1,0 +1,197 @@
+.user-nav-css {  
+    display: flex;
+    place-content: center;
+    background: #cdc5b4;
+    border: outset;
+    position: fixed;
+    right: 3%;
+    top: 18%;
+    width: 20%;
+    height: 68%;
+    box-shadow: 0 0 5px black;
+    border-radius: 10px;}
+
+.user-field {font-size: 12px; text-align: left;}
+.user-info-title {font-size: 16px; text-align: center;}
+.user-info-card {
+    border: outset;
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    position: fixed;
+    top: 29%;
+    width: 12%;
+    height: 16%;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size: x-small;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+}
+
+.user-info-column {
+    border: outset;
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    place-content: center;
+    position: fixed;
+    top: 21%;
+    width: 12%;
+    height: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+   font-size: 26px;
+    }
+.user-scope-display {
+    border: outset;
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    position: fixed;
+    top: 47.75%;
+    width: 12%;
+    height: 16%;
+    padding-left: 2%;
+    padding-right: 2%;
+    line-height: 7px;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+    }
+.usd-title {font-size: 16px; text-align: center;}
+.usd-timestamp {font-size: 0px; text-align: center;}
+.usd-preset {font-size: 12px; text-align: center}
+.usd-preset-subs {font-size: 10px; text-align: center}
+.usd-custom {font-size: 12px; text-align: center}
+.usd-custom-subs {font-size: 10px; text-align: center}
+
+.user-recent-activity {
+    border: outset;
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    position: fixed;
+    top: 66.5%;
+    width: 12%;
+    height: 16%;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size: small;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+    }
+.ura-title {font-size: 16px; text-align: center; line-height: 1;}
+.ura-window {
+    background-color: #cdc5b4; 
+    border: inset;
+    border-color: #a64444;
+    position: flex;
+    line-height: 1;
+    height: 55%;
+    width: 100%;
+    overflow: scroll;
+}
+.usd-window {
+    background-color: #cdc5b4; 
+    border: inset;
+    border-color: #a64444;
+    position: flex;
+    line-height: 1;
+    height: 61%;
+    width: 100%;
+    overflow: scroll;
+}
+.user-account-aside {
+    display: flex;
+    place-content: center;
+    flex: 0 0 25vw;
+    background: #cdc5b4;
+    color: #85756e;
+    box-sizing: borderbox;
+    border: outset;
+    position: fixed;
+    left: 3%;
+    top: 18%;
+    width: 20%;
+    height: 68%;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+    border-radius: 10px;
+    overflow: auto;
+  }
+  
+  .utilities {
+    border: outset;
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    place-content: center;
+    position: fixed;
+    top: 21%;
+    width: 12%;
+    height: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+    font-size: 26px;
+    z-index: 1;
+  }
+  .util-bible {
+    border: outset;
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    place-content: center;
+    position: absolute;
+    top: 16.2%;
+    height: 59%;
+    width: 75.6%;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size: x-small;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+  }
+  .eBible-window {    
+    background-color: #cdc5b4; 
+    border: inset;
+    border-color: #a64444;
+    position: flex;
+    line-height: 1;
+    height: 55%;
+    overflow: scroll;}
+  .util-timer {
+    border: outset;
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    place-content: center;
+    position: fixed;
+    top: 72.5%;
+    width: 12%;
+    height: 10%;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+    font-size: 26px;
+    z-index: 1;
+  }
