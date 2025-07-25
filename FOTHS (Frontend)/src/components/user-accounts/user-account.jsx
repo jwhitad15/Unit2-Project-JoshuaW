@@ -30,8 +30,10 @@ const UserAccount = () => {
                 </div>
             </div>
 
-            <div className="foths-main">
-                <div className="foths-main-title"> Account Dashboard </div>
+            <div className="user-account-main">
+                <div className="ua-title"> Account Dashboard </div>
+                <div className="ua-query"> Query Selections</div>
+                <div className="ua-display"> Display Window </div>
 
                 <div className="fruits-grid">
                     <div className="fruit-cards-row-1">
