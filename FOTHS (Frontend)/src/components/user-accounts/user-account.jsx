@@ -28,6 +28,7 @@ const UserAccount = () => {
                         <button id="reset-button">Reset</button>
                     </div>
                 </div>
+                <div id="app"></div>
             </div>
 
             <div className="foths-main">
