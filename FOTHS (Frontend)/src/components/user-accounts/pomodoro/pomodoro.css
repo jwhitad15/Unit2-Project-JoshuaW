@@ -1,0 +1,88 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+.pomodoro {
+
+    /* position: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: space-evenly; */
+    /* gap: 2em; */
+    /* color: white; */
+    /* z-index: 3; */
+    font-size: 24px;
+        font-family: "Nunito", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: weight;
+        font-style: normal;
+        line-height: 1.5;
+        font-weight: 400;
+    
+    
+}
+
+.pomoTimer {}
+.pomoButton {
+    justify-content: space-evenly;
+}
+
+button {
+    border: outset 2.5px;
+    color: white;
+    background-color: #1d3461;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    line-height: 1;
+  }
+  button:hover {
+    background-color: white;
+    color: #1d3461;
+    border-color: #1d3461;
+    left: 10%;
+  }
+
+.ua-fetch-window {
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    position: absolute;
+    justify-content: space-evenly;
+    top: 16.2%;
+    left: 6.1%;
+    height: 10%;
+    width: 83.2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+  }
+  .ua-fetch-labels {
+    font-size: 16px;
+  }
+  .ua-study-window {
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    position: absolute;
+    top: 31%;
+    left: 6.1%;
+    height: 63.7%;
+    width: 83.2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+  }

@@ -1,5 +1,6 @@
 import Footer from "./footer/footer";
 import FourElementHeader from "./header-components/header-4";
+import Pomodoro from "./user-accounts/pomodoro/pomodoro";
 
 const Dashboard = () => {
 

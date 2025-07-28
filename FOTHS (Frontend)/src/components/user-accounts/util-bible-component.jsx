@@ -145,6 +145,9 @@ const UtilBible = () => {
             <p>FETCHED E-BIBLE</p>
             <p>AI E-BIBLE</p>
             <p>AI E-BIBLE</p>
+            <p>AI ffgfE-BIBLE sfgsfd</p>
+            <p>AI E-BIBLE sfdg</p>
+            <p>AI E-BIBLE afgsdg</p>
           </div>
         </label> <br />
       

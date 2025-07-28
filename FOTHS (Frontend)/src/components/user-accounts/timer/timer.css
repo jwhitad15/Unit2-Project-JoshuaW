@@ -1,0 +1,10 @@
+.timer {
+    display: flex;
+    vertical-align: top;
+    justify-content: space-evenly;
+}
+
+.timer-label {
+    font-size: 18px;
+    line-height: 0.1;
+}

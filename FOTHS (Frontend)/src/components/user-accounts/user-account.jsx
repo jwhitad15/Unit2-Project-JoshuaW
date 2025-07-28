@@ -2,7 +2,10 @@ import FourElementHeader from "../header-components/header-4";
 import Footer from "../footer/footer";
 import Image from "../image";
 import './user-account.css';
+import './pomodoro/pomodoro.css';
 import UtilBible from "./util-bible-component";
+import UserTimer from "./timer/timer-component";
+import Pomodoro from "./pomodoro/pomodoro";
 
 
 
@@ -20,27 +23,43 @@ const UserAccount = () => {
             <div className="user-account-aside">
                 <div className="utilities">Utilities</div>
                 <div className="util-bible"><UtilBible/> </div>
-                <div className="util-timer">
-                    <div id="timer-container">
-                        <span id="time-display">00:00:00</span> <br/>
-                        <button id="start-button">Start</button>
-                        <button id="pause-button">Pause</button>
-                        <button id="reset-button">Reset</button>
-                    </div>
-                </div>
+                <div className="util-timer"><Pomodoro/></div>
+                <div className="util-timer"><Pomodoro/></div>
+                <div className="util-timer"><Pomodoro/></div>
                 <div id="app"></div>
             </div>
 
-            <div className="user-account-main">
-                <div className="ua-title"> Account Dashboard </div>
-                <div className="ua-query"> Query Selections</div>
-                <div className="ua-display"> Display Window </div>
+            <div className="foths-main">
+                <div className="foths-main-title"> Account Dashboard </div>
 
-                <div className="fruits-grid">
+                {/* <div className="fruits-grid">
                     <div className="fruit-cards-row-1">
                         <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1"><div className="responsive-fruit-card-text">Faith</div><Image/></a>
                     </div>
-                </div>
+                </div> */}
+                <main className="ua-study-window"> <p> Verse </p> </main>
+                <main className="ua-fetch-window"> 
+                    <label className="ua-fetch-labels">Fruit</label>
+                    <select id="goals" value="user-fetch"  className="goal-select"  >
+                        <option value="0"></option>
+                        <option value="1">Every Fruit</option>
+                        <option value="1">Faith</option>
+                    </select> <br /> <br className="desktop-scope-breakpoint" />
+                    <label className="ua-fetch-labels">Mode</label>
+                    <select id="goals" value="user-fetch"  className="goal-select"  >
+                        <option value="0"></option>
+                        <option value="1">Study</option>
+                        <option value="2">Recall</option>
+                        <option value="3">Quiz</option>
+                    </select> <br /> <br className="desktop-scope-breakpoint" />
+                    <label className="ua-fetch-labels">Difficulty</label>
+                    <select id="goals" value="user-fetch"  className="goal-select"  >
+                        <option value="0"></option>
+                        <option value="1">Genesis</option>
+                        <option value="2">Exodus</option>
+                        <option value="3">Leviticus</option>
+                    </select> <br /> <br className="desktop-scope-breakpoint" />
+                </main>
 
             </div>
         
@@ -55,6 +74,7 @@ const UserAccount = () => {
                         <li className="user-field">Email</li>
                         <li className="user-field">Username</li>
                     </div>
+                    <Pomodoro/>
                 </div>
                 <div className="user-scope-display">
                     <p className="usd-title">My Scope</p>

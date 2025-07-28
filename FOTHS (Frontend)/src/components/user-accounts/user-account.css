@@ -150,13 +150,12 @@
     font-size: 26px;
     z-index: 1;
   }
-  /* .util-bible {
+  .util-bible {
     border: outset;
     border: 3px outset white;
     border-radius: 8px;
     background-color: #a64444;
     color: white;
-    place-content: center;
     position: absolute;
     top: 16.2%;
     height: 59%;
@@ -167,105 +166,37 @@
     box-shadow: 8 14px 8px black;
     -webkit-box-shadow: 0 0 10px #fff;
     box-shadow: 0 0 5px black;
-  } */
+  }
   .eBible-window {    
     background-color: #cdc5b4; 
+    color: #a64444;
     border: inset;
-    border-color: #a64444;
-    position: flex;
+    border-color: white;
+    position: fixed;
     line-height: 1;
-    height: 55%;
+    top: 54.2%;
+    height: 13.5%;
+    width: 15%;
+    border-radius: 8px;
     overflow: scroll;}
   .util-timer {
+    place-content: center;
     border: outset;
     border: 3px outset white;
     border-radius: 8px;
     background-color: #a64444;
     color: white;
-    place-content: center;
-    position: fixed;
-    top: 72.5%;
-    width: 12%;
-    height: 10%;
+    position: absolute;
+    top: 79.9%;
+    width: 75.6%;
+    height: 15.2%;
     padding-left: 2%;
     padding-right: 2%;
     box-shadow: 8 14px 8px black;
     -webkit-box-shadow: 0 0 10px #fff;
     box-shadow: 0 0 5px black;
-    font-size: 26px;
+    /* font-size: 26px; */
     z-index: 1;
-  }
-  .user-account-main {
-    display: flex;
-    place-content: center;
-    flex: 0 0 25vw;
-    background: #cdc5b4;
-    color: #85756e;
-    box-sizing: borderbox;
-    border: outset;
-    border-radius: 10px;
-    justify-content: space-evenly;
-  
-    position: fixed;
-    right: 26%;
-    left: 26%;
-    top: 18%;
-    width: 48%;
-    height: 68%;
-  
-    box-shadow: 8 14px 8px black;
-    -webkit-box-shadow: 0 0 10px #fff;
-    box-shadow: 0 0 5px black;
-  }
-  
-  .ua-title {
-    border-style: outset;
-    border: 3px outset white;
-    border-radius: 8px;
-    background-color: #a64444;
-    position: fixed;
-    top: 21%;
-    height: 5%;
-    width: 42%;
-    color: white;
-    place-content: center;
-    box-shadow: 8 14px 8px black;
-    -webkit-box-shadow: 0 0 10px black;
-    box-shadow: 0 0 px #a64444;
-  font-size: 26px;
-    z-index: 1;
-  }
-  .ua-query {
-    border-style: outset;
-    border: 3px outset white;
-    border-radius: 8px;
-    background-color: #a64444;
-    position: fixed;
-    top: 29%;
-    height: 10%;
-    width: 42%;
-    color: white;
-    place-content: center;
-    box-shadow: 8 14px 8px black;
-    -webkit-box-shadow: 0 0 10px black;
-    box-shadow: 0 0 px #a64444;
-  font-size: 26px;
-    z-index: 1;
-  }
-  .ua-display {
-    border-style: outset;
-    border: 3px outset white;
-    border-radius: 8px;
-    background-color: #a64444;
-    position: fixed;
-    top: 42%;
-    height: 40.7%;
-    width: 42%;
-    color: white;
-    place-content: center;
-    box-shadow: 8 14px 8px black;
-    -webkit-box-shadow: 0 0 10px black;
-    box-shadow: 0 0 px #a64444;
-  font-size: 26px;
-    z-index: 1;
+    /* overflow: scroll; */
+    /* justify-content: space-evenly; */
   }
