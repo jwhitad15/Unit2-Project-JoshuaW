@@ -60,10 +60,10 @@ const Admin = () => {
         
             {/* Flexbox stylization to create columns & column cards */}
             <div className="user-nav-css">
-                <div className="user-info-column">Profile Details</div>
+                <div className="user-info-column">Query Details</div>
                 
                 <div className="user-info-card">
-                <p className="user-info-title">User Information</p>
+                <p className="user-info-title">Name/Verse/Question</p>
                     <div className="user-information">
                         <li className="user-field">Name</li>
                         <li className="user-field">Email</li>
@@ -71,7 +71,7 @@ const Admin = () => {
                     </div>
                 </div>
                 <div className="user-scope-display">
-                    <p className="usd-title">My Scope</p>
+                    <p className="usd-title">Email/Scripture/Answer</p>
                     <div className="usd-window">
                         <p className="usd-timestamp">Timestamp</p>
                         <p className="usd-preset">Preset Goals</p>
@@ -81,7 +81,7 @@ const Admin = () => {
                     </div>
                 </div>
                 <div className="user-recent-activity">
-                    <p className="ura-title">Recent Activity</p>
+                    <p className="ura-title">Other</p>
                     <div className="ura-window">
                         <p className="ura1">  user.activity[i] - where [i] = (activityRecords.length - 1) </p>
                         <p className="ura2">Timestamp </p>
