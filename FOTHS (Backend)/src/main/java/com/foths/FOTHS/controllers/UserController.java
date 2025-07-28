@@ -31,7 +31,7 @@ public class UserController {
     }
 
     // GET a single user using its id - Corresponds to http://localhost:8080/activities/details/3 (for example)
-    @GetMapping(value="/{userId}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getUserById(@PathVariable(value="userId") int userId) {
         User currentUser = (User) userRepository.findById(userId).orElse(null);
         if (currentUser != null) {
@@ -50,14 +50,14 @@ public class UserController {
     }
 
     @PutMapping("/update/{userId}")
-    public ResponseEntity<?> updateUser(@PathVariable(value="userId") int userId, @RequestBody User userDetails) {
+    public ResponseEntity<?> updateUser(@PathVariable(value="userId") int userId, @RequestBody User user) {
         User currentUser = userRepository.findById(userId).orElse(null);
         if (currentUser != null) {
-            currentUser.setFirstName(userDetails.getFirstName());
-            currentUser.setLastName(userDetails.getLastName());
-            currentUser.setUsername(userDetails.getUsername());
-            currentUser.setEmail(userDetails.getEmail());
-            currentUser.setPassword(userDetails.getPassword());
+            currentUser.setFirstName(user.getFirstName());
+            currentUser.setLastName(user.getLastName());
+            currentUser.setEmail(user.getEmail());
+            currentUser.setUsername(user.getUsername());
+            currentUser.setPassword(user.getPassword());
 
             userRepository.save(currentUser);
             return new ResponseEntity<>(currentUser, HttpStatus.OK); // 200

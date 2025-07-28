@@ -3,17 +3,18 @@ package com.foths.FOTHS.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.Objects;
 
 @Getter
 @Setter
 @Entity
+@Table(name = "question")
 public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "questions")
     private String questions;
     @Column(name = "answer")
@@ -37,7 +38,6 @@ public class Question {
         this.category = category;
     }
     public Question() {};
-
 
 
     @Override

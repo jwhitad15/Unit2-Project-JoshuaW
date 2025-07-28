@@ -3,9 +3,9 @@ package com.foths.FOTHS.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.Objects;
 
+@Table(name = "scripture")
 @Getter
 @Setter
 @Entity
@@ -15,28 +15,34 @@ public class Scripture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "verse")
-    private String verse;
-    @Column(name = "scripture")
-    private String scripture;
+    @Column(name = "category")
+    private String category;
+    @Column(name = "fruit")
+    private String fruit;
     @Column(name = "lod")
     private String lod;
     @Column(name = "translation")
     private String translation;
-    @Column(name = "fruit")
-    private String fruit;
-    @Column(name = "category")
-    private String category;
+    @Column(name = "scripture")
+    private String scripture;
+    @Column(name = "verse")
+    private String verse;
 
 
-    public Scripture(String verse, String scripture, String lod, String translation, String fruit, String category) {}
-    public Scripture() {};
+    public Scripture(String category, String fruit, String lod, String translation, String scripture, String verse) {
+        this.category = category;
+        this.fruit = fruit;
+        this.lod = lod;
+        this.translation = translation;
+        this.scripture = scripture;
+        this.verse = verse;
+    }
 
-    public void setPassword(String password) {}
+    public Scripture() {}
 
     @Override
     public String toString() {
-        return STR."\{fruit}_\{id}) \{verse} - \{scripture} | \{lod} | \{translation} | \{category}";
+        return STR."\{id} \{fruit} | \{verse} \{scripture} | \{translation} | \{lod} | \{category}";
     }
 
     @Override
@@ -52,19 +58,6 @@ public class Scripture {
     public int hashCode() {
         return Objects.hashCode(id);
     }
-
-
-    public void setEmail(String email) {
-        
-    }
-
-    public void setUsername(String username) {
-    }
-
-    public void setLastName(String lastName) {
-    }
-
-    public void setFirstName(String firstName) {
-
-    }
 }
+
+

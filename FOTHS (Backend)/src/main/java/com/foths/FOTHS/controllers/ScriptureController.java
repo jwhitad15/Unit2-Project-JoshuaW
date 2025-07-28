@@ -1,7 +1,9 @@
 package com.foths.FOTHS.controllers;
 
 import com.foths.FOTHS.models.Scripture;
+import com.foths.FOTHS.models.User;
 import com.foths.FOTHS.repositories.ScriptureRepository;
+import org.hibernate.tool.schema.spi.ScriptTargetOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/scripture")
+@RequestMapping("/scriptures")
 public class ScriptureController {
 
     @Autowired
@@ -20,55 +22,52 @@ public class ScriptureController {
 
     public ScriptureController(ScriptureRepository scriptureRepository) {this.scriptureRepository = scriptureRepository;}
 
-    // GET the full list of scripture - Endpoint is http://localhost:8080/scripture
     @GetMapping("")
-    public ResponseEntity<?> getScripture() {
-        List<Scripture> allScripture = scriptureRepository.findAll();
-        return ResponseEntity.ok(allScripture); // 200
+    public ResponseEntity<?> getAllScriptures() {
+        List<Scripture> allScriptures = scriptureRepository.findAll();
+        return ResponseEntity.ok(allScriptures);
     }
 
-    // GET a single scripture using its id
-    // Corresponds to http://localhost:8080/scripture/details/3 (for example)
-    @GetMapping(value="/{scriptureId}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/{scriptureId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getScriptureById(@PathVariable(value="scriptureId") int scriptureId) {
-        Scripture currentScripture = (Scripture) scriptureRepository.findById(scriptureId).orElse(null);
+        Scripture currentScripture = scriptureRepository.findById(scriptureId).orElse(null);
         if (currentScripture != null) {
             return new ResponseEntity<>(currentScripture, HttpStatus.OK); // 200
         } else {
-            String response = STR."The scripture with ID of \{scriptureId} was not found.";
+            String response = STR."User with ID of \{scriptureId} not found.";
             return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
         }
     }
 
-    // POST a new scripture - Endpoint http://localhost:8080/scripture/add
     @PostMapping("/add")
     public ResponseEntity<?> createNewScripture(@RequestBody Scripture scripture) {
-        Scripture newScripture = new Scripture();
-        scriptureRepository.save(newScripture);
-        return new ResponseEntity<>(newScripture, HttpStatus.CREATED); // 201
+        scriptureRepository.save(scripture);
+        return new ResponseEntity<>(scripture, HttpStatus.CREATED); // 201
     }
 
     @PutMapping("/update/{scriptureId}")
     public ResponseEntity<?> updateScripture(@PathVariable(value="scriptureId") int scriptureId, @RequestBody Scripture scripture) {
         Scripture currentScripture = scriptureRepository.findById(scriptureId).orElse(null);
-    if (currentScripture != null) {
-        currentScripture.setVerse(scripture.getVerse());
-        currentScripture.setScripture(scripture.getScripture());
-        currentScripture.setLod(scripture.getLod());
-        currentScripture.setTranslation(scripture.getTranslation());
-        currentScripture.setFruit(scripture.getFruit());
-        currentScripture.setCategory(scripture.getCategory());
-        scriptureRepository.save(currentScripture);
-        return new ResponseEntity<>(currentScripture, HttpStatus.OK); // 200
+        if (currentScripture != null) {
+            currentScripture.setCategory(scripture.getCategory());
+            currentScripture.setFruit(scripture.getFruit());
+            currentScripture.setLod(scripture.getLod());
+            currentScripture.setTranslation(scripture.getTranslation());
+            currentScripture.setScripture(scripture.getScripture());
+            currentScripture.setVerse(scripture.getVerse());
+
+            scriptureRepository.save(currentScripture);
+            return new ResponseEntity<>(currentScripture, HttpStatus.OK); // 200
+        } else {
+            String response = STR."User with ID of \{scriptureId} not found.";
+            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
+        }
     }
-        String response = STR."User with ID of \{scriptureId} not found.";
-        return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
-    }
-    // DELETE an existing scripture
-    // Corresponds to http://localhost:8080/scripture/delete/6 (for example)
+
+    // DELETE an existing user - Corresponds to http://localhost:8080/users/delete/6 (for example)
     @DeleteMapping(value="/delete/{scriptureId}", produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deleteScripture(@PathVariable(value="scriptureId") int scriptureId) {
-        Scripture currentScripture = scriptureRepository.findById(scriptureId).orElse(null);
+    public ResponseEntity<?> deleteById(@PathVariable(value="userId") int scriptureId) {
+        Scripture currentScripture = (Scripture) scriptureRepository.findById(scriptureId).orElse(null);
         if (currentScripture != null) {
             scriptureRepository.deleteById(scriptureId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204
@@ -77,4 +76,5 @@ public class ScriptureController {
             return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
         }
     }
+
 }

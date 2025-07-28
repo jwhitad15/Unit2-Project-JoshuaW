@@ -1,6 +1,7 @@
 package com.foths.FOTHS.controllers;
 
 import com.foths.FOTHS.models.Question;
+import com.foths.FOTHS.models.User;
 import com.foths.FOTHS.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,14 +17,17 @@ import java.util.List;
 public class QuestionController {
 
     @Autowired
-    QuestionRepository questionRepository;
+    private final QuestionRepository questionRepository;
+
+    public QuestionController(QuestionRepository questionRepository) {this.questionRepository = questionRepository; }
 
     // GET the full list of questions
     // Endpoint is http://localhost:8080/questions
     @GetMapping("")
     public ResponseEntity<?> getQuestions() {
         List<Question> allQuestions = questionRepository.findAll();
-        return new ResponseEntity<>(allQuestions, HttpStatus.OK); // 200
+        return ResponseEntity.ok(allQuestions);
+//        return new ResponseEntity<>(allQuestions, HttpStatus.OK); // 200
     }
 
     // GET a single question using its id
@@ -42,14 +46,30 @@ public class QuestionController {
     // POST a new question
     // Endpoint http://localhost:8080/questions/add (for example)
     @PostMapping("/add")
-    public ResponseEntity<?> createNewQuestion(@RequestParam(value="question") String question, @RequestParam(value="answer") String answer, @RequestParam(value="lod") String lod, @RequestParam(value="translation") String translation, @RequestParam(value="fruit") String fruit, @RequestParam(value="category") String category) {
-        Question newQuestion = new Question(question, answer, lod, translation, fruit, category);
-        questionRepository.save(newQuestion);
-        return new ResponseEntity<>(newQuestion, HttpStatus.CREATED); // 201
+    public ResponseEntity<?> createNewQuestion(@RequestBody Question question) {
+        questionRepository.save(question);
+        return new ResponseEntity<>(question, HttpStatus.CREATED); // 201
     }
 
-    // DELETE an existing question
-    // Corresponds to http://localhost:8080/questions/delete/6 (for example)
+    @PutMapping("/update/{questionId}")
+    public ResponseEntity<?> updateQuestion(@PathVariable(value="questionId") int questionId, @RequestBody Question question) {
+        Question currentQuestion = questionRepository.findById(questionId).orElse(null);
+        if (currentQuestion != null) {
+            currentQuestion.setQuestions(question.getQuestions());
+            currentQuestion.setAnswer(question.getAnswer());
+            currentQuestion.setLod(question.getLod());
+            currentQuestion.setTranslation(question.getTranslation());
+            currentQuestion.setFruit(question.getFruit());
+            currentQuestion.setCategory(question.getCategory());
+
+            questionRepository.save(currentQuestion);
+            return new ResponseEntity<>(currentQuestion, HttpStatus.OK); // 200
+        } else {
+            String response = STR."User with ID of \{questionId} not found.";
+            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
+        }
+    }
+
     @DeleteMapping(value="/delete/{questionId}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteQuestion(@PathVariable(value="questionId") int questionId) {
         Question currentQuestion = questionRepository.findById(questionId).orElse(null);
