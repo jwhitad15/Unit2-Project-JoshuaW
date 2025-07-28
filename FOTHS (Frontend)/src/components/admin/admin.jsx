@@ -6,6 +6,8 @@ import UserFetch from "./user-fetch";
 import ScriptureFetch from "./scripture-fetch";
 import QuestionFetch from "./question-fetch";
 import AdminQuery from "./query";
+import Pomodoro from "../user-accounts/pomodoro/pomodoro";
+import Music from "./music";
 
 
 
@@ -23,6 +25,8 @@ const Admin = () => {
             <div className="user-account-aside">
                 <div className="utilities">Database Query</div>
                 <div className="util-bible"><AdminQuery/> </div>
+                <div className="util-timer"><Pomodoro/></div>
+                <div className="util-timer"><Music/></div>
                 <div id="app"></div>
             </div>
 
@@ -51,7 +55,7 @@ const Admin = () => {
                         <option value="3">Leviticus</option>
                     </select> <br /> <br className="desktop-scope-breakpoint" />
                 </main> */}
-                {/* <UserFetch/> */}
+                <UserFetch/>
                 <ScriptureFetch/>
                 <QuestionFetch/>
                 <main className="ua-study-window"> <p> Main Window  </p> </main>
