@@ -16,6 +16,7 @@ import UserLogin from './components/Miscellaneous/LI/SU/user-login';
 import UserRegistration from './components/Miscellaneous/LI/SU/user-registration';
 import Registration from './components/Miscellaneous/LI/SU/registration';
 import UserAccount from './components/user-accounts/user-account';
+import Admin from './components/admin/admin';
 
 // I plug all of my main components into the App component
 // each route has a specific parameter ID
@@ -36,6 +37,7 @@ function App() {
           <Route path="*" element={<ErrorPage/>} />
           <Route path="/login" element={ <LoginForm/>}/>
           <Route path="/fetch" element={ <Fetch/>} />
+          <Route path="/admin" element={ <Admin/>} />
           <Route path="/user-login" element={ <UserLogin/>} />
           <Route path="/user-registration" element={ <UserRegistration/>} />
           <Route path="/registration" element={ <Registration/>} />
