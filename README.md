@@ -2,6 +2,7 @@
 ## An interactive, educational application centered on biblical teachings.
 
 #Summary
+
 FOTHS, short for Fruits of the Holy Spirit, was created as an educational tool designed to solidify biblical teaching into the minds of its users. 
 This application is for the youth, adults, clergy members, and parents alike.
 The application's main feature comes equipped with three modes: Study, Recall, & Quiz. 
@@ -11,6 +12,7 @@ The application's main feature comes equipped with three modes: Study, Recall, &
 In addition to the main feature, Game Mode, FOTHS allows users to register a personal account, create custom goals directly in the application, and have access to additional resources that help facilitate biblical learning.
 
 #Technologies
+
 As a full-stack application, FOTHS was built in two distinct parts - a frontend & a backend.
   The technologies used to build the frontend were, but not limited to:
     JavaScript
@@ -31,6 +33,7 @@ As a full-stack application, FOTHS was built in two distinct parts - a frontend 
     Google Suite
 
 #Run FOTHS Locally
+
 To run this application locally:
   Ensure you have a functional browser like Chrome, Safari, etc.
   Download the following editing software: VS Code & IntelliJ
