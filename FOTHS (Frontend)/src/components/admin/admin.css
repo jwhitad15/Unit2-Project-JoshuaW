@@ -11,3 +11,18 @@
     width: 127px;
     background-color: #cdc5b4;
   }
+
+  .admin-header-element {
+    border-style: outset;
+    border: 3px outset white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 8px;
+    background-color: #a64444;
+    width: 18%;
+    padding-top: auto;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+    font-size: 25px;
+  }

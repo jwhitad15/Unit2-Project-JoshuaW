@@ -1,4 +1,4 @@
-import FourElementHeader from "../header-components/header-4";
+// import FourElementHeader from "../header-components/header-4";
 import Footer from "../footer/footer";
 import './admin.css';
 import UtilBible from "../user-accounts/util-bible-component";
@@ -8,6 +8,7 @@ import QuestionFetch from "./question-fetch";
 import AdminQuery from "./query";
 import Pomodoro from "../user-accounts/pomodoro/pomodoro";
 import Music from "./music";
+import AdminHeader from "../header-components/admin-header";
 
 
 
@@ -19,7 +20,7 @@ const Admin = () => {
         <div id="foths-main">
 
            
-            <FourElementHeader/>
+            <AdminHeader/>
 
             {/* Dynamic Component that receives user input to display in another element */}
             <div className="user-account-aside">
