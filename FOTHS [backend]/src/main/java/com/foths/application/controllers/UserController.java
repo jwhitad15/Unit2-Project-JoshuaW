@@ -22,7 +22,6 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    // GET the full list of users - Endpoint is http://localhost:8080/users
     @GetMapping("")
     public ResponseEntity<?> getUsers() {
         List<User> allUsers = userRepository.findAll();
@@ -30,7 +29,6 @@ public class UserController {
 //        return new ResponseEntity<>(allUsers, HttpStatus.OK); // 200
     }
 
-    // GET a single user using its id - Corresponds to http://localhost:8080/activities/details/3 (for example)
     @GetMapping(value="/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getUserById(@PathVariable(value="userId") int userId) {
         User currentUser = (User) userRepository.findById(userId).orElse(null);
@@ -42,7 +40,6 @@ public class UserController {
         }
     }
 
-    // POST a new user - Endpoint http://localhost:8080/users/create
     @PostMapping("/create")
     public ResponseEntity<?> createNewUser(@RequestBody User user) {
         userRepository.save(user);
@@ -67,7 +64,6 @@ public class UserController {
         }
     }
 
-    // DELETE an existing user - Corresponds to http://localhost:8080/users/delete/6 (for example)
     @DeleteMapping(value="/delete/{userId}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteById(@PathVariable(value="userId") int userId) {
         User currentUser = (User) userRepository.findById(userId).orElse(null);

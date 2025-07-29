@@ -27,8 +27,6 @@ public class QuestionController {
 //        return new ResponseEntity<>(allQuestions, HttpStatus.OK); // 200
     }
 
-    // GET a single question using its id
-    // Corresponds to http://localhost:8080/questions/details/3 (for example)
     @GetMapping(value="/{questionId}", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getQuestionById(@PathVariable(value="questionId") int questionId) {
         Question currentQuestion = (Question) questionRepository.findById(questionId).orElse(null);
@@ -40,8 +38,6 @@ public class QuestionController {
         }
     }
 
-    // POST a new question
-    // Endpoint http://localhost:8080/questions/add (for example)
     @PostMapping("/add")
     public ResponseEntity<?> createNewQuestion(@RequestBody Question question) {
         questionRepository.save(question);

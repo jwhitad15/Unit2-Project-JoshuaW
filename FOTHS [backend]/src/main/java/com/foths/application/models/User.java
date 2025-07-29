@@ -27,8 +27,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-
-
     public User(String firstName, String lastName, String email, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,8 +35,6 @@ public class User {
         this.password = password;
     }
     public User() {};
-
-
 
     @Override
     public String toString() {

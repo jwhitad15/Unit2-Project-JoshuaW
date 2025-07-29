@@ -1,6 +1,5 @@
 package com.foths.application.controllers;
 
-import com.foths.application.models.Question;
 import com.foths.application.models.Scripture;
 import com.foths.application.repositories.ScriptureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +62,6 @@ public class ScriptureController {
         }
     }
 
-    // DELETE an existing user - Corresponds to http://localhost:8080/users/delete/6 (for example)
     @DeleteMapping(value="/delete/{scriptureId}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteScripture(@PathVariable(value="scriptureId") int scriptureId) {
         Scripture currentScripture = (Scripture) scriptureRepository.findById(scriptureId).orElse(null);

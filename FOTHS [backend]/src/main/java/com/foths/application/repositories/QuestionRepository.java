@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
-    // Custom query methods can be defined here if needed
+    // Custom query methods
     List<Question> findByQuestionsContaining(String questions);
     List<Question> findByAnswerContaining(String answer);
     List<Question> findByLod(String lod);

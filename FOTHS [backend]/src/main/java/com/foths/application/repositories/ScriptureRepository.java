@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ScriptureRepository extends JpaRepository<Scripture, Integer> {
 
-    // Custom query methods can be defined here if needed
+    // Custom query methods
     List<Scripture> findByCategory(String category);
     List<Scripture> findByTranslation(String translation);
     List<Scripture> findByVerse(String verse);
