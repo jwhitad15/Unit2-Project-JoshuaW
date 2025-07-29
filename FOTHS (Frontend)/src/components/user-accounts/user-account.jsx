@@ -1,10 +1,8 @@
 import FourElementHeader from "../header-components/header-4";
 import Footer from "../footer/footer";
-import Image from "../image";
 import './user-account.css';
 import './pomodoro/pomodoro.css';
 import UtilBible from "./util-bible-component";
-import UserTimer from "./timer/timer-component";
 import Pomodoro from "./pomodoro/pomodoro";
 
 
@@ -23,8 +21,6 @@ const UserAccount = () => {
             <div className="user-account-aside">
                 <div className="utilities">Utilities</div>
                 <div className="util-bible"><UtilBible/> </div>
-                <div className="util-timer"><Pomodoro/></div>
-                <div className="util-timer"><Pomodoro/></div>
                 <div className="util-timer"><Pomodoro/></div>
                 <div id="app"></div>
             </div>
@@ -55,9 +51,9 @@ const UserAccount = () => {
                     <label className="ua-fetch-labels">Difficulty</label>
                     <select id="goals" value="user-fetch"  className="goal-select"  >
                         <option value="0"></option>
-                        <option value="1">Genesis</option>
-                        <option value="2">Exodus</option>
-                        <option value="3">Leviticus</option>
+                        <option value="1">Easy</option>
+                        <option value="2">Intermediate</option>
+                        <option value="3">Difficult</option>
                     </select> <br /> <br className="desktop-scope-breakpoint" />
                 </main>
 
@@ -74,7 +70,6 @@ const UserAccount = () => {
                         <li className="user-field">Email</li>
                         <li className="user-field">Username</li>
                     </div>
-                    <Pomodoro/>
                 </div>
                 <div className="user-scope-display">
                     <p className="usd-title">My Scope</p>

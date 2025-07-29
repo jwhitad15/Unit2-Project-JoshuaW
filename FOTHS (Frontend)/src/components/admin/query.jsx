@@ -65,13 +65,6 @@ const AdminQuery = () => {
 
         <label className="scope-presetGoals-banner"><hr/>PARAMETERS<hr/> <br/> </label>
 
-        <label >Type</label> <br/>
-        <select id="goals"  className="goal-select" >
-          <option value="0"></option>
-          <option value="1">User</option>
-          <option value="2">Scripture</option>
-          <option value="3">Question</option>
-        </select> <br /> <br className="desktop-scope-breakpoint" />
         <label for="goals">Command</label> <br/>
         <select id="goals"   className="goal-select"  >
           <option value="0"></option>
@@ -79,6 +72,13 @@ const AdminQuery = () => {
           <option value="2">Add</option>
           <option value="3">Update</option>
           <option value="3">Delete</option>
+        </select> <br /> <br className="desktop-scope-breakpoint" />
+        <label >Type</label> <br/>
+        <select id="goals"  className="goal-select" >
+          <option value="0"></option>
+          <option value="1">User</option>
+          <option value="2">Scripture</option>
+          <option value="3">Question</option>
         </select> <br /> <br className="desktop-scope-breakpoint" /> <br/>
        
 
