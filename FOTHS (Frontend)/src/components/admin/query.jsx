@@ -65,7 +65,7 @@ const AdminQuery = () => {
 
         <label className="scope-presetGoals-banner"><hr/>PARAMETERS<hr/> <br/> </label>
 
-        <label for="goals">Type</label> <br/>
+        <label >Type</label> <br/>
         <select id="goals"  className="goal-select" >
           <option value="0"></option>
           <option value="1">User</option>
