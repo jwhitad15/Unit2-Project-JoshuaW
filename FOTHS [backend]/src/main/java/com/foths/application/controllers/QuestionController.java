@@ -20,8 +20,6 @@ public class QuestionController {
 
     public QuestionController(QuestionRepository questionRepository) {this.questionRepository = questionRepository; }
 
-    // GET the full list of questions
-    // Endpoint is http://localhost:8080/questions
     @GetMapping("")
     public ResponseEntity<?> getQuestions() {
         List<Question> allQuestions = questionRepository.findAll();
