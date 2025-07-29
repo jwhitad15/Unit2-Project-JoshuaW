@@ -47,6 +47,7 @@ To run this application locally:
   MySQL Localhost: 3306
 
 #Additional Links
+
 Project Blueprints
   Wireframes: https://www.canva.com/design/DAGn6wYuqnE/hdrO18N5Njd2M5rqJCHIcQ/edit
   Entity Relational Mapping: https://www.canva.com/design/DAGtLatQFZA/3sSk9Pd3o2nnGkrsyOe-Uw/edit
