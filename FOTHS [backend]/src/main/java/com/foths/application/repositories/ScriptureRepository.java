@@ -1,3 +1,8 @@
+// Scripture repository interface for managing Scripture entities in the database.
+// It extends JpaRepository to provide CRUD operations and custom query methods for Scripture entities.
+// The ScriptureRepository interface defines methods to find scripture by various attributes such as category, translation, verse, fruit, and level of difficulty (lod).
+// It also includes methods to find scriptures by combinations of these attributes, such as category and translation, or category and verse.
+
 package com.foths.application.repositories;
 
 import com.foths.application.models.Scripture;

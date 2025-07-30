@@ -1,3 +1,8 @@
+// Question repository interface for managing Question entities in the database.
+// It extends JpaRepository to provide CRUD operations and custom query methods for Question entities.
+// The QuestionRepository interface defines methods to find users by various attributes such as questions, answer, level of difficulty (lod), and translation.
+// It also includes methods to find questions by combinations of these attributes, such as questions and answer, or questions and level of difficulty (lod).
+
 package com.foths.application.repositories;
 
 import com.foths.application.models.Question;

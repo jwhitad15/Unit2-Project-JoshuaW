@@ -1,3 +1,9 @@
+// User repository interface for managing User entities in the database.
+// It extends JpaRepository to provide CRUD operations and custom query methods for User entities.
+// The UserRepository interface defines methods to find users by various attributes such as first name, last name, email, username, and password.
+// It also includes methods to find users by combinations of these attributes, such as username and password, or first name and last name.
+
+
 package com.foths.application.repositories;
 
 import com.foths.application.models.User;

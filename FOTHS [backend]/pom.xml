@@ -79,3 +79,6 @@
 	</build>
 
 </project>
+
+<!--Pom.xml is used to include metadata, dependencies, and plugins required to successfully run
+the FOTHS application-->

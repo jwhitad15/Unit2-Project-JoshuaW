@@ -1,3 +1,12 @@
+//Controller for managing question-related operations
+
+// It provides endpoints to create, read, update, and delete questions in the application.
+// The controller uses the QuestionRepository to interact with the database and perform CRUD operations on Question entities
+// It also handles HTTP requests and responses, returning appropriate status codes and messages based on the operation
+// performed.
+// The QuestionController class is annotated with @RestController to indicate that it is a Spring MVC controller
+// and @RequestMapping to specify the base URL for all endpoints in this controller.
+
 package com.foths.application.controllers;
 
 import com.foths.application.models.Question;
