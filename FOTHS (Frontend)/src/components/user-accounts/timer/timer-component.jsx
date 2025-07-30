@@ -1,3 +1,5 @@
+// Original Timer Component
+
 import './timer.css';
 
 const UserTimer = () => {

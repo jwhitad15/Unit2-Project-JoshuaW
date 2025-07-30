@@ -92,7 +92,6 @@ const faithScripture = [
     }   
 ]
 
-
 const Study = ({}) => {
 
     const [wordData, setWordData] = useState(faithScripture[0])

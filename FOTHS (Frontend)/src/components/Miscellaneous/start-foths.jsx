@@ -1,4 +1,4 @@
-// This component starts the game
+// This component starts the application without requiring a login.
 
 import React from "react";
 import Animation from "./animation";
@@ -30,7 +30,6 @@ const StartFoths = () => {
 
             </div>
 
-                {/* Scripture Animation */}
                 <Animation/>
 
         </div>

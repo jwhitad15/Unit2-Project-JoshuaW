@@ -1,6 +1,6 @@
-// grandchild component that displays the dynamic user data on FOTHS main page
-import React from "react";
+// Grandchild component that displays the dynamic user data on FOTHS main page
 
+import React from "react";
 
 
 const DisplaySelectedDropdown = (props) => {

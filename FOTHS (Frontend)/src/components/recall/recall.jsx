@@ -1,3 +1,5 @@
+// Fill-in-the-blank component for Recall Mode
+
 import React, {useState} from "react";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import FourElementHeader from "../header-components/header-4";
@@ -154,14 +156,10 @@ const Recall = ({}) => {
 
     return (
         <div id="foths-main">
-
-
             
             <div className="study-header">
                 <FourElementHeader/>
             </div>
-
-
         
             <div>
                 <button onClick={handleNext} className="study-previous-button">
@@ -177,7 +175,6 @@ const Recall = ({}) => {
                     <div id="study-button-icon"> <FaArrowLeftLong/> </div>  
                 </button>
             </div>
-
 
             <main className="study-display-verse">
 
@@ -199,7 +196,6 @@ const Recall = ({}) => {
                 <div className="study-title"> Recall Mode </div>
             
             </main>
-
 
             <div className="verse-name">
                 

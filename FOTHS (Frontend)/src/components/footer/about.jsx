@@ -1,4 +1,4 @@
-
+// About page for the FOTHS app
 
 
 import FourElementHeader from "../header-components/header-4";

@@ -1,4 +1,5 @@
-// reusable footer component on main pages
+// A reusable footer component on main pages
+
 const Footer = () => {
 
     return (

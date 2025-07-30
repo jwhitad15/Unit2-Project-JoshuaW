@@ -1,8 +1,7 @@
-// grandchild component that displays the dynamic user data on FOTHS main page
+// Dropdown Component for User Account Utility Bible
+
 import React from "react";
 import './user-account.css'
-
-
 
 const UtilBibledDropdown = (props) => {
 

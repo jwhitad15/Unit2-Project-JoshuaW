@@ -1,15 +1,9 @@
+/* Pomodoro Timer CSS  */
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 .pomodoro {
 
-    /* position: flex; */
-    /* flex-direction: column; */
-    /* align-items: center; */
-    /* justify-content: space-evenly; */
-    /* gap: 2em; */
-    /* color: white; */
-    /* z-index: 3; */
     font-size: 24px;
         font-family: "Nunito", sans-serif;
         font-optical-sizing: auto;
@@ -17,7 +11,6 @@
         font-style: normal;
         line-height: 1.5;
         font-weight: 400;
-    
     
 }
 

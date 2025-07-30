@@ -1,7 +1,7 @@
 import './App.css'
 import './components/user-accounts/user-account.css'
 import {Routes, Route, HashRouter } from 'react-router-dom'
-import Dashboard from './components/dashboard';
+import Dashboard from './components/Miscellaneous/dashboard';
 import FOTHSMain from './components/foths/foths-main-page';
 import GameMode from './components/foths/game-mode';
 import About from './components/footer/about';
@@ -17,9 +17,9 @@ import Registration from './components/Miscellaneous/LI/SU/registration';
 import UserAccount from './components/user-accounts/user-account';
 import Admin from './components/admin/admin';
 
-// I plug all of my main components into the App component
-// each route has a specific parameter ID
-// all routes are enveloped inside Routes & HashRouter tags for proper functionality
+// All of my main components are plugged into the App component
+// Each route has a specific parameter ID
+// All routes are enveloped inside Routes & HashRouter tags for proper functionality
 function App() {
   return (
     <>

@@ -12,7 +12,6 @@
     width: 127px;
     background-color: #cdc5b4;
     height: 33px;
-    /* width: 100px; */
     border: inset;
     border-radius: 8px;
     border-color: #1d3461;
@@ -65,7 +64,6 @@
   border-radius: 5px;
   background-color: #cdc5b4;
   color: #1d3461;
-  /* width: 123px; */
   line-height: 18px;
   }
   .admin-textfield::placeholder {
@@ -83,11 +81,9 @@
 
 /* Buttons */
 .account-button-class {
-  /* border: outset 2.5px; */
+ 
   color: white;
   background-color: #1d3461;
-  /* padding-left: 8px; */
-  /* padding-right: 8px; */
   padding-top: 3px;
   padding-bottom: 3px;
   text-align: center;

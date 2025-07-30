@@ -1,3 +1,5 @@
+// Quiz component for Game Mode
+
 import React, { Component } from "react";
 import Question from "./question";
 import Score from "./score";

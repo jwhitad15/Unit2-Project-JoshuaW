@@ -1,3 +1,5 @@
+// Local data for faith scripture
+
 const faithScripture = [
     
     {

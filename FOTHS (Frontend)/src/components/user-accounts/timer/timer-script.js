@@ -1,3 +1,5 @@
+//Timer Script for regular timer...use this for Pomodoro Timer logic
+
 const Hours = document.getElementById('hours');
 const Minutes = document.getElementById('minutes');
 const Seconds = document.getElementById('seconds');

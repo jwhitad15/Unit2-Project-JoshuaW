@@ -1,10 +1,7 @@
 import UserInteraction from "./foths-user-interaction";
 import FourElementHeader from "../header-components/header-4";
 import Footer from "../footer/footer";
-import Image from "../image";
-
-
-
+import FruitImage from "./foths-fruit-image";
 
 
 const FOTHSMain = () => {
@@ -26,7 +23,7 @@ const FOTHSMain = () => {
 
                 <div className="fruits-grid">
                     <div className="fruit-cards-row-1">
-                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1"><div className="responsive-fruit-card-text">Faith</div><Image/></a>
+                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1"><div className="responsive-fruit-card-text">Faith</div><FruitImage/></a>
                     </div>
                 </div>
 

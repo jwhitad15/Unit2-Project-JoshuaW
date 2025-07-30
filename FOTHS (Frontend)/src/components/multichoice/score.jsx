@@ -1,3 +1,5 @@
+// Score component for displaying the quiz score
+
 import React, { Component } from 'react';
 
 class Score extends Component {

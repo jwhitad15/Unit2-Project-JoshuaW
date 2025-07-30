@@ -1,3 +1,5 @@
+// Custom Error Page Component
+
 import Footer from "./footer/footer";
 import FourElementHeader from "./header-components/header-4";
 

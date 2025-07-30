@@ -1,4 +1,4 @@
-
+// Local data for faith multi-choice quiz
 
 const faithMultiChoice = [
     

@@ -11,3 +11,5 @@ const Music = () => {
 }
 
 export default Music;
+
+// Music Component for Admin Dashboard

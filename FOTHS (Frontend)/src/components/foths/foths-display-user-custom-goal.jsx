@@ -1,10 +1,9 @@
-// grandchild component that displays the dynamic user data on FOTHS main page
+// Grandchild component that displays the dynamic user data on FOTHS main page
+
 import React from "react";
 
 
 const DisplayCustomGoal = (props) => {
-
-
 
     return (
         <div >
@@ -19,7 +18,6 @@ const DisplayCustomGoal = (props) => {
                 </div>
         </div>
     );
-
 
 }
 

@@ -1,3 +1,5 @@
+// Local data for faith true/false quiz
+
 const faithTrueFalse = [
     
     {

@@ -6,7 +6,6 @@ const GameMode = () => {
     return (
         <div id="main">
 
-           {/* second styled header inserted */}
             <div className="game-mode-header">
                 <FourElementHeader/>
             </div>

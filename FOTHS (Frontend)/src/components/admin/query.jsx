@@ -1,7 +1,6 @@
 // Component that receives user input
 
 import React, { useState } from "react";
-// import UtilBibledDropdown from "./util-bible-dropdown";
 
 
 const AdminQuery = () => {
@@ -87,14 +86,6 @@ const AdminQuery = () => {
         <label> 
           <label className="scope-customGoals-banner">ID<br className="mobile-scope-breakpoint"/> <hr /> </label> <br />
           {/* Validation - makes sure user at least inputs 4 characters in textbox */}
-          {/* <div className="eBible-window">
-            <p>FETCHED E-BIBLE</p>
-            <p>AI E-BIBLE</p>
-            <p>AI E-BIBLE</p>
-            <p>AI ffgfE-BIBLE sfgsfd</p>
-            <p>AI E-BIBLE sfdg</p>
-            <p>AI E-BIBLE afgsdg</p>
-          </div> */}
         </label> 
         <input className="admin-textfield" placeholder="123"/> <br/> <br />
         <br />

@@ -1,3 +1,5 @@
+// Pomodoro Timer Component for User study sessions
+
 import './pomodoro.css'
 
 const Pomodoro = () => {
@@ -6,8 +8,6 @@ const Pomodoro = () => {
 
         <div>
             <div className="pomodoro">
-                {/* <h1 className="pomoTitle">Timer</h1>
-                <hr/> */}
 
                 <div className="pomoTimer" id="pomoTimer"> 
                     31:00

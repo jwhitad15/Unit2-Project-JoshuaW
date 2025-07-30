@@ -1,3 +1,5 @@
+// Options component for displaying multiple choice options
+
 import React, { Component } from 'react';
 
 class Options extends Component {

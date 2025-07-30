@@ -1,12 +1,11 @@
+// User Account Component
+
 import FourElementHeader from "../header-components/header-4";
 import Footer from "../footer/footer";
 import './user-account.css';
 import './pomodoro/pomodoro.css';
 import UtilBible from "./util-bible-component";
 import Pomodoro from "./pomodoro/pomodoro";
-
-
-
 
 
 const UserAccount = () => {
@@ -28,11 +27,6 @@ const UserAccount = () => {
             <div className="foths-main">
                 <div className="foths-main-title"> Account Dashboard </div>
 
-                {/* <div className="fruits-grid">
-                    <div className="fruit-cards-row-1">
-                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1"><div className="responsive-fruit-card-text">Faith</div><Image/></a>
-                    </div>
-                </div> */}
                 <main className="ua-study-window"> <p> Verse </p> </main>
                 <main id='ua-window' className="ua-study-window"> <p> Display Window: Scriptures & Verses  </p> </main>
 

@@ -9,4 +9,4 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 
-// the final gateway, where the App component is rendered
+// The final gateway, where the App component is rendered

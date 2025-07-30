@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import { useNavigate } from "react-router";
-import Dashboard from "../../../dashboard";
+import Dashboard from "../../dashboard";
 import './user-login.css'
 import { CiUser, CiLock } from "react-icons/ci";
 
