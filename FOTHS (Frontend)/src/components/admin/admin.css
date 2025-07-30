@@ -54,6 +54,7 @@
     top: 34%;
     left: 8.45%;
     color: #1d3461;
+    overflow: scroll;
   }
 
   /* Question Fetch Element */
@@ -80,4 +81,20 @@
   .usd-custom {}
   .usd-custom-subs {}
 
-
+/* Buttons */
+.account-button-class {
+  /* border: outset 2.5px; */
+  color: white;
+  background-color: #1d3461;
+  /* padding-left: 8px; */
+  /* padding-right: 8px; */
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}

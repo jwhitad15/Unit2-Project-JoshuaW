@@ -34,6 +34,8 @@ const UserAccount = () => {
                     </div>
                 </div> */}
                 <main className="ua-study-window"> <p> Verse </p> </main>
+                <main id='ua-window' className="ua-study-window"> <p> Display Window: Scriptures & Verses  </p> </main>
+
                 <main className="ua-fetch-window"> 
                     <label className="ua-fetch-labels">Fruit</label>
                     <select id="goals" value="user-fetch"  className="goal-select"  >
@@ -61,32 +63,32 @@ const UserAccount = () => {
         
             {/* Flexbox stylization to create columns & column cards */}
             <div className="user-nav-css">
-                <div className="user-info-column">Welcome, [User]!</div>
+                <div className="user-info-column">USER FULL NAME</div>
                 
                 <div className="user-info-card">
                 <p className="user-info-title">User Information</p>
                     <div className="user-information">
-                        <li className="user-field">Name</li>
-                        <li className="user-field">Email</li>
-                        <li className="user-field">Username</li>
+                        <li className="user-field">Joshua White</li>
+                        <li className="user-field">jwhite@gmail.com</li>
+                        <li className="user-field">jwhitad15</li>
                     </div>
                 </div>
                 <div className="user-scope-display">
                     <p className="usd-title">My Scope</p>
                     <div className="usd-window">
-                        <p className="usd-timestamp">Timestamp</p>
-                        <p className="usd-preset">Preset Goals</p>
-                        <p className="usd-preset-subs">Preset Subgoals</p>
-                        <p className="usd-custom">Custom Goals</p>
-                        <p className="usd-custom-subs">Custom Subgoals</p>
+                        <p id='window-text' className="usd-timestamp">August 1, 2025 - 12:31:30 PM</p>
+                        <p id='window-text' className="usd-preset">Read 1 Chapter a Day</p>
+                        <p id='window-text' className="usd-preset-subs">Duration: 1 week</p>
+                        <p id='window-text' className="usd-custom">Start: John 14</p>
+                        <p id='window-text' className="usd-custom-subs">End: John 20</p>
                     </div>
                 </div>
                 <div className="user-recent-activity">
                     <p className="ura-title">Recent Activity</p>
                     <div className="ura-window">
-                        <p className="ura1">  user.activity[i] - where [i] = (activityRecords.length - 1) </p>
-                        <p className="ura2">Timestamp </p>
-                        <p className="ura3">Score (if applicable) </p>
+                        <p id='window-text' className="ura1">  user.activity[i] - where [i] = (activityRecords.length - 1) </p>
+                        <p id='window-text' className="ura2">Timestamp </p>
+                        <p id='window-text' className="ura3">Score (if applicable) </p>
                     </div>
                 </div>
             </div>

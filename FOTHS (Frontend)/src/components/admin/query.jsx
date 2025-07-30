@@ -99,7 +99,7 @@ const AdminQuery = () => {
         <input className="admin-textfield" placeholder="123"/> <br/> <br />
         <br />
 
-        <button type="submit" className="scope-button-class" >Submit</button>  <br/>  <br/>
+        <button type="submit" className="account-button-class" >Submit</button>  <br/>  <br/>
       
 
         <div> {!isCustomValid && titleSubmit && (<p style={{color: 'red' }}> Must Add Description </p>)} </div>

@@ -134,12 +134,12 @@ const UtilBible = () => {
           <option value="3">Revelation</option>
         </select> <br /> <br className="desktop-scope-breakpoint" />
         
-        <button type="submit" className="scope-button-class" >Submit</button>  <br/>  <br/>
+        <button type="submit" className="account-button-class" >Submit</button>  <br/>  <br/>
 
          <hr className="scope-line"/>
 
         <label> 
-          <label className="scope-customGoals-banner">VIEWPORT <br className="mobile-scope-breakpoint"/> <hr /> </label> <br />
+          <label className="scope-customGoals-banner"> VIEWPORT <br className="mobile-scope-breakpoint"/> <hr /> </label> <br />
           {/* Validation - makes sure user at least inputs 4 characters in textbox */}
           <div className="eBible-window">
             <p>FETCHED E-BIBLE</p>
