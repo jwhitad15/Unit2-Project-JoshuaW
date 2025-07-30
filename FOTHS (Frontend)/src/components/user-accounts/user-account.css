@@ -90,14 +90,14 @@
     -webkit-box-shadow: 0 0 10px #fff;
     box-shadow: 0 0 5px black;
     }
-.ura-title {font-size: 16px; text-align: center; line-height: 1;}
+.ura-title {font-size: 16px; text-align: center; line-height: 0.5;}
 .ura-window {
     background-color: #cdc5b4; 
     border: inset;
     border-color: #a64444;
-    position: flex;
+    /* position: flex; */
     line-height: 1;
-    height: 55%;
+    height: 61%;
     width: 100%;
     overflow: scroll;
 }
