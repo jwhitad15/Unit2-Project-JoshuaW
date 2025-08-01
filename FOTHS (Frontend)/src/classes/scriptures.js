@@ -7,7 +7,8 @@ export default class Scriptures {
     
     getProfile() {
         return `${this.id} - ${this.verse}: ${this.scripture}`;
-    }
+    }   
+    
     // // Method to add a scripture
     // addScripture(scripture) {
     //     this.scriptures.push(scripture);
