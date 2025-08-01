@@ -1,8 +1,9 @@
 // This component controls the Study Mode Scripture carousel
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import FourElementHeader from "../header-components/header-4";
 import Footer from "../footer/footer";
+import Scriptures from "../../classes/scriptures";
 
 const faithScripture = [
     
@@ -96,26 +97,53 @@ const Study = ({}) => {
 
     const [wordData, setWordData] = useState(faithScripture[0])
     const [val, setVal] = useState(0)
+    const [allScriptures, setAllScriptures] = useState([]);
 
     // event handler functions that control the Previous & Next Arrows
     // also includes logic that disables Previous button on first slide & Next button on last slide
-    const handleClick=(index)=>{
-        setVal(index)
-        const wordSlider=faithScripture[index];
-        setWordData(wordSlider)
-    }
-    const handleNext=()=>{
-    let index = val < faithScripture.length -1 ? val + 1 : val;
-    setVal(index)
-    const wordSlider=faithScripture[index];
-    setWordData(wordSlider)
-    }
-    const handlePrevious=()=>{
-        let index = val <= faithScripture.length -1 && val > 0 ? val - 1 : val;
-        setVal(index)
-        const wordSlider=faithScripture[index];
-        setWordData(wordSlider)
-    }
+    const handleClick = (index) => {
+        if (index >= 0 && index < allScriptures.length) {
+            setVal(index);
+            setWordData(allScriptures[index]);
+        }
+    };
+
+    // Navigate to the next scripture
+    const handleNext = () => {
+        const nextIndex = val < allScriptures.length - 1 ? val + 1 : val;
+        setVal(nextIndex);
+        setWordData(allScriptures[nextIndex]);
+    };
+
+    // Navigate to the previous scripture
+    const handlePrevious = () => {
+        const prevIndex = val > 0 ? val - 1 : val;
+        setVal(prevIndex);
+        setWordData(allScriptures[prevIndex]);
+    };
+
+    useEffect(() => {
+        fetchScripture();
+    }, []);
+  
+    const fetchScripture = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/scriptures');
+            const data = await response.json();
+            console.log('Scripture data fetched successfully:', data);
+
+            // Map the fetched data into the desired format
+            const scriptures = data.map(scripture => new Scriptures(scripture.id, scripture.verse, scripture.scripture));
+            setAllScriptures(scriptures);
+
+            // Set the initial scripture to display
+            if (scriptures.length > 0) {
+                setWordData(scriptures[0]);
+            }
+        } catch (error) {
+            console.error('Error fetching scripture:', error);
+        }
+    };
 
     return (
         <div id="foths-main">
@@ -127,7 +155,7 @@ const Study = ({}) => {
 
        
             <div>
-                <button onClick={handleNext} className="study-previous-button"> 
+                <button onClick={handleNext} className="study-next-button"> 
                     <div id="study-button-text"> Next </div>
                     <div id="study-button-icon"> <FaArrowRightLong/> </div>
                 </button>
@@ -135,7 +163,7 @@ const Study = ({}) => {
 
             {/* event handling inserted on buttons */}
             <div>
-                <button onClick={handlePrevious} className="study-next-button">
+                <button onClick={handlePrevious} className="study-previous-button">
                     <div id="study-button-text"> Previous </div>  
                     <div id="study-button-icon"> <FaArrowLeftLong/> </div>  
                 </button>
@@ -143,23 +171,33 @@ const Study = ({}) => {
 
             <main className="study-display-verse">
 
-                <p> {wordData.verse} </p>
+                <div>
+                    {wordData ? (
+                        <p>{wordData.scripture}</p>
+                    ) : (
+                        <p>No scriptures available</p>
+                    )}
+                </div>
+                <br/>
+
+
+                {/* <p> {wordData.verse} </p> */}
 
                     {/* using .map() to cycle through Scripture data */}
-                    {faithScripture.map((data,i) => 
+                    {/* {faithScripture.map((data,i) => 
 
                         <div key={i}>
                             <p onClick={()=>handleClick(i)} ></p>
                         </div>
                         
-                    )}
+                    )} */}
 
                 <div className="study-title"> Study Mode </div>
            
             </main>
 
             <div className="verse-name">
-                <p className="verse-size"> {wordData.name} </p>
+                <p className="verse-size"> {wordData.verse} </p>
             </div>
 
             <div className="return-to-foths-from-study">

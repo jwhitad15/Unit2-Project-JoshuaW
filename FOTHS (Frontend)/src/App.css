@@ -429,7 +429,7 @@ label {
   width: 80%;
 }
 
-.study-previous-button {
+.study-next-button {
   display: grid;
   place-content: center;
   flex: 0 0 25vw;
@@ -451,12 +451,12 @@ label {
   box-shadow: 0 0 8px black;
   font-size: 25px;
 }
-.study-previous-button:hover {
+.study-next-button:hover {
   background-color: #1d3461;
   color: white
 }
 
-.study-next-button {
+.study-previous-button {
   display: grid;
   place-content: center;
   flex: 0 0 25vw;
@@ -478,7 +478,7 @@ label {
   box-shadow: 0 0 8px black;
   font-size: 25px;
 }
-.study-next-button:hover {
+.study-previous-button:hover {
   background-color: #1d3461;
   color: white
 }

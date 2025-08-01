@@ -21,6 +21,8 @@ import Admin from './components/admin/admin';
 // Each route has a specific parameter ID
 // All routes are enveloped inside Routes & HashRouter tags for proper functionality
 function App() {
+
+
   return (
     <>
       <HashRouter>
