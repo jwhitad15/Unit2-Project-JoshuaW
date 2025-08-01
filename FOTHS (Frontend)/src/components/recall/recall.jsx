@@ -133,7 +133,7 @@ const Recall = ({}) => {
     const [showPopup, setShowPopup] = useState(false);
 
     const handleSubmit = e => {
-        if (verseInput.toLowerCase().trim() === wordData.name.toLowerCase()){
+        if (verseInput.toLowerCase().trim() === wordData.verse.toLowerCase()){
             setIsValid(true)
             setShowPopup(true)
         }
@@ -162,7 +162,7 @@ const Recall = ({}) => {
             </div>
         
             <div>
-                <button onClick={handleNext} className="study-previous-button">
+                <button onClick={handleNext} className="study-next-button">
                     <div id="study-button-text"> Next </div>
                     <div id="study-button-icon"> <FaArrowRightLong/> </div>
                 </button>
@@ -170,7 +170,7 @@ const Recall = ({}) => {
 
             {/* event handling inserted on buttons */}
             <div>
-                <button onClick={handlePrevious} className="study-next-button">
+                <button onClick={handlePrevious} className="study-previous-button">
                     <div id="study-button-text"> Previous </div> 
                     <div id="study-button-icon"> <FaArrowLeftLong/> </div>  
                 </button>
@@ -218,7 +218,7 @@ const Recall = ({}) => {
                 {showPopup && isValid && verseSubmit && (<Popup open={showPopup} closeOnDocumentClick onClose={closePopup}>
                 <div>
                     
-                    <p className="validate-message" style={{ color: "green" }}> Great Work! The correct answer is: {wordData.name}</p>
+                    <p className="validate-message" style={{ color: "green" }}> Great Work! The correct answer is: {wordData.verse}</p>
                     <button onClick={closePopup}>Close</button>
                 </div>
                 </Popup> )}

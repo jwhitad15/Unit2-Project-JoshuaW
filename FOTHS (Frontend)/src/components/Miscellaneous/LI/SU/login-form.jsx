@@ -20,8 +20,8 @@ const LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (formData.username.includes('admin_') && (formData.password === 'Admin:User!')) {
-        setTimeout(() => {navigate('/fetch')}, 500)
+        if (formData.username.includes('admin_') && (formData.password.includes('admin_') || formData.password.includes('Admin_'))) {
+        setTimeout(() => {navigate('/admin')}, 500)
         } else {
            setIsNotValid(true);
         }

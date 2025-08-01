@@ -54,6 +54,7 @@
     left: 8.45%;
     color: #1d3461;
     overflow: scroll;
+    place-content: top;
   }
 
   /* Question Fetch Element */
@@ -94,3 +95,20 @@
   cursor: pointer;
   border-radius: 4px;
 }
+
+.ua-study-window {
+   top: 15.8%;
+   height: 79.2%;
+}
+
+.ua-fetch-window {
+    top: 19.5%;
+    left: 8.45%;
+    width: 79%;
+    background-color: #cdc5b4;
+    border: inset;
+    border-radius: 4px;
+    border-color: #1d3461;
+    color: #1d3461;
+}
+

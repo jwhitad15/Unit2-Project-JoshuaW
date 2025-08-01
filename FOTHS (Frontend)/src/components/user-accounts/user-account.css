@@ -196,3 +196,15 @@
     box-shadow: 0 0 5px black;
     z-index: 1;
   }
+
+  .ua-study-select {
+    width: 127px;
+    background-color: #1d3461;
+    border-color: white;
+  }
+
+  .ua-fetch-button {
+    background-color: #a64444;
+    height: 33px;
+    width: 100px;
+  }

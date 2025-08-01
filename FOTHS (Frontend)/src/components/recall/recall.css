@@ -1,0 +1,52 @@
+.ua-next-button {
+    display: grid;
+    place-content: center;
+    flex: 0 0 25vw;
+    background: #a64444;
+    color: white;
+    box-sizing: borderbox;
+    border: outset;
+    border-color: white;
+    align-items: center;
+  
+    position: fixed;
+    right: 3%;
+    left: 51%;
+    top: 74.3%;
+    width: 7%;
+    height: 4%;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 8px black;
+    font-size: 25px;
+  }
+  .ua-next-button:hover {
+    background-color: #1d3461;
+    color: white
+  }
+  
+  .ua-previous-button {
+    display: grid;
+    place-content: center;
+    flex: 0 0 25vw;
+    background: #a64444;
+    color: white;
+    box-sizing: borderbox;
+    border: outset;
+    border-color: white;
+    align-items: center;
+  
+    position: fixed;
+    right: 51%;
+    top: 74.3%;
+    width: 7%;
+    height: 4%;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 8px black;
+    font-size: 25px;
+  }
+  .study-previous-button:hover {
+    background-color: #1d3461;
+    color: white
+  }
