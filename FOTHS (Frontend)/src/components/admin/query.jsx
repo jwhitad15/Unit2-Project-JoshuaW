@@ -1,6 +1,6 @@
 // Component that receives user input
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
 const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, scriptureData }) => {
@@ -10,6 +10,7 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
   const [type, setType] = useState(""); // Tracks the Type dropdown selection
   const [id, setId] = useState(""); // Tracks the ID input
   const [errorMessage, setErrorMessage] = useState(""); // Tracks error messages
+  const [previewData, setPreviewData] = useState(null);
 
   const handleCommandChange = (e) => {
     setCommand(e.target.value);
@@ -25,6 +26,37 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
     setId(e.target.value);
   };
 
+   // Fetch the entity record for preview when "Update" is selected and an ID is provided
+   useEffect(() => {
+    if (command === "update" && id.trim()) {
+      const fetchPreviewData = async () => {
+        try {
+          const url = `http://localhost:8080/${type}/${id.trim()}`; // Construct the API URL
+          const response = await fetch(url, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch preview data.");
+          }
+
+          const data = await response.json();
+          setPreviewData(data); // Set the preview data
+          setErrorMessage(""); // Clear any previous error messages
+        } catch (error) {
+          setErrorMessage("Failed to fetch preview data. Please check the ID and try again.");
+          setPreviewData(null); // Clear preview data on error
+        }
+      };
+
+      fetchPreviewData();
+    } else {
+      setPreviewData(null); // Clear preview data if conditions are not met
+    }
+  }, [command, id, type]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -136,6 +168,36 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
       } catch (error) {
         setErrorMessage("Failed to fetch data. Please try again.");
       }
+    }
+
+    if (command === "update") {
+      if (!id.trim()) {
+        setErrorMessage("Please provide an ID to update the record.");
+        return;
+      }
+
+      try {
+        const url = `http://localhost:8080/${type}/update/${id.trim()}`; // Construct the API URL
+        const dataToUpdate = type === "users" ? userData : type === "questions" ? questionData : scriptureData;
+
+        const response = await fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToUpdate), // Send the updated data as the request body
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to update data.");
+        }
+
+        const data = await response.json();
+        setFetchedData(data); // Set the fetched data in state
+        setErrorMessage(""); // Clear any previous error messages
+      } catch (error) {
+        setErrorMessage("Failed to update data. Please try again.");
+      }
 
     } else if (command === "delete") {
       try {
@@ -206,9 +268,21 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
         <br />
 
         <button type="submit" className="account-button-class" >Submit</button>  <br/>  <br/>
+        {previewData && <pre>{JSON.stringify(previewData, null, 2)}</pre>}
       
         {errorMessage && <p style={{ color: "white" }}>{errorMessage}</p>}
       </form> <br/>
+{/* 
+      <main id="ua-window" className="ua-study-window">
+        {previewData ? (
+          <div>
+            <h3>Preview Data:</h3>
+            <pre>{JSON.stringify(previewData, null, 2)}</pre>
+          </div>
+        ) : (
+          <p>No preview data available.</p>
+        )}
+      </main> */}
 
     </div>
 
