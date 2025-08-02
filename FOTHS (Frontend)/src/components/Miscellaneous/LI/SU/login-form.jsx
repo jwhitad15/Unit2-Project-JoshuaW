@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import React from "react";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
 import { CiUser, CiLock } from "react-icons/ci";
 
 
@@ -17,7 +17,7 @@ const LoginForm = () => {
         setFormData((input) => ({...input, [name]: value}));
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (formData.username.includes('admin_') && (formData.password.includes('admin_') || formData.password.includes('Admin_'))) {
@@ -26,7 +26,32 @@ const LoginForm = () => {
            setIsNotValid(true);
         }
 
-    }
+        // try {
+        //         // Make an API call to validate the credentials
+        //         const response = await fetch("http://localhost:8080/users", {
+        //             method: "GET",
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //             },
+        //             body: JSON.stringify(formData),
+        //         });
+
+        //         const data = await response.json();
+
+        //         if (response.ok && data.isValid) {
+        //             // Navigate to the admin dashboard if credentials are valid
+        //             navigate("/admin");
+        //         } else {
+        //             // Show error message if credentials are invalid
+        //             setIsNotValid(true);
+        //         }
+        //      } catch (error) {
+        //         console.error("Error during login:", error);
+        //         setIsNotValid(true);
+        // }
+    };
+
+    
 
     return (
         <div className="login-signup" >

@@ -6,13 +6,13 @@ import QuestionFetch from "./question-fetch";
 import AdminQuery from "./query";
 import Music from "./music";
 import AdminHeader from "../header-components/admin-header";
-
-
+import FetchDataComponent from "./fetch-data";
+import React, { useState } from "react";
 
 
 
 const Admin = () => {
-
+    const [fetchedData, setFetchedData] = useState([]);
     return (
         <div id="foths-main">
 
@@ -22,7 +22,7 @@ const Admin = () => {
             {/* Dynamic Component that receives user input to display in another element */}
             <div className="user-account-aside">
                 <div className="utilities">Database Query</div>
-                <div className="util-bible"><AdminQuery/> </div>
+                <div className="util-bible"><AdminQuery setFetchedData={setFetchedData} /> </div>
                 <div className="util-timer"><Music/></div>
                 <div id="app"></div>
             </div>
@@ -31,9 +31,9 @@ const Admin = () => {
                 <div className="foths-main-title"> Administrative Dashboard </div>
                 <UserFetch/>
                 <ScriptureFetch/>
-                <QuestionFetch/>
+                {/* <QuestionFetch/> */}
                 <main className="ua-study-window"> <p> Main Window  </p> </main>
-                <main id='ua-window' className="ua-study-window"> <p> Display Window: USERS, QUESTIONS, SCRIPTURE  </p> </main>
+                <main id='ua-window' className="ua-study-window"> <p> <FetchDataComponent fetchedData={fetchedData} /> </p> </main>
 
             </div>
         

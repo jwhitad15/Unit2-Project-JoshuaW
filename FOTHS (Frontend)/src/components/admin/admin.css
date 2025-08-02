@@ -68,7 +68,7 @@
   line-height: 18px;
   }
   .admin-textfield::placeholder {
-    color: #1d3461
+    color: white;
   }
 
 
@@ -99,6 +99,7 @@
 .ua-study-window {
    top: 15.8%;
    height: 79.2%;
+   /* display:none; */
 }
 
 .ua-fetch-window {
@@ -110,5 +111,11 @@
     border-radius: 4px;
     border-color: #1d3461;
     color: #1d3461;
+    z-index: 2;
 }
 
+input#firstName.admin-textfield {background-color: #1d3461; color: white;}
+input#lastName.admin-textfield {background-color: #1d3461; color: white;}
+input#email.admin-textfield {background-color: #1d3461; color: white;}
+input#username.admin-textfield {background-color: #1d3461; color: white;}
+input#password.admin-textfield {background-color: #1d3461; color: white;}
