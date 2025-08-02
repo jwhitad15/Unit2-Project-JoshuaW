@@ -13,26 +13,37 @@ import React, { useState } from "react";
 
 const Admin = () => {
     const [fetchedData, setFetchedData] = useState([]);
-    return (
-        <div id="foths-main">
+    const [selectedType, setSelectedType] = useState(""); 
+    const [questionData, setQuestionData] = useState({}); // State to store question input data
 
-           
+    const renderComponent = () => {
+        if (selectedType === "users") {
+          return <UserFetch />;
+        } else if (selectedType === "scriptures") {
+          return <ScriptureFetch />;
+        } else if (selectedType === "questions") {
+          return <QuestionFetch setQuestionData={setQuestionData}/>;
+        } else {
+          return <p></p>; // Default content
+        }
+      };
+
+    return (
+        <div id="foths-main">   
             <AdminHeader/>
 
             {/* Dynamic Component that receives user input to display in another element */}
             <div className="user-account-aside">
                 <div className="utilities">Database Query</div>
-                <div className="util-bible"><AdminQuery setFetchedData={setFetchedData} /> </div>
+                <div className="util-bible"><AdminQuery setFetchedData={setFetchedData} setSelectedType={setSelectedType} questionData={questionData}/> </div>
                 <div className="util-timer"><Music/></div>
                 <div id="app"></div>
             </div>
 
             <div className="foths-main">
                 <div className="foths-main-title"> Administrative Dashboard </div>
-                <UserFetch/>
-                <ScriptureFetch/>
-                {/* <QuestionFetch/> */}
-                <main className="ua-study-window"> <p> Main Window  </p> </main>
+                {renderComponent()}
+                <main className="ua-study-window"></main>
                 <main id='ua-window' className="ua-study-window"> <p> <FetchDataComponent fetchedData={fetchedData} /> </p> </main>
 
             </div>

@@ -1,39 +1,68 @@
+import React, { useState, useEffect } from "react";
 import './admin.css';
 
-const QuestionFetch = () => {
+const QuestionFetch = ({setQuestionData}) => {
+
+    const [questions, setQuestion] = useState("");
+    const [answer, setAnswer] = useState("");
+    const [category, setCategory] = useState("");
+    const [lod, setLod] = useState("");
+    const [translation, setTranslation] = useState("");
+    const [fruit, setFruit] = useState("");
+
+    const handleQuestionChange = (e) => setQuestion(e.target.value);
+    const handleAnswerChange = (e) => setAnswer(e.target.value);
+    const handleCategoryChange = (e) => setCategory(e.target.value);
+    const handleLODChange = (e) => setLod(e.target.value);
+    const handleTranslationChange = (e) => setTranslation(e.target.value);
+    const handleFruitChange = (e) => setFruit(e.target.value);
+
+    // Update the parent component's state whenever any field changes
+  useEffect(() => {
+    const questionData = {
+      questions,
+      answer,
+      lod,
+      translation,
+      fruit,
+      category,
+    };
+    setQuestionData(questionData); // Pass the updated data to the parent component
+  }, [questions, answer, lod, translation, fruit, category, setQuestionData]);
 
 
     return (
-        <main className="ua-fetch-window"> 
-            <label for="goals"></label> <br/>
-            <select id="goals" className="fruit-dropdown-select" >
-                <option value="0">FRUIT</option>
-                <option value="1">Faith</option>
-                <option value="2">Love</option>
-                <option value="3">Joy</option>
-                <option value="4">Peace</option>
-                <option value="5">Goodness</option>
-                <option value="6">Gentleness</option>
-                <option value="7">Meekness</option>
-                <option value="8">Temperance</option>
-                <option value="9">Longsuffering</option>
-            </select> <br /> <br className="desktop-scope-breakpoint" /> <br/>
-            <input id='question' maxLength='250' minLength='10' className="admin-textfield" type="text" placeholder="Question" ></input>
-            <input id='answer' maxLength='150' minLength='5' className="admin-textfield" type="text" placeholder="Answer" ></input>
-            <input id='category' maxLength='150' minLength='5' className="admin-textfield" type="text" placeholder="Category" ></input>
-            <label for="goals"></label> <br/>
-                <select id="goals"  className="difficulty-dropdown-select" >
-                    <option value="0">DIFFICULTY</option>
-                    <option value="1">Easy</option>
-                    <option value="2">Intermediate</option>
-                    <option value="3">Difficult</option>
-                </select> <br /> <br className="desktop-scope-breakpoint" /> <br/>
-            <label for="translation"></label> <br/>
-                <select id="translation"  className="translation-dropdown-select">
-                    <option value="0">TRANSLATION</option>
-                    <option value="1">KJV</option>
-                </select> <br /> <br className="desktop-scope-breakpoint" /> <br/>
-            
+        <main className="ua-fetch-window">
+          <select id="goals" className="fruit-dropdown-select" value={fruit} onChange={handleFruitChange}>
+            <option value="0">FRUIT</option>
+            <option value="Faith">Faith</option>
+            <option value="Love">Love</option>
+            <option value="Joy">Joy</option>
+            <option value="Peace">Peace</option>
+            <option value="Goodness">Goodness</option>
+            <option value="Gentleness">Gentleness</option>
+            <option value="Meekness">Meekness</option>
+            <option value="Temperance">Temperance</option>
+            <option value="Longsuffering">Longsuffering</option>
+          </select>
+          <br />
+          <input id="question" maxLength="250" minLength="10" className="admin-textfield" type="text" placeholder="Question" value={questions} onChange={handleQuestionChange}/>
+          <input id="answer" maxLength="150" minLength="5" className="admin-textfield" type="text" placeholder="Answer" value={answer} onChange={handleAnswerChange}/>
+          <select id="goals" className="difficulty-dropdown-select" value={lod} onChange={handleLODChange}>
+            <option value="0">DIFFICULTY</option>
+            <option value="Easy">Easy</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Difficult">Difficult</option>
+          </select>
+          <br />
+          <select id="translation" className="translation-dropdown-select" value={translation} onChange={handleTranslationChange}>
+            <option value="0">TRANSLATION</option>
+            <option value="KJV">KJV</option>
+          </select>
+          <br />
+
+          <input id="category" maxLength="150" minLength="5" className="admin-textfield" type="text" placeholder="Category" value={category} onChange={handleCategoryChange}/>
+          {/* <button onClick={handleSubmit}>Submit Question</button> */}
         </main>
     )
 

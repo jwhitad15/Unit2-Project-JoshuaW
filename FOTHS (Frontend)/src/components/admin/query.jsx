@@ -3,62 +3,12 @@
 import React, { useState } from "react";
 
 
-const AdminQuery = ({ setFetchedData }) => {
-  // // Custom Description
-  // const [goalInput, setGoalInput] = useState('');
-  // const [goalSubmit, setGoalSubmit] = useState('');
-  // // Dropdown
-  // const [goal, setGoal] = useState('')
-  // const [selectedGoal, setSelectedGoal] = useState('')
-  // // Custom Title
-  // const [title, setTitle] = useState('');
-  // const [titleSubmit, setTitleSubmit] = useState('');
-
-  // const [isValid, setIsValid] = useState(false);
-  // const [isCustomValid, setIsCustomValid] = useState(false);
-
-  // // functions that handle events and allow program to execute logic
-  // const handleChange = e => {
-  //   setGoalInput(e.target.value)
-  // };
-
-  // const handleDropdown = e => {
-  //   setGoal(e.target.value);
-  // }
-
-  // const handleTitle = e => {
-  //   setTitle(e.target.value);
-  // }
-
-
-  // const handleSubmit = e => {
-  //   e.preventDefault(); 
-
-  //   setIsValid(false)
-  //   setIsCustomValid(false)
-
-  //   if (goal !== 0 && goal != '') {
-  //     setIsValid(true);
-  //   } 
-  //   if (title !== ('') && goalInput !== ('')) {
-  //     setIsCustomValid(true)
-  //   }
-
-  //   setGoalSubmit(goalInput);
-  //   setGoalInput('');
-
-  //   setSelectedGoal(goal);
-  //   setGoal('');
-
-  //   setTitleSubmit(title);
-  //   setTitle('');
-    
-  // };
+const AdminQuery = ({ setFetchedData, setSelectedType, questionData }) => {
+ 
 
   const [command, setCommand] = useState(""); // Tracks the Command dropdown selection
   const [type, setType] = useState(""); // Tracks the Type dropdown selection
   const [id, setId] = useState(""); // Tracks the ID input
-  //const [fetchedData, setFetchedData] = useState([]); // Holds the fetched data
   const [errorMessage, setErrorMessage] = useState(""); // Tracks error messages
 
   const handleCommandChange = (e) => {
@@ -66,7 +16,9 @@ const AdminQuery = ({ setFetchedData }) => {
   };
 
   const handleTypeChange = (e) => {
-    setType(e.target.value);
+    const selectedType = e.target.value;
+    setType(selectedType);
+    setSelectedType(selectedType); // Pass the selected type to the Admin component
   };
 
   const handleIdChange = (e) => {
@@ -82,14 +34,42 @@ const AdminQuery = ({ setFetchedData }) => {
       return;
     }
 
+    // Create operations based on the Command dropdown selection
+    if (command === "add" && type === "questions") {
+      try {
+        const url = `http://localhost:8080/questions/add`;
+        console.log(questionData) // Construct the API URL
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(questionData), // Send the input data as the request body
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to add data.");
+        }
+
+        const data = await response.json();
+        console.log(data);
+        setFetchedData(data); // Set the fetched data in state
+        setErrorMessage(""); // Clear any previous error messages
+      } catch (error) {
+        setErrorMessage("Failed to add data. Please try again.");
+      }
+
+  
+  };
+
+    // Read operations based on the Command dropdown selection
     if (command === "view") {
       try {
-        console.log("Fetching data with command:", command, "type:", type, "id:", id);
         // Construct the API URL based on whether an ID is provided
         const url = id.trim()
         ? `http://localhost:8080/${type}/${id}` // Fetch specific record by ID
         : `http://localhost:8080/${type}`; // Fetch all records of the selected type
-        console.log("API URL:", url);
+  
       // Make an API call to fetch data
       const response = await fetch(url, {
           method: "GET",
@@ -103,14 +83,12 @@ const AdminQuery = ({ setFetchedData }) => {
         }
 
         const data = await response.json();
-        console.log("Fetched data:", data);
-
         setFetchedData(data); // Set the fetched data in state
         setErrorMessage(""); // Clear any previous error messages
       } catch (error) {
-        console.error("Error fetching data:", error);
         setErrorMessage("Failed to fetch data. Please try again.");
       }
+
     } else if (command === "delete") {
       try {
         console.log("Fetching data with command:", command, "type:", type, "id:", id);
@@ -175,7 +153,6 @@ const AdminQuery = ({ setFetchedData }) => {
 
         <label> 
           <label className="scope-customGoals-banner">ID<br className="mobile-scope-breakpoint"/> <hr /> </label> <br />
-          {/* Validation - makes sure user at least inputs 4 characters in textbox */}
         </label> 
         <input className="admin-textfield" placeholder="123" value={id} onChange={handleIdChange}/> <br/> <br />
         <br />
@@ -185,26 +162,6 @@ const AdminQuery = ({ setFetchedData }) => {
         {errorMessage && <p style={{ color: "white" }}>{errorMessage}</p>}
       </form> <br/>
 
-      {/* <div>
-        <h2>Fetched Data:</h2>
-        {Array.isArray(fetchedData) ? (
-          fetchedData.length > 0 ? (
-            <ul>
-              {fetchedData.map((item, index) => (
-                <li key={index}>{JSON.stringify(item)}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No data fetched yet.</p>
-          )
-        ) : fetchedData && typeof fetchedData === "object" ? (
-          <div>
-            <p>{JSON.stringify(fetchedData)}</p>
-          </div>
-        ) : (
-          <p>No data fetched yet.</p>
-        )}
-      </div> */}
     </div>
 
   );
