@@ -30,7 +30,6 @@ const QuestionFetch = ({setQuestionData}) => {
     setQuestionData(questionData); // Pass the updated data to the parent component
   }, [questions, answer, lod, translation, fruit, category, setQuestionData]);
 
-
     return (
         <main className="ua-fetch-window">
           <select id="goals" className="fruit-dropdown-select" value={fruit} onChange={handleFruitChange}>
@@ -62,7 +61,6 @@ const QuestionFetch = ({setQuestionData}) => {
           <br />
 
           <input id="category" maxLength="150" minLength="5" className="admin-textfield" type="text" placeholder="Category" value={category} onChange={handleCategoryChange}/>
-          {/* <button onClick={handleSubmit}>Submit Question</button> */}
         </main>
     )
 

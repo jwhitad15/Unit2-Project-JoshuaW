@@ -14,13 +14,15 @@ import React, { useState } from "react";
 const Admin = () => {
     const [fetchedData, setFetchedData] = useState([]);
     const [selectedType, setSelectedType] = useState(""); 
-    const [questionData, setQuestionData] = useState({}); // State to store question input data
+    const [questionData, setQuestionData] = useState({});
+    const [scriptureData, setScriptureData] = useState({}); // State to store question input data
+    const [userData, setUserData] = useState({}); // State to store user input data
 
     const renderComponent = () => {
         if (selectedType === "users") {
-          return <UserFetch />;
+          return <UserFetch setUserData={setUserData}/>;
         } else if (selectedType === "scriptures") {
-          return <ScriptureFetch />;
+          return <ScriptureFetch setScriptureData={setScriptureData}/>;
         } else if (selectedType === "questions") {
           return <QuestionFetch setQuestionData={setQuestionData}/>;
         } else {
@@ -35,7 +37,7 @@ const Admin = () => {
             {/* Dynamic Component that receives user input to display in another element */}
             <div className="user-account-aside">
                 <div className="utilities">Database Query</div>
-                <div className="util-bible"><AdminQuery setFetchedData={setFetchedData} setSelectedType={setSelectedType} questionData={questionData}/> </div>
+                <div className="util-bible"><AdminQuery setFetchedData={setFetchedData} setSelectedType={setSelectedType} userData={userData} questionData={questionData} scriptureData={scriptureData}/> </div>
                 <div className="util-timer"><Music/></div>
                 <div id="app"></div>
             </div>

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 
-const AdminQuery = ({ setFetchedData, setSelectedType, questionData }) => {
+const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, scriptureData }) => {
  
 
   const [command, setCommand] = useState(""); // Tracks the Command dropdown selection
@@ -34,6 +34,31 @@ const AdminQuery = ({ setFetchedData, setSelectedType, questionData }) => {
       return;
     }
 
+    if (command === "add" && type === "users") {
+      try {
+        const url = `http://localhost:8080/users/create`;
+        console.log(userData) // Construct the API URL
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData), // Send the input data as the request body
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to add data.");
+        }
+
+        const data = await response.json();
+        console.log(data);
+        setFetchedData(data); // Set the fetched data in state
+        setErrorMessage(""); // Clear any previous error messages
+      } catch (error) {
+        setErrorMessage("Failed to add data. Please try again.");
+      }
+  };
+
     // Create operations based on the Command dropdown selection
     if (command === "add" && type === "questions") {
       try {
@@ -58,8 +83,31 @@ const AdminQuery = ({ setFetchedData, setSelectedType, questionData }) => {
       } catch (error) {
         setErrorMessage("Failed to add data. Please try again.");
       }
+  };
 
-  
+    if (command === "add" && type === "scriptures") {
+      try {
+        const url = `http://localhost:8080/scriptures/add`;
+        console.log(scriptureData) // Construct the API URL
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(scriptureData), // Send the input data as the request body
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to add data.");
+        }
+
+        const data = await response.json();
+        console.log(data);
+        setFetchedData(data); // Set the fetched data in state
+        setErrorMessage(""); // Clear any previous error messages
+      } catch (error) {
+        setErrorMessage("Failed to add data. Please try again.");
+      }
   };
 
     // Read operations based on the Command dropdown selection
