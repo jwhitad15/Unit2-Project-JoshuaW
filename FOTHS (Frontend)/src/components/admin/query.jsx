@@ -272,17 +272,6 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
       
         {errorMessage && <p style={{ color: "white" }}>{errorMessage}</p>}
       </form> <br/>
-{/* 
-      <main id="ua-window" className="ua-study-window">
-        {previewData ? (
-          <div>
-            <h3>Preview Data:</h3>
-            <pre>{JSON.stringify(previewData, null, 2)}</pre>
-          </div>
-        ) : (
-          <p>No preview data available.</p>
-        )}
-      </main> */}
 
     </div>
 
