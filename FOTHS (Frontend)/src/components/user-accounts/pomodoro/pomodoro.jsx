@@ -69,7 +69,7 @@ const Pomodoro = () => {
 
                 <div className="pomoTimer" id="pomoTimer"> 
                     {formatTime(time)}
-                    <input type="number" className="pomoTextInput" placeholder="00:00" value={inputMinutes} onChange={handleInputChange} />
+                    <input type="number" className="pomoTextInput" placeholder="Enter Time" value={inputMinutes} onChange={handleInputChange} />
                 </div>
                 <div className="pomoButton">
                     <button onClick={handleSetTimer}>Set</button>

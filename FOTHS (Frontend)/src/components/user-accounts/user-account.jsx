@@ -48,7 +48,7 @@ const UserAccount = () => {
         const handleSubmit = async () => {
             try {
                 // Validate dropdown selections
-                if (!fruit || !mode) {
+                if (!fruit || fruit === "0" || !mode || mode === "0") {
                     setErrorMessage("Please select both FRUIT and MODE.");
                     return;
                 }
@@ -62,16 +62,16 @@ const UserAccount = () => {
                     url += "/questions";
                 }
     
-                // // Add filters based on FRUIT and DIFFICULTY selections
-                // const params = new URLSearchParams();
-                // if (fruit !== "Every Fruit") {
-                //     params.append("fruit", fruit);
-                // }
-                // if (difficulty) {
-                //     params.append("difficulty", difficulty);
-                // }
+                // Add filters based on FRUIT and DIFFICULTY selections
+                const params = new URLSearchParams();
+                if (fruit !== "Every Fruit") {
+                    params.append("fruit", fruit);
+                }
+                if (difficulty) {
+                    params.append("difficulty", difficulty);
+                }
     
-                // url += `?${params.toString()}`;
+                url += `?${params.toString()}`;
     
                 const response = await fetch(url);
                 if (!response.ok) {
@@ -91,7 +91,7 @@ const UserAccount = () => {
                 }
                 setErrorMessage(""); // Clear any previous error messages
             } catch (error) {
-                console.error("Error fetching data:", error);
+                // console.error("Error fetching data:", error);
                 setErrorMessage("Failed to fetch data. Please try again.");
             }
         };
@@ -198,24 +198,24 @@ const UserAccount = () => {
                 </main>
 
                 <main className="ua-fetch-window"> 
-                    <select id="goals" value={fruit} className="ua-study-select" onChange={handleFruitChange}  >
+                    <select id="goals" value={fruit} className="ua-study-select" onChange={handleFruitChange}>
                         <option value="0">FRUIT</option>
-                        <option value="1">Every Fruit</option>
-                        <option value="1">Faith</option>
+                        <option value="Every Fruit">Every Fruit</option>
+                        <option value="Faith">Faith</option>
                     </select> <br /> <br className="desktop-scope-breakpoint" />
-                    <select id="goals" className="ua-study-select" value={mode} onChange={handleModeChange} >
+                    <select id="goals" className="ua-study-select" value={mode} onChange={handleModeChange}>
                         <option value="0">MODE</option>
-                        <option value="1">Study</option>
-                        <option value="2">Recall</option>
-                        <option value="3">Quiz</option>
+                        <option value="study">Study</option>
+                        <option value="recall">Recall</option>
+                        <option value="quiz">Quiz</option>
                     </select> <br /> <br className="desktop-scope-breakpoint" />
-                    <select id="goals" className="ua-study-select"  value={difficulty} onChange={handleDifficultyChange} >
+                    <select id="goals" className="ua-study-select" value={difficulty} onChange={handleDifficultyChange}>
                         <option value="0">DIFFICULTY</option>
-                        <option value="1">Easy</option>
-                        <option value="2">Intermediate</option>
-                        <option value="3">Difficult</option>
+                        <option value="easy">Easy</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="difficult">Difficult</option>
                     </select> <br /> <br className="desktop-scope-breakpoint" />
-                    <button type="submit" className="ua-fetch-button" onClick={handleSubmit} >Submit</button>  <br/>  <br/>
+                    <button type="submit" className="ua-fetch-button" onClick={handleSubmit}>Submit</button> <br /> <br />
                     {errorMessage && <p style={{ color: "white" }}>{errorMessage}</p>}
                 </main>
 
