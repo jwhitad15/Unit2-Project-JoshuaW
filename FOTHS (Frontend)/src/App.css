@@ -425,8 +425,8 @@ label {
 .study-display-verse:hover {
   background-color: #1d3461;
   color: white;
-  left: 10%;
-  width: 80%;
+  /* left: 10%; */
+  /* width: 80%; */
 }
 
 .study-next-button {

@@ -14,8 +14,21 @@
     
 }
 
-.pomoTimer {}
+.pomoTextInput{
+    width: 60px;
+    height: 20px;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 2px solid #1d3461;
+    background-color: #cdc5b4;
+    color: #1d3461;
+}
 .pomoButton {
+    justify-content: space-evenly;
+}
+.pomoTimer {
+    display: flex;
     justify-content: space-evenly;
 }
 

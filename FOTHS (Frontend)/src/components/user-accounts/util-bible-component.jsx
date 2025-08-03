@@ -5,55 +5,54 @@ import UtilBibledDropdown from "./util-bible-dropdown";
 
 
 const UtilBible = () => {
-  // Custom Description
-  const [goalInput, setGoalInput] = useState('');
-  const [goalSubmit, setGoalSubmit] = useState('');
-  // Dropdown
-  const [goal, setGoal] = useState('')
-  const [selectedGoal, setSelectedGoal] = useState('')
-  // Custom Title
-  const [title, setTitle] = useState('');
-  const [titleSubmit, setTitleSubmit] = useState('');
+  // State variables
+  const [book, setBook] = useState(""); // Tracks the selected book
+  const [bookContent, setBookContent] = useState([]); // Stores the fetched book content
+  const [errorMessage, setErrorMessage] = useState(""); // Tracks error messages
 
-  const [isValid, setIsValid] = useState(false);
-  const [isCustomValid, setIsCustomValid] = useState(false);
-
-  // functions that handle events and allow program to execute logic
-  const handleChange = e => {
-    setGoalInput(e.target.value)
+  // Handle dropdown selection
+  const handleDropdown = (e) => {
+    setBook(e.target.value);
   };
 
-  const handleDropdown = e => {
-    setGoal(e.target.value);
+  // Fetch the selected book from the public Bible API
+  const fetchBookContent = async () => {
+    try {
+      if (!book || book === "0") {
+          setErrorMessage("Please select a valid book.");
+          return;
+      }
+
+      // Replace 'YOUR_API_KEY' with your actual API key from the ESV API
+      const apiKey = "e4de20621b23312b2d09679f6c2c4207ff333d92";
+      const apiUrl = `https://api.esv.org/v3/passage/text/?q=${book}&include-footnotes=false&include-headings=false&include-passage-references=false`;
+
+      const response = await fetch(apiUrl, {
+          headers: {
+              Authorization: `Token ${apiKey}`
+          }
+      });
+
+      if (!response.ok) {
+          throw new Error(`Failed to fetch book content. Status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      setBookContent(data.passages || []); // Store the passages in state
+      setErrorMessage(""); // Clear any previous error messages
+
+      console.log("Fetched book content:", data.passages); // Log the fetched content
+
+  } catch (error) {
+      console.error("Error fetching book content:", error);
+      setErrorMessage("Failed to fetch book content. Please try again.");
   }
+};
 
-  const handleTitle = e => {
-    setTitle(e.target.value);
-  }
-
-
-  const handleSubmit = e => {
-    e.preventDefault(); 
-
-    setIsValid(false)
-    setIsCustomValid(false)
-
-    if (goal !== 0 && goal != '') {
-      setIsValid(true);
-    } 
-    if (title !== ('') && goalInput !== ('')) {
-      setIsCustomValid(true)
-    }
-
-    setGoalSubmit(goalInput);
-    setGoalInput('');
-
-    setSelectedGoal(goal);
-    setGoal('');
-
-    setTitleSubmit(title);
-    setTitle('');
-    
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchBookContent(); // Fetch the selected book content
   };
 
 
@@ -65,107 +64,106 @@ const UtilBible = () => {
 
         <label className="scope-presetGoals-banner"><hr/>SELECTIONS<hr/> <br/> </label>
 
-        <label for="goals">Select a Book</label> <br/>
+        <label >Select a Book</label> <br/>
 
-        <select id="goals" value={goal}  className="goal-select" onChange={handleDropdown} >
+        <select id="goals" value={book} className="goal-select" onChange={handleDropdown}>
           <option value="0"></option>
-          <option value="1">Genesis</option>
-          <option value="2">Exodus</option>
-          <option value="3">Leviticus</option>
-          <option value="3">Numbers</option>
-          <option value="3">Deuteronomy</option>
-          <option value="3">Joshua</option>
-          <option value="3">Judges</option>
-          <option value="3">Ruth</option>
-          <option value="3">1 Samuel</option>
-          <option value="3">2 Samuel</option>
-          <option value="3">1 Kings</option>
-          <option value="3">2 Kings</option>
-          <option value="3">1 Chronicles</option>
-          <option value="3">2 Chronicles</option>
-          <option value="3">Ezra</option>
-          <option value="3">Nehemiah</option>
-          <option value="3">Esther</option>
-          <option value="3">Job</option>
-          <option value="3">Psalms</option>
-          <option value="3">Proverbs</option>
-          <option value="3">Ecclesiastes</option>
-          <option value="3">Song of Solomon</option>
-          <option value="3">Ezekiel</option>
-          <option value="3">Daniel</option>
-          <option value="3">Hosea</option>
-          <option value="3">Joel</option>
-          <option value="3">Amos</option>
-          <option value="3">Obadiah</option>
-          <option value="3">Jonah</option>
-          <option value="3">Micah</option>
-          <option value="3">Nahum</option>
-          <option value="3">Habakkuk</option>
-          <option value="3">Zephaniah</option>
-          <option value="3">Haggai</option>
-          <option value="3">Zechariah</option>
-          <option value="3">Malachi</option>
-          <option value="3">Matthew</option>
-          <option value="3">Mark</option>
-          <option value="3">Luke</option>
-          <option value="3">John</option>
-          <option value="3">Acts</option>
-          <option value="3">Romans</option>
-          <option value="3">1 Corinthians</option>
-          <option value="3">2 Corinthians</option>
-          <option value="3">Galatians</option>
-          <option value="3">Ephesians</option>
-          <option value="3">Philippians</option>
-          <option value="3">Colossians</option>
-          <option value="3">1 Thessalonians</option>
-          <option value="3">2 Thessalonians</option>
-          <option value="3">1 Timothy</option>
-          <option value="3">2 Timothy</option>
-          <option value="3">Titus</option>
-          <option value="3">Philemon</option>
-          <option value="3">Hebrews</option>
-          <option value="3">James</option>
-          <option value="3">1 Peter</option>
-          <option value="3">2 Peter</option>
-          <option value="3">1 John</option>
-          <option value="3">2 John</option>
-          <option value="3">3 John</option>
-          <option value="3">Jude</option>
-          <option value="3">Revelation</option>
+          <option value="Genesis">Genesis</option>
+          <option value="Exodus">Exodus</option>
+          <option value="Leviticus">Leviticus</option>
+          <option value="Numbers">Numbers</option>
+          <option value="Deuteronomy">Deuteronomy</option>
+          <option value="Joshua">Joshua</option>
+          <option value="Judges">Judges</option>
+          <option value="Ruth">Ruth</option>
+          <option value="1 Samuel">1 Samuel</option>
+          <option value="2 Samuel">2 Samuel</option>
+          <option value="1 Kings">1 Kings</option>
+          <option value="2 Kings">2 Kings</option>
+          <option value="1 Chronicles">1 Chronicles</option>
+          <option value="2 Chronicles">2 Chronicles</option>
+          <option value="Ezra">Ezra</option>
+          <option value="Nehemiah">Nehemiah</option>
+          <option value="Esther">Esther</option>
+          <option value="Job">Job</option>
+          <option value="Psalms">Psalms</option>
+          <option value="Proverbs">Proverbs</option>
+          <option value="Ecclesiastes">Ecclesiastes</option>
+          <option value="Song of Solomon">Song of Solomon</option>
+          <option value="Isaiah">Isaiah</option>
+          <option value="Jeremiah">Jeremiah</option>
+          <option value="Ezekiel">Ezekiel</option>
+          <option value="Daniel">Daniel</option>
+          <option value="Hosea">Hosea</option>
+          <option value="Joel">Joel</option>
+          <option value="Amos">Amos</option>
+          <option value="Obadiah">Obadiah</option>
+          <option value="Jonah">Jonah</option>
+          <option value="Micah">Micah</option>
+          <option value="Nahum">Nahum</option>
+          <option value="Habakkuk">Habakkuk</option>
+          <option value="Zephaniah">Zephaniah</option>
+          <option value="Haggai">Haggai</option>
+          <option value="Zechariah">Zechariah</option>
+          <option value="Malachi">Malachi</option>
+          <option value="Matthew">Matthew</option>
+          <option value="Mark">Mark</option>
+          <option value="Luke">Luke</option>
+          <option value="John">John</option>
+          <option value="Acts">Acts</option>
+          <option value="Romans">Romans</option>
+          <option value="1 Corinthians">1 Corinthians</option>
+          <option value="2 Corinthians">2 Corinthians</option>
+          <option value="Galatians">Galatians</option>
+          <option value="Ephesians">Ephesians</option>
+          <option value="Philippians">Philippians</option>
+          <option value="Colossians">Colossians</option>
+          <option value="1 Thessalonians">1 Thessalonians</option>
+          <option value="2 Thessalonians">2 Thessalonians</option>
+          <option value="1 Timothy">1 Timothy</option>
+          <option value="2 Timothy">2 Timothy</option>
+          <option value="Titus">Titus</option>
+          <option value="Philemon">Philemon</option>
+          <option value="Hebrews">Hebrews</option>
+          <option value="James">James</option>
+          <option value="1 Peter">1 Peter</option>
+          <option value="2 Peter">2 Peter</option>
+          <option value="1 John">1 John</option>
+          <option value="2 John">2 John</option>
+          <option value="3 John">3 John</option>
+          <option value="Jude">Jude</option>
+          <option value="Revelation">Revelation</option>
         </select> <br /> <br className="desktop-scope-breakpoint" />
-        
-        <button type="submit" className="account-button-class" >Submit</button>  <br/>  <br/>
 
-         <hr className="scope-line"/>
+        <button type="submit" className="account-button-class">
+          Submit
+        </button> <br /> <br />
 
-        <label> 
-          <label className="scope-customGoals-banner"> VIEWPORT <br className="mobile-scope-breakpoint"/> <hr /> </label> <br />
-          {/* Validation - makes sure user at least inputs 4 characters in textbox */}
-          <div className="eBible-window">
-            <p>FETCHED E-BIBLE</p>
-            <p>AI E-BIBLE</p>
-            <p>AI E-BIBLE</p>
-            <p>AI ffgfE-BIBLE sfgsfd</p>
-            <p>AI E-BIBLE sfdg</p>
-            <p>AI E-BIBLE afgsdg</p>
-          </div>
-        </label> <br />
-      
+        {errorMessage && <p style={{ color: "white" }}>{errorMessage}</p>}
+      </form>
 
-        <div> {!isCustomValid && titleSubmit && (<p style={{color: 'red' }}> Must Add Description </p>)} </div>
-        <div> {!isCustomValid && goalSubmit && (<p style={{color: 'red' }}> Must Add Title </p>)} </div> 
+      <hr className="scope-line" />
 
-
-      </form> <br/>
-
-
-      <div> { ((isValid && !titleSubmit && !goalSubmit) || (isValid && isCustomValid)) && <UtilBibledDropdown goalData={selectedGoal} />} </div>
-      <div> { isCustomValid && <DisplayCustomGoal data={goalSubmit} customTitle={titleSubmit} />} </div>
-
-
+      <label>
+        <label className="scope-customGoals-banner">
+          VIEWPORT <br className="mobile-scope-breakpoint" /> <hr />
+        </label>
+        <br />
+        <div className="eBible-window">
+          {bookContent.length > 0 ? (
+            bookContent.map((passage, index) => (
+              <p key={index}>{passage}
+                
+              </p>
+            ))
+          ) : (
+            <p>No content available. Please select a book.</p>
+          )}
+        </div>
+      </label>
     </div>
   );
-}
+};
 
 export default UtilBible;
 
