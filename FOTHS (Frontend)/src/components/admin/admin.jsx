@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../footer/footer";
 import UserFetch from "./user-fetch";
 import ScriptureFetch from "./scripture-fetch";
@@ -18,6 +18,15 @@ const Admin = () => {
     const [scriptureData, setScriptureData] = useState({}); // State to store question input data
     const [userData, setUserData] = useState({}); // State to store user input data
     const [selectedRecord, setSelectedRecord] = useState(null); // State to store the selected record
+    const [popupText, setPopupText] = useState(""); // State for popup text
+    const [isPopupVisible, setIsPopupVisible] = useState(false); // State for popup visibility
+
+    useEffect(() => {
+        if (fetchedData.length > 0) {
+            const sortedData = [...fetchedData].sort((a, b) => a.id - b.id);
+            setFetchedData(sortedData); // Update state with sorted data
+        }
+    }, [selectedType]);
 
     const renderComponent = () => {
         if (selectedType === "users") {
@@ -27,12 +36,19 @@ const Admin = () => {
         } else if (selectedType === "questions") {
           return <QuestionFetch setQuestionData={setQuestionData}/>;
         } else {
-          return <p></p>; // Default content
+          return <p></p>; 
         }
       };
 
-    const handleRecordClick = (record) => {
+    const handleCellClick = (text, record) => {
+        setPopupText(text); // Set the text to display in the popup
+        setIsPopupVisible(true); // Show the popup
         setSelectedRecord(record); // Update the state with the clicked record
+    };
+
+    const closePopup = () => {
+        setIsPopupVisible(false); // Hide the popup
+        setPopupText(""); // Clear the popup text
     };
 
     const getTitle = () => {
@@ -46,6 +62,8 @@ const Admin = () => {
             return "Record Details"; // Default title
         }
     };
+
+
 
     return (
         <div id="foths-main">   
@@ -63,7 +81,7 @@ const Admin = () => {
                 <div className="foths-main-title"> Administrative Dashboard </div>
                 {renderComponent()}
                 <main className="ua-study-window"></main>
-                <main id='ua-window' className="ua-study-window"> <FetchDataComponent fetchedData={fetchedData} onRecordClick={handleRecordClick}/> </main>
+                <main id='ua-window' className="ua-study-window"> <FetchDataComponent fetchedData={fetchedData} onCellClick={handleCellClick}/> </main>
 
             </div>
         
@@ -131,8 +149,52 @@ const Admin = () => {
                         )}
                     </div>
                 </div>
+
+                {/* New card for displaying additional information */}
+                <div className="user-scope-display">
+                    <p className="usd-title">Additional Info</p>
+                    <div className="user-information">
+                    {selectedRecord ? (
+                        <>
+                            {selectedType === "users" && (
+                                <div className="user-field">EMAIL: {selectedRecord.email}</div>
+                            )}
+                            {selectedType === "scriptures" && (
+                                <div className="user-field">SCRIPTURE: {selectedRecord.scripture}</div>
+                            )}
+                            {selectedType === "questions" && (
+                                <div className="user-field">ANSWER: {selectedRecord.answer}</div>
+                            )}
+                        </>
+                        ) : (
+                            <p></p>
+                        )}
+                    </div>
+                </div>
+
+                {/* New card for displaying user's password */}
+                <div className="user-recent-activity">
+                    <p className="ura-title">Password</p>
+                    <div className="user-information">
+                        {selectedRecord && selectedType === "users" ? (
+                            <div className="user-field">PASSWORD: {selectedRecord.password}</div>
+                        ) : (
+                            <p></p>
+                        )}
+                    </div>
+                </div>
             </div>
 
+            {/* Popup Modal */}
+            {isPopupVisible && (
+                <div className="popup-modal">
+                    <div className="popup-content">
+                        <p className="popup-text">{popupText}</p>
+                        <button onClick={closePopup}>Close</button>
+                    </div>
+                </div>
+            )}
+            
 
             <Footer/>
 

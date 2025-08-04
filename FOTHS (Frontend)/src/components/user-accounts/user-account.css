@@ -32,6 +32,7 @@
     overflow: scroll;
 }
 
+/* Right side column title */
 .user-info-column {
     border: outset;
     border: 3px outset white;
@@ -58,6 +59,7 @@
     color: white;
     position: fixed;
     top: 47.75%;
+    left: 78.8%; /* Match the horizontal position of .user-info-card */
     width: 12%;
     height: 16%;
     padding-left: 2%;

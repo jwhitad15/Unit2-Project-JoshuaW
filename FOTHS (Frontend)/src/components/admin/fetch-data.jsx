@@ -1,69 +1,10 @@
-// import React from "react";
 
-// const FetchDataComponent = ({ fetchedData }) => {
-//   return (
-//     <div>
-//       {Array.isArray(fetchedData) ? (
-//         fetchedData.length > 0 ? (
-//           <ul>
-//             {fetchedData.map((item, index) => (
-//               <li key={index}>{JSON.stringify(item)}</li>
-//             ))}
-//           </ul>
-//         ) : (
-//           <div>No data fetched yet.</div> 
-//         )
-//       ) : typeof fetchedData === "string" && fetchedData === "Content Deleted" ? (
-//         <h1>Content Successfully Deleted</h1> // Display message for 'Content Deleted'
-//       ) : fetchedData && typeof fetchedData === "object" ? (
-//         <div>
-//           <p>{JSON.stringify(fetchedData)}</p>
-//         </div>
-//       ) : (
-//         <div>No data fetched yet.</div> 
-//       )}
-//     </div>
-//   );
-// };
-
-// export default FetchDataComponent;
-
-
-
-// import React from "react";
-
-// Line 41 controls the display of the fetched data
-// const FetchDataComponent = ({ fetchedData }) => {
-//   return (
-//     <div>
-//       {Array.isArray(fetchedData) ? (
-//         fetchedData.length > 0 ? (
-//           <table>
-//             {fetchedData.map((item, index) => ( 
-//               <tr key={index}> {JSON.stringify(item)} </tr>
-//               ))}
-//           </table>
-//         ) : ( <div>No data fetched yet.</div> )
-//       ) : typeof fetchedData === "string" && fetchedData === "Content Deleted" ? (
-//         <h1>Content Successfully Deleted</h1> // Display message for 'Content Deleted'
-//       ) : fetchedData && typeof fetchedData === "object" ? (
-//         <div>
-//           <div>{JSON.stringify(fetchedData)}</div> {/* Changed <p> to <div> */}
-//         </div>
-//       ) : (
-//         <div>No data fetched yet.</div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default FetchDataComponent;
 // #117f9e;
 
 import React from "react";
 import './admin.css';
 
-const FetchDataComponent = ({ fetchedData, onRecordClick }) => {
+const FetchDataComponent = ({ fetchedData, onCellClick}) => {
   return (
     <div>
       {Array.isArray(fetchedData) && fetchedData.length > 0 ? (
@@ -81,13 +22,9 @@ const FetchDataComponent = ({ fetchedData, onRecordClick }) => {
           <tbody>
             {/* Dynamically generate table rows for each record */}
             {fetchedData.map((record, rowIndex) => (
-              <tr key={rowIndex}>
+              <tr key={rowIndex} >
                 {Object.entries(record).map(([key, value], colIndex) => (
-                  <td 
-                    key={colIndex} 
-                    onClick={() => key === "id" && onRecordClick(record)} // Trigger click handler for ID cells
-                    style={{ cursor: key === "id" ? "pointer" : "default" }} // Add pointer cursor for ID cells
-                  >
+                  <td key={colIndex} onClick={() => onCellClick(value, record)} style={{ cursor: "pointer" }}>
                     {value}
                   </td>
                 ))}
