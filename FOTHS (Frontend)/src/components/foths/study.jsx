@@ -173,7 +173,7 @@ const Study = ({}) => {
 
                 <div>
                     {wordData ? (
-                        <p>{wordData.scripture}</p>
+                        <p>{wordData.scripture}d</p>
                     ) : (
                         <p>No scriptures available</p>
                     )}

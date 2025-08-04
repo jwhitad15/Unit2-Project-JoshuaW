@@ -208,3 +208,55 @@
     height: 33px;
     width: 100px;
   }
+
+main#ua-window.ua-study-window {
+  display: flex; 
+  justify-content: center;
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    border-color: white;
+    border-radius: 8px;
+    color: white;
+    padding-left: 2px;
+}
+table {
+    border: 3px outset;
+}
+th {
+    border: 1px solid;
+    border-color: white;
+    background-color: #4d788f;
+    border-radius: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+td {
+    border: ridge;
+    border-color: white;
+    border-radius: 3px;
+    background-color: #4d788f;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+}
+th {text-align: center;}
+.scripture-cell:hover {
+  background-color: white;
+  color: #1d3461;
+  left: 10%;
+  width: 31%;
+}
+.verse-cell:hover {
+  background-color: white;
+  color: #1d3461;
+  left: 10%;
+  width: 31%;
+}
+.fruit-cell:hover {
+  background-color: white;
+  color: #1d3461;
+  left: 10%;
+  width: 31%;
+}

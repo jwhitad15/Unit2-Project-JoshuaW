@@ -178,23 +178,75 @@ const UserAccount = () => {
             <div className="foths-main">
                 <div className="foths-main-title"> Account Dashboard </div>
 
-                <main className="ua-study-window"> <p> Verse </p> </main>
-                <main id='ua-window' className="ua-study-window"> 
+                <main className="ua-study-window"> </main>
+                {/* <main id='ua-window' className="ua-study-window"> 
                     <h2> {wordData ? ( <p>{mode === "quiz" ? wordData.questions : wordData.scripture}</p> ) : ( <p>Make a Selection!</p>)} </h2> 
                     <div>
                         <button onClick={handleNext} className="ua-next-button"> 
                             <div id="study-button-text"> Next </div>
                             <div id="study-button-icon"> <FaArrowRightLong/> </div>
                         </button>
-                    </div>
+                    </div> */}
         
                     {/* event handling inserted on buttons */}
-                    <div>
+                    {/* <div>
                         <button onClick={handlePrevious} className="ua-previous-button">
                             <div id="study-button-text"> Previous </div>  
                             <div id="study-button-icon"> <FaArrowLeftLong/> </div>  
                         </button>
                     </div>
+                </main> */}
+
+                <main id='ua-window' className="ua-study-window"> 
+                    {wordData ? (
+                        <div className="container">
+                            {mode === "quiz" ? (
+                                questions.map((item, index) => (
+                                    <div className="item" key={index}>
+                                        <table className="center">
+                                            <thead>
+                                                <tr>
+                                                    <th> <strong> Question </strong> </th>
+                                                    <th> <strong> Difficulty </strong> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td className="question-cell">{item.questions}</td>
+                                                    <td className="difficulty-cell">{item.difficulty}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table> <br/>
+                                    </div>
+                                ))
+                            ) : (
+                                allScriptures.map((item, index) => (
+                                    <div className="item" key={index}>
+                                        <table className="center">
+                                            <thead>
+                                                <tr>
+                                                    <th> <strong> Verse </strong> </th>
+                                                    <th> <strong> Scripture </strong> </th>
+                                                    <th> <strong> Fruit </strong> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td className="verse-cell">{item.verse}</td>
+                                                    <td className="scripture-cell">{item.scripture}</td>
+                                                    <td className="fruit-cell">{fruit}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table> <br/>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    ) : (
+                        <div className="no-selection-message">
+                            <p>Make a Selection!</p>
+                        </div>
+                    )}
                 </main>
 
                 <main className="ua-fetch-window"> 
