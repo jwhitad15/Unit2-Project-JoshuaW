@@ -32,6 +32,9 @@ const QuestionFetch = ({setQuestionData}) => {
 
     return (
         <main className="ua-fetch-window">
+          <input id="question" maxLength="250" minLength="10" className="admin-textfield" type="text" placeholder="Question" value={questions} onChange={handleQuestionChange}/>
+          <input id="answer" maxLength="150" minLength="5" className="admin-textfield" type="text" placeholder="Answer" value={answer} onChange={handleAnswerChange}/>
+          <input id="category" maxLength="150" minLength="5" className="admin-textfield" type="text" placeholder="Category" value={category} onChange={handleCategoryChange}/>
           <select id="goals" className="fruit-dropdown-select" value={fruit} onChange={handleFruitChange}>
             <option value="0">FRUIT</option>
             <option value="Faith">Faith</option>
@@ -45,22 +48,18 @@ const QuestionFetch = ({setQuestionData}) => {
             <option value="Longsuffering">Longsuffering</option>
           </select>
           <br />
-          <input id="question" maxLength="250" minLength="10" className="admin-textfield" type="text" placeholder="Question" value={questions} onChange={handleQuestionChange}/>
-          <input id="answer" maxLength="150" minLength="5" className="admin-textfield" type="text" placeholder="Answer" value={answer} onChange={handleAnswerChange}/>
           <select id="goals" className="difficulty-dropdown-select" value={lod} onChange={handleLODChange}>
-            <option value="0">DIFFICULTY</option>
+            <option value="0">LOD</option>
             <option value="Easy">Easy</option>
             <option value="Intermediate">Intermediate</option>
             <option value="Difficult">Difficult</option>
           </select>
           <br />
           <select id="translation" className="translation-dropdown-select" value={translation} onChange={handleTranslationChange}>
-            <option value="0">TRANSLATION</option>
+            <option value="0">VERSION</option>
             <option value="KJV">KJV</option>
           </select>
           <br />
-
-          <input id="category" maxLength="150" minLength="5" className="admin-textfield" type="text" placeholder="Category" value={category} onChange={handleCategoryChange}/>
         </main>
     )
 

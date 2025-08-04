@@ -50,14 +50,14 @@ const ScriptureFetch = ({setScriptureData}) => {
                 </select> <br /> <br className="desktop-scope-breakpoint" /> <br/>
             <label for="goals"></label> <br/>
                 <select id="goals"  className="difficulty-dropdown-select" value={lod} onChange={handleLODChange} >
-                    <option value="0">DIFFICULTY</option>
+                    <option value="0">LOD</option>
                     <option value="Easy">Easy</option>
                     <option value="Intermediate">Intermediate</option>
                     <option value="Difficult">Difficult</option>
                 </select> <br /> <br className="desktop-scope-breakpoint" /> <br/>
             <label for="translation"></label> <br/>
                 <select id="translation"  className="translation-dropdown-select" value={translation} onChange={handleTranslationChange}>
-                    <option value="0">TRANSLATION</option>
+                    <option value="0">VERSION</option>
                     <option value="KJV">KJV</option>
                 </select> <br /> <br className="desktop-scope-breakpoint" /> <br/>
         </main>

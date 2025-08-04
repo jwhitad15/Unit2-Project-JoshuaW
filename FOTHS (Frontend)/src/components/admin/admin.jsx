@@ -157,13 +157,13 @@ const Admin = () => {
                     {selectedRecord ? (
                         <>
                             {selectedType === "users" && (
-                                <div className="user-field">EMAIL: {selectedRecord.email}</div>
+                                <div className="user-scope-display-user-field">EMAIL: {selectedRecord.email}</div>
                             )}
                             {selectedType === "scriptures" && (
-                                <div className="user-field">SCRIPTURE: {selectedRecord.scripture}</div>
+                                <div className="user-scope-display-user-field">SCRIPTURE: {selectedRecord.scripture}</div>
                             )}
                             {selectedType === "questions" && (
-                                <div className="user-field">ANSWER: {selectedRecord.answer}</div>
+                                <div className="user-scope-display-user-field">ANSWER: {selectedRecord.answer}</div>
                             )}
                         </>
                         ) : (
@@ -176,10 +176,28 @@ const Admin = () => {
                 <div className="user-recent-activity">
                     <p className="ura-title">Password</p>
                     <div className="user-information">
-                        {selectedRecord && selectedType === "users" ? (
-                            <div className="user-field">PASSWORD: {selectedRecord.password}</div>
+                        {selectedRecord ? (
+                            <>
+                                {selectedType === "users" && (
+                                    <div className="user-field">PASSWORD: {selectedRecord.password}</div>
+                                )}
+                                {selectedType === "scriptures" && (
+                                    <>
+                                        <div className="user-field">FRUIT: {selectedRecord.fruit}</div>
+                                        <div className="user-field">TRANSLATION: {selectedRecord.translation}</div>
+                                        <div className="user-field">DIFFICULTY: {selectedRecord.lod}</div>
+                                    </>
+                                )}
+                                {selectedType === "questions" && (
+                                    <>
+                                        <div className="user-field">FRUIT: {selectedRecord.fruit}</div>
+                                        <div className="user-field">TRANSLATION: {selectedRecord.translation}</div>
+                                        <div className="user-field">DIFFICULTY: {selectedRecord.lod}</div>
+                                    </>
+                                )}
+                            </>
                         ) : (
-                            <p></p>
+                            <p>Select a record to view additional details</p>
                         )}
                     </div>
                 </div>

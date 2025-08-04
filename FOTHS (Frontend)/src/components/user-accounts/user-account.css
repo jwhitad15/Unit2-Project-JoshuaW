@@ -11,7 +11,8 @@
     box-shadow: 0 0 5px black;
     border-radius: 10px;}
 
-.user-field {font-size: 12px; text-align: left;}
+.user-field {font-size: 12px; text-align: left;  overflow: scroll;}
+.user-scope-display-user-field {font-size: 12px; text-align: left; line-height: 21px; overflow: scroll;}
 .user-info-title {font-size: 16px; text-align: center;}
 .user-info-card {
     border: outset;

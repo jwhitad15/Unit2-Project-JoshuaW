@@ -1,31 +1,29 @@
   .fruit-dropdown-select {
-    width: 127px;
-    background-color: #cdc5b4;
+    background-color: #1d3461;
+    border-color: white;
+    color: white;
     height: 33px;
-    width: 105px;
+    width: 90px;
     border: inset;
     border-radius: 8px;
-    border-color: #1d3461;
-    color: #1d3461;
   }
   .difficulty-dropdown-select {
-    width: 127px;
-    background-color: #cdc5b4;
+    width: 75px;
+    background-color: #1d3461;
+    border-color: white;
+    color: white;
     height: 33px;
     border: inset;
     border-radius: 8px;
-    border-color: #1d3461;
-    color: #1d3461;
   }
   .translation-dropdown-select {
-    width: 127px;
-    background-color: #cdc5b4;
+    background-color: #1d3461;
+    border-color: white;
+    color: white;
     height: 33px;
-    width: 115px;
+    width: 100px;
     border: inset;
     border-radius: 8px;
-    border-color: #1d3461;
-    color: #1d3461;
   }
 
   .admin-header-element {
@@ -112,13 +110,21 @@
     border-color: #1d3461;
     color: #1d3461;
     z-index: 2;
+    justify-content: space-evenly;
+    
 }
 
-input#firstName.admin-textfield {background-color: #1d3461; color: white;}
-input#lastName.admin-textfield {background-color: #1d3461; color: white;}
-input#email.admin-textfield {background-color: #1d3461; color: white;}
-input#username.admin-textfield {background-color: #1d3461; color: white;}
-input#password.admin-textfield {background-color: #1d3461; color: white;}
+input#firstName.admin-textfield {background-color: #1d3461; color: white; border-color: white}
+input#lastName.admin-textfield {background-color: #1d3461; color: white; border-color: white}
+input#email.admin-textfield {background-color: #1d3461; color: white; border-color: white}
+input#username.admin-textfield {background-color: #1d3461; color: white; border-color: white}
+input#password.admin-textfield {background-color: #1d3461; color: white; border-color: white}
+
+input#verse.admin-textfield {background-color: #1d3461; color: white; border-color: white}
+input#scripture.admin-textfield {background-color: #1d3461; color: white; border-color: white}
+input#category.admin-textfield {background-color: #1d3461; color: white; border-color: white}
+input#question.admin-textfield {background-color: #1d3461; color: white; border-color: white}
+input#answer.admin-textfield {background-color: #1d3461; color: white; border-color: white}
 
 /* Admin Fetch Table CSS */
 .fetch-table {
