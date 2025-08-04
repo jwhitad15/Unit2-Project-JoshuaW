@@ -121,10 +121,10 @@ input#username.admin-textfield {background-color: #1d3461; color: white;}
 input#password.admin-textfield {background-color: #1d3461; color: white;}
 
 .fetch-table {
-  width: 90%; /* Reduce table width */
+  width: 105%; /* Reduce table width */
   border-collapse: collapse; /* Ensure borders don't overlap */
   margin-top: 181px;
-  /* margin-left: 2.3%; */
+  table-layout: fixed; 
 }
 .fetch-table th {
   position: sticky; /* Keep headers visible during scrolling */
@@ -134,18 +134,23 @@ input#password.admin-textfield {background-color: #1d3461; color: white;}
   z-index: 1; /* Ensure headers stay above table rows */
   padding: 5px; /* Add padding to headers */
   text-align: center; /* Center-align text */
+  border: 1px solid #1d3461; 
 }
 .fetch-table td {
   text-align: center; /* Center-align text */
   border: 1px solid #1d3461; /* Optional: Add border for clarity */
   background-color: #cdc5b4; /* Cell background color */
+  overflow: hidden; /* Hide overflow content */
+  text-overflow: ellipsis; /* Added ellipsis for overflowed text */
+  white-space: nowrap; /* Prevent text wrapping */
 
 }
 .fetch-table tbody {
   max-height: 60vh; /* Limit the height of the table body */
-  overflow: scroll;
+  overflow: scroll; 
 }
 .fetch-table thead {
+
   width: 100%; /* Match the width of the table */
 }
 .fetch-table tr {
