@@ -28,6 +28,11 @@ const Admin = () => {
         }
     }, [selectedType]);
 
+    // Reset selectedRecord when selectedType changes
+    useEffect(() => {
+        setSelectedRecord(null); // Clear the selected record
+    }, [selectedType]);
+
     const renderComponent = () => {
         if (selectedType === "users") {
           return <UserFetch setUserData={setUserData}/>;
@@ -55,7 +60,7 @@ const Admin = () => {
         if (selectedType === "users") {
             return "Profile";
         } else if (selectedType === "scriptures") {
-            return "Verse";
+            return "Scripture";
         } else if (selectedType === "questions") {
             return "Question";
         } else {
@@ -126,44 +131,49 @@ const Admin = () => {
                             <>
                                 {selectedType === "users" && (
                                     <>
-                                        <div className="user-field">NAME: {selectedRecord.firstName} {selectedRecord.lastName}</div>
-                                        <div className="user-field">USER: {selectedRecord.username}</div>
-                                        <div className="user-field">ID: {selectedRecord.id}</div>
+                                        <div className="user-field"><b>ID: </b>{selectedRecord.id}</div>
+                                        <div className="user-field"><b>NAME: </b>{selectedRecord.firstName} {selectedRecord.lastName}</div>
+                                        <div className="user-field"><b>EMAIL: </b>{selectedRecord.email}</div>
                                     </>
                                 )}
                                 {selectedType === "scriptures" && (
                                     <>
-                                        <div className="user-field">VERSE: {selectedRecord.verse}</div>
-                                        <div className="user-field">ID: {selectedRecord.id}</div>
+                                        <div className="user-field">{selectedRecord.scripture}</div>
                                     </>
                                 )}
                                 {selectedType === "questions" && (
                                     <>
-                                        <div className="user-field">QUESTION: {selectedRecord.questions}</div>
-                                        <div className="user-field">ID: {selectedRecord.id}</div>
+                                        <div className="user-field">{selectedRecord.questions}</div>
                                     </>
                                 )}
                             </>
                         ) : (
-                            <p>Select a record to view details</p>
+                            <p></p>
                         )}
                     </div>
                 </div>
 
                 {/* New card for displaying additional information */}
                 <div className="user-scope-display">
-                    <p className="usd-title">Additional Info</p>
+                <p className="usd-title">
+                    {selectedType === "users" && "Credentials"}
+                    {selectedType === "scriptures" && "Verse"}
+                    {selectedType === "questions" && "Answer"}
+                </p>
                     <div className="user-information">
                     {selectedRecord ? (
                         <>
                             {selectedType === "users" && (
-                                <div className="user-scope-display-user-field">EMAIL: {selectedRecord.email}</div>
+                                <>
+                                <div className="user-scope-display-user-field"><b>USER: </b>{selectedRecord.username}</div>
+                                <div className="user-scope-display-user-field"><b>PASS: </b>{selectedRecord.password}</div>
+                                </>
                             )}
                             {selectedType === "scriptures" && (
-                                <div className="user-scope-display-user-field">SCRIPTURE: {selectedRecord.scripture}</div>
+                                <div className="user-scope-display-user-field">{selectedRecord.verse}</div>
                             )}
                             {selectedType === "questions" && (
-                                <div className="user-scope-display-user-field">ANSWER: {selectedRecord.answer}</div>
+                                <div className="user-scope-display-user-field">{selectedRecord.answer}</div>
                             )}
                         </>
                         ) : (
@@ -174,15 +184,20 @@ const Admin = () => {
 
                 {/* New card for displaying user's password */}
                 <div className="user-recent-activity">
-                    <p className="ura-title">Password</p>
+                <p className="ura-title">
+                    {selectedType === "users" && "Additional Information"}
+                    {selectedType === "scriptures" && "Additional Information"}
+                    {selectedType === "questions" && "Additional Information"}
+                </p>
                     <div className="user-information">
                         {selectedRecord ? (
                             <>
                                 {selectedType === "users" && (
-                                    <div className="user-field">PASSWORD: {selectedRecord.password}</div>
+                                    <div className="user-field"></div>
                                 )}
                                 {selectedType === "scriptures" && (
                                     <>
+                                        <div className="user-field">ID: {selectedRecord.id}</div>
                                         <div className="user-field">FRUIT: {selectedRecord.fruit}</div>
                                         <div className="user-field">TRANSLATION: {selectedRecord.translation}</div>
                                         <div className="user-field">DIFFICULTY: {selectedRecord.lod}</div>
@@ -190,6 +205,7 @@ const Admin = () => {
                                 )}
                                 {selectedType === "questions" && (
                                     <>
+                                        <div className="user-field">ID: {selectedRecord.id}</div>
                                         <div className="user-field">FRUIT: {selectedRecord.fruit}</div>
                                         <div className="user-field">TRANSLATION: {selectedRecord.translation}</div>
                                         <div className="user-field">DIFFICULTY: {selectedRecord.lod}</div>
@@ -197,7 +213,7 @@ const Admin = () => {
                                 )}
                             </>
                         ) : (
-                            <p>Select a record to view additional details</p>
+                            <p></p>
                         )}
                     </div>
                 </div>

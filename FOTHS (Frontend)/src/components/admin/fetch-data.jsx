@@ -5,6 +5,11 @@ import React from "react";
 import './admin.css';
 
 const FetchDataComponent = ({ fetchedData, onCellClick}) => {
+
+  if (!Array.isArray(fetchedData) || fetchedData.length === 0) {
+    return null; // Return nothing if fetchedData is empty
+  }
+  
   return (
     <div>
       {Array.isArray(fetchedData) && fetchedData.length > 0 ? (
