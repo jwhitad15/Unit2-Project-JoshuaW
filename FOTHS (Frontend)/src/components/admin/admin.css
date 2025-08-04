@@ -54,7 +54,7 @@
     left: 8.45%;
     color: #1d3461;
     overflow: scroll;
-    place-content: top;
+    
   }
 
   /* Question Fetch Element */
@@ -119,3 +119,36 @@ input#lastName.admin-textfield {background-color: #1d3461; color: white;}
 input#email.admin-textfield {background-color: #1d3461; color: white;}
 input#username.admin-textfield {background-color: #1d3461; color: white;}
 input#password.admin-textfield {background-color: #1d3461; color: white;}
+
+.fetch-table {
+  width: 90%; /* Reduce table width */
+  border-collapse: collapse; /* Ensure borders don't overlap */
+  margin-top: 181px;
+  /* margin-left: 2.3%; */
+}
+.fetch-table th {
+  position: sticky; /* Keep headers visible during scrolling */
+  top: 0; /* Stick headers to the top */
+  background-color: #a64444; /* Header background color */
+  color: white;
+  z-index: 1; /* Ensure headers stay above table rows */
+  padding: 5px; /* Add padding to headers */
+  text-align: center; /* Center-align text */
+}
+.fetch-table td {
+  text-align: center; /* Center-align text */
+  border: 1px solid #1d3461; /* Optional: Add border for clarity */
+  background-color: #cdc5b4; /* Cell background color */
+
+}
+.fetch-table tbody {
+  max-height: 60vh; /* Limit the height of the table body */
+  overflow: scroll;
+}
+.fetch-table thead {
+  width: 100%; /* Match the width of the table */
+}
+.fetch-table tr {
+  width: 100%; /* Match the width of the table */
+  left: 3%;
+}
