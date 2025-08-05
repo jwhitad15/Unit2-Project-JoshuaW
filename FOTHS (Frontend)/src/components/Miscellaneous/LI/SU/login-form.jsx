@@ -41,6 +41,9 @@ const LoginForm = () => {
     
             // Check the response from the backend
         if (data.username === formData.username && data.password === formData.password) {
+            // Store the user's first name in local storage
+            localStorage.setItem("firstName", data.firstName);
+
             // Check if both username and password contain the substring 'admin_'
             if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {
                 console.log("Navigating to admin dashboard...");
