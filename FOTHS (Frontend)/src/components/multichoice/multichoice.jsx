@@ -135,6 +135,22 @@ class Multichoice extends Component {
                         />
                     </div>
                 </div>
+                <div>
+                    <button
+                        className="study-previous-button"
+                        onClick={this.handlePreviousQuestion}
+                        disabled={currentQuestion === 0}
+                    >
+                        Previous
+                    </button>
+                    <button
+                        className="study-next-button"
+                        onClick={this.handleNextQuestion}
+                        disabled={currentQuestion === questionBank.length - 1}
+                    >
+                        Next
+                    </button>
+                </div>
                 <Footer />
             </div>
         );

@@ -19,37 +19,38 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // if (formData.username.includes('admin_') && (formData.password.includes('admin_') || formData.password.includes('Admin_'))) {
-        // setTimeout(() => {navigate('/admin')}, 500)
-        // } else {
-        //    setIsNotValid(true);
-        // }
+    
         try {
             // Make an API call to validate the username and password
-            const response = await fetch("http://localhost:8080/login", {
+            const response = await fetch("http://localhost:8080/users/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(formData),
             });
-
+    
+            console.log("Response status:", response.status);
+    
             if (!response.ok) {
                 throw new Error("Failed to validate credentials");
             }
-
+    
             const data = await response.json();
-
+            console.log("Backend response:", data); // Debug the response structure
+    
             // Check the response from the backend
-            if (data.isAdmin) {
-                // Navigate to the admin dashboard if the user is an admin
+        if (data.username === formData.username && data.password === formData.password) {
+            // Check if both username and password contain the substring 'admin_'
+            if (formData.username.includes("admin_") && formData.password.includes("admin_")) {
+                console.log("Navigating to admin dashboard...");
                 navigate("/admin");
-            } else if (data.isValidUser) {
-                // Navigate to the user dashboard if the credentials are valid
-                navigate("/dashboard");
             } else {
-                // Show an error message if the credentials are invalid
+                console.log("Navigating to user dashboard...");
+                navigate("/user-account");
+            }
+            } else {
+                console.log("Invalid credentials.");
                 setIsNotValid(true);
             }
         } catch (error) {
