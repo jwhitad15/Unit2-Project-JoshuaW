@@ -71,7 +71,8 @@
     box-shadow: 0 0 5px black;
     overflow: scroll;
     }
-.usd-title {font-size: 16px; text-align: center;}
+
+.usd-title {font-size: 16px; text-align: center; padding-top: 15px;}
 .usd-timestamp {font-size: 0px; text-align: center;}
 .usd-preset {font-size: 12px; text-align: center}
 .usd-preset-subs {font-size: 10px; text-align: center}
@@ -96,6 +97,7 @@
     box-shadow: 0 0 5px black;
     overflow: scroll;
     }
+
 .ura-title {font-size: 16px; text-align: center; line-height: 0.5;}
 .ura-window {
     background-color: #cdc5b4; 
@@ -280,3 +282,78 @@ th {text-align: center;}
   color: white;
   opacity: 0.38;
 }
+
+/* Adjusted User Info Column Stylizations */
+.ua-user-info-card {
+  border: outset;
+  border: 3px outset white;
+  border-radius: 8px;
+  background-color: #a64444;
+  color: white;
+  position: fixed;
+  top: 29%;
+  width: 12%;
+  height: 12%;
+  padding-left: 2%;
+  padding-right: 2%;
+  font-size: small;
+  box-shadow: 8 14px 8px black;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0 0 5px black;
+  overflow: scroll;
+}
+.ua-user-scope-display {
+border: outset;
+border: 3px outset white;
+border-radius: 8px;
+background-color: #a64444;
+color: white;
+position: fixed;
+top: 43.75%;
+left: 78.8%; /* Match the horizontal position of .user-info-card */
+width: 12%;
+height: 28%;
+padding-left: 2%;
+padding-right: 2%;
+line-height: 7px;
+box-shadow: 8 14px 8px black;
+-webkit-box-shadow: 0 0 10px #fff;
+box-shadow: 0 0 5px black;
+overflow: scroll;
+}
+.ua-user-recent-activity {
+  border: outset;
+  border: 3px outset white;
+  border-radius: 8px;
+  background-color: #a64444;
+  color: white;
+  position: fixed;
+  top: 74.5%;
+  width: 12%;
+  height: 8%;
+  padding-left: 2%;
+  padding-right: 2%;
+  font-size: small;
+  box-shadow: 8 14px 8px black;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0 0 5px black;
+  place-content: center;
+  justify-content: center;
+  }
+
+  .ua-ura-window {
+    background-color: #1d3461; 
+    border: 3px outset white;
+    border-color: white;
+    height: 40%;
+    display: flex;
+    overflow: scroll;
+    color: White;
+    place-content: center;
+    align-items: center;
+    padding-left: 1px;
+    padding-right: 1px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+  }

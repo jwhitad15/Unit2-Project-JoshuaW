@@ -43,6 +43,9 @@ const LoginForm = () => {
         if (data.username === formData.username && data.password === formData.password) {
             // Store the user's first name in local storage
             localStorage.setItem("firstName", data.firstName);
+            localStorage.setItem("fullName", data.firstName + " " + data.lastName); 
+            localStorage.setItem("email", data.email);
+            localStorage.setItem("username", data.username);    
 
             // Check if both username and password contain the substring 'admin_'
             if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {

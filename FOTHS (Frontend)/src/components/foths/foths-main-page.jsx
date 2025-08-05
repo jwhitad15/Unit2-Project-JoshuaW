@@ -45,38 +45,20 @@ const FOTHSMain = () => {
                 const response = await fetch('http://localhost:8080/scriptures');
                 const data = await response.json();
 
-                    // Set the initial scripture to display
-            if (data.length > 0) {
-                setDailyScripture(`${data[0].verse}: ${data[0].scripture}`);
-            }
-         } catch (error) {
+        // Ensure the data is an array and contains scripture objects
+        if (Array.isArray(data) && data.length > 0 && data[0].verse && data[0].scripture) {
+            setDailyScripture(`${data[0].verse}: ${data[0].scripture}`);
+        } else {
+            throw new Error("Invalid data structure returned from API");
+        }
+        } catch (error) {
             console.error('Error fetching scripture:', error);
             setDailyScripture("Sorry, no scripture available today.");
         }
     };
 
     useEffect(() => {
-        const currentDate = new Date().toISOString().split("T")[0];
-        const lastFetchedDate = localStorage.getItem("lastFetchedDate");
-
-        // Fetch scripture if it's a new day or no date is stored
-        if (lastFetchedDate !== currentDate) {
-            localStorage.setItem("lastFetchedDate", currentDate);
-            fetchDailyScripture();
-        }
-
-        // Set up an interval to check for a new calendar day
-        const interval = setInterval(() => {
-            const newDate = new Date().toISOString().split("T")[0];
-            const storedDate = localStorage.getItem("lastFetchedDate");
-
-            if (storedDate !== newDate) {
-                localStorage.setItem("lastFetchedDate", newDate);
-                fetchDailyScripture(); // Fetch a new scripture for the new day
-            }
-        }, 1000 * 60 * 60); // Check every hour
-
-        return () => clearInterval(interval); // Clean up the interval on component unmount
+        fetchDailyScripture(); // Fetch the first scripture when the component mounts
     }, []);
 
     return (
@@ -103,15 +85,41 @@ const FOTHSMain = () => {
         
             {/* Flexbox stylization to create columns & column cards */}
             <nav>
-                <div className="recent-activity">Activity</div>
+                <div className="recent-activity">Resources</div>
                 <div className="recent-activity-card-1">
-                    
+                    <h2>Welcome to FOTHS</h2>
+                    <hr style={{width: "98%"}}/>
+                    <hr style={{width: "84%"}}/>
+                    <br/>
+                    <div className="intro-window" >
+                    <p><b>FOTHS</b>, short for <b>Fruits of the Holy Spirit</b> is an interactive, educational application designed to help users learn & retain the Bible.</p>
+                    <p>This application comes equipped with 3 unique game modes: <b>Study, Recall, Quiz</b></p>
+                    <p><b>Study</b> mode allows users to navigate through Scripture, while <b>Recall</b> mode resembles a traditional fill-in-the-blank question, enabling users to enter verse titles in a input field. </p>
+                    <p><b>Quiz</b> mode tests users' knowledge by displaying Scripture and allowing them to select one of four answer choices.</p>
+                    <p>Additionally, FOTHS offers a wide variety of interactice tools like a Pomodoro timer, Bible fetching elements, and video resources.</p>
+                    <p>Take some time to explore this application, and don't forget to become familiar with the user account page - it will be where you spend most of your time!</p>
+                    <p>Happy learning!</p>
+                    </div>
                 </div>
-                <div className="recent-activity-card-2">
+                {/* <div className="recent-activity-card-2">
                 <input type="text" className="ai-question-input" placeholder="Ask the AI a question..." value={userQuestion} onChange={handleQuestionChange}/>
                     <button className="ai-submit-button" onClick={handleAskAI}>Ask AI</button>
+                </div> */}
+                <div className="recent-activity-card-3">
+                    <div className="vod">
+                    <p><b className="ua-ura-window">Verse of the Day</b></p>
+                    {dailyScripture ? (
+                        <p >
+                            <i >"{dailyScripture.split(": ")[1]}"</i> {/* Italicized scripture in quotes */}
+                            <br />
+                            <b > {dailyScripture.split(": ")[0]}</b> {/* Bold verse name */}
+                        </p>
+                    ) : (
+                        <p>Loading daily scripture...</p>
+                    )}
+                    <p><b className="ua-ura-window">Verse of the Day</b></p>
+                    </div>
                 </div>
-                <div className="recent-activity-card-3"> <p><b>Verse of the Day</b></p>{dailyScripture ? <p>{dailyScripture}</p> : <p>Loading daily scripture...</p>}</div>
             </nav>
 
             <Footer/>

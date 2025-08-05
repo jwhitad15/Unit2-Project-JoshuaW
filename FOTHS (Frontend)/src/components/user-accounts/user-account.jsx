@@ -1,7 +1,6 @@
 // User Account Component
 
 import React, { useState, useEffect } from "react";
-import FourElementHeader from "../header-components/header-4";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import Footer from "../footer/footer";
 import './user-account.css';
@@ -10,6 +9,7 @@ import UtilBible from "./util-bible-component";
 import Pomodoro from "./pomodoro/pomodoro";
 import Scriptures from "../../classes/scriptures";
 import '../recall/recall.css';
+import AdminHeader from "../header-components/admin-header";
 
 
 const UserAccount = () => {
@@ -22,6 +22,12 @@ const UserAccount = () => {
         const [selectedFruit, setSelectedFruit] = useState(""); // State to track the selected fruit
         const [displayMode, setDisplayMode] = useState(""); // Controls the table rendering
         const [errorMessage, setErrorMessage] = useState(""); // Tracks error messages
+        const [currentTimestamp, setCurrentTimestamp] = useState("");
+
+        // Retrieve the user information from local storage
+        const fullName = localStorage.getItem("fullName") || "USER FULL NAME"
+        const email = localStorage.getItem("email") || "USER EMAIL";
+        const username = localStorage.getItem("username") || "USER USERNAME";
 
         const handleModeChange = (e) => {
             setSelectedMode(e.target.value);
@@ -93,10 +99,34 @@ const UserAccount = () => {
             }
         };
 
+        // Update the current timestamp dynamically
+            useEffect(() => {
+                const updateTimestamp = () => {
+                    const now = new Date();
+                    const formattedDate = now.toLocaleDateString("en-US", {
+                        weekday: "short",
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                    });
+                    const formattedTime = now.toLocaleTimeString("en-US", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                    });
+                    setCurrentTimestamp(`${formattedDate}, ${formattedTime}`);
+                };
+
+                updateTimestamp();
+                const interval = setInterval(updateTimestamp, 1000); // Update every second
+
+                return () => clearInterval(interval); // Cleanup interval on component unmount
+            }, []);
+
     return (
         <div id="foths-main">
            
-            <FourElementHeader/>
+            <AdminHeader/>
 
             {/* Dynamic Component that receives user input to display in another element */}
             <div className="user-account-aside">
@@ -195,32 +225,32 @@ const UserAccount = () => {
         
             {/* Flexbox stylization to create columns & column cards */}
             <div className="user-nav-css">
-                <div className="user-info-column">USER FULL NAME</div>
+                <div className="user-info-column">{fullName.toUpperCase()}  </div>
                 
-                <div className="user-info-card">
-                <p className="user-info-title">User Information</p>
+                <div className="ua-user-info-card">
+                <p className="user-info-title"><b>User Information</b></p>
                     <div className="user-information">
-                        <li className="user-field">Joshua White</li>
-                        <li className="user-field">jwhite@gmail.com</li>
-                        <li className="user-field">jwhitad15</li>
+                        <li className="user-field">{email}</li>
+                        <li className="user-field">{username}</li>
                     </div>
                 </div>
-                <div className="user-scope-display">
-                    <p className="usd-title">My Scope</p>
+                <div className="ua-user-scope-display">
+                    <p className="usd-title"><b>Video Resources</b></p> <br/>
                     <div className="usd-window">
-                        <p id='window-text' className="usd-timestamp">August 1, 2025 - 12:31:30 PM</p>
-                        <p id='window-text' className="usd-preset">Read 1 Chapter a Day</p>
-                        <p id='window-text' className="usd-preset-subs">Duration: 1 week</p>
-                        <p id='window-text' className="usd-custom">Start: John 14</p>
-                        <p id='window-text' className="usd-custom-subs">End: John 20</p>
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/7tGDumsawjk?autoplay=1&mute=1" 
+                        frameBorder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowFullScreen>
+                    </iframe>
                     </div>
                 </div>
-                <div className="user-recent-activity">
-                    <p className="ura-title">Recent Activity</p>
-                    <div className="ura-window">
-                        <p id='window-text' className="ura1">  user.activity[i] - where [i] = (activityRecords.length - 1) </p>
-                        <p id='window-text' className="ura2">Timestamp </p>
-                        <p id='window-text' className="ura3">Score (if applicable) </p>
+                <div className="ua-user-recent-activity">
+                    {/* <p className="ura-title">Date & Time</p> */}
+                    <div className="ua-ura-window">
+                        <p id='ua-window-text' className="ura1"> {currentTimestamp}</p>
                     </div>
                 </div>
             </div>

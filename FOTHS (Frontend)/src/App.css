@@ -852,8 +852,8 @@ label {
   place-content: center;
   position: fixed;
   top: 31%;
-  width: 9%;
-  height: 14%;
+  width: 12%;
+  height: 38%;
   padding-left: 2%;
   padding-right: 2%;
   font-size: x-small;
@@ -882,6 +882,7 @@ label {
 }
 
 .recent-activity-card-3 {
+  /* display:none; */
   border: outset;
   border: 3px outset white;
   border-radius: 8px;
@@ -889,16 +890,44 @@ label {
   color: white;
   place-content: center;
   position: fixed;
-  top: 68.5%;
-  width: 9%;
-  height: 14%;
+  top: 71.5%;
+  width: 12%;
+  height: 11%;
   padding-left: 2%;
   padding-right: 2%;
   font-size: small;
   box-shadow: 8 14px 8px black;
   -webkit-box-shadow: 0 0 10px #fff;
   box-shadow: 0 0 5px black;
+  overflow: hidden; /* Ensure content stays within the box */
+}
+.vod {
+  /* position: absolute; */
+  /* width: 100%; */
+  animation: scroll-up 15s linear infinite; /* Apply the scrolling animation */
+}
+.intro-window {
+  background-color: #cdc5b4; 
+  color: #1d3461;
+  border: inset;
+  border-color: #a64444;
+  /* line-height: 1; */
+  height: 63%;
+  position: grid;
+  width: 100%;
   overflow: scroll;
+  text-align: center;
+  font-size: 12px;
+  /* padding-left: 10px; */
+}
+
+@keyframes scroll-up {
+  0% {
+    transform: translateY(100%); /* Start from the bottom */
+  }
+  100% {
+    transform: translateY(-100%); /* Move to the top */
+  }
 }
 
 #scrolling2 {
