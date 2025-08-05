@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../footer/footer";
 import UserFetch from "./user-fetch";
 import ScriptureFetch from "./scripture-fetch";
 import QuestionFetch from "./question-fetch";
@@ -8,6 +7,7 @@ import Music from "./music";
 import AdminHeader from "../header-components/admin-header";
 import FetchDataComponent from "./fetch-data";
 import './admin.css';
+import AccountFooter from "../footer/account-footer";
 
 
 
@@ -230,7 +230,7 @@ const Admin = () => {
             )}
             
 
-            <Footer/>
+            <AccountFooter/>
 
         </div>
 

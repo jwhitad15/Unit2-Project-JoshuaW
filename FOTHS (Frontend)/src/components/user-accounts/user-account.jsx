@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import Footer from "../footer/footer";
 import './user-account.css';
 import './pomodoro/pomodoro.css';
 import UtilBible from "./util-bible-component";
@@ -10,6 +9,7 @@ import Pomodoro from "./pomodoro/pomodoro";
 import Scriptures from "../../classes/scriptures";
 import '../recall/recall.css';
 import AdminHeader from "../header-components/admin-header";
+import AccountFooter from "../footer/account-footer";
 
 
 const UserAccount = () => {
@@ -255,7 +255,7 @@ const UserAccount = () => {
                 </div>
             </div>
 
-            <Footer/>
+            <AccountFooter/>
 
         </div>
 

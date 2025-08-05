@@ -2001,6 +2001,22 @@ footer {
   box-shadow: 0 0 5px #cdc5b4;
 }
 
+.account-footer-admin-link {
+  border-style: outset;
+  border: 3px outset white;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 8px;
+  background-color: #1d3461;
+  padding-top: auto;
+  box-shadow: 8 14px 8px black;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0 0 5px black;
+  font-size: 18px;
+}
+.account-footer-admin-link:hover {
+  background-color: #658361;
+}
 .footer-admin-link {
   border-style: outset;
   border: 3px outset white;
