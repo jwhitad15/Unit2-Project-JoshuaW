@@ -9,9 +9,9 @@
 
 package com.foths.application.controllers;
 
+import com.foths.application.dto.ValidateRecallResponse;
 import com.foths.application.models.Scripture;
 import com.foths.application.repositories.ScriptureRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,6 @@ import java.util.List;
 @RequestMapping("/scriptures")
 public class ScriptureController {
 
-    @Autowired
     private final ScriptureRepository scriptureRepository;
 
     public ScriptureController(ScriptureRepository scriptureRepository) {this.scriptureRepository = scriptureRepository;}
@@ -82,6 +81,17 @@ public class ScriptureController {
             String response = STR."Question with ID of \{scriptureId} not found.";
             return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
         }
+    }
+
+    @PostMapping("/validate-answer")
+    public ResponseEntity<?> validateAnswer(@RequestBody ValidateRecallResponse request) {
+        Scripture scripture = scriptureRepository.findByVerse(request.getVerse());
+        if (scripture == null) {
+            return ResponseEntity.status(404)
+                    .body(Collections.singletonMap("error", "Scripture not found"));
+        }
+        boolean isCorrect = scripture.getVerse().trim().equalsIgnoreCase(request.getUserAnswer().trim());
+        return ResponseEntity.ok(Collections.singletonMap("isCorrect", isCorrect));
     }
 
 }

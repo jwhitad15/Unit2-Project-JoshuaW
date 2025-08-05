@@ -188,14 +188,7 @@ label {
   width: 127px;
   background-color: #cdc5b4;
 }
-.recall-input {
-  border: 2.1px inset #1d3461;
-  border-radius: 5px;
-  background-color: #cdc5b4;
-  color: #1d3461;
-  width: 250px;
-  height: 2px;
-}
+
 
 .validate-message{
   text-align: center;
@@ -567,10 +560,24 @@ label {
   box-shadow: 8 14px 8px black;
   -webkit-box-shadow: 0 0 10px #fff;
   box-shadow: 0 0 8px black;
+  place-content: center;
 }
 .verse-name:hover {
   background-color: #1d3461;
   color: white;
+}
+.recall-input {
+  border: 2.1px inset white;
+  border-radius: 5px;
+  background-color: #a64444;
+  color: white;
+  width: 250px;
+  height: 5px;
+  vertical-align: middle;
+  
+}
+.recall-input::placeholder{
+  color: white
 }
 .verse-size {
   font-size: 20px;

@@ -13,9 +13,10 @@ import java.util.List;
 public interface ScriptureRepository extends JpaRepository<Scripture, Integer> {
 
     // Custom query methods
+    //    Scripture findByVerse(String verse);
     List<Scripture> findByCategory(String category);
     List<Scripture> findByTranslation(String translation);
-    List<Scripture> findByVerse(String verse);
+    Scripture findByVerse(String verse);
     List<Scripture> findByFruit(String fruit);
     List<Scripture> findByLod(String lod);
     List<Scripture> findByScriptureContaining(String scriptureText);

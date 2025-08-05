@@ -1,0 +1,18 @@
+package com.foths.application.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ValidateRecallResponse {
+    private String verse;
+    private String userAnswer;
+
+    public String getVerse() { return verse; }
+    public void setVerseName(String verseName) { this.verse = verse; }
+
+    public String getUserAnswer() { return userAnswer; }
+    public void setUserAnswer(String userAnswer) { this.userAnswer = userAnswer; }
+}
+

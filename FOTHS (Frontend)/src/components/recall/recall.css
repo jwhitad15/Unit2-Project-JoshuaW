@@ -50,3 +50,55 @@
     background-color: #1d3461;
     color: white
   }
+
+  .recall-button-class {
+    border: outset 2.5px;
+    color: white;
+    background-color: #1d3461;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    z-index: 2;
+  }
+  .recall-button-class:hover {
+    background-color: #1d3461;
+    color: white;
+    left: 10%;
+  }
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.modal-content {
+    text-align: center;
+}
+
+.close-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background-color: #0056b3;
+}
