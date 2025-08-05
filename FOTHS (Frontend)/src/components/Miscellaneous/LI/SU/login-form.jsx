@@ -42,7 +42,7 @@ const LoginForm = () => {
             // Check the response from the backend
         if (data.username === formData.username && data.password === formData.password) {
             // Check if both username and password contain the substring 'admin_'
-            if (formData.username.includes("admin_") && formData.password.includes("admin_")) {
+            if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {
                 console.log("Navigating to admin dashboard...");
                 navigate("/admin");
             } else {
