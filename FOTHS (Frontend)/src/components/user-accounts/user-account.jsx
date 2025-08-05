@@ -15,40 +15,31 @@ import '../recall/recall.css';
 const UserAccount = () => {
 
         const [wordData, setWordData] = useState(null)
-        const [val, setVal] = useState(0)
         const [allScriptures, setAllScriptures] = useState([]);
-        const [mode, setMode] = useState(""); // Tracks the selected mode
-        const [difficulty, setDifficulty] = useState(""); // Tracks the selected difficulty
+        const [selectedMode, setSelectedMode] = useState(""); // Tracks the selected mode
+        const [selectedDifficulty, setSelectedDifficulty] = useState(""); // Tracks the selected difficulty
         const [questions, setQuestions] = useState([]); // Stores questions fetched from the backend
-        const [fruit, setFruit] = useState(""); // State to track the selected fruit
+        const [selectedFruit, setSelectedFruit] = useState(""); // State to track the selected fruit
+        const [displayMode, setDisplayMode] = useState(""); // Controls the table rendering
         const [errorMessage, setErrorMessage] = useState(""); // Tracks error messages
 
         const handleModeChange = (e) => {
-            setMode(e.target.value);
+            setSelectedMode(e.target.value);
         };
     
         // Event handler for difficulty selection
         const handleDifficultyChange = (e) => {
-            setDifficulty(e.target.value);
+            setSelectedDifficulty(e.target.value);
         };
 
         const handleFruitChange = (e) => {
-            setFruit(e.target.value);
+            setSelectedFruit(e.target.value);
         };
-    
-        // event handler functions that control the Previous & Next Arrows
-        // also includes logic that disables Previous button on first slide & Next button on last slide
-        // const handleClick = (index) => {
-        //     if (index >= 0 && index < allScriptures.length) {
-        //         setVal(index);
-        //         setWordData(allScriptures[index]);
-        //     }
-        // };
 
         const handleSubmit = async () => {
             try {
                 // Validate dropdown selections
-                if (!fruit || fruit === "0" || !mode || mode === "0") {
+                if (!selectedFruit || selectedFruit === "0" || !selectedMode || selectedMode === "0") {
                     setErrorMessage("Please select both FRUIT and MODE.");
                     return;
                 }
@@ -56,19 +47,19 @@ const UserAccount = () => {
                 let url = "http://localhost:8080";
     
                 // Determine the endpoint based on dropdown selections
-                if (mode === "study" || mode === "recall") {
+                if (selectedMode === "study" || selectedMode === "recall") {
                     url += "/scriptures";
-                } else if (mode === "quiz") {
+                } else if (selectedMode === "quiz") {
                     url += "/questions";
                 }
     
                 // Add filters based on FRUIT and DIFFICULTY selections
                 const params = new URLSearchParams();
-                if (fruit !== "Every Fruit") {
-                    params.append("fruit", fruit);
+                if (selectedFruit !== "Every Fruit") {
+                    params.append("fruit", selectedFruit);
                 }
-                if (difficulty) {
-                    params.append("difficulty", difficulty);
+                if (selectedDifficulty) {
+                    params.append("difficulty", selectedDifficulty);
                 }
     
                 url += `?${params.toString()}`;
@@ -81,89 +72,29 @@ const UserAccount = () => {
                 const data = await response.json();
     
                 // Process the response based on the MODE
-                if (mode === "study" || mode === "recall") {
-                    const scriptures = data.map(scripture => new Scriptures(scripture.id, scripture.verse, scripture.scripture));
+                if (selectedMode === "study" || selectedMode === "recall") {
+                    const scriptures = data.map(scripture => ({
+                        id: scripture.id,
+                        verse: scripture.verse,
+                        scripture: scripture.scripture,
+                    }));
                     setAllScriptures(scriptures);
-                    setWordData(scriptures[0]); // Display the first scripture
-                } else if (mode === "quiz") {
+                    setWordData(scriptures); // Display all scriptures
+                } else if (selectedMode === "quiz") {
                     setQuestions(data);
-                    setWordData(data[0]); // Display the first question
+                    setWordData(data); // Display all questions
                 }
+
+                setDisplayMode(selectedMode);
+
                 setErrorMessage(""); // Clear any previous error messages
             } catch (error) {
-                // console.error("Error fetching data:", error);
                 setErrorMessage("Failed to fetch data. Please try again.");
             }
         };
-    
-        // Navigate to the next scripture
-        const handleNext = () => {
-            const nextIndex = val < (mode === "quiz" ? questions.length : allScriptures.length) - 1 ? val + 1 : val;
-            setVal(nextIndex);
-            setWordData(mode === "quiz" ? questions[nextIndex] : allScriptures[nextIndex]);
-        };
-    
-        // Navigate to the previous scripture
-        const handlePrevious = () => {
-            const prevIndex = val > 0 ? val - 1 : val;
-            setVal(prevIndex);
-            setWordData(mode === "quiz" ? questions[prevIndex] : allScriptures[prevIndex]);
-        };
-    
-      // Fetch scriptures and questions based on mode and difficulty
-        // useEffect(() => {
-        //     const fetchData = async () => {
-        //         try {
-        //             let url = "http://localhost:8080/";
-        //             if (mode === "study" || mode === "recall") {
-        //                 url += `scriptures?difficulty=${difficulty}`;
-        //             } else if (mode === "quiz") {
-        //                 url += `questions?difficulty=${difficulty}`;
-        //             }
-
-        //             const response = await fetch(url);
-        //             const data = await response.json();
-        //             console.log("Fetched data:", data);
-        //             if (mode === "study" || mode === "recall") {
-        //                 const scriptures = data.map(scripture => new Scriptures(scripture.id, scripture.verse, scripture.scripture));
-        //                 setAllScriptures(scriptures);
-        //                 setWordData(scriptures[0]); // Display the first scripture
-        //             } else if (mode === "quiz") {
-        //                 setQuestions(data);
-        //                 setWordData(data[0]); // Display the first question
-        //             }
-        //         } catch (error) {
-        //             console.error("Error fetching data:", error);
-        //         }
-        //     };
-
-        //     if (mode && difficulty) {
-        //         fetchData();
-        //     }
-        // }, [mode, difficulty]);
-
-    // const fetchScripture = async () => {
-    //         try {
-    //             const response = await fetch('http://localhost:8080/scriptures');
-    //             const data = await response.json();
-    //             console.log('Scripture data fetched successfully:', data);
-    
-    //             // Map the fetched data into the desired format
-    //             const scriptures = data.map(scripture => new Scriptures(scripture.id, scripture.verse, scripture.scripture));
-    //             setAllScriptures(scriptures);
-    
-    //             // Set the initial scripture to display
-    //             if (scriptures.length > 0) {
-    //                 setWordData(scriptures[0]);
-    //             }
-    //         } catch (error) {
-    //             console.error('Error fetching scripture:', error);
-    //         }
-    //     };
 
     return (
         <div id="foths-main">
-
            
             <FourElementHeader/>
 
@@ -179,89 +110,78 @@ const UserAccount = () => {
                 <div className="foths-main-title"> Account Dashboard </div>
 
                 <main className="ua-study-window"> </main>
-                {/* <main id='ua-window' className="ua-study-window"> 
-                    <h2> {wordData ? ( <p>{mode === "quiz" ? wordData.questions : wordData.scripture}</p> ) : ( <p>Make a Selection!</p>)} </h2> 
-                    <div>
-                        <button onClick={handleNext} className="ua-next-button"> 
-                            <div id="study-button-text"> Next </div>
-                            <div id="study-button-icon"> <FaArrowRightLong/> </div>
-                        </button>
-                    </div> */}
-        
-                    {/* event handling inserted on buttons */}
-                    {/* <div>
-                        <button onClick={handlePrevious} className="ua-previous-button">
-                            <div id="study-button-text"> Previous </div>  
-                            <div id="study-button-icon"> <FaArrowLeftLong/> </div>  
-                        </button>
-                    </div>
-                </main> */}
 
                 <main id='ua-window' className="ua-study-window"> 
                     {wordData ? (
-                        <div className="container">
-                            {mode === "quiz" ? (
-                                questions.map((item, index) => (
-                                    <div className="item" key={index}>
-                                        <table className="center">
-                                            <thead>
-                                                <tr>
-                                                    <th> <strong> Question </strong> </th>
-                                                    <th> <strong> Difficulty </strong> </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td className="question-cell">{item.questions}</td>
-                                                    <td className="difficulty-cell">{item.difficulty}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table> <br/>
-                                    </div>
-                                ))
-                            ) : (
-                                allScriptures.map((item, index) => (
-                                    <div className="item" key={index}>
-                                        <table className="center">
-                                            <thead>
-                                                <tr>
-                                                    <th> <strong> Verse </strong> </th>
-                                                    <th> <strong> Scripture </strong> </th>
-                                                    <th> <strong> Fruit </strong> </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td className="verse-cell">{item.verse}</td>
-                                                    <td className="scripture-cell">{item.scripture}</td>
-                                                    <td className="fruit-cell">{fruit}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table> <br/>
-                                    </div>
-                                ))
-                            )}
-                        </div>
+                        <table className="fetch-table" border="1">
+                            <thead>
+                                <tr>
+                                    {displayMode === "study" ? (
+                                        <>
+                                            <th className="fetch-header">Verse</th>
+                                            <th className="fetch-header">Scripture</th>
+                                        </>
+                                    ) : displayMode === "recall" ? (
+                                        <>
+                                            <th className="fetch-header">Scripture</th>
+                                            <th className="fetch-header">Verse</th>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <th className="fetch-header">Question</th>
+                                            <th className="fetch-header">Difficulty</th>
+                                        </>
+                                    )}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {displayMode === "study" ? (
+                                    allScriptures.map((item, index) => (
+                                        <tr key={index}>
+                                            <td className="fetch-cell">{item.verse}</td>
+                                            <td className="fetch-cell">{item.scripture}</td>
+                                        </tr>
+                                    ))
+                                ) : displayMode === "recall" ? (
+                                    allScriptures.map((item, index) => (
+                                        <tr key={index}>
+                                            <td className="fetch-cell">{item.scripture}</td>
+                                            <td className="fetch-cell">
+                                                <input 
+                                                    className="ua-quiz-input" 
+                                                    placeholder="Enter Answer"
+                                                />
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    questions.map((item, index) => (
+                                        <tr key={index}>
+                                            <td className="fetch-cell">{item.questions}</td>
+                                            <td className="fetch-cell">{item.difficulty}</td>
+                                        </tr>
+                                    ))
+                                )}
+                            </tbody>
+                        </table>
                     ) : (
-                        <div className="no-selection-message">
-                            <p>Make a Selection!</p>
-                        </div>
+                        <p>Make a Selection!</p>
                     )}
                 </main>
 
+                {/* Main window where data is fetched */}
                 <main className="ua-fetch-window"> 
-                    <select id="goals" value={fruit} className="ua-study-select" onChange={handleFruitChange}>
+                    <select id="goals" value={selectedFruit} className="ua-study-select" onChange={handleFruitChange}>
                         <option value="0">FRUIT</option>
                         <option value="Every Fruit">Every Fruit</option>
                         <option value="Faith">Faith</option>
                     </select> <br /> <br className="desktop-scope-breakpoint" />
-                    <select id="goals" className="ua-study-select" value={mode} onChange={handleModeChange}>
+                    <select id="goals" className="ua-study-select" value={selectedMode} onChange={handleModeChange}>
                         <option value="0">MODE</option>
                         <option value="study">Study</option>
                         <option value="recall">Recall</option>
-                        <option value="quiz">Quiz</option>
                     </select> <br /> <br className="desktop-scope-breakpoint" />
-                    <select id="goals" className="ua-study-select" value={difficulty} onChange={handleDifficultyChange}>
+                    <select id="goals" className="ua-study-select" value={selectedDifficulty} onChange={handleDifficultyChange}>
                         <option value="0">DIFFICULTY</option>
                         <option value="easy">Easy</option>
                         <option value="intermediate">Intermediate</option>

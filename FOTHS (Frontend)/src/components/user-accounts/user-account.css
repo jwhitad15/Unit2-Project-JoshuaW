@@ -266,3 +266,17 @@ th {text-align: center;}
   left: 10%;
   width: 31%;
 }
+
+.ua-quiz-input {
+  width: 80%;
+  height: 10px;
+  background-color: #1d3461;
+  opacity: 0.95;
+  color: white;
+  border-color: white;
+  border-radius: 4px;
+}
+.ua-quiz-input::placeholder {
+  color: white;
+  opacity: 0.38;
+}
