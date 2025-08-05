@@ -6,8 +6,11 @@ const Footer = () => {
 
     const handleAccountClick = () => {
         // Retrieve username and password from localStorage
-        const username = localStorage.getItem("username");
-        const password = localStorage.getItem("password");
+        const username = localStorage.getItem("username") || "";
+        const password = localStorage.getItem("password") || "";
+
+        console.log("Username:", username);
+        console.log("Password:", password);
 
         // Check if the user is an Admin
         if (username?.includes("admin_") && password?.includes("Admin:")) {
