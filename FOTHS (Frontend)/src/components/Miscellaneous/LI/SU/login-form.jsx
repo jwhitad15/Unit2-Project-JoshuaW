@@ -20,35 +20,42 @@ const LoginForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (formData.username.includes('admin_') && (formData.password.includes('admin_') || formData.password.includes('Admin_'))) {
-        setTimeout(() => {navigate('/admin')}, 500)
-        } else {
-           setIsNotValid(true);
-        }
-
-        // try {
-        //         // Make an API call to validate the credentials
-        //         const response = await fetch("http://localhost:8080/users", {
-        //             method: "GET",
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //             },
-        //             body: JSON.stringify(formData),
-        //         });
-
-        //         const data = await response.json();
-
-        //         if (response.ok && data.isValid) {
-        //             // Navigate to the admin dashboard if credentials are valid
-        //             navigate("/admin");
-        //         } else {
-        //             // Show error message if credentials are invalid
-        //             setIsNotValid(true);
-        //         }
-        //      } catch (error) {
-        //         console.error("Error during login:", error);
-        //         setIsNotValid(true);
+        // if (formData.username.includes('admin_') && (formData.password.includes('admin_') || formData.password.includes('Admin_'))) {
+        // setTimeout(() => {navigate('/admin')}, 500)
+        // } else {
+        //    setIsNotValid(true);
         // }
+        try {
+            // Make an API call to validate the username and password
+            const response = await fetch("http://localhost:8080/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to validate credentials");
+            }
+
+            const data = await response.json();
+
+            // Check the response from the backend
+            if (data.isAdmin) {
+                // Navigate to the admin dashboard if the user is an admin
+                navigate("/admin");
+            } else if (data.isValidUser) {
+                // Navigate to the user dashboard if the credentials are valid
+                navigate("/dashboard");
+            } else {
+                // Show an error message if the credentials are invalid
+                setIsNotValid(true);
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            setIsNotValid(true);
+        }
     };
 
     
@@ -72,7 +79,7 @@ const LoginForm = () => {
                 </label> <br /> <br />
 
                   {isNotValid && (
-                    <p style={{fontSize:"14px", color: 'red' }}> Invalid username and/or password. Please check credentials. </p> )}
+                    <p style={{fontSize:"14px", color: 'white' }}> Invalid username and/or password. Please check credentials. </p> )}
 
                 <button type="submit" className="button-class">Login</button>
                

@@ -28,6 +28,14 @@
     background-color: #1d3461;
     color: white;
 }
+#foths-card-hyperlink {
+  color: white;
+  text-decoration: none;
+}
+#foths-card-hyperlink:hover {
+    background-color: #a64444;
+    color: white;
+}
 
 #jwmp-hyperlink {
   color: white;
@@ -156,6 +164,22 @@ label {
   color: #1d3461;
   width: 123px;
   line-height: 18px;
+}
+.custom-title-scope-textfield {
+  border: 2.1px inset #1d3461;
+  border-radius: 5px;
+  background-color: #cdc5b4;
+  color: #1d3461;
+  width: 127px;
+  height: 10px; 
+}
+.custom-description-scope-textfield {
+  border: 2.1px inset #1d3461;
+  border-radius: 5px;
+  background-color: #cdc5b4;
+  color: #1d3461;
+  width: 142px;
+  height: 50px; 
 }
 .scope-preset-item {
   line-height: 8px;
@@ -762,8 +786,8 @@ label {
   border-radius: 8px;
   background-color: #a64444;
   position: fixed;
-  right: 15%;
-  left: 15%;
+  /* right: 15%; */
+  /* left: 15%; */
   top: 21%;
   height: 5%;
   width: 68%;
@@ -779,10 +803,10 @@ label {
   border: 3px outset white;
   padding-right: 10px;
   border-radius: 8px;
-  background-color: #a64444;
+  background-color: #1d3461;
   position: fixed;
-  right: 33.833%;
-  left: 5.5%;
+  /* right: 33.833%; */
+  /* left: 5.5%; */
   top: 31%;
   height: 50%;
   width: 28.333%;
@@ -874,6 +898,7 @@ label {
   box-shadow: 8 14px 8px black;
   -webkit-box-shadow: 0 0 10px #fff;
   box-shadow: 0 0 5px black;
+  overflow: scroll;
 }
 
 #scrolling2 {
@@ -957,6 +982,29 @@ label {
 
 .foths-start:hover {
   padding: calc(var(--_p)/2);
+}
+
+.ai-question-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px inset #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.ai-submit-button {
+  padding: 10px 20px;
+  background-color: #117f9e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.ai-submit-button:hover {
+  background-color: #0a5d73;
 }
 
 .foths-main {
@@ -1069,7 +1117,7 @@ font-size: 26px;
   color: white;
   position: fixed;
   top: 31%;
-  left: 29%;
+  /* left: 29%; */
   height: 12.5%;
   padding-left: 2%;
   padding-right: 2%;

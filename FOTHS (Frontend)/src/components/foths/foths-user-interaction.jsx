@@ -66,7 +66,7 @@ const UserInteraction = () => {
 
         <label className="scope-presetGoals-banner"><hr/>PRESET GOALS<hr/> <br/> </label>
 
-        <label for="goals">Choose a Goal:</label> <br/>
+        <label >Choose a Goal:</label> <br/>
 
         <select id="goals" value={goal}  className="goal-select" onChange={handleDropdown} >
           <option value="0"></option>
@@ -80,8 +80,8 @@ const UserInteraction = () => {
         <label> 
           <label className="scope-customGoals-banner">CUSTOM GOAL <br className="mobile-scope-breakpoint"/> <hr /> </label> <br />
           {/* Validation - makes sure user at least inputs 4 characters in textbox */}
-          <input maxLength='15' minLength='4' className="scope-textfield" type="text" placeholder="Goal Title" value={title} onChange={handleTitle} /> <br /> 
-          <textarea maxLength='50' minLength='10' className="scope-textfield" type="text" placeholder="Description" value={goalInput} onChange={handleChange} />
+          <input maxLength='15' minLength='4' className="custom-title-scope-textfield" type="text" placeholder="Goal Title" value={title} onChange={handleTitle} /> <br /> 
+          <textarea maxLength='50' minLength='10' className="custom-description-scope-textfield" type="text" placeholder="Description" value={goalInput} onChange={handleChange} />
         </label> <br />
 
         <div> {!isCustomValid && titleSubmit && (<p style={{color: 'red' }}> Must Add Description </p>)} </div>

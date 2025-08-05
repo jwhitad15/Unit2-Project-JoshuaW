@@ -11,8 +11,9 @@ const Dashboard = () => {
             </header>
 
             <main>
-                <div className="dashboard-title"> Dashboard View </div>
-                <a href="./#/foths" id="card-hyperlink" className="FOTHS-dashboard-card">FOTHS</a>
+                <div className="dashboard-title"> Dashboard View </div> 
+                <a href="./#/foths" id="foths-card-hyperlink" className="FOTHS-dashboard-card"><hr style={{width: "70%"}}/>FOTHS<hr style={{width: "70%"}}/></a> 
+                
             </main>
 
            <Footer/>

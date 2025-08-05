@@ -3,7 +3,6 @@ import Question from "./question";
 import Score from "./score";
 import FourElementHeader from "../header-components/header-4";
 import Footer from "../footer/footer";
-import { data } from "react-router";
 
 class Multichoice extends Component {
     constructor(props) {
@@ -28,8 +27,7 @@ class Multichoice extends Component {
                 throw new Error(`Failed to fetch questions. Status: ${response.status}`);
             }
             const data = await response.json();
-            this.setState({ questionBank: data });
-            console.log(data) // Store the fetched questions in state
+            this.setState({ questionBank: data }); // Store the fetched questions in state
         } catch (error) {
             console.error("Error fetching questions:", error);
         }
@@ -81,41 +79,38 @@ class Multichoice extends Component {
 
         return (
             <div>
-                <div> <FourElementHeader /> </div>
+                <FourElementHeader />
                 <div className="study-title">Quiz Mode</div>
                 {!quizEnd && questionBank.length > 0 && (
                     <main className="quiz-display">
-                        <p>{questionBank[currentQuestion]?.question || "Loading question..."}</p>
-                        <form onSubmit={this.handleFormSubmit}>
-                            {Array.isArray(questionBank[currentQuestion]?.options) ? (
-                                questionBank[currentQuestion]?.options.map((option, index) => (
-                                    <div key={index}>
-                                        <input
-                                            type="radio"
-                                            id={`option-${index}`}
-                                            name="quiz-option"
-                                            value={option}
-                                            checked={selectedOption === option}
-                                            onChange={this.handleOptionChange}
-                                        />
-                                        <label htmlFor={`option-${index}`}>{option}</label>
-                                    </div>
-                                ))
-                            ) : (
-                                <p>X</p>
-                            )}
-                            
-                        <button type="submit">Submit </button>
-                        </form>
-                        <div>
-                            <button className="study-previous-button" onClick={this.handlePreviousQuestion} disabled={currentQuestion === 0}>
-                                Previous
-                            </button>
-                            <button className="study-next-button" onClick={this.handleNextQuestion} disabled={currentQuestion === questionBank.length - 1}>
-                                Next
-                            </button>
+    {questionBank.length > 0 ? (
+        <>
+            <p>{questionBank[currentQuestion]?.question || "Loading question..."}</p>
+            <form onSubmit={this.handleFormSubmit}>
+                {Array.isArray(questionBank[currentQuestion]?.options) && questionBank[currentQuestion]?.options.length > 0 ? (
+                    questionBank[currentQuestion]?.options.map((option, index) => (
+                        <div key={index}>
+                            <input
+                                type="radio"
+                                id={`option-${index}`}
+                                name="quiz-option"
+                                value={option}
+                                checked={selectedOption === option}
+                                onChange={this.handleOptionChange}
+                            />
+                            <label htmlFor={`option-${index}`}>{option}</label>
                         </div>
-                    </main>
+                    ))
+                ) : (
+                    <p>No options available</p>
+                )}
+                <button type="submit">Submit</button>
+            </form>
+        </>
+    ) : (
+        <p>Loading question...</p>
+    )}
+</main>
                 )}
                 {quizEnd && (
                     <main className="quiz-display">
@@ -132,13 +127,13 @@ class Multichoice extends Component {
                     </main>
                 )}
                 <div className="quiz-score">
-                    <p className="verse-size">
+                    <div className="verse-size">
                         <Score
                             score={score}
                             onNextQuestion={this.handleNextQuestion}
                             className="score"
                         />
-                    </p>
+                    </div>
                 </div>
                 <Footer />
             </div>
