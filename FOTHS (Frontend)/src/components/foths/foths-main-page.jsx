@@ -92,7 +92,7 @@ const FOTHSMain = () => {
                     <hr style={{width: "84%"}}/>
                     <br/>
                     <div className="intro-window" >
-                    <p><b>FOTHS</b>, short for <b>Fruits of the Holy Spirit</b> is an interactive, educational application designed to help users learn & retain the Bible.</p>
+                    <p><b>FOTHS</b>, short for <b>Fruits of the Holy Spirit</b>, is an interactive, educational application designed to help users learn & retain the Bible.</p>
                     <p>This application comes equipped with 3 unique game modes: <b>Study, Recall, Quiz</b></p>
                     <p><b>Study</b> mode allows users to navigate through Scripture, while <b>Recall</b> mode resembles a traditional fill-in-the-blank question, enabling users to enter verse titles in a input field. </p>
                     <p><b>Quiz</b> mode tests users' knowledge by displaying Scripture and allowing them to select one of four answer choices.</p>

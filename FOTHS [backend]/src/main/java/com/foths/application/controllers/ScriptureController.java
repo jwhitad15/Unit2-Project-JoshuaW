@@ -9,7 +9,7 @@
 
 package com.foths.application.controllers;
 
-import com.foths.application.dto.ValidateRecallResponse;
+import com.foths.application.dto.ValidateAnswerRequest;
 import com.foths.application.models.Scripture;
 import com.foths.application.repositories.ScriptureRepository;
 import org.springframework.http.HttpStatus;
@@ -83,8 +83,8 @@ public class ScriptureController {
         }
     }
 
-    @PostMapping("/validate-answer")
-    public ResponseEntity<?> validateAnswer(@RequestBody ValidateRecallResponse request) {
+    @PostMapping("/validate")
+    public ResponseEntity<?> validateAnswer(@RequestBody ValidateAnswerRequest request) {
         Scripture scripture = scriptureRepository.findByVerse(request.getVerse());
         if (scripture == null) {
             return ResponseEntity.status(404)

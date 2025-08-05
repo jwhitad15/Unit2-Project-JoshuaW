@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import Question from "./question";
 import Score from "./score";
 import FourElementHeader from "../header-components/header-4";
@@ -27,7 +28,15 @@ class Multichoice extends Component {
                 throw new Error(`Failed to fetch questions. Status: ${response.status}`);
             }
             const data = await response.json();
-            this.setState({ questionBank: data }); // Store the fetched questions in state
+            console.log("Fetched questions:", data); // Debug the fetched data
+    
+            // Filter questions with FRUIT value of 'Faith'
+            const filteredQuestions = data.filter(question => question.fruit === 'Faith');
+            if (filteredQuestions && filteredQuestions.length > 0) {
+                this.setState({ questionBank: filteredQuestions });
+            } else {
+                console.error("No questions with FRUIT value 'Faith' found.");
+            }
         } catch (error) {
             console.error("Error fetching questions:", error);
         }
@@ -75,42 +84,21 @@ class Multichoice extends Component {
     };
 
     render() {
-        const { questionBank, currentQuestion, selectedOption, score, quizEnd } = this.state;
-
+        const { questionBank, currentQuestion, score, quizEnd } = this.state;
+        console.log("Question bank:", questionBank); // Debug the state
+    
         return (
             <div>
                 <FourElementHeader />
                 <div className="study-title">Quiz Mode</div>
-                {!quizEnd && questionBank.length > 0 && (
+                {!quizEnd && (
                     <main className="quiz-display">
-    {questionBank.length > 0 ? (
-        <>
-            <p>{questionBank[currentQuestion]?.question || "Loading question..."}</p>
-            <form onSubmit={this.handleFormSubmit}>
-                {Array.isArray(questionBank[currentQuestion]?.options) && questionBank[currentQuestion]?.options.length > 0 ? (
-                    questionBank[currentQuestion]?.options.map((option, index) => (
-                        <div key={index}>
-                            <input
-                                type="radio"
-                                id={`option-${index}`}
-                                name="quiz-option"
-                                value={option}
-                                checked={selectedOption === option}
-                                onChange={this.handleOptionChange}
-                            />
-                            <label htmlFor={`option-${index}`}>{option}</label>
-                        </div>
-                    ))
-                ) : (
-                    <p>No options available</p>
-                )}
-                <button type="submit">Submit</button>
-            </form>
-        </>
-    ) : (
-        <p>Loading question...</p>
-    )}
-</main>
+                        {questionBank.length > 0 ? (
+                            <p>{questionBank[currentQuestion]?.questions || "Loading question..."}</p> /* Display the first question */
+                        ) : (
+                            <p>No questions available</p> /* Fallback if no questions are fetched */
+                        )}
+                    </main>
                 )}
                 {quizEnd && (
                     <main className="quiz-display">
@@ -137,18 +125,23 @@ class Multichoice extends Component {
                 </div>
                 <div>
                     <button
-                        className="study-previous-button"
-                        onClick={this.handlePreviousQuestion}
-                        disabled={currentQuestion === 0}
-                    >
-                        Previous
-                    </button>
-                    <button
-                        className="study-next-button"
                         onClick={this.handleNextQuestion}
-                        disabled={currentQuestion === questionBank.length - 1}
+                        className="study-next-button"
+                        disabled={currentQuestion >= questionBank.length - 1} // Disable Next button if at the last scripture
                     >
-                        Next
+                        <div id="study-button-text"> Next </div>
+                        <div id="study-button-icon"> <FaArrowRightLong /> </div>
+                    </button>
+                </div>
+    
+                <div>
+                    <button
+                        onClick={this.handlePreviousQuestion}
+                        className="study-previous-button"
+                        disabled={currentQuestion <= 0} // Disable Previous button if at the first scripture
+                    >
+                        <div id="study-button-text"> Previous </div>
+                        <div id="study-button-icon"> <FaArrowLeftLong /> </div>
                     </button>
                 </div>
                 <Footer />

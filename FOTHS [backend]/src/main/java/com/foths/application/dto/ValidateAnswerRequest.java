@@ -5,12 +5,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ValidateRecallResponse {
+public class ValidateAnswerRequest {
     private String verse;
     private String userAnswer;
 
     public String getVerse() { return verse; }
-    public void setVerseName(String verseName) { this.verse = verse; }
+    public void setVerse(String verse) { this.verse = verse; }
 
     public String getUserAnswer() { return userAnswer; }
     public void setUserAnswer(String userAnswer) { this.userAnswer = userAnswer; }

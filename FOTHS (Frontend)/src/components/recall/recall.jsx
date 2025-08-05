@@ -156,38 +156,52 @@ import './recall.css';
      // Validate user input against the ANSWER column
      const validateInput = async (event) => {
         event.preventDefault(); // Prevent default form submission behavior
-
-        if (wordData) {
-            try {
-                const response = await fetch('http://localhost:8080/scriptures/validate-answer', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        scriptureId: wordData.id, // Send the ID of the current scripture
-                        userAnswer: userInput.trim(), // Send the user's trimmed input
-                    }),
-                });
-
-                const result = await response.json();
-                if (result.isCorrect) {
-                    setValidationMessage("That is correct"); // Display success message
-                    setValidationColor("green"); // Set font color to green
-                } else {
-                    setValidationMessage("That is incorrect. Please try again"); // Display error message
-                    setValidationColor("#a64444"); // Set font color to red
-                }
-                setIsModalOpen(true); // Open the modal after validation
-            } catch (error) {
-                console.error('Error validating answer:', error);
-                setValidationMessage("An error occurred while validating your answer.");
-                setValidationColor("#a64444"); // Set font color to red for errors
-                setIsModalOpen(true); // Open the modal after validation
+    
+        if (!wordData || !wordData.id || !userInput.trim()) {
+            setValidationMessage("Invalid input. Please try again.");
+            setValidationColor("#a64444"); // Set font color to red
+            setIsModalOpen(true); // Open the modal
+            return;
+        }
+    
+        try {
+            console.log("Payload being sent:", {
+                scriptureId: wordData.id,
+                userAnswer: userInput.trim(),
+            });
+    
+            const response = await fetch('http://localhost:8080/scriptures/validate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    scriptureId: wordData.id, // Send the ID of the current scripture
+                    userAnswer: userInput.trim(), // Send the user's trimmed input
+                }),
+            });
+    
+            console.log("Response status:", response.status);
+    
+            if (!response.ok) {
+                throw new Error("Failed to validate answer");
             }
-        } else {
-            setValidationMessage("No answer available for validation."); // Handle missing answer
-            setValidationColor("#a64444"); // Set font color to red for missing data
+    
+            const result = await response.json();
+            console.log("Backend response:", result);
+    
+            if (result.isCorrect) {
+                setValidationMessage("That is correct"); // Display success message
+                setValidationColor("green"); // Set font color to green
+            } else {
+                setValidationMessage("That is incorrect. Please try again"); // Display error message
+                setValidationColor("#a64444"); // Set font color to red
+            }
+            setIsModalOpen(true); // Open the modal after validation
+        } catch (error) {
+            console.error('Error validating answer:', error);
+            setValidationMessage("An error occurred while validating your answer.");
+            setValidationColor("#a64444"); // Set font color to red for errors
             setIsModalOpen(true); // Open the modal after validation
         }
     };
