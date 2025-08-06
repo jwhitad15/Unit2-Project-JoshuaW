@@ -137,6 +137,7 @@ import './recall.css';
      const fetchScripture = async () => {
          try {
              const response = await fetch('http://localhost:8080/scriptures'); // Fetch all scriptures
+             console.log('Response status:', response.status); 
              const data = await response.json();
              console.log('Scripture data fetched successfully:', data);
  
@@ -157,51 +158,30 @@ import './recall.css';
      const validateInput = async (event) => {
         event.preventDefault(); // Prevent default form submission behavior
     
-        if (!wordData || !wordData.id || !userInput.trim()) {
+        if (!wordData || !wordData.scripture || !userInput.trim()) {
             setValidationMessage("Invalid input. Please try again.");
-            setValidationColor("#a64444"); // Set font color to red
+            setValidationColor("white"); // Set font color to white
             setIsModalOpen(true); // Open the modal
             return;
         }
     
         try {
-            console.log("Payload being sent:", {
-                scriptureId: wordData.id,
-                userAnswer: userInput.trim(),
-            });
+            console.log("User input:", userInput.trim());
+            console.log("Expected verse:", wordData.verse);
     
-            const response = await fetch('http://localhost:8080/scriptures/validate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    scriptureId: wordData.id, // Send the ID of the current scripture
-                    userAnswer: userInput.trim(), // Send the user's trimmed input
-                }),
-            });
-    
-            console.log("Response status:", response.status);
-    
-            if (!response.ok) {
-                throw new Error("Failed to validate answer");
-            }
-    
-            const result = await response.json();
-            console.log("Backend response:", result);
-    
-            if (result.isCorrect) {
+            // Compare user input with the VERSE column value
+            if (userInput.trim().toLowerCase() === wordData.verse.toLowerCase()) {
                 setValidationMessage("That is correct"); // Display success message
-                setValidationColor("green"); // Set font color to green
+                setValidationColor("green"); // Set font color to green for correct answers
             } else {
                 setValidationMessage("That is incorrect. Please try again"); // Display error message
-                setValidationColor("#a64444"); // Set font color to red
+                setValidationColor("white"); // Set font color to white for incorrect answers
             }
             setIsModalOpen(true); // Open the modal after validation
         } catch (error) {
             console.error('Error validating answer:', error);
             setValidationMessage("An error occurred while validating your answer.");
-            setValidationColor("#a64444"); // Set font color to red for errors
+            setValidationColor("white"); // Set font color to white for errors
             setIsModalOpen(true); // Open the modal after validation
         }
     };
@@ -210,6 +190,13 @@ import './recall.css';
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             validateInput(event); // Trigger validation logic on Enter key press
+        }
+    };
+    
+    const handleCloseModal = () => {
+        setIsModalOpen(false); // Close the modal
+        if (validationMessage === "That is correct") {
+            handleNext(); // Navigate to the next question if the answer is correct
         }
     };
 
@@ -270,10 +257,10 @@ import './recall.css';
                 <div className="modal">
                     <div className="modal-content">
                         <p style={{ color: validationColor }}>{validationMessage}</p> {/* Dynamic font color */}
-                        <button className="close-button" onClick={() => setIsModalOpen(false)}>Close</button>
+                        <button className="close-button" onClick={handleCloseModal}>Close</button>
                     </div>
                 </div>
-            )}
+            )}  
              
 
              {/* <form className="scope-goals-input" onSubmit={validateInput}>

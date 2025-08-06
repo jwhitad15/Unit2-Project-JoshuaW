@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import Question from "./question";
+import './multichoice.css'
 import Score from "./score";
 import FourElementHeader from "../header-components/header-4";
 import Footer from "../footer/footer";
@@ -14,6 +13,21 @@ class Multichoice extends Component {
             selectedOption: "", // Tracks the user's selected option
             score: 0, // Tracks the user's score
             quizEnd: false, // Tracks whether the quiz has ended
+            showModal: false, // Controls the visibility of the modal
+            answerOptions: [ // Array of answer options corresponding to question IDs
+            ["Option 1A", "Option 1B", "Option 1C", "Option 1D"], // Question ID 1
+            ["Option 2A", "Option 2B", "Option 2C", "Option 2D"], // Question ID 2
+            ["Option 3A", "Option 3B", "Option 3C", "Option 3D"], // Question ID 3
+            ["Option 4A", "Option 4B", "Option 4C", "Option 4D"], // Question ID 4
+            ["Option 5A", "Option 5B", "Option 5C", "Option 5D"], // Question ID 5
+            ["Option 6A", "Option 6B", "Option 6C", "Option 6D"], // Question ID 6
+            ["Option 7A", "Option 7B", "Option 7C", "Option 7D"], // Question ID 7
+            ["Option 8A", "Option 8B", "Option 8C", "Option 8D"], // Question ID 8
+            ["Option 9A", "Option 9B", "Option 9C", "Option 9D"], // Question ID 9
+            ["Option 10A", "Option 10B", "Option 10C", "Option 10D"], // Question ID 10
+            ["Option 11A", "Option 11B", "Option 11C", "Option 11D"], // Question ID 11
+            ["Option 12A", "Option 12B", "Option 12C", "Option 12D"], // Question ID 12
+        ],
         };
     }
 
@@ -21,24 +35,51 @@ class Multichoice extends Component {
         this.fetchQuestions(); // Fetch questions when the component mounts
     }
 
+    closeModal = () => {
+        this.setState({ showModal: false });
+    };
+
     fetchQuestions = async () => {
         try {
+            // Fetch questions from the backend
             const response = await fetch("http://localhost:8080/questions"); // Replace with your backend endpoint
             if (!response.ok) {
                 throw new Error(`Failed to fetch questions. Status: ${response.status}`);
             }
-            const data = await response.json();
-            console.log("Fetched questions:", data); // Debug the fetched data
+            const questionsData = await response.json();
+            console.log("Fetched questions:", questionsData); // Debug the fetched questions
+    
+            // Fetch scriptures from the backend
+            const scripturesResponse = await fetch("http://localhost:8080/scriptures"); // Replace with your backend endpoint
+            if (!scripturesResponse.ok) {
+                throw new Error(`Failed to fetch scriptures. Status: ${scripturesResponse.status}`);
+            }
+            const scripturesData = await scripturesResponse.json();
+            console.log("Fetched scriptures:", scripturesData); // Debug the fetched scriptures
     
             // Filter questions with FRUIT value of 'Faith'
-            const filteredQuestions = data.filter(question => question.fruit === 'Faith');
+            const filteredQuestions = questionsData.filter(question => question.fruit === 'Faith');
             if (filteredQuestions && filteredQuestions.length > 0) {
-                this.setState({ questionBank: filteredQuestions });
+                // Populate answerOptions with values from the ANSWER column and random VERSE values
+                const answerOptions = filteredQuestions.map(question => {
+                    const randomVerses = scripturesData
+                        .map(scripture => scripture.verse) // Extract VERSE values
+                        .sort(() => Math.random() - 0.5) // Shuffle the array
+                        .slice(0, 3); // Take 3 random values
+    
+                    const options = [question.answer, ...randomVerses]; // Combine the ANSWER value with 3 random VERSE values
+                    return options.sort(() => Math.random() - 0.5); // Shuffle the options
+                });
+    
+                this.setState({
+                    questionBank: filteredQuestions,
+                    answerOptions: answerOptions, // Update answerOptions in state
+                });
             } else {
                 console.error("No questions with FRUIT value 'Faith' found.");
             }
         } catch (error) {
-            console.error("Error fetching questions:", error);
+            console.error("Error fetching data:", error);
         }
     };
 
@@ -46,11 +87,31 @@ class Multichoice extends Component {
         this.setState({ selectedOption: e.target.value });
     };
 
+    handleNextQuestion = () => {
+        const { currentQuestion, questionBank } = this.state;
+        if (currentQuestion < questionBank.length - 1) {
+            this.setState((prevState) => ({
+                currentQuestion: prevState.currentQuestion + 1, // Move to the next question
+            }));
+        } else {
+            this.setState({ quizEnd: true }); // End the quiz if no more questions
+        }
+    };
+
     handleFormSubmit = (e) => {
-        e.preventDefault();
-        this.checkAnswer();
+        e.preventDefault(); // Prevent default form submission behavior
+    
+        const { selectedOption } = this.state;
+    
+        if (!selectedOption) {
+            // Show the modal if no selection is made
+            this.setState({ showModal: true });
+            return;
+        }
+    
+        this.checkAnswer(); // Validate the selected answer
         if (!this.state.quizEnd) {
-            this.handleNextQuestion();
+            this.handleNextQuestion(); // Navigate to the next question
         }
     };
 
@@ -61,31 +122,8 @@ class Multichoice extends Component {
         }
     };
 
-    handleNextQuestion = () => {
-        const { questionBank, currentQuestion } = this.state;
-        if (currentQuestion + 1 < questionBank.length) {
-            this.setState((prevState) => ({
-                currentQuestion: prevState.currentQuestion + 1,
-                selectedOption: "",
-            }));
-        } else {
-            this.setState({ quizEnd: true });
-        }
-    };
-
-    handlePreviousQuestion = () => {
-        const { currentQuestion } = this.state;
-        if (currentQuestion > 0) {
-            this.setState((prevState) => ({
-                currentQuestion: prevState.currentQuestion - 1,
-                selectedOption: "",
-            }));
-        }
-    };
-
     render() {
-        const { questionBank, currentQuestion, score, quizEnd } = this.state;
-        console.log("Question bank:", questionBank); // Debug the state
+        const { questionBank, currentQuestion, score, quizEnd, answerOptions, selectedOption, showModal } = this.state;
     
         return (
             <div>
@@ -94,9 +132,34 @@ class Multichoice extends Component {
                 {!quizEnd && (
                     <main className="quiz-display">
                         {questionBank.length > 0 ? (
-                            <p>{questionBank[currentQuestion]?.questions || "Loading question..."}</p> /* Display the first question */
+                            <div>
+                                <div className="fixed-element">
+                                    <p className="question-container">
+                                        {questionBank[currentQuestion]?.questions || "Loading question..."}
+                                    </p> {/* Styled question */}
+                                </div>
+                                {/* Render each answer option in its corresponding div */}
+                                {answerOptions[currentQuestion]?.map((option, index) => (
+                                    <div key={index} className={`option-${index + 1}`}>
+                                        <div className="checkbox-container">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value={option}
+                                                    checked={selectedOption === option}
+                                                    onChange={this.handleOptionChange}
+                                                />
+                                                {option}
+                                            </label>
+                                        </div>
+                                    </div>
+                                ))}
+                                <form onSubmit={this.handleFormSubmit}>
+                                    <button type="submit" className="quiz-submit-button">Submit</button>
+                                </form>
+                            </div>
                         ) : (
-                            <p>No questions available</p> /* Fallback if no questions are fetched */
+                            <p>No questions available</p>
                         )}
                     </main>
                 )}
@@ -123,28 +186,20 @@ class Multichoice extends Component {
                         />
                     </div>
                 </div>
-                <div>
-                    <button
-                        onClick={this.handleNextQuestion}
-                        className="study-next-button"
-                        disabled={currentQuestion >= questionBank.length - 1} // Disable Next button if at the last scripture
-                    >
-                        <div id="study-button-text"> Next </div>
-                        <div id="study-button-icon"> <FaArrowRightLong /> </div>
-                    </button>
-                </div>
-    
-                <div>
-                    <button
-                        onClick={this.handlePreviousQuestion}
-                        className="study-previous-button"
-                        disabled={currentQuestion <= 0} // Disable Previous button if at the first scripture
-                    >
-                        <div id="study-button-text"> Previous </div>
-                        <div id="study-button-icon"> <FaArrowLeftLong /> </div>
-                    </button>
-                </div>
                 <Footer />
+    
+                {/* Modal and Overlay */}
+                {showModal && (
+                    <>
+                        <div className="modal-overlay"></div> {/* Overlay */}
+                        <div className="modal">
+                            <div className="modal-content">
+                                <p style={{ color: "white" }}>You must make a selection before moving to the next question.</p>
+                                <button className="close-button" onClick={this.closeModal}>X</button>
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
         );
     }

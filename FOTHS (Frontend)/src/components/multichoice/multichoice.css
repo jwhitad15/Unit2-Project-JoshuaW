@@ -1,0 +1,158 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 999; /* Ensure it appears behind the modal */
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1d3461; /* Blue background */
+    padding: 20px;
+    border: outset 2px white; /* White outset border */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it appears above the overlay */
+}
+
+.modal-content {
+    text-align: center;
+}
+
+.close-button {
+    margin-top: 10px;
+    padding: 7px 10px;
+    background-color: #a64444; /* Red background */
+    color: white;
+    border: outset 2px white; /* White outset border */
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex; /* Flex display */
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+}
+
+.close-button:hover {
+    background-color: #8b0000; /* Darker red on hover */
+    color: white; /* Ensure text remains white on hover */
+    border-color: white;
+}
+
+.checkbox-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack checkboxes vertically */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: flex-start; /* Align items to the left */
+    position: grid;
+    top: 40%; /* Positioning from the top */
+    left: 40%;
+}
+
+.checkbox-container label {
+    display: flex; /* Align label and checkbox */
+    align-items: center; /* Center items vertically */
+    place-content: center;
+    color: white; /* White text color */
+    font-size: 20px; /* Adjust font size */
+    width: 100%; /* Ensure label takes up full width */
+}
+
+.checkbox-container input[type="checkbox"] {
+    appearance: none; /* Remove default checkbox styling */
+    width: 20px; /* Set checkbox width */
+    height: 20px; /* Set checkbox height */
+    border: 2px solid white; /* White border */
+    border-radius: 3px; /* Rounded corners */
+    background-color: white; /* White background */
+    cursor: pointer; /* Pointer cursor */
+    margin-right: 10px; /* Space between checkbox and label text */
+}
+
+.checkbox-container input[type="checkbox"]:checked {
+    background-color: #1d3461; /* Blue background when checked */
+    border-color: white; /* Keep white border */
+}
+
+.option-1 {
+    position: fixed;
+    background-color: #a64444;
+    border: outset #1d3461;
+    height: 5%;
+    width: 12%;
+    left: 20%;
+    padding-top: 20px;
+}
+.option-2 {
+    position: fixed;
+    background-color: #a64444;
+    border: outset #1d3461;
+    height: 5%;
+    width: 12%;
+    left: 36%;
+    padding-top: 20px;
+}
+.option-3 {
+    position: fixed;
+    background-color: #a64444;
+    border: outset #1d3461;
+    height: 5%;
+    width: 12%;
+    left: 52%;
+    padding-top: 20px;
+}
+.option-4 {
+    position: fixed;
+    background-color: #a64444;
+    border: outset #1d3461;
+    height: 5%;
+    width: 12%;
+    right: 20%;
+    padding-top: 20px;
+}
+
+.fixed-element {
+    align-items: center;
+    place-content: center;
+    position: fixed; /* Fix the position relative to the viewport */
+    top: 28%; /* 5px away from the top of the viewport */
+    left: 20%; /* 5px away from the left side */
+    right: 20%; /* 5px away from the right side */
+    height: 14%; /* Fixed height */
+    color: white;
+    background-color: #1d3461; /* Blue background */
+    border: outset;
+    border-color: white; /* White border */
+    border-radius: 5px; /* Rounded corners */
+    z-index: 100; /* Ensure it appears above other elements */
+    overflow-x: auto;
+}
+
+.equalizer {
+    position: fixed;
+    left: 40%;
+    right: 40%;
+    height: 26%;
+    justify-content: space-around;
+    border: solid;
+    top: 40%;
+    overflow: scroll;
+}
+
+.quiz-submit-button {
+    position: fixed;
+    top: 61%;
+    width: 8%;
+    left: 46%;
+    background-color: #a64444; /* Red background */
+    color: white;
+    border: outset 2px white; /* White outset border */
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}

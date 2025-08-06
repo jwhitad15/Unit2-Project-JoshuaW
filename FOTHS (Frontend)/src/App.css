@@ -619,8 +619,9 @@ label {
 }
 
 .quiz-display {
-  display: center;
-  place-content: center;
+  /* display: center; */
+  /* place-content: center; */
+  flex-direction: column;
   flex: 0 0 25vw;
   background: #cdc5b4;
   color: #85756e;
