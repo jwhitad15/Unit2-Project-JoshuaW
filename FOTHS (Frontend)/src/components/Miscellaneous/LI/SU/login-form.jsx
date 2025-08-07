@@ -20,10 +20,25 @@ const LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+<<<<<<< Updated upstream
         if (formData.username.includes('admin_') && (formData.password === 'Admin:User!')) {
         setTimeout(() => {navigate('/fetch')}, 500)
         } else {
            setIsNotValid(true);
+=======
+            // Check if both username and password contain the substring 'admin_'
+            if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {
+                navigate("/admin");
+            } else {
+                navigate("/user-account");
+            }
+            } else {
+                setIsNotValid(true);
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            setIsNotValid(true);
+>>>>>>> Stashed changes
         }
 
     }
