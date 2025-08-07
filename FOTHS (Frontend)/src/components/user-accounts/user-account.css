@@ -249,6 +249,12 @@ td {
     padding-right: 8px;
     text-align: center;
 }
+
+td.fetch-cell {
+    cursor: pointer;
+    color: #1d3461;
+    overflow-x: scroll;
+}
 th {text-align: center;}
 .scripture-cell:hover {
   background-color: white;
@@ -357,3 +363,56 @@ overflow: scroll;
     font-weight: bold;
     font-size: 14px;
   }
+
+  /* Answer Stylization for User Account Recall Inputs */
+  .correct-answer {
+    border: 2px solid green;
+    background-color: #d4edda;
+    color: green;
+}
+
+/* Incorrect answer styling */
+.incorrect-answer {
+    border: 2px solid red;
+    background-color: #f8d7da;
+    color: red;
+}
+
+
+/* .user-account-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-account-modal .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+}
+.user-account-modal .close-button {
+    background-color: #a64444;
+    color: white;
+    border: none; 
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.user-account-modal .close-button:hover {
+    background-color: #8b3c3c;
+} */
+
+.scrollable-cell {
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 100px; /* Set a maximum height for the cell */
+    cursor: pointer; /* Change cursor to pointer to indicate clickability */
+}
+

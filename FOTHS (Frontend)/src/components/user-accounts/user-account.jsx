@@ -22,6 +22,8 @@ const UserAccount = () => {
         const [errorMessage, setErrorMessage] = useState(""); // Tracks error messages
         const [currentTimestamp, setCurrentTimestamp] = useState("");
         const [userInput, setUserInput] = useState(""); // State to track user input for recall mode
+        const [modalContent, setModalContent] = useState(""); // State to store modal content
+        const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
         // Retrieve the user information from local storage
         const fullName = localStorage.getItem("fullName") || "USER FULL NAME"
@@ -96,6 +98,16 @@ const UserAccount = () => {
             } catch (error) {
                 setErrorMessage("Failed to fetch data. Please try again.");
             }
+        };
+
+        const handleScriptureClick = (scripture) => {
+            setModalContent(scripture); // Set the content of the modal
+            setIsModalOpen(true); // Open the modal
+        };
+    
+        const handleCloseModal = () => {
+            setIsModalOpen(false); // Close the modal
+            setModalContent(""); // Clear the modal content
         };
 
         const handleKeyPress = (event) => {
@@ -176,34 +188,59 @@ const UserAccount = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {displayMode === "study" ? (
-                                    allScriptures.map((item, index) => (
-                                        <tr key={index}>
-                                            <td className="fetch-cell">{item.verse}</td>
-                                            <td className="fetch-cell">{item.scripture}</td>
-                                        </tr>
-                                    ))
-                                ) : displayMode === "recall" ? (
-                                    allScriptures.map((item, index) => (
-                                        <tr key={index}>
-                                            <td className="fetch-cell">{item.scripture}</td>
-                                            <td className="fetch-cell">
-                                                <input 
-                                                    className="ua-quiz-input" 
-                                                    placeholder="Enter Answer"
-                                                />
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    questions.map((item, index) => (
-                                        <tr key={index}>
-                                            <td className="fetch-cell">{item.questions}</td>
-                                            <td className="fetch-cell">{item.difficulty}</td>
-                                        </tr>
-                                    ))
-                                )}
-                            </tbody>
+                            {displayMode === "study" ? (
+                                allScriptures.map((item, index) => (
+                                    <tr key={index}>
+                                        <td className="fetch-cell">{item.verse}</td>
+                                        <td className="fetch-cell">{item.scripture}</td>
+                                    </tr>
+                                ))
+                            ) : displayMode === "recall" ? (
+                                allScriptures.map((item, index) => (
+                                    <tr key={index}>
+                                        <td className="fetch-cell">{item.scripture}</td>
+                                        <td className="fetch-cell" >
+                                            <input
+                                                className={`ua-quiz-input ${
+                                                    item.isCorrect === true
+                                                        ? "correct-answer"
+                                                        : item.isCorrect === false
+                                                        ? "incorrect-answer"
+                                                        : ""
+                                                }`}
+                                                placeholder="Enter Answer"
+                                                value={item.userInput || ""} // Track input for each row
+                                                onChange={(e) => {
+                                                    const updatedScriptures = [...allScriptures];
+                                                    updatedScriptures[index].userInput = e.target.value;
+                                                    updatedScriptures[index].isCorrect = null; // Reset correctness on input change
+                                                    setAllScriptures(updatedScriptures);
+                                                }}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "Enter") {
+                                                        e.preventDefault(); // Prevent form submission or default behavior
+                                                        const updatedScriptures = [...allScriptures];
+                                                        if (item.userInput?.trim().toLowerCase() === item.verse.trim().toLowerCase()) {
+                                                            updatedScriptures[index].isCorrect = true; // Mark as correct
+                                                        } else {
+                                                            updatedScriptures[index].isCorrect = false; // Mark as incorrect
+                                                        }
+                                                        setAllScriptures(updatedScriptures);
+                                                    }
+                                                }}
+                                            />
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                questions.map((item, index) => (
+                                    <tr key={index}>
+                                        <td className="fetch-cell">{item.questions}</td>
+                                        <td className="fetch-cell">{item.difficulty}</td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
                         </table>
                     ) : (
                         <p>Make a Selection!</p>
@@ -265,6 +302,15 @@ const UserAccount = () => {
                     </div>
                 </div>
             </div>
+
+            {isModalOpen && (
+                    <div className="modal">
+                        <div className="modal-content">
+                            <p>{modalContent}</p>
+                            <button className="close-button" onClick={handleCloseModal}>Close</button>
+                        </div>
+                    </div>
+                )}
 
             <AccountFooter/>
 
