@@ -85,4 +85,8 @@ ALTER TABLE login_activity ADD ActivityID VARCHAR(31);
 
 INSERT INTO user_accounts (firstName, lastName, email, username, password) VALUES 
 	('Joshua', 'White', 'jwhite@gmail.com', 'admin_joshua', 'Admin:joshua!'),
+<<<<<<< Updated upstream
     ('Lauren', 'Thomas', 'lwhite@gmail.com', 'admin_l', 'Admin:l')
+=======
+    ('Lauren', 'Thomas', 'lwhite@gmail.com', 'admin_l', 'Admin:l');
+>>>>>>> Stashed changes
