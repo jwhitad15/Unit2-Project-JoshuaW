@@ -118,17 +118,17 @@ import './recall.css';
          }
      };
  
-     // Navigate to the previous scripture
-     const handlePrevious = () => {
-         if (val > 0) {
-             const prevIndex = val - 1;
-             setVal(prevIndex);
-             setWordData(faithScriptures[prevIndex]);
-             setUserInput(""); // Clear input for the previous scripture
-             setValidationMessage(""); // Clear validation message
-             setValidationColor(""); // Clear validation color
-         }
-     };
+    //  // Navigate to the previous scripture
+    //  const handlePrevious = () => {
+    //      if (val > 0) {
+    //          const prevIndex = val - 1;
+    //          setVal(prevIndex);
+    //          setWordData(faithScriptures[prevIndex]);
+    //          setUserInput(""); // Clear input for the previous scripture
+    //          setValidationMessage(""); // Clear validation message
+    //          setValidationColor(""); // Clear validation color
+    //      }
+    //  };
  
      useEffect(() => {
          fetchScripture();
@@ -164,15 +164,11 @@ import './recall.css';
             setIsModalOpen(true); // Open the modal
             return;
         }
-    
         try {
-            console.log("User input:", userInput.trim());
-            console.log("Expected verse:", wordData.verse);
-    
             // Compare user input with the VERSE column value
             if (userInput.trim().toLowerCase() === wordData.verse.toLowerCase()) {
                 setValidationMessage("That is correct"); // Display success message
-                setValidationColor("green"); // Set font color to green for correct answers
+                setValidationColor("white"); // Set font color to green for correct answers
             } else {
                 setValidationMessage("That is incorrect. Please try again"); // Display error message
                 setValidationColor("white"); // Set font color to white for incorrect answers
@@ -195,7 +191,7 @@ import './recall.css';
     
     const handleCloseModal = () => {
         setIsModalOpen(false); // Close the modal
-        if (validationMessage === "That is correct") {
+        if (validationMessage === "That is correct!") {
             handleNext(); // Navigate to the next question if the answer is correct
         }
     };
@@ -213,7 +209,7 @@ import './recall.css';
                  <FourElementHeader />
              </div>
  
-             <div>
+             {/* <div>
                  <button
                      onClick={handleNext}
                      className="study-next-button"
@@ -233,7 +229,7 @@ import './recall.css';
                      <div id="study-button-text"> Previous </div>
                      <div id="study-button-icon"> <FaArrowLeftLong /> </div>
                  </button>
-             </div>
+             </div> */}
  
              <main className="study-display-verse">
                 <div>

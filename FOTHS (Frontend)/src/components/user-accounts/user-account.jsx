@@ -1,12 +1,10 @@
 // User Account Component
 
 import React, { useState, useEffect } from "react";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import './user-account.css';
 import './pomodoro/pomodoro.css';
 import UtilBible from "./util-bible-component";
 import Pomodoro from "./pomodoro/pomodoro";
-import Scriptures from "../../classes/scriptures";
 import '../recall/recall.css';
 import AdminHeader from "../header-components/admin-header";
 import AccountFooter from "../footer/account-footer";
@@ -23,6 +21,7 @@ const UserAccount = () => {
         const [displayMode, setDisplayMode] = useState(""); // Controls the table rendering
         const [errorMessage, setErrorMessage] = useState(""); // Tracks error messages
         const [currentTimestamp, setCurrentTimestamp] = useState("");
+        const [userInput, setUserInput] = useState(""); // State to track user input for recall mode
 
         // Retrieve the user information from local storage
         const fullName = localStorage.getItem("fullName") || "USER FULL NAME"
@@ -98,6 +97,18 @@ const UserAccount = () => {
                 setErrorMessage("Failed to fetch data. Please try again.");
             }
         };
+
+        const handleKeyPress = (event) => {
+            if (event.key === 'Enter') {
+                validateInput(event); // Trigger validation logic on Enter key press
+            }
+        };
+        useEffect(() => {
+                window.addEventListener('keydown', handleKeyPress); // Add listener for Enter key
+                return () => {
+                    window.removeEventListener('keydown', handleKeyPress); // Clean up listener
+                };
+            }, [userInput, wordData]); // Re-run effect when userInput or wordData changes
 
         // Update the current timestamp dynamically
             useEffect(() => {
