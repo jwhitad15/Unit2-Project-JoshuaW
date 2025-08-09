@@ -167,8 +167,8 @@ import './recall.css';
         try {
             // Compare user input with the VERSE column value
             if (userInput.trim().toLowerCase() === wordData.verse.toLowerCase()) {
-                setValidationMessage("That is correct"); // Display success message
-                setValidationColor("white"); // Set font color to green for correct answers
+                setValidationMessage("That is correct!"); // Display success message
+                setValidationColor("white"); // Set font color to white for correct answers
             } else {
                 setValidationMessage("That is incorrect. Please try again"); // Display error message
                 setValidationColor("white"); // Set font color to white for incorrect answers
@@ -236,10 +236,6 @@ import './recall.css';
                 </div>
             )}  
              
-
-             {/* <form className="scope-goals-input" onSubmit={validateInput}>
-                <button type="submit" className="recall-button-class" >Submit</button>
-            </form> */}
  
              
 

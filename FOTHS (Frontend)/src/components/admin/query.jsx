@@ -228,9 +228,7 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
         console.error("Error executing command:", error);
         setErrorMessage("Failed to execute command. Please try again.");
       }
-    } else {
-      setErrorMessage("Invalid command selected.");
-    }
+    } 
   };
 
 
