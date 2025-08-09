@@ -209,28 +209,6 @@ import './recall.css';
                  <FourElementHeader />
              </div>
  
-             {/* <div>
-                 <button
-                     onClick={handleNext}
-                     className="study-next-button"
-                     disabled={val >= faithScriptures.length - 1} // Disable Next button if at the last scripture
-                 >
-                     <div id="study-button-text"> Next </div>
-                     <div id="study-button-icon"> <FaArrowRightLong /> </div>
-                 </button>
-             </div>
- 
-             <div>
-                 <button
-                     onClick={handlePrevious}
-                     className="study-previous-button"
-                     disabled={val <= 0} // Disable Previous button if at the first scripture
-                 >
-                     <div id="study-button-text"> Previous </div>
-                     <div id="study-button-icon"> <FaArrowLeftLong /> </div>
-                 </button>
-             </div> */}
- 
              <main className="study-display-verse">
                 <div>
                     {wordData && wordData.fruit === 'Faith' ? (
