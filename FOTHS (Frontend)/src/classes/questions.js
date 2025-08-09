@@ -1,3 +1,6 @@
+// This file defines the Questions class for managing question data
+// It includes methods for adding, retrieving, and finding questions by name or ID
+
 export default class Questions {
     constructor(id, question, answer) {
         this.id = id;

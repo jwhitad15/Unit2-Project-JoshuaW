@@ -204,7 +204,7 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
         console.log("Fetching data with command:", command, "type:", type, "id:", id);
         let deleteID = id.trim()// Construct the API URL based on whether an ID is provided
         const url = `http://localhost:8080/${type}/${command}/${deleteID}` // Fetch specific record by ID
-// Fetch all records of the selected type
+      // Fetch all records of the selected type
         console.log("API URL:", url);
       // Make an API call to fetch data
       const response = await fetch(url, {

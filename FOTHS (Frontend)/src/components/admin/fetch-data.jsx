@@ -1,8 +1,10 @@
-
+// This component fetches and displays data in a table format
+// It allows clicking on table cells to trigger a popup with record details
 // #117f9e;
 
 import React from "react";
 import './admin.css';
+import { data } from "react-router";
 
 const FetchDataComponent = ({ fetchedData, onCellClick}) => {
 

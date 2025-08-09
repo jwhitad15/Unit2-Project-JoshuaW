@@ -1356,7 +1356,6 @@ font-size: 26px;
   --o: 31px;
   /* control the offset */
 
-  /* width: 1234px; */
   /* the image size */
   --_p: calc(2*var(--o) + var(--b));
   padding: var(--_p) var(--_p) 0 0;

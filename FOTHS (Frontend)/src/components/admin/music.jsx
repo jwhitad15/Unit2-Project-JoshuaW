@@ -1,3 +1,5 @@
+// Music Component for Admin Dashboard
+
 import './audio/audio.css'
 
 const Music = () => {
@@ -12,4 +14,3 @@ const Music = () => {
 
 export default Music;
 
-// Music Component for Admin Dashboard

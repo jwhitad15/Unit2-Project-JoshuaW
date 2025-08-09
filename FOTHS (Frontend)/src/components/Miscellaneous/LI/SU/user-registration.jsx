@@ -4,36 +4,7 @@ import './user-login.css'
 import { CiUser, CiLock } from "react-icons/ci";
 
 function UserRegistration() {
-    // const firstName=useRef()
-    // const email=useRef()
-    // const password=useRef()
-    // const [showDashboard, setShowDashboard] = useState(false)
-    // const [show, setShow] = useState(false)
-    // const localSignup = localStorage.getItem("register");
-    // const localEmail = localStorage.getItem("email");
-    // const localPassword = localStorage.getItem("password");
-    // const localFirstName = localStorage.getItem("firstName");
 
-    // useEffect(()=> {
-    //     if(localSignup) {
-    //         setShowDashboard(true)
-    //     }
-    //     if(localEmail) {
-    //         setShow(true)
-    //     }
-    // })
-
-    // let navigate = useNavigate();
-    // const handleClick = () => {
-    //     if(firstName.current.value && email.current.value && password.current.value) {
-    //         localStorage.setItem("firstName", firstName.current.value)
-    //         localStorage.setItem("email", email.current.value)
-    //         localStorage.setItem("password", password.current.value)
-    //         localStorage.setItem("register", email.current.value)
-    //         alert("Account Registration Successful")
-    //         navigate("/dashboard");
-    //     }
-    // }
 
     const [formData, setFormData] = useState('');
 

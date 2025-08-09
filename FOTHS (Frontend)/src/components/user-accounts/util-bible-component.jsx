@@ -1,7 +1,6 @@
 // Component that fetches a public bible and displays it
 
 import React, { useState } from "react";
-import UtilBibledDropdown from "./util-bible-dropdown";
 
 
 const UtilBible = () => {

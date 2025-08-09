@@ -101,10 +101,7 @@ const FOTHSMain = () => {
                     <p>Happy learning!</p>
                     </div>
                 </div>
-                {/* <div className="recent-activity-card-2">
-                <input type="text" className="ai-question-input" placeholder="Ask the AI a question..." value={userQuestion} onChange={handleQuestionChange}/>
-                    <button className="ai-submit-button" onClick={handleAskAI}>Ask AI</button>
-                </div> */}
+         
                 <div className="recent-activity-card-3">
                     <div className="vod">
                     <p><b className="ua-ura-window">Verse of the Day</b></p>
