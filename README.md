@@ -1,6 +1,10 @@
 # Welcome to FOTHS
 ## An interactive, educational application centered on biblical teachings.
 
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?text=Hey Everyone!🕹️&animation=fadeIn&type=waving&color=gradient&height=100"/>
+</p>
+
 FOTHS, short for Fruits of the Holy Spirit, was created as an educational tool designed to solidify biblical teaching into the minds of its users. 
 This application is for the youth, adults, clergy members, and parents alike.
 The application's main feature comes equipped with three modes: Study, Recall, & Quiz. 
