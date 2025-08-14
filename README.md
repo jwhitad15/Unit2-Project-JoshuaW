@@ -15,7 +15,7 @@ In addition to the main feature, Game Mode, FOTHS allows users to register a per
 
 As a full-stack application, FOTHS was built in two distinct parts - a frontend & a backend. 
 
-The technologies used to build the frontend were, but not limited to:
+The technologies used to build the frontend were, but not limited to.
     1. JavaScript
     2. React
     3. Node.js
@@ -35,6 +35,16 @@ Additional technologies used were, but not limited to:
     - Canva
     - Trello
     - Google Suite
+
+  ******
+
+  As a full-stack application, FOTHS was built in two distinct parts - a frontend & a backend. .
+
+  The technologies used to build the frontend were, but not limited to.
+
+  1. a
+  2. asd
+  3. asdfas
 
   ******
 
