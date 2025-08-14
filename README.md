@@ -2,7 +2,7 @@
 ## An interactive, educational application centered on biblical teachings.
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?text=Hey Everyone!🕹️&animation=fadeIn&type=waving&color=gradient&height=100"/>
+  <img src="[https://capsule-render.vercel.app/api?text=Hey Everyone!🕹️&animation=fadeIn&type=waving&color=gradient&height=100](https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FLeBron_James&psig=AOvVaw2N7WvTXDb0Ei1RmyA3_GOr&ust=1755276661575000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCMjk4aThio8DFQAAAAAdAAAAABAE)"/>
 </p>
 
 FOTHS, short for Fruits of the Holy Spirit, was created as an educational tool designed to solidify biblical teaching into the minds of its users. 
