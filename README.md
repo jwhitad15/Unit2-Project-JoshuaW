@@ -1,4 +1,4 @@
-# Welcome to FOTHS
+Welcome to FOTHS
 ### An interactive, educational application centered on biblical teachings.
 *******
 
