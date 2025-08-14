@@ -1,4 +1,5 @@
 # Welcome to FOTHS
+an interactive educational appp
 
 ### An interactive, educational application centered on biblical teachings.
 
