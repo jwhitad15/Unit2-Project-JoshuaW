@@ -21,7 +21,7 @@ In addition to the main feature, Game Mode, FOTHS allows users to register a per
 * Clone this GitHub repository to your local machine
 * After you copy the repository link, open your device's terminal and enter the following into the command line:
   
-    > git clone https://github.com/jwhitad15/Unit2-Project-JoshuaW
+  `git clone https://github.com/jwhitad15/Unit2-Project-JoshuaW`
 
 ## Frontend Instructions
 * Start your VS Code application
@@ -49,18 +49,26 @@ or..
 * In the upper right hand corner of IntelliJ, Click the green *play* button to run the backend of your application.
     > <img width="280" height="103" alt="Screenshot 2025-08-15 at 2 10 34 PM" src="https://github.com/user-attachments/assets/885ec1e0-c537-4d68-b28e-5b963c99b15f" />
     
-* To ensure a successful execution of backend code. vou should see the term **Tomcat** in the terminal (see image below)
+* To ensure a successful execution of backend code, you should see the term **Tomcat** in the terminal (see image below)
     > <img width="1912" height="94" alt="Screenshot 2025-08-15 at 2 32 14 PM" src="https://github.com/user-attachments/assets/ce84fbfb-2781-4057-a613-e7eca21d4177" />
-
-
 
 ## Database Instructions
 * To run FOTHS with real data, you'll need to successfully download and open MySQL workbench
+* Once open, you should see a small rectangle with "Local instance" as it's title; click this rectangle.
+
+  > <img width="323" height="203" alt="Screenshot 2025-08-15 at 2 55 59 PM" src="https://github.com/user-attachments/assets/b53502b5-6764-47b0-9520-cce8ac3bf26e" />
+  * If it is your first time using MySQL, you'll need to create a password for your database
+  * If the initial set up steps are complete, enter your password.
+* In the upper left area of the IDE, click on the *Schemas* tab
+  * Right click inside the *Schemas* window and select *create schema*
+  * Label the schema *FOTHS*
+* Right click the newly made *FOTHS* database and select *create table*
+  * Label the table *user*
+* Create two additional tables in this manner - label them **scripture & question**, respectively
 
 
-  Configure Java to use Version 21.
-  Add the following IntelliJ dependencies - (Spring Boot Starter Web, Spring Boot Starter Test, Spring Boot Starter Data JPA, MySQL Connector J, Lombok)
-  Add the following IntelliJ plugins - (Spring Boot Maven Plugin, Maven Compiler Plugin)
+After the *Database Instructions* have been completed, you may visit your Vite localhost link in your browser, and begin navigating the application
+
 ***
 
 ## Localhost Ports
