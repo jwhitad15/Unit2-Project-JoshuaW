@@ -100,8 +100,14 @@ const UserAccount = () => {
             }
         };
 
-        const handleScriptureClick = (scripture) => {
-            setModalContent(scripture); // Set the content of the modal
+        const handleScriptureClick = (scripture, verse) => {
+            // Set the modal content with the formatted scripture and verse
+            setModalContent(
+                <>
+                    <p style={{ fontStyle: "italic" }}>"{scripture}"</p>
+                    <p style={{ fontWeight: "bold" }}>{verse}</p>
+                </>
+            );
             setIsModalOpen(true); // Open the modal
         };
     
@@ -191,14 +197,14 @@ const UserAccount = () => {
                             {displayMode === "study" ? (
                                 allScriptures.map((item, index) => (
                                     <tr key={index}>
-                                        <td className="fetch-cell">{item.verse}</td>
-                                        <td className="fetch-cell">{item.scripture}</td>
+                                        <td className="fetch-cell" onClick={() => handleScriptureClick(item.scripture, item.verse)}>{item.verse}</td>
+                                        <td className="fetch-cell" onClick={() => handleScriptureClick(item.scripture, item.verse)}>{item.scripture}</td>
                                     </tr>
                                 ))
                             ) : displayMode === "recall" ? (
                                 allScriptures.map((item, index) => (
                                     <tr key={index}>
-                                        <td className="fetch-cell">{item.scripture}</td>
+                                        <td className="fetch-cell" onClick={() => handleScriptureClick(item.scripture)}>{item.scripture}</td>
                                         <td className="fetch-cell" >
                                             <input
                                                 className={`ua-quiz-input ${
@@ -247,6 +253,15 @@ const UserAccount = () => {
                     )}
                 </main>
 
+                {isModalOpen && (
+                    <div className="modal">
+                        <div className="modal-content">
+                            {modalContent}
+                            <button className="close-button" onClick={handleCloseModal}>Close</button>
+                        </div>
+                    </div>
+                )}
+
                 {/* Main window where data is fetched */}
                 <main className="ua-fetch-window"> 
                     <select id="goals" value={selectedFruit} className="ua-study-select" onChange={handleFruitChange}>
@@ -266,7 +281,7 @@ const UserAccount = () => {
                         <option value="difficult">Difficult</option>
                     </select> <br /> <br className="desktop-scope-breakpoint" />
                     <button type="submit" className="ua-fetch-button" onClick={handleSubmit}>Submit</button> <br /> <br />
-                    {errorMessage && <p style={{ color: "white" }}>{errorMessage}</p>}
+                    {errorMessage && <p style={{ color: "#a64444" }}>{errorMessage}</p>}
                 </main>
 
             </div>

@@ -1,71 +1,81 @@
 // Component that fetches a public bible and displays it
 
-import React, { useState } from "react";
+// Component that fetches a public bible and displays it
 
+import React, { useState } from "react";
 
 const UtilBible = () => {
   // State variables
   const [book, setBook] = useState(""); // Tracks the selected book
+  const [chapter, setChapter] = useState(""); // Tracks the selected chapter
   const [bookContent, setBookContent] = useState([]); // Stores the fetched book content
   const [errorMessage, setErrorMessage] = useState(""); // Tracks error messages
 
-  // Handle dropdown selection
-  const handleDropdown = (e) => {
+  // Handles dropdown selection for book
+  const handleBookDropdown = (e) => {
     setBook(e.target.value);
+    setChapter(""); // Reset chapter when a new book is selected
   };
 
-  // Fetch the selected book from the public Bible API
+  // Handles dropdown selection for chapter
+  const handleChapterDropdown = (e) => {
+    setChapter(e.target.value);
+  };
+
+  // Fetches the selected book and chapter from the public Bible API
   const fetchBookContent = async () => {
     try {
       if (!book || book === "0") {
-          setErrorMessage("Please select a valid book.");
-          return;
+        setErrorMessage("Please select a valid book.");
+        return;
       }
 
-      // Replace 'YOUR_API_KEY' with your actual API key from the ESV API
+      // Replaces 'YOUR_API_KEY' with your actual API key from the ESV API
       const apiKey = "e4de20621b23312b2d09679f6c2c4207ff333d92";
-      const apiUrl = `https://api.esv.org/v3/passage/text/?q=${book}&include-footnotes=false&include-headings=false&include-passage-references=false`;
+      const query = chapter ? `${book} ${chapter}` : book; // Include chapter if selected
+      const apiUrl = `https://api.esv.org/v3/passage/text/?q=${query}&include-footnotes=false&include-headings=false&include-passage-references=false`;
 
       const response = await fetch(apiUrl, {
-          headers: {
-              Authorization: `Token ${apiKey}`
-          }
+        headers: {
+          Authorization: `Token ${apiKey}`,
+        },
       });
 
       if (!response.ok) {
-          throw new Error(`Failed to fetch book content. Status: ${response.status}`);
+        throw new Error(`Failed to fetch book content. Status: ${response.status}`);
       }
-      
+
       const data = await response.json();
       setBookContent(data.passages || []); // Store the passages in state
       setErrorMessage(""); // Clear any previous error messages
 
       console.log("Fetched book content:", data.passages); // Log the fetched content
-
-  } catch (error) {
+    } catch (error) {
       console.error("Error fetching book content:", error);
       setErrorMessage("Failed to fetch book content. Please try again.");
-  }
-};
+    }
+  };
 
-  // Handle form submission
+  // Handles form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchBookContent(); // Fetch the selected book content
   };
 
+  // Generates chapter options (1-150 for flexibility)
+  const chapterOptions = Array.from({ length: 150 }, (_, i) => i + 1);
 
   return (
-
     <div style={{ textAlign: "center", marginTop: "20px" }}>
-
       <form className="scope-goals-input" onSubmit={handleSubmit}>
+        <label className="scope-presetGoals-banner">
+          <hr />
+          SELECTIONS
+          <hr /> <br />
+        </label>
 
-        <label className="scope-presetGoals-banner"><hr/>SELECTIONS<hr/> <br/> </label>
-
-        <label >Select a Book</label> <br/>
-
-        <select id="goals" value={book} className="goal-select" onChange={handleDropdown}>
+        <label>Select a Book</label> <br />
+        <select id="book" value={book} className="goal-select" onChange={handleBookDropdown}>
           <option value="0"></option>
           <option value="Genesis">Genesis</option>
           <option value="Exodus">Exodus</option>
@@ -132,11 +142,24 @@ const UtilBible = () => {
           <option value="3 John">3 John</option>
           <option value="Jude">Jude</option>
           <option value="Revelation">Revelation</option>
-        </select> <br /> <br className="desktop-scope-breakpoint" />
+        </select>
+        <br />
+
+        <label>Select a Chapter</label> <br />
+        <select id="chapter" value={chapter} className="goal-select" onChange={handleChapterDropdown}>
+          <option value="">All Chapters</option>
+          {chapterOptions.map((num) => (
+            <option key={num} value={num}>
+              {num}
+            </option>
+          ))}
+        </select>
+        <br /> <br className="desktop-scope-breakpoint" />
 
         <button type="submit" className="account-button-class">
           Submit
-        </button> <br /> <br />
+        </button>
+        <br /> <br />
 
         {errorMessage && <p style={{ color: "white" }}>{errorMessage}</p>}
       </form>
@@ -145,15 +168,13 @@ const UtilBible = () => {
 
       <label>
         <label className="scope-customGoals-banner">
-          VIEWPORT <br className="mobile-scope-breakpoint" /> <hr />
+          VIEWPORT <br className="mobile-scope-breakpoint" /> <hr /> 
         </label>
         <br />
         <div className="eBible-window">
           {bookContent.length > 0 ? (
             bookContent.map((passage, index) => (
-              <p key={index}>{passage}
-                
-              </p>
+              <p key={index}>{passage}</p>
             ))
           ) : (
             <p>No content available. Please select a book.</p>

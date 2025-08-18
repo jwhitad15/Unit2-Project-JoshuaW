@@ -39,6 +39,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
+
     public User(String firstName, String lastName, String email, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,6 +47,7 @@ public class User {
         this.username = username;
         this.password = password;
     }
+// No-argument constructor for JPA that creates instances of the User class.
     public User() {};
 
 // The class also overrides the toString method to provide a string representation of the user object,

@@ -71,7 +71,7 @@ const LoginForm = () => {
     return (
         <div className="login-signup" >
             <h1 className="header">FOTHS</h1>
-            <p id="login-title">Administrative Login</p>
+            <p id="login-title">Login Portal</p>
 
             <form className="login-form" onSubmit={handleSubmit}>
 
@@ -95,7 +95,7 @@ const LoginForm = () => {
 
             <form >
      
-                <p>Don't have an account? Click  <Link id="card-hyperlink" to="/dashboard">here</Link> to return to the application! </p>
+                <p style={{color: "#a64444"}}>Don't have an account? Click  <Link style={{color: "#a64444"}} id="card-hyperlink" to="/dashboard">here</Link> to return to the application! </p>
 
             </form>
 

@@ -2,7 +2,7 @@ START TRANSACTION;
 
 DROP TABLE IF EXISTS user_accounts;
 
-CREATE TABLE user_accounts (
+CREATE TABLE user (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     firstName VARCHAR(31) NOT NULL,
     lastName VARCHAR(31) NOT NULL,
@@ -83,10 +83,4 @@ ALTER TABLE scope_activity ADD ActivityID VARCHAR(31);
 ALTER TABLE login_activity ADD UserID VARCHAR(31);    
 ALTER TABLE login_activity ADD ActivityID VARCHAR(31); 
 
-INSERT INTO user_accounts (firstName, lastName, email, username, password) VALUES 
-	('Joshua', 'White', 'jwhite@gmail.com', 'admin_joshua', 'Admin:joshua!'),
-<<<<<<< Updated upstream
-    ('Lauren', 'Thomas', 'lwhite@gmail.com', 'admin_l', 'Admin:l')
-=======
-    ('Lauren', 'Thomas', 'lwhite@gmail.com', 'admin_l', 'Admin:l');
->>>>>>> Stashed changes
+
