@@ -94,8 +94,8 @@ or..
       4. Right click the newly made *FOTHS* database and select *create table*
       5. Label the table *user*
       6. Create two additional tables in this manner - label them **scripture & question**, respectively* 
-    * *ensure each of the tables has the exact columns mentioned in the above section
-    * check your pom.xml file to ensure it has the MySQL connector; check your backend logic to ensure the data is being fetched from the correct table
+    * *ensure each of the tables has the exact columns mentioned in the above section*
+    * check your *pom.xml* file to ensure it has the *MySQL connector dependency*; check your backend logic to ensure the data is being fetched from the correct table
   * Once the tables are created according to the instructions, you will need to populate each table
   * You will also need to fetch data from the database (see information on Postman & Java endpoints)
 
