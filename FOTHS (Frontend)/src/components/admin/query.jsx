@@ -66,6 +66,24 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
       return;
     }
 
+    // Validation for "Add" or "Update" commands with "user" type
+    if ((command === "add" || command === "update") && type === "users") {
+      if (!userData || !userData.name || !userData.email || !userData.role) {
+        setErrorMessage("Please fill out all required fields for the user.");
+        return;
+      }
+    }
+
+     // Validation for "Add" or "Update" commands with "scripture" or "question" type
+     if ((command === "add" || command === "update") && (type === "scriptures" || type === "questions")) {
+      const dataToValidate = type === "scriptures" ? scriptureData : questionData;
+
+      if (!dataToValidate || !dataToValidate.title || !dataToValidate.content) {
+        setErrorMessage("All fields (except for Category) are required.");
+        return;
+      }
+    }
+
     if (command === "add" && type === "users") {
       try {
         const url = `http://localhost:8080/users/create`;
@@ -147,23 +165,31 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
       try {
         // Construct the API URL based on whether an ID is provided
         const url = id.trim()
-        ? `http://localhost:8080/${type}/${id}` // Fetch specific record by ID
-        : `http://localhost:8080/${type}`; // Fetch all records of the selected type
+          ? `http://localhost:8080/${type}/${id.trim()}` // Fetch specific record by ID
+          : `http://localhost:8080/${type}`; // Fetch all records of the selected type
   
-      // Make an API call to fetch data
-      const response = await fetch(url, {
+        // Make an API call to fetch data
+        const response = await fetch(url, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         });
-
+  
         if (!response.ok) {
           throw new Error("Failed to fetch data.");
         }
-
+  
         const data = await response.json();
-        setFetchedData(data); // Set the fetched data in state
+  
+        if (id.trim()) {
+          // If an ID is provided, display only the record with that ID
+          setFetchedData([data]); // Wrap the single record in an array for consistency
+        } else {
+          // If no ID is provided, display all records
+          setFetchedData(data);
+        }
+  
         setErrorMessage(""); // Clear any previous error messages
       } catch (error) {
         setErrorMessage("Failed to fetch data. Please try again.");
