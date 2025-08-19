@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import './multichoice.css'
-import Score from "./score";
-import FourElementHeader from "../header-components/header-4";
-import Footer from "../footer/footer";
+import './Multichoice.css'
+import Score from "./Score";
+import FourElementHeader from "../header-components/FourElementHeader";
+import Footer from "../footer/Footer";
 
 class Multichoice extends Component {
     constructor(props) {

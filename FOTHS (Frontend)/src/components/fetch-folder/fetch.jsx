@@ -1,8 +1,8 @@
 // This component controls the Study Mode Scripture carousel
 import {useState, useEffect} from "react";
-import Footer from "../footer/footer";
-import FetchtHeader from "../header-components/fetch-header";
-import './fetch.css'
+import Footer from "../footer/Footer";
+import FetchtHeader from "../header-components/FetchHeader";
+import './Fetch.css'
 
 
 const Fetch = ({}) => {

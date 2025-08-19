@@ -1,11 +1,10 @@
 // Fill-in-the-blank component for Recall Mode
 
 import React, {useState, useEffect} from "react";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import FourElementHeader from "../header-components/header-4";
-import Footer from "../footer/footer";
+import FourElementHeader from "../header-components/FourElementHeader";
+import Footer from "../footer/Footer";
 import 'reactjs-popup/dist/index.css'
-import './recall.css';
+import './Recall.css';
 
 
  

@@ -3,8 +3,7 @@
 // #117f9e;
 
 import React from "react";
-import './admin.css';
-import { data } from "react-router";
+import './Admin.css';
 
 const FetchDataComponent = ({ fetchedData, onCellClick}) => {
 

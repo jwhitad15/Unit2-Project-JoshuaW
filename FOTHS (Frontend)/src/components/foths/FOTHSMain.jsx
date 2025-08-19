@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import UserInteraction from "./foths-user-interaction";
-import FourElementHeader from "../header-components/header-4";
-import Footer from "../footer/footer";
-import FruitImage from "./foths-fruit-image";
+import UserInteraction from "./UserInteraction";
+import FourElementHeader from "../header-components/FourElementHeader";
+import Footer from "../footer/Footer";
+import FruitImage from "./FruitImage";
 
 
 const FOTHSMain = () => {

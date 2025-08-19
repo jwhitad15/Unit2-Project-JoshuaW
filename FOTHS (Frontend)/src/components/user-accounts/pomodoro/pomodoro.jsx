@@ -1,6 +1,6 @@
 // Pomodoro Timer Component for User study sessions
 import React, { useState, useRef } from "react";
-import './pomodoro.css'
+import './Pomodoro.css'
 
 const Pomodoro = () => {
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './admin.css'
+import './Admin.css'
 
 const ScriptureFetch = ({setScriptureData}) => {
 
