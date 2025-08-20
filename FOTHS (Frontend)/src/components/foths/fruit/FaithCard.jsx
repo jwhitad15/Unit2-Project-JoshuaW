@@ -1,13 +1,13 @@
 // Image component that displays graphic on Fruit Cards in FOTHS Main page
 
 import React from "react";
-import faithFruit from './1.png'
+import faithFruit from './Faith.png'
 
-function FruitImage() {
+function FaithCard() {
     return (
     <img src={faithFruit} className="fruit-card-image" alt="graphic-of-orange-fruit" width="130px" height="120px" />
     )
 
 }
 
-export default FruitImage;
+export default FaithCard;
