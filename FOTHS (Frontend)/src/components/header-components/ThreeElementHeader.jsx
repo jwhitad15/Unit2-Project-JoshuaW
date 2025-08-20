@@ -1,6 +1,6 @@
 // custom reusable header component (3 elements)
 
-import ExitProgram from "./exit-program-button";
+import ExitProgram from "./ExitProgram";
 
 const ThreeElementHeader = () => {
 

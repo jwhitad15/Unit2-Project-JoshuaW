@@ -1,8 +1,8 @@
 // About page for the FOTHS app
 
 
-import FourElementHeader from "../header-components/header-4";
-import Footer from "./footer";
+import FourElementHeader from "../header-components/FourElementHeader";
+import Footer from "./Footer";
 
 
 const About = () => {

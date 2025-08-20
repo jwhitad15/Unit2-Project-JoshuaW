@@ -1,8 +1,8 @@
 // Component that receives user input
 
 import React, { useState } from "react";
-import DisplaySelectedDropdown from "./foths-display-user-selected-dropdown"
-import DisplayCustomGoal from "./foths-display-user-custom-goal";
+import DisplaySelectedDropdown from "./DisplaySelectedDropdown";
+import DisplayCustomGoal from "./DisplayCustomGoal";
 
 
 const UserInteraction = () => {

@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 // import { useNavigate } from "react-router";
-import './user-login.css'
+import './UserLogin.css'
 import { CiUser, CiLock } from "react-icons/ci";
 
 function UserRegistration() {

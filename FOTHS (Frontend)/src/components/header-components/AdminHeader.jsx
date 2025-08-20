@@ -1,8 +1,8 @@
 // custom reusable header component (4 elements)
 
 import React from "react";
-import ExitProgram from "./exit-program-button";
-import '../admin/admin.css'
+import ExitProgram from "./ExitProgram";
+import '../admin/Admin.css'
 
 
 

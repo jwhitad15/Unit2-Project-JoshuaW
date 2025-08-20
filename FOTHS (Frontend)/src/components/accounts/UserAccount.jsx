@@ -1,13 +1,13 @@
 // User Account Component
 
 import React, { useState, useEffect } from "react";
-import './user-account.css';
-import './pomodoro/pomodoro.css';
-import UtilBible from "./util-bible-component";
-import Pomodoro from "./pomodoro/pomodoro";
-import '../recall/recall.css';
-import AdminHeader from "../header-components/admin-header";
-import AccountFooter from "../footer/account-footer";
+import './UserAccount.css';
+import './pomodoro/Pomodoro.css';
+import UtilBible from "./UtilBible";
+import Pomodoro from "./pomodoro/Pomodoro";
+import '../recall/Recall.css';
+import AdminHeader from "../header-components/AdminHeader";
+import AccountFooter from "../footer/AccountFooter";
 
 
 const UserAccount = () => {
