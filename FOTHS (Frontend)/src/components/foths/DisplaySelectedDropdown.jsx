@@ -17,10 +17,15 @@ const DisplaySelectedDropdown = (props) => {
         notZero = true;
     } 
 
+    const handleSelectionChange = (event) => {
+        const selectedValue = parseInt(event.target.value, 10);
+        props.onSelectionChange(selections[selectedValue]); // Pass the selected goal data to the parent component
+      };
+
     return (
         <div className="scope-card-list-item">
   
-            <div > 
+            <div onChange={handleSelectionChange} className="scope-card-list-item-text"> 
 
                 <p className="scope-display-dropdown-selection"> <b>{selections[props.goalData].title}</b></p>
                 <p className="scope-preset-item"> + {selections[props.goalData].a} </p>
@@ -35,7 +40,5 @@ const DisplaySelectedDropdown = (props) => {
 
 
 }
-
-
 
 export default DisplaySelectedDropdown;

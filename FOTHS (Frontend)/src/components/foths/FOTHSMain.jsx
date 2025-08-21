@@ -78,11 +78,12 @@ const FOTHSMain = () => {
             <aside>
                 <div className="scope">Scope</div>
                 <div className="scope-card-1"><UserInteraction/> </div>
+                <div className="scope-card-2"></div>
+                <div className="scope-card-3"> </div>
             </aside>
 
             <div className="foths-main">
                 <div className="foths-main-title"> Fruits of the Holy Spirit </div>
-
                 <div className="fruits-grid">
                     <div className="fruit-cards-row-1">
                         <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1"><div className="responsive-fruit-card-text">Faith</div><FaithCard/></a>
@@ -95,18 +96,7 @@ const FOTHSMain = () => {
                         <a href="./#/game-mode" id="fruit-card-8-hyperlink" className="fruit-card-8"><div className="responsive-fruit-card-text">Gentleness</div><GentlenessCard/></a>
                         <a href="./#/game-mode" id="fruit-card-9-hyperlink" className="fruit-card-9"><div className="responsive-fruit-card-text">Longsuffering</div><LongsufferingCard/></a>
                     </div>
-                    {/* <div className="fruit-cards-row-2">
-                        <a href="./#/game-mode" id="fruit-card-4-hyperlink" className="fruit-card-4"><div className="responsive-fruit-card-text">Faith</div><FruitImage/></a>
-                        <a href="./#/game-mode" id="fruit-card-5-hyperlink" className="fruit-card-5"><div className="responsive-fruit-card-text">Faith</div><FruitImage/></a>
-                        <a href="./#/game-mode" id="fruit-card-6-hyperlink" className="fruit-card-6"><div className="responsive-fruit-card-text">Faith</div><FruitImage/></a>
-                    </div> */}
-                    {/* <div className="fruit-cards-row-3">
-                        <a href="./#/game-mode" id="fruit-card-7-hyperlink" className="fruit-card-7"><div className="responsive-fruit-card-text">Faith</div><FruitImage/></a>
-                        <a href="./#/game-mode" id="fruit-card-8-hyperlink" className="fruit-card-8"><div className="responsive-fruit-card-text">Faith</div><FruitImage/></a>
-                        <a href="./#/game-mode" id="fruit-card-9-hyperlink" className="fruit-card-9"><div className="responsive-fruit-card-text">Faith</div><FruitImage/></a>
-                    </div> */}
                 </div>
-
             </div>
         
             {/* Flexbox stylization to create columns & column cards */}
