@@ -928,6 +928,19 @@ label {
   font-size: 12px;
   /* padding-left: 10px; */
 }
+.intro-window2 {
+  background-color: #cdc5b4; 
+  color: #1d3461;
+  border: inset;
+  border-color: #a64444;
+  height: 77%;
+  position: grid;
+  left: 3%;
+  width: 107%;
+  overflow: scroll;
+  text-align: center;
+  font-size: 12px;
+}
 
 @keyframes scroll-up {
   0% {
@@ -1154,7 +1167,7 @@ font-size: 26px;
   color: white;
   position: fixed;
   top: 31%;
-  /* left: 29%; */
+  left: 29%;
   height: 12.5%;
   padding-left: 2%;
   padding-right: 2%;
@@ -2008,6 +2021,14 @@ footer {
   box-shadow: 0 0 5px #cdc5b4;
 }
 
+p.welcome-title {
+  font-size: 16px;
+  font-weight: bold;
+  /* text-align: center; */
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
+}
+
 .account-footer-admin-link {
   border-style: outset;
   border: 3px outset white;
@@ -2230,6 +2251,16 @@ footer {
 }
   .recall-input {margin-top: -1.5%;}
 }
+@media screen and (min-width: 1223px) {
+  .intro-window {
+    height: 63%;
+  }
+}
+@media screen and (max-width: 1223px) {
+  p.welcome-title {
+    font-size: 15px;
+  }
+}
 @media screen and (max-width: 1183px) {
   .study-previous-button {
     font-size: 23px;
@@ -2240,9 +2271,25 @@ footer {
 }
 @media screen and (max-width: 1160) {
     .subheader-title {font-size: 25px;}
+    .recent-activity-card-1 {overflow: scroll; height: 60%; }
+    p.welcome-title {
+      font-size: 14px;
+    }
+}
+@media screen and (max-width: 1146px) {
+  p.welcome-title {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 1070px) {
+  p.welcome-title {
+    font-size: 12px;
+  }
 }
 @media screen and (min-width: 1012px) {
   .mobile-scope-breakpoint {display: none;}
+  .recent-activity-card-2 {display: none;}
+  .intro-window {height: 51%;}
 }
 @media screen and (max-width: 1011px) {
   aside {
@@ -2254,7 +2301,7 @@ footer {
     height: 12%;
     left: 3.2%;
     width: 93.1%;
-    top: 15.3%;
+    top: 15.93%;
     z-index: -1;
   }
   .study-next-button {
@@ -2265,64 +2312,189 @@ footer {
   }
   .foths-main {
     left: 3.2%;
-    width: 93.1%;
+    width: 93.8%;
     top: 30.4%;
     height: 24.5%;
-    z-index: -1;
+    padding: 10px; /* Add padding inside the container */
+    gap: 10px; /* Add spacing between cards */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-evenly; /* Space cards evenly */
+    align-items: center; /* Align cards vertically */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Hide vertical overflow */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    background: #cdc5b4;
+    color: #85756e;
+    box-sizing: border-box;
+    border: outset;
+    border-radius: 10px;
+    position: fixed;
   }
   .foths-main-title {
     top: 33%;
-
+    display: none;
   }
   .recent-activity {
     left: 5%;
     top: 18.8%;
+    display: none;
   }
   .recent-activity-card-1 {
-    top: 16.3%;
+    top: 16.93%;
     height: 9.9%;
-    width: 12.8%;
+    width: 16.8%;
     left: 28.6%;
+    display: none;
   }
   .recent-activity-card-2 {
-    top: 16.3%;
+    top: 16.93%;
     height: 9.9%;
-    width: 12.8%;
-    left: 53%;
+    width: 42%;
+    left: 5%;
     }
+  .intro-window {
+    display: none;
+    }
+  .intro-window2 {
+    width: 100%;
+  }
+
   .recent-activity-card-3 {
-    top: 16.3%;
+    top: 16.93%;
     height: 9.9%;
-    width: 12.8%;
-    left: 77.4%;
+    width: 37.8%;
+    left: 53%;
     }
   .scope {
     left: 5%; 
     top: 61.7%; 
-    z-index: 2;}
+    z-index: 2;
+    display: none;
+  }
   .mobile-response-custom-goal {left: 58.6%; top: 61.7%; width: 25%; height: 21.2%; z-index: 1;}
-  .scope-card-1 {position: absolute; left: 28.6%; top: 10.5%; width: 57%; height: 77%; z-index: 1; overflow: auto;}
+  .scope-card-1 {position: fixed; left: 5%; top: 60%; width: 20%; height: 26.3%; overflow: auto;}
+  .scope-card-2 {
+    border: outset;
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    place-content: center;
+    position: fixed;
+    top: 60%;
+    width: 20%;
+    left: 37.7%;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size: x-small;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+  }
+  .scope-card-3 {
+    border: outset;
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    place-content: center;
+    position: fixed;
+    top: 60%;
+    width: 20%;
+    left: 70%;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size: x-small;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+  }
   .scope-card-list-item {left: 52.2%; top: 78%; z-index: 1;}
   .scope-line {display: none;}
   .desktop-scope-breakpoint {display: none;}
   .scope-customGoals-banner {display: none;}
   .scope-presetGoals-banner {display: none;}
+  .fruit-cards-row-1 {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-evenly; /* Space cards evenly */
+    align-items: center; /* Align cards vertically */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Hide vertical overflow */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    padding: 10px; /* Add padding inside the container */
+    /* gap: 10px; Add spacing between cards */
+    }
+
   .fruit-card-1 {
-    top: 43%;
-    width: 25.7%;
-    left: 34.7%;
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    width: 3%; /* Set width for the first card */
+    height: 21%; /* Set height for the first card */
+    top: 32%; /* Adjust positioning if necessary */
+    left: 5%;
+  }
+  .fruit-card-2 {
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    width: 3%; /* Same width as fruit-card-1 */
+    height: 21%; /* Same height as fruit-card-1 */
+    top: 32%; /* Adjust positioning if necessary */
+    left: 15.31%;
+    /* display: none; */
+  }
+  .fruit-card-3 {
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    width: 3%; /* Same width as fruit-card-1 */
+    height: 21%; /* Same height as fruit-card-1 */
+    top: 32%; /* Adjust positioning if necessary */
+    left: 25.62%;
+  }
+  .fruit-card-4 {
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    width: 3%; /* Same width as fruit-card-1 */
+    height: 21%; /* Same height as fruit-card-1 */
+    top: 32%; /* Adjust positioning if necessary */
+    left: 35.94%;
+  }
+  .fruit-card-5 {
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    width: 3%; /* Same width as fruit-card-1 */
+    height: 21%; /* Same height as fruit-card-1 */
+    top: 32%; /* Adjust positioning if necessary */
+    left: 46.25%;
+  }
+  .fruit-card-6 {
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    width: 3%; /* Same width as fruit-card-1 */
+    height: 21%; /* Same height as fruit-card-1 */
+    top: 32%; /* Adjust positioning if necessary */
+    left: 56.56%;
+  }
+  .fruit-card-7 {
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    width: 3%; /* Same width as fruit-card-1 */
+    height: 21%; /* Same height as fruit-card-1 */
+    top: 32%; /* Adjust positioning if necessary */
+    left: 66.87%;
+  }
+  .fruit-card-8 {
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    width: 3%; /* Same width as fruit-card-1 */
+    height: 21%; /* Same height as fruit-card-1 */
+    top: 32%; /* Adjust positioning if necessary */
+    left: 77.19%;
+  }
+  .fruit-card-9 {
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    width: 3%; /* Same width as fruit-card-1 */
+    height: 21%; /* Same height as fruit-card-1 */
+    top: 32%; /* Adjust positioning if necessary */
+    left: 87.5%;
   }
 }
 @media screen and (max-width: 944px) {
-  .recent-activity-card-1 {width: 14.8%; left:26.6%}
-  .recent-activity-card-2 {width: 14.8%; left:51%}
-  .recent-activity-card-3 {width: 14.8%; left:75.4%}
 }
 @media screen and (max-width: 871px) {
-  .recent-activity {left: 42%;}
-  .recent-activity-card-1 {width: 15%; left:15.5%}
-  .recent-activity-card-2 {width: 15%; left:65.88%}
-  .recent-activity-card-3 {width: 15%; left:75.4%; display: none;}
   .header-element-3 {font-size: 21px;}
   #study-button-text {display: none;}
 }
@@ -2369,11 +2541,8 @@ footer {
 }
 @media screen and (max-width: 700px) {
   .foths-main-title {font-size: 24px;}
-  .recent-activity-card-1 {width: 18%; left:12.5%}
-  .recent-activity-card-2 {width: 18%; left:65.88%}
 }
 @media screen and (max-width: 673px) {
-  .recent-activity {font-size: 22px;}
   .header-element-5{
     font-size: 16px;
   }
@@ -2446,12 +2615,9 @@ footer {
   }
 }
 @media screen and (max-width: 582px) {
-  .recent-activity-card-1 {width: 18%; left:12.5%; font-size: 9px;}
-  .recent-activity-card-2 {width: 18%; left:65.88%; font-size: 9px;}
 }
 @media screen and (max-width: 543px) {
   .header-element-3 {font-size: 20px; width: 27%;}
-  .recent-activity {font-size: 18px;}
 }
 @media screen and (max-width: 531px) {
   .footer-copyright {font-size: 10px;}
@@ -2490,8 +2656,6 @@ h4 {font-size: 14px;}
 @media screen and (max-width: 463px) {
  .footer-notepad-link {display: none;}
  .recent-activity {font-size: 16px;}
- .recent-activity-card-1 {width: 24.5%; left:6%; font-size: 9px;}
- .recent-activity-card-2 {width: 24.5%; left:65%; font-size: xx-small;}
  .header-element-3 {font-size: 20px; width: 33%;}
  .footer-copyright {font-size: 14px;}
  .scope {font-size: 16px;}
@@ -2503,7 +2667,6 @@ h4 {font-size: 14px;}
  .footer-notepad-link {
   display: none;
  }
- .recent-activity {font-size: 15px;}
  .header-element-3 {font-size: 20px; width: 31%;}
 }
 @media screen and (max-width: 421px) {
@@ -2515,16 +2678,7 @@ h4 {font-size: 14px;}
     font-size: small;
   }
   .foths-main-title {font-size: 15px;}
-  .recent-activity{
-    visibility: hidden;
-  }
-  .recent-activity-card-1{
-    width: 35%;
-  }
-    .recent-activity-card-2{
-    width: 35%;
-    left: 54%
-  }
+
   .about-story-card {font-size: 8px; overflow: auto; }
   .about-app-card {left: 12%; right: 12%}
 

@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import UserInteraction from "./UserInteraction";
 import FourElementHeader from "../header-components/FourElementHeader";
 import Footer from "../footer/Footer";
-import FruitImage from "./FruitImage";
+import FaithCard from "./fruit/FaithCard";
+import LoveCard from "./fruit/LoveCard";
+import PeaceCard from "./fruit/PeaceCard";
+import JoyCard from "./fruit/JoyCard";
+import TemperanceCard from "./fruit/TemperanceCard";
+import MeeknessCard from "./fruit/MeeknessCard";
+import GoodnessCard from "./fruit/GoodnessCard";
+import GentlenessCard from "./fruit/GentlenessCard";
+import LongsufferingCard from "./fruit/LongsufferingCard";
+import { SelectionLogic } from "./SelectionLogic.jsx"; // Import the context
 
 
 const FOTHSMain = () => {
 
+    const { setFruitSelection } = useContext(SelectionLogic); // Use context to set fruit selection
     const [userQuestion, setUserQuestion] = useState(""); // State to store the user's question
     const [aiResponse, setAIResponse] = useState(""); // State to store the AI's response
     const [dailyScripture, setDailyScripture] = useState(""); // State to store the daily scripture and verse
@@ -15,6 +25,10 @@ const FOTHSMain = () => {
         setUserQuestion(e.target.value); // Update the user's question
     };
 
+    const handleFruitSelection = (fruit) => {
+        setFruitSelection(fruit); // Store the selected fruit globally
+        window.location.href = "./#/game-mode"; // Navigate to GameMode page
+      };
     
 
     const handleAskAI = async () => {
@@ -70,35 +84,56 @@ const FOTHSMain = () => {
             <aside>
                 <div className="scope">Scope</div>
                 <div className="scope-card-1"><UserInteraction/> </div>
+                <div className="scope-card-2"></div>
+                <div className="scope-card-3"> </div>
             </aside>
 
             <div className="foths-main">
                 <div className="foths-main-title"> Fruits of the Holy Spirit </div>
-
                 <div className="fruits-grid">
                     <div className="fruit-cards-row-1">
-                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1"><div className="responsive-fruit-card-text">Faith</div><FruitImage/></a>
+                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1" onClick={() => handleFruitSelection('Faith')}><div className="responsive-fruit-card-text">Faith</div><FaithCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-2-hyperlink" className="fruit-card-2" onClick={() => handleFruitSelection('Love')}><div className="responsive-fruit-card-text">Love</div><LoveCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-3-hyperlink" className="fruit-card-3" onClick={() => handleFruitSelection('Peace')}><div className="responsive-fruit-card-text">Peace</div><PeaceCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-4-hyperlink" className="fruit-card-4" onClick={() => handleFruitSelection('Joy')}><div className="responsive-fruit-card-text">Joy</div><JoyCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-5-hyperlink" className="fruit-card-5" onClick={() => handleFruitSelection('Temperance')}><div className="responsive-fruit-card-text">Temperance</div><TemperanceCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-6-hyperlink" className="fruit-card-6" onClick={() => handleFruitSelection('Meekness')}><div className="responsive-fruit-card-text">Meekness</div><MeeknessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-7-hyperlink" className="fruit-card-7" onClick={() => handleFruitSelection('Goodness')}><div className="responsive-fruit-card-text">Goodness</div><GoodnessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-8-hyperlink" className="fruit-card-8" onClick={() => handleFruitSelection('Gentleness')}><div className="responsive-fruit-card-text">Gentleness</div><GentlenessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-9-hyperlink" className="fruit-card-9" onClick={() => handleFruitSelection('Longsuffering')}><div className="responsive-fruit-card-text">Longsuffering</div><LongsufferingCard/></a>
                     </div>
                 </div>
-
             </div>
         
             {/* Flexbox stylization to create columns & column cards */}
             <nav>
                 <div className="recent-activity">Resources</div>
                 <div className="recent-activity-card-1">
-                    <h2>Welcome to FOTHS</h2>
+                    <p className="welcome-title">Welcome to FOTHS</p>
                     <hr style={{width: "98%"}}/>
                     <hr style={{width: "84%"}}/>
                     <br/>
                     <div className="intro-window" >
-                    <p><b>FOTHS</b>, short for <b>Fruits of the Holy Spirit</b>, is an interactive, educational application designed to help users learn & retain the Bible.</p>
-                    <p>This application comes equipped with 3 unique game modes: <b>Study, Recall, Quiz</b></p>
-                    <p><b>Study</b> mode allows users to navigate through Scripture, while <b>Recall</b> mode resembles a traditional fill-in-the-blank question, enabling users to enter verse titles in a input field. </p>
-                    <p><b>Quiz</b> mode tests users' knowledge by displaying Scripture and allowing them to select one of four answer choices.</p>
-                    <p>Additionally, FOTHS offers a wide variety of interactice tools like a Pomodoro timer, Bible fetching elements, and video resources.</p>
-                    <p>Take some time to explore this application, and don't forget to become familiar with the user account page - it will be where you spend most of your time!</p>
-                    <p>Happy learning!</p>
+                        <p><b>FOTHS</b>, short for <b>Fruits of the Holy Spirit</b>, is an interactive, educational application designed to help users learn & retain the Bible.</p>
+                        <p>This application comes equipped with 3 unique game modes: <b>Study, Recall, Quiz</b></p>
+                        <p><b>Study</b> mode allows users to navigate through Scripture, while <b>Recall</b> mode resembles a traditional fill-in-the-blank question, enabling users to enter verse titles in a input field. </p>
+                        <p><b>Quiz</b> mode tests users' knowledge by displaying Scripture and allowing them to select one of four answer choices.</p>
+                        <p>Additionally, FOTHS offers a wide variety of interactice tools like a Pomodoro timer, Bible fetching elements, and video resources.</p>
+                        <p>Take some time to explore this application, and don't forget to become familiar with the user account page - it will be where you spend most of your time!</p>
+                        <p>Happy learning!</p>
+                    </div>
+                </div>
+
+                <div className="recent-activity-card-2">
+                    <div className="intro-window2" >
+                        <h2>Welcome to FOTHS</h2>
+                        <p><b>FOTHS</b>, short for <b>Fruits of the Holy Spirit</b>, is an interactive, educational application designed to help users learn & retain the Bible.</p>
+                        <p>This application comes equipped with 3 unique game modes: <b>Study, Recall, Quiz</b></p>
+                        <p><b>Study</b> mode allows users to navigate through Scripture, while <b>Recall</b> mode resembles a traditional fill-in-the-blank question, enabling users to enter verse titles in a input field. </p>
+                        <p><b>Quiz</b> mode tests users' knowledge by displaying Scripture and allowing them to select one of four answer choices.</p>
+                        <p>Additionally, FOTHS offers a wide variety of interactice tools like a Pomodoro timer, Bible fetching elements, and video resources.</p>
+                        <p>Take some time to explore this application, and don't forget to become familiar with the user account page - it will be where you spend most of your time!</p>
+                        <p>Happy learning!</p>
                     </div>
                 </div>
          
