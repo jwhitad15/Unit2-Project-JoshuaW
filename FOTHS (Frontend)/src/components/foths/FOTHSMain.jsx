@@ -16,7 +16,7 @@ import { SelectionLogic } from "./SelectionLogic.jsx"; // Import the context
 
 const FOTHSMain = () => {
 
-    const { setFruitSelection } = React.useContext(SelectionLogic); // Use context to set fruit selection
+    const { setFruitSelection } = useContext(SelectionLogic); // Use context to set fruit selection
     const [userQuestion, setUserQuestion] = useState(""); // State to store the user's question
     const [aiResponse, setAIResponse] = useState(""); // State to store the AI's response
     const [dailyScripture, setDailyScripture] = useState(""); // State to store the daily scripture and verse

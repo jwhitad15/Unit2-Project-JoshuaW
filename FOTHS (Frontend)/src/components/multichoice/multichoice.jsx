@@ -6,7 +6,7 @@ import FourElementHeader from "../header-components/FourElementHeader";
 import Footer from "../footer/Footer";
 
 class Multichoice extends Component {
-
+    static contextType = SelectionLogic; // Use contextType to access the SelectionLogic context
 
     constructor(props) {
         super(props);
@@ -18,7 +18,6 @@ class Multichoice extends Component {
             quizEnd: false, // Tracks whether the quiz has ended
             showModal: false, // Controls the visibility of the modal
             filteredScriptures: [], // Filtered scriptures based on fruitSelection
-            fruitSelection: "", // Selected fruit from context
             answerOptions: [ // Array of answer options corresponding to question IDs
             ["Option 1A", "Option 1B", "Option 1C", "Option 1D"], // Question ID 1
             ["Option 2A", "Option 2B", "Option 2C", "Option 2D"], // Question ID 2
@@ -46,6 +45,7 @@ class Multichoice extends Component {
 
     fetchQuestions = async () => {
         const { fruitSelection } = this.context; // Get the selected fruit from context
+        console.log("Selected fruit:", fruitSelection); // Debugging
 
         if (!fruitSelection) {
             console.error("fruitSelection is undefined. Please select a fruit.");
@@ -69,6 +69,7 @@ class Multichoice extends Component {
     
             // Filter questions by FRUIT value
             const filteredQuestions = questionsData.filter((question) => question.fruit === fruitSelection);
+            console.log("Filtered questions:", filteredQuestions); // Debugging
 
             if (filteredQuestions && filteredQuestions.length > 0) {
                 // Populate answerOptions with values from the ANSWER column
