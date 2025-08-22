@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import UserInteraction from "./UserInteraction";
 import FourElementHeader from "../header-components/FourElementHeader";
 import Footer from "../footer/Footer";
@@ -11,10 +11,12 @@ import MeeknessCard from "./fruit/MeeknessCard";
 import GoodnessCard from "./fruit/GoodnessCard";
 import GentlenessCard from "./fruit/GentlenessCard";
 import LongsufferingCard from "./fruit/LongsufferingCard";
+import { SelectionLogic } from "./SelectionLogic.jsx"; // Import the context
 
 
 const FOTHSMain = () => {
 
+    const { setFruitSelection } = React.useContext(SelectionLogic); // Use context to set fruit selection
     const [userQuestion, setUserQuestion] = useState(""); // State to store the user's question
     const [aiResponse, setAIResponse] = useState(""); // State to store the AI's response
     const [dailyScripture, setDailyScripture] = useState(""); // State to store the daily scripture and verse
@@ -23,6 +25,10 @@ const FOTHSMain = () => {
         setUserQuestion(e.target.value); // Update the user's question
     };
 
+    const handleFruitSelection = (fruit) => {
+        setFruitSelection(fruit); // Store the selected fruit globally
+        window.location.href = "./#/game-mode"; // Navigate to GameMode page
+      };
     
 
     const handleAskAI = async () => {
@@ -86,15 +92,15 @@ const FOTHSMain = () => {
                 <div className="foths-main-title"> Fruits of the Holy Spirit </div>
                 <div className="fruits-grid">
                     <div className="fruit-cards-row-1">
-                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1"><div className="responsive-fruit-card-text">Faith</div><FaithCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-2-hyperlink" className="fruit-card-2"><div className="responsive-fruit-card-text">Love</div><LoveCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-3-hyperlink" className="fruit-card-3"><div className="responsive-fruit-card-text">Peace</div><PeaceCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-4-hyperlink" className="fruit-card-4"><div className="responsive-fruit-card-text">Joy</div><JoyCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-5-hyperlink" className="fruit-card-5"><div className="responsive-fruit-card-text">Temperance</div><TemperanceCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-6-hyperlink" className="fruit-card-6"><div className="responsive-fruit-card-text">Meekness</div><MeeknessCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-7-hyperlink" className="fruit-card-7"><div className="responsive-fruit-card-text">Goodness</div><GoodnessCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-8-hyperlink" className="fruit-card-8"><div className="responsive-fruit-card-text">Gentleness</div><GentlenessCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-9-hyperlink" className="fruit-card-9"><div className="responsive-fruit-card-text">Longsuffering</div><LongsufferingCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1" onClick={() => handleFruitSelection('Faith')}><div className="responsive-fruit-card-text">Faith</div><FaithCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-2-hyperlink" className="fruit-card-2" onClick={() => handleFruitSelection('Love')}><div className="responsive-fruit-card-text">Love</div><LoveCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-3-hyperlink" className="fruit-card-3" onClick={() => handleFruitSelection('Peace')}><div className="responsive-fruit-card-text">Peace</div><PeaceCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-4-hyperlink" className="fruit-card-4" onClick={() => handleFruitSelection('Joy')}><div className="responsive-fruit-card-text">Joy</div><JoyCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-5-hyperlink" className="fruit-card-5" onClick={() => handleFruitSelection('Temperance')}><div className="responsive-fruit-card-text">Temperance</div><TemperanceCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-6-hyperlink" className="fruit-card-6" onClick={() => handleFruitSelection('Meekness')}><div className="responsive-fruit-card-text">Meekness</div><MeeknessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-7-hyperlink" className="fruit-card-7" onClick={() => handleFruitSelection('Goodness')}><div className="responsive-fruit-card-text">Goodness</div><GoodnessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-8-hyperlink" className="fruit-card-8" onClick={() => handleFruitSelection('Gentleness')}><div className="responsive-fruit-card-text">Gentleness</div><GentlenessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-9-hyperlink" className="fruit-card-9" onClick={() => handleFruitSelection('Longsuffering')}><div className="responsive-fruit-card-text">Longsuffering</div><LongsufferingCard/></a>
                     </div>
                 </div>
             </div>
