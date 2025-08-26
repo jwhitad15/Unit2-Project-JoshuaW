@@ -1,5 +1,5 @@
 import React from "react";
-import joyFruit from './Faith.png'
+import joyFruit from './Joy.png'
 
 function JoyCard() {
     return (
