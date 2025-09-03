@@ -1,22 +1,22 @@
 // This component controls the Study Mode Scripture carousel
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import FourElementHeader from "../header-components/header-4";
-import Footer from "../footer/footer";
-import Scriptures from "../../classes/scriptures";
+import FourElementHeader from "../header-components/FourElementHeader";
+import Footer from "../footer/Footer";
+import { SelectionLogic } from "./SelectionLogic.jsx"; // Import the context
 
 
 const Study = () => {
     const [wordData, setWordData] = useState(null); // Current scripture
     const [val, setVal] = useState(0); // Current index
-    const [faithScriptures, setFaithScriptures] = useState([]); // Filtered scriptures with FRUIT value of 'Faith'
-
+    const [filteredScriptures, setFilteredScriptures] = useState([]); // Filtered scriptures based on fruitSelection
+    const { fruitSelection } = useContext(SelectionLogic); // Get the selected fruit from context
     // Navigate to the next scripture
     const handleNext = () => {
-        if (val < faithScriptures.length - 1) {
+        if (val < filteredScriptures.length - 1) {
             const nextIndex = val + 1;
             setVal(nextIndex);
-            setWordData(faithScriptures[nextIndex]);
+            setWordData(filteredScriptures[nextIndex]);
         }
     };
 
@@ -25,32 +25,32 @@ const Study = () => {
         if (val > 0) {
             const prevIndex = val - 1;
             setVal(prevIndex);
-            setWordData(faithScriptures[prevIndex]);
+            setWordData(filteredScriptures[prevIndex]);
         }
     };
-
-    useEffect(() => {
-        fetchScripture();
-    }, []);
 
     const fetchScripture = async () => {
         try {
-            const response = await fetch('http://localhost:8080/scriptures'); // Fetch all scriptures
-            const data = await response.json();
-            console.log('Scripture data fetched successfully:', data);
-
-            // Filter scriptures with FRUIT value of 'Faith'
-            const filteredScriptures = data.filter(scripture => scripture.fruit === 'Faith');
-            setFaithScriptures(filteredScriptures);
-
-            // Set the initial scripture to display
-            if (filteredScriptures.length > 0) {
-                setWordData(filteredScriptures[0]);
-            }
+          const response = await fetch("http://localhost:8080/scriptures"); // Fetch all scriptures
+          const data = await response.json();
+          console.log("Scripture data fetched successfully:", data);
+    
+          // Filter scriptures based on the selected fruit
+          const filtered = data.filter((scripture) => scripture.fruit === fruitSelection);
+          setFilteredScriptures(filtered);
+    
+          // Set the initial scripture to display
+          if (filtered.length > 0) {
+            setWordData(filtered[0]);
+          }
         } catch (error) {
-            console.error('Error fetching scripture:', error);
+          console.error("Error fetching scripture:", error);
         }
-    };
+      };
+    
+    useEffect(() => {
+    fetchScripture(); // Fetch scriptures when the component mounts
+    }, [fruitSelection]); // Re-fetch scriptures when fruitSelection changes
 
     return (
         <div id="foths-main">
@@ -62,7 +62,7 @@ const Study = () => {
                 <button
                     onClick={handleNext}
                     className="study-next-button"
-                    disabled={val >= faithScriptures.length - 1} // Disable Next button if at the last scripture
+                    disabled={val >= filteredScriptures.length - 1} // Disable Next button if at the last scripture
                 >
                     <div id="study-button-text"> Next </div>
                     <div id="study-button-icon"> <FaArrowRightLong /> </div>
@@ -85,7 +85,7 @@ const Study = () => {
                     {wordData ? (
                         <p>{wordData.scripture}</p>
                     ) : (
-                        <p>No scriptures available</p>
+                        <p>No scriptures available for {fruitSelection}</p>
                     )}
                 </div>
                 <br />

@@ -1,10 +1,13 @@
-import React, { Component } from "react";
-import './multichoice.css'
-import Score from "./score";
-import FourElementHeader from "../header-components/header-4";
-import Footer from "../footer/footer";
+import React, { Component, useContext } from "react";
+import { SelectionLogic } from "../foths/SelectionLogic";
+import './Multichoice.css'
+import Score from "./Score";
+import FourElementHeader from "../header-components/FourElementHeader";
+import Footer from "../footer/Footer";
 
 class Multichoice extends Component {
+    static contextType = SelectionLogic; // Use contextType to access the SelectionLogic context
+
     constructor(props) {
         super(props);
         this.state = {
@@ -14,6 +17,7 @@ class Multichoice extends Component {
             score: 0, // Tracks the user's score
             quizEnd: false, // Tracks whether the quiz has ended
             showModal: false, // Controls the visibility of the modal
+            filteredScriptures: [], // Filtered scriptures based on fruitSelection
             answerOptions: [ // Array of answer options corresponding to question IDs
             ["Option 1A", "Option 1B", "Option 1C", "Option 1D"], // Question ID 1
             ["Option 2A", "Option 2B", "Option 2C", "Option 2D"], // Question ID 2
@@ -40,6 +44,14 @@ class Multichoice extends Component {
     };
 
     fetchQuestions = async () => {
+        const { fruitSelection } = this.context; // Get the selected fruit from context
+        console.log("Selected fruit:", fruitSelection); // Debugging
+
+        if (!fruitSelection) {
+            console.error("fruitSelection is undefined. Please select a fruit.");
+            return;
+        }
+
         try {
             // Fetch questions from the backend
             const response = await fetch("http://localhost:8080/questions"); // Replace with your backend endpoint
@@ -47,7 +59,6 @@ class Multichoice extends Component {
                 throw new Error(`Failed to fetch questions. Status: ${response.status}`);
             }
             const questionsData = await response.json();
-            console.log("Fetched questions:", questionsData); // Debug the fetched questions
     
             // Fetch scriptures from the backend
             const scripturesResponse = await fetch("http://localhost:8080/scriptures"); // Replace with your backend endpoint
@@ -55,33 +66,39 @@ class Multichoice extends Component {
                 throw new Error(`Failed to fetch scriptures. Status: ${scripturesResponse.status}`);
             }
             const scripturesData = await scripturesResponse.json();
-            console.log("Fetched scriptures:", scripturesData); // Debug the fetched scriptures
     
-            // Filter questions with FRUIT value of 'Faith'
-            const filteredQuestions = questionsData.filter(question => question.fruit === 'Faith');
+            // Filter questions by FRUIT value
+            const filteredQuestions = questionsData.filter((question) => question.fruit === fruitSelection);
+            console.log("Filtered questions:", filteredQuestions); // Debugging
+
             if (filteredQuestions && filteredQuestions.length > 0) {
-                // Populate answerOptions with values from the ANSWER column and random VERSE values
-                const answerOptions = filteredQuestions.map(question => {
-                    const randomVerses = scripturesData
-                        .map(scripture => scripture.verse) // Extract VERSE values
-                        .sort(() => Math.random() - 0.5) // Shuffle the array
-                        .slice(0, 3); // Take 3 random values
-    
-                    const options = [question.answer, ...randomVerses]; // Combine the ANSWER value with 3 random VERSE values
+                // Populate answerOptions with values from the ANSWER column
+                const answerOptions = filteredQuestions.map((question) => {
+                    const options = [question.answer, ...this.generateRandomOptions(questionsData, question.answer)];
                     return options.sort(() => Math.random() - 0.5); // Shuffle the options
                 });
-    
+
                 this.setState({
-                    questionBank: filteredQuestions,
+                    questionBank: filteredQuestions, // Update the filtered questions
                     answerOptions: answerOptions, // Update answerOptions in state
                 });
             } else {
-                console.error("No questions with FRUIT value 'Faith' found.");
+                console.warn(`No questions found for fruit: ${fruitSelection}`);
             }
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
+
+    generateRandomOptions = (questions, correctAnswer) => {
+        // Generate 3 random incorrect options from the question bank
+        const incorrectOptions = questions
+          .map((q) => q.answer)
+          .filter((answer) => answer !== correctAnswer)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
+        return incorrectOptions;
+      };
 
     handleOptionChange = (e) => {
         this.setState({ selectedOption: e.target.value });

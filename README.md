@@ -54,20 +54,52 @@ or..
 
 ## Database Instructions
 * To run FOTHS with real data, you'll need to successfully download and open MySQL workbench
-* Once open, you should see a small rectangle with "Local instance" as it's title; click this rectangle.
+  
+*Assuming you have access to the project's MySQL database...*
+  * connect to your local port upon opening MySQL
 
   > <img width="323" height="203" alt="Screenshot 2025-08-15 at 2 55 59 PM" src="https://github.com/user-attachments/assets/b53502b5-6764-47b0-9520-cce8ac3bf26e" />
-  * If it is your first time using MySQL, you'll need to create a password for your database
-  * If the initial set up steps are complete, enter your password.
-* In the upper left area of the IDE, click on the *Schemas* tab
-  * Right click inside the *Schemas* window and select *create schema*
-  * Label the schema *FOTHS*
-* Right click the newly made *FOTHS* database and select *create table*
-  * Label the table *user*
-* Create two additional tables in this manner - label them **scripture & question**, respectively
+  
+  * test table population by entering the following query commands for each table:
+    
+    > `SELECT * FROM user`
+    > 
+    > `SELECT * FROM scripture`
+    > 
+    > `SELECT * FROM question`
+    >
+    > *default table names are *user*, *scripture*, *question**
+    
+  * After execution of those commands, you should see the Column names for each of the tables in the viewport window.
+    * *double check these column names, as they will be important for troubleshooting your backend-database connection (should you need to troubleshoot)*
+    * *the column names for each table are as following:*
+      
+      > USER: first_name, last_name, email, username, password
+      > 
+      > SCRIPTURE: fruit, scripture, verse, lod (level of difficulty), translation, category
+      > 
+      > QUESTION: fruit, questions, answer, lod (level of difficulty), translation, category
+      > 
+      > *it is important to use the **exact** spelling of the column names, as IntelliJ will not recognize variations*
+      
+      
+*Assuming you do NOT have access to the project's MySQL database...*
 
+* If you do not have access to the original database, you will need to:
+  * recreate a database in the same way the original was setup
+    * *three data tables: user, scripture, question*
+      1. In the upper left area of the IDE, click on the *Schemas* tab
+      2. Right click inside the *Schemas* window and select *create schema*
+      3. Label the schema *FOTHS*
+      4. Right click the newly made *FOTHS* database and select *create table*
+      5. Label the table *user*
+      6. Create two additional tables in this manner - label them **scripture & question**, respectively* 
+    * *ensure each of the tables has the exact columns mentioned in the above section*
+    * check your *pom.xml* file to ensure it has the *MySQL connector dependency*; check your backend logic to ensure the data is being fetched from the correct table
+  * Once the tables are created according to the instructions, you will need to populate each table
+  * You will also need to fetch data from the database (see information on Postman & Java endpoints)
 
-After the *Database Instructions* have been completed, you may visit your Vite localhost link in your browser, and begin navigating the application
+* For more information on how to build a MySQL database, visit YouTube or your favorie search engine
 
 ***
 
@@ -82,22 +114,22 @@ After the *Database Instructions* have been completed, you may visit your Vite l
 ## FOTHS Technology Stack
 
 **Frontend**
-* JavaScript
 * React
 * Node.js
-* VS Code
 
 **Backend**
-* Java
+* Maven
 * Spring/SpringBoot
-* IntelliJ IDEA CE
+* Lombok
 * MySQL
-* Postman
 
 **Supplemental**
 * Github
 * Canva
 * Trello
 * Google Suite
+* Postman
+* VSC
+* IntelliJ IDEA CE
 
 ***

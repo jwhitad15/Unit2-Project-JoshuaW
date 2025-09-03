@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import UserFetch from "./user-fetch";
-import ScriptureFetch from "./scripture-fetch";
-import QuestionFetch from "./question-fetch";
-import AdminQuery from "./query";
-import Music from "./music";
-import AdminHeader from "../header-components/admin-header";
-import FetchDataComponent from "./fetch-data";
-import './admin.css';
-import AccountFooter from "../footer/account-footer";
+import UserFetch from "./UserFetch";
+import ScriptureFetch from "./ScriptureFetch";
+import QuestionFetch from "./QuestionFetch";
+import AdminQuery from "./AdminQuery";
+import Music from "./Music";
+import AdminHeader from "../header-components/AdminHeader";
+import FetchDataComponent from "./FetchDataComponent";
+import './Admin.css';
+import AccountFooter from "../footer/AccountFooter";
 
 
 

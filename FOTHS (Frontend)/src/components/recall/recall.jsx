@@ -1,29 +1,31 @@
 // Fill-in-the-blank component for Recall Mode
 
-import React, {useState, useEffect} from "react";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import FourElementHeader from "../header-components/header-4";
-import Footer from "../footer/footer";
+import React, {useState, useEffect, useContext} from "react";
+import { SelectionLogic } from "../foths/SelectionLogic.jsx"; // Import the context
+import FourElementHeader from "../header-components/FourElementHeader";
+import Footer from "../footer/Footer";
 import 'reactjs-popup/dist/index.css'
-import './recall.css';
+import './Recall.css';
 
 
  
  const Recall = () => {
      const [wordData, setWordData] = useState(null); // Current scripture
      const [val, setVal] = useState(0); // Current index
-     const [faithScriptures, setFaithScriptures] = useState([]); // Filtered scriptures with FRUIT value of 'Faith'
+     const [filteredScriptures, setFilteredScriptures] = useState([]); // Filtered scriptures with FRUIT value of 'Faith'
      const [userInput, setUserInput] = useState(""); // User input for recall mode
      const [validationMessage, setValidationMessage] = useState(""); // Message for validation feedback
      const [validationColor, setValidationColor] = useState(""); // Font color for validation feedback
      const [isModalOpen, setIsModalOpen] = useState(false); // State to toggle modal visibility
+     const { fruitSelection } = useContext(SelectionLogic);
+     const [scriptureData, setScriptureData] = useState([]);
  
      // Navigate to the next scripture
      const handleNext = () => {
-         if (val < faithScriptures.length - 1) {
+         if (val < filteredScriptures.length - 1) {
              const nextIndex = val + 1;
              setVal(nextIndex);
-             setWordData(faithScriptures[nextIndex]);
+             setWordData(filteredScriptures[nextIndex]);
              setUserInput(""); // Clear input for the next scripture
              setValidationMessage(""); // Clear validation message
              setValidationColor(""); // Clear validation color
@@ -43,8 +45,8 @@ import './recall.css';
              console.log('Scripture data fetched successfully:', data);
  
              // Filter scriptures with FRUIT value of 'Faith'
-             const filteredScriptures = data.filter(scripture => scripture.fruit === 'Faith');
-             setFaithScriptures(filteredScriptures);
+             const filteredScriptures = data.filter((scripture) => scripture.fruit === fruitSelection);
+             setFilteredScriptures(filteredScriptures);
  
              // Set the initial scripture to display
              if (filteredScriptures.length > 0) {
@@ -103,6 +105,10 @@ import './recall.css';
             window.removeEventListener('keydown', handleKeyPress); // Clean up listener
         };
     }, [userInput, wordData]); // Re-run effect when userInput or wordData changes
+
+    useEffect(() => {
+        fetchScripture();
+      }, [fruitSelection]);
  
      return (
          <div id="foths-main">
@@ -112,10 +118,10 @@ import './recall.css';
  
              <main className="study-display-verse">
                 <div>
-                    {wordData && wordData.fruit === 'Faith' ? (
+                    {wordData ? (
                         <p>{wordData.scripture}</p>
                     ) : (
-                        <p>No scriptures available</p>
+                        <p>No scriptures available for {fruitSelection}</p>
                     )}
                 </div>
                  <br />
@@ -142,6 +148,9 @@ import './recall.css';
              <Footer />
          </div>
      );
- };
+ 
+    
+
+};
  
  export default Recall;

@@ -20,14 +20,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 
+// Controller class for handling CRUD operations on Question entities
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/questions")
 public class QuestionController {
 
+    // Injecting the QuestionRepository to interact with the database
     @Autowired
     private final QuestionRepository questionRepository;
-
+    // Constructor for dependency injection of the QuestionRepository
     public QuestionController(QuestionRepository questionRepository) {this.questionRepository = questionRepository; }
 
     @GetMapping("")
