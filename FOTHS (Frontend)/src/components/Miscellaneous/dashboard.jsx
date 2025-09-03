@@ -1,4 +1,4 @@
-import Footer from "../footer/footer";
+import Footer from "../footer/Footer";
 import FourElementHeader from "../header-components/header-4";
 
 const Dashboard = () => {
@@ -12,7 +12,7 @@ const Dashboard = () => {
 
             <main>
                 <div className="dashboard-title"> Dashboard View </div> 
-                <a href="./#/foths" id="foths-card-hyperlink" className="FOTHS-dashboard-card"><hr style={{width: "70%"}}/>FOTHS<hr style={{width: "70%"}}/></a> 
+                <a href="./#/foths" id="foths-card-hyperlink" className="FOTHS-dashboard-card"><img src="src/components/Miscellaneous/FOTHS_Logo.png" className="fruit-card-image" alt="graphic-of-orange-fruit" width="90%"/></a> 
                 
             </main>
 
