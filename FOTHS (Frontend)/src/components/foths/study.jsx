@@ -1,8 +1,8 @@
 // This component controls the Study Mode Scripture carousel
 import React, {useEffect, useState, useContext} from "react";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import FourElementHeader from "../header-components/FourElementHeader";
-import Footer from "../footer/Footer";
+import FourElementHeader from "../header-components/FourElementHeader.jsx";
+import Footer from "../footer/Footer.jsx";
 import { SelectionLogic } from "./SelectionLogic.jsx"; // Import the context
 
 
