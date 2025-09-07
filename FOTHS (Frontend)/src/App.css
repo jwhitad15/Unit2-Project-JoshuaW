@@ -799,6 +799,7 @@ label {
   top: 21%;
   height: 5%;
   width: 68%;
+  font-size: 27px; 
   color: white;
   place-content: center;
   box-shadow: 8 14px 8px black;
@@ -2309,6 +2310,9 @@ p.welcome-title {
     .fruit-card-image {
       display: none;
     }
+    .FOTHS-fruit-image {
+      display: flex;
+    }
     
 }
 @media screen and (min-width: 1223px) {
@@ -2579,6 +2583,7 @@ p.welcome-title {
     width: 85.7%
   }
   .dashboard-title {
+    /* font-size: 24px; */
     width: 86%;
     left: 5.3%
   }
@@ -2621,6 +2626,13 @@ p.welcome-title {
     display: none;
   }
 }
+@media screen and (max-width: 618px) {
+ 
+  .dashboard-title {
+    font-size: 24px;
+  }
+}
+
   /* Dashboard media query*/
 @media only screen and (max-width: 600px) {
   .item1 {
@@ -2675,6 +2687,13 @@ p.welcome-title {
   }
 }
 @media screen and (max-width: 582px) {
+  .dashboard-title {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 545px) {
+  .footer-eBible-link { font-size: 17px;}
+  .footer-copyright {font-size: 10px;}
 }
 @media screen and (max-width: 543px) {
   .header-element-3 {font-size: 20px; width: 27%;}
@@ -2690,14 +2709,20 @@ p.welcome-title {
   }
 @media screen and (max-width: 523px) {
  #scrolling2 {width: 77%;}
- .footer-copyright {font-size: 7px;}
+ /* .footer-copyright {font-size: 7px;} */
 }
 @media screen and (max-width: 514px) {
   .about-app-card {font-size: xx-small;}
   .about-story-card {font-size: xx-small;}
 }
+@media screen and (max-width: 497px) {
+  .footer-eBible-link {font-size: 14.5px;}
+}
 @media screen and (max-width: 486px) {
 .footer-copyright {font-size: 8px;}
+}
+@media screen and (max-width: 473px) {
+  .footer-eBible-link {font-size: 14.5px;}
 }
 @media screen and (max-width: 471px) {
 .footer-copyright {font-size: 14px;}
@@ -2719,6 +2744,7 @@ h4 {font-size: 14px;}
  .header-element-3 {font-size: 20px; width: 33%;}
  .footer-copyright {font-size: 14px;}
  .scope {font-size: 16px;}
+ .dashboard-title {font-size: 18px;}
 }
 @media screen and (max-width: 449px) {
   .error-display-card {font-size: 12px;}
@@ -2742,4 +2768,8 @@ h4 {font-size: 14px;}
   .about-story-card {font-size: 8px; overflow: auto; }
   .about-app-card {left: 12%; right: 12%}
 
+}
+@media screen and (max-width: 412px) {
+  .dashboard-title {font-size: 16px;}
+  
 }

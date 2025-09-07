@@ -11,7 +11,7 @@ const Dashboard = () => {
             </header>
 
             <main>
-                <div className="dashboard-title"> Dashboard View </div> 
+                <div className="dashboard-title"> To Play a Game, Select a Game Card Below! </div> 
                 <a href="./#/foths" id="foths-card-hyperlink" className="FOTHS-dashboard-card"><img src="src/components/Miscellaneous/FOTHS_Logo.png" className="FOTHS-logo" alt="graphic-of-orange-fruit" width="90%"/></a> 
                 
             </main>
