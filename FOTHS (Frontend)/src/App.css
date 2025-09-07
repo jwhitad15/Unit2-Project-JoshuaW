@@ -2367,6 +2367,10 @@ p.welcome-title {
   .mobile-temperance {
     display: none;
   }
+
+  .scope-card-2 {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1011px) {

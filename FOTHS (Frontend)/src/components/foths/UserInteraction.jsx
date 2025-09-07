@@ -1,6 +1,6 @@
 // Component that receives user input
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DisplaySelectedDropdown from "./DisplaySelectedDropdown";
 import DisplayCustomGoal from "./DisplayCustomGoal";
 
@@ -18,6 +18,19 @@ const UserInteraction = () => {
 
   const [isValid, setIsValid] = useState(false);
   const [isCustomValid, setIsCustomValid] = useState(false);
+
+  // State to track screen width
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 1011);
+
+    // Update screen width state on resize
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobileView(window.innerWidth <= 1011);
+      };
+  
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
   // functions that handle events and allow program to execute logic
   const handleChange = e => {
@@ -92,8 +105,22 @@ const UserInteraction = () => {
       </form> <br/>
 
 
-      <div> { ((isValid && !titleSubmit && !goalSubmit) || (isValid && isCustomValid)) && <DisplaySelectedDropdown goalData={selectedGoal} />} </div>
-      <div> { isCustomValid && <DisplayCustomGoal data={goalSubmit} customTitle={titleSubmit} />} </div>
+      {/* Conditionally render output based on screen width */}
+      {isMobileView ? (
+        <div className="scope-card-2">
+          {((isValid && !titleSubmit && !goalSubmit) || (isValid && isCustomValid)) && (
+            <DisplaySelectedDropdown goalData={selectedGoal} />
+          )}
+          {isCustomValid && <DisplayCustomGoal data={goalSubmit} customTitle={titleSubmit} />}
+        </div>
+      ) : (
+        <div className="scope-card-1">
+          {((isValid && !titleSubmit && !goalSubmit) || (isValid && isCustomValid)) && (
+            <DisplaySelectedDropdown goalData={selectedGoal} />
+          )}
+          {isCustomValid && <DisplayCustomGoal data={goalSubmit} customTitle={titleSubmit} />}
+        </div>
+      )}
 
 
     </div>

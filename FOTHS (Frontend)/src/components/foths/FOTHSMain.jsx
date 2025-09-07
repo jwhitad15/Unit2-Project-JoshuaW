@@ -84,8 +84,7 @@ const FOTHSMain = () => {
             <aside>
                 <div className="scope">Scope</div>
                 <div className="scope-card-1"><UserInteraction/> </div>
-                <div className="scope-card-2"></div>
-                <div className="scope-card-3"> </div>
+                {/* <div className="scope-card-2"></div> */}
             </aside>
 
             <div className="foths-main">
