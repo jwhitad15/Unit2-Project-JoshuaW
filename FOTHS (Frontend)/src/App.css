@@ -2354,7 +2354,21 @@ p.welcome-title {
   .mobile-scope-breakpoint {display: none;}
   .recent-activity-card-2 {display: none;}
   .intro-window {height: 51%;}
+  .mobile-faith {display: none;}
+
+  .mobile-faith,
+  .mobile-love,
+  .mobile-joy, 
+  .mobile-peace,
+  .mobile-goodness,
+  .mobile-gentleness,
+  .mobile-meekness,
+  .mobile-longsuffering,
+  .mobile-temperance {
+    display: none;
+  }
 }
+
 @media screen and (max-width: 1011px) {
   aside {
     width: 93.1%;
@@ -2492,6 +2506,8 @@ p.welcome-title {
     }
 
   .fruit-card-1 {
+    display: flex;
+    justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
     width: 3%; /* Set width for the first card */
     height: 21%; /* Set height for the first card */
@@ -2499,6 +2515,8 @@ p.welcome-title {
     left: 5%;
   }
   .fruit-card-2 {
+    display: flex;
+    justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
     width: 3%; /* Same width as fruit-card-1 */
     height: 21%; /* Same height as fruit-card-1 */
@@ -2507,6 +2525,8 @@ p.welcome-title {
     /* display: none; */
   }
   .fruit-card-3 {
+    display: flex;
+    justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
     width: 3%; /* Same width as fruit-card-1 */
     height: 21%; /* Same height as fruit-card-1 */
@@ -2514,6 +2534,8 @@ p.welcome-title {
     left: 25.62%;
   }
   .fruit-card-4 {
+    display: flex;
+    justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
     width: 3%; /* Same width as fruit-card-1 */
     height: 21%; /* Same height as fruit-card-1 */
@@ -2521,6 +2543,8 @@ p.welcome-title {
     left: 35.94%;
   }
   .fruit-card-5 {
+    display: flex;
+    justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
     width: 3%; /* Same width as fruit-card-1 */
     height: 21%; /* Same height as fruit-card-1 */
@@ -2528,6 +2552,8 @@ p.welcome-title {
     left: 46.25%;
   }
   .fruit-card-6 {
+    display: flex;
+    justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
     width: 3%; /* Same width as fruit-card-1 */
     height: 21%; /* Same height as fruit-card-1 */
@@ -2535,6 +2561,8 @@ p.welcome-title {
     left: 56.56%;
   }
   .fruit-card-7 {
+    display: flex;
+    justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
     width: 3%; /* Same width as fruit-card-1 */
     height: 21%; /* Same height as fruit-card-1 */
@@ -2542,6 +2570,8 @@ p.welcome-title {
     left: 66.87%;
   }
   .fruit-card-8 {
+    display: flex;
+    justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
     width: 3%; /* Same width as fruit-card-1 */
     height: 21%; /* Same height as fruit-card-1 */
@@ -2549,11 +2579,19 @@ p.welcome-title {
     left: 77.19%;
   }
   .fruit-card-9 {
+    display: flex;
+    justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
     width: 3%; /* Same width as fruit-card-1 */
     height: 21%; /* Same height as fruit-card-1 */
     top: 32%; /* Adjust positioning if necessary */
     left: 87.5%;
+  }
+  .fruit-card-image {
+    display: none;
+  }
+  .responsive-fruit-card-text {
+    display: none;
   }
 }
 @media screen and (max-width: 944px) {
