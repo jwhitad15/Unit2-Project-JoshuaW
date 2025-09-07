@@ -12,7 +12,7 @@ const Dashboard = () => {
 
             <main>
                 <div className="dashboard-title"> Dashboard View </div> 
-                <a href="./#/foths" id="foths-card-hyperlink" className="FOTHS-dashboard-card"><img src="src/components/Miscellaneous/FOTHS_Logo.png" className="fruit-card-image" alt="graphic-of-orange-fruit" width="90%"/></a> 
+                <a href="./#/foths" id="foths-card-hyperlink" className="FOTHS-dashboard-card"><img src="src/components/Miscellaneous/FOTHS_Logo.png" className="FOTHS-logo" alt="graphic-of-orange-fruit" width="90%"/></a> 
                 
             </main>
 
