@@ -108,17 +108,14 @@ const UserInteraction = () => {
       {/* Conditionally render output based on screen width */}
       {isMobileView ? (
         <div className="scope-card-2">
-          {((isValid && !titleSubmit && !goalSubmit) || (isValid && isCustomValid)) && (
-            <DisplaySelectedDropdown goalData={selectedGoal} />
-          )}
-          {isCustomValid && <DisplayCustomGoal data={goalSubmit} customTitle={titleSubmit} />}
-        </div>
-      ) : (
-        <div className="scope-card-1">
-          {((isValid && !titleSubmit && !goalSubmit) || (isValid && isCustomValid)) && (
-            <DisplaySelectedDropdown goalData={selectedGoal} />
-          )}
-          {isCustomValid && <DisplayCustomGoal data={goalSubmit} customTitle={titleSubmit} />}
+          {((isValid && !titleSubmit && !goalSubmit) || (isValid && isCustomValid)) ? ( <> <DisplaySelectedDropdown goalData={selectedGoal} /> {isCustomValid && <DisplayCustomGoal data={goalSubmit} customTitle={titleSubmit} />} </>
+          ) : (
+          <p>Choose or create a goal to the left.</p>
+        )}
+      </div>
+    ) : (
+        <div >
+          {((isValid && !titleSubmit && !goalSubmit) || (isValid && isCustomValid)) && ( <DisplaySelectedDropdown goalData={selectedGoal} /> )}{isCustomValid && <DisplayCustomGoal data={goalSubmit} customTitle={titleSubmit} />}
         </div>
       )}
 

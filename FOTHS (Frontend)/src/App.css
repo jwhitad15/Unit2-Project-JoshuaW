@@ -1885,6 +1885,7 @@ aside {
   place-content: center;
   position: absolute;
   top: 18.8%;
+  height: auto;
   width: 75.6%;
   padding-left: 2%;
   padding-right: 2%;
@@ -1893,6 +1894,25 @@ aside {
   -webkit-box-shadow: 0 0 10px #fff;
   box-shadow: 0 0 5px black;
 }
+
+.scope-card-2 {
+  border: outset;
+  border: 3px outset white;
+  border-radius: 8px;
+  background-color: #a64444;
+  color: white;
+  place-content: center;
+  position: absolute;
+  top: 25.5%;
+  width: 75.6%;
+  padding-left: 2%;
+  padding-right: 2%;
+  font-size: x-small;
+  box-shadow: 8 14px 8px black;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0 0 5px black;
+}
+
 
 .scope-card {
   border: outset;
@@ -2369,7 +2389,7 @@ p.welcome-title {
   }
 
   .scope-card-2 {
-    display: none;
+    display: none
   }
 }
 
@@ -2377,7 +2397,7 @@ p.welcome-title {
   aside {
     width: 93.1%;
     top: 58.3%;
-    height: 29.7%;
+    height: 30.7%;
   }
   nav {
     height: 12%;
@@ -2385,6 +2405,30 @@ p.welcome-title {
     width: 93.1%;
     top: 15.93%;
     z-index: -1;
+  }
+  .custom-title-scope-textfield {
+    border: 2.1px inset #1d3461;
+    border-radius: 5px;
+    background-color: #cdc5b4;
+    color: #1d3461;
+    width: 90%;
+    height: 10px; 
+  }
+  .custom-description-scope-textfield {
+    border: 2.1px inset #1d3461;
+    border-radius: 5px;
+    background-color: #cdc5b4;
+    color: #1d3461;
+    width: 95%;
+    height: 50px; 
+  }
+  .scope-preset-item {
+    line-height: 8px;
+  }
+  .goal-select {
+    width: 95%;
+    height: 25px;
+    background-color: #cdc5b4;
   }
   .study-next-button {
     font-size: 18px;
@@ -2455,7 +2499,13 @@ p.welcome-title {
     display: none;
   }
   .mobile-response-custom-goal {left: 58.6%; top: 61.7%; width: 25%; height: 21.2%; z-index: 1;}
-  .scope-card-1 {position: fixed; left: 5%; top: 60%; width: 20%; height: 26.3%; overflow: auto;}
+  .scope-card-1 {
+    position: fixed;
+     left: 14%; 
+     top: 60.3%; 
+     width: 31%; 
+     height: 26.3%; 
+     overflow: auto;}
   .scope-card-2 {
     border: outset;
     border: 3px outset white;
@@ -2464,9 +2514,9 @@ p.welcome-title {
     color: white;
     place-content: center;
     position: fixed;
-    top: 60%;
-    width: 20%;
-    left: 37.7%;
+    top: 60.3%;
+    width: 31%;
+    left: 55%;
     padding-left: 2%;
     padding-right: 2%;
     font-size: x-small;
@@ -2599,6 +2649,14 @@ p.welcome-title {
   }
 }
 @media screen and (max-width: 944px) {
+  .custom-title-scope-textfield {
+    border: 2.1px inset #1d3461;
+    border-radius: 5px;
+    background-color: #cdc5b4;
+    color: #1d3461;
+    width: 86%;
+    height: 10px; 
+  }
 }
 @media screen and (max-width: 871px) {
   .header-element-3 {font-size: 21px;}
@@ -2736,6 +2794,14 @@ p.welcome-title {
 @media screen and (max-width: 545px) {
   .footer-eBible-link { font-size: 17px;}
   .footer-copyright {font-size: 10px;}
+  .custom-title-scope-textfield {
+    border: 2.1px inset #1d3461;
+    border-radius: 5px;
+    background-color: #cdc5b4;
+    color: #1d3461;
+    width: 86%;
+    height: 10px; 
+  }
 }
 @media screen and (max-width: 543px) {
   .header-element-3 {font-size: 20px; width: 27%;}
@@ -2776,6 +2842,14 @@ h4 {font-size: 14px;}
 }
 @media screen and (max-width: 465px) {
 .footer-copyright {font-size: 8px;}
+.custom-title-scope-textfield {
+  border: 2.1px inset #1d3461;
+  border-radius: 5px;
+  background-color: #cdc5b4;
+  color: #1d3461;
+  width: 81%;
+  height: 10px; 
+}
 }
 @media screen and (max-width: 464px) {
   .footer-copyright {font-size: 7px;}
