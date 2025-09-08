@@ -1,3 +1,14 @@
+@media screen and (max-width: 1461px) {
+    .fixed-element {
+        width: 60%;
+}
+}
+@media screen and (max-width: 1300px) {
+    .quiz-submit-button {
+        left: 45%;
+    }
+  
+}
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -83,37 +94,73 @@
     position: fixed;
     background-color: #a64444;
     border: outset #1d3461;
-    height: 5%;
-    width: 12%;
-    left: 20%;
+    top: 44%;
+        height: 4%;
+        width: 29%;
+        left: 20%;
     padding-top: 20px;
 }
 .option-2 {
     position: fixed;
     background-color: #a64444;
     border: outset #1d3461;
-    height: 5%;
-    width: 12%;
-    left: 36%;
+    top: 44%;
+        left: 51%; 
+        height: 4%;
+        width: 29%;
     padding-top: 20px;
 }
 .option-3 {
     position: fixed;
     background-color: #a64444;
     border: outset #1d3461;
-    height: 5%;
-    width: 12%;
-    left: 52%;
+    top: 53%;
+    left: 20%;
+    height: 4%;
+    width: 29%;
     padding-top: 20px;
 }
 .option-4 {
     position: fixed;
     background-color: #a64444;
     border: outset #1d3461;
-    height: 5%;
-    width: 12%;
+    top: 53%;
+    left: 51%;
+    height: 4%;
+    width: 29%;
     right: 20%;
     padding-top: 20px;
+}
+@media screen and (max-width: 1011px) {
+    .option-1  {
+        top: 44%;
+        height: 4%;
+        width: 29%;
+    }
+    .option-2 {
+        top: 44%;
+        left: 51%; 
+        height: 4%;
+        width: 29%;
+    }
+    .option-3 {
+        top: 53%;
+        left: 20%;
+        height: 4%;
+        width: 29%;
+    }
+    .option-4 {
+        top: 53%;
+        left: 51%;
+        height: 4%;
+        width: 29%;
+    }
+    .form-check {
+        font-size: 8px;
+    }
+    .answer-option-text {
+        font-size: 8px;
+    }
 }
 
 .fixed-element {
@@ -124,6 +171,7 @@
     left: 20%; /* 5px away from the left side */
     right: 20%; /* 5px away from the right side */
     height: 14%; /* Fixed height */
+    width: 60%; /* Fixed width */
     color: white;
     background-color: #1d3461; /* Blue background */
     border: outset;
@@ -146,13 +194,53 @@
 
 .quiz-submit-button {
     position: fixed;
-    top: 61%;
-    width: 8%;
-    left: 46%;
+    top: 62%;
+    /* width: 8%; */
+    left: 47.7%;
     background-color: #a64444; /* Red background */
     color: white;
     border: outset 2px white; /* White outset border */
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
+    display: flex; /* Flex display */
+    justify-content: center;
 }
+
+@media screen and (max-width: 1011px) {
+    .quiz-submit-button {
+        position: fixed;
+        top: 62%;
+        left: 45%;
+    }
+}
+@media screen and (max-width: 777px) {
+    .quiz-submit-button {
+        position: fixed;
+        top: 62%;
+        left: 44%;
+    }
+}
+@media screen and (max-width: 611px) {
+    .quiz-submit-button {
+        position: fixed;
+        top: 62%;
+        left: 43%;
+    }
+}
+@media screen and (max-width: 555px) {
+    .quiz-submit-button {
+        position: fixed;
+        top: 62%;
+        left: 42%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .quiz-submit-button {
+        position: fixed;
+        top: 62%;
+        left: 39%;
+    }
+}
+
+

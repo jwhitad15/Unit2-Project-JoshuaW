@@ -159,14 +159,14 @@ class Multichoice extends Component {
                                 {answerOptions[currentQuestion]?.map((option, index) => (
                                     <div key={index} className={`option-${index + 1}`}>
                                         <div className="checkbox-container">
-                                            <label>
+                                            <label className="answer-option-text">
                                                 <input
                                                     type="checkbox"
                                                     value={option}
                                                     checked={selectedOption === option}
                                                     onChange={this.handleOptionChange}
                                                 />
-                                                {option}
+                                                {option} 
                                             </label>
                                         </div>
                                     </div>

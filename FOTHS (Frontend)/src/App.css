@@ -2237,6 +2237,11 @@ p.welcome-title {
 }
 
 /* Media Queries */
+@media screen and (max-width: 1461px) {
+  #option-1, #option-2, #option-3, #option-4 {
+    font-size: calc(16px - ((1461px - 100vw) / 225)); /* Dynamically decrease font size */
+  }
+}
 @media screen and (min-width: 1351px) {
   .responsive-fruit-card-text {display: none;}
   .fruit-card-image{height: 100%}}
@@ -2406,6 +2411,9 @@ p.welcome-title {
     top: 15.93%;
     z-index: -1;
   }
+  .answer-option-text {
+    font-size: 8px;
+}
   .custom-title-scope-textfield {
     border: 2.1px inset #1d3461;
     border-radius: 5px;
@@ -2687,8 +2695,8 @@ p.welcome-title {
     width: 86%;
     left: 5.3%
   }
-  .study-next-button {top: 82%; left: 15%; width: 12%;}
-  .study-previous-button {top: 82%; left: 75.5%; width: 12%;}
+  .study-next-button {top: 82%; left: 75.5%; width: 12%;}
+  .study-previous-button {top: 82%; left: 15%; width: 12%;}
   .about-story-card {font-size: x-small;}
 }
 @media screen and (max-width: 765px) {
