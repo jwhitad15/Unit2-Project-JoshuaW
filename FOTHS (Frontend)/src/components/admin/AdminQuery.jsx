@@ -218,17 +218,19 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
 
         <label className="scope-presetGoals-banner"><hr/>PARAMETERS<hr/> <br/> </label>
 
-        <label htmlFor="goals">Command</label> <br/>
-        <select id="goals"   className="goal-select"  value={command} onChange={handleCommandChange} >
-          <option value=""></option>
+        <label className="command-title" htmlFor="goals">Command</label> <br/>
+        <select id="goals"   className="goal-select"  placeholder="Command" value={command} onChange={handleCommandChange} >
+          <option id="mcp" className="mobile-command-placeholder" value="">- COMMAND -</option>
+          <option className="desktop-command-placeholder" value=""></option>
           <option value="view">View</option>
           <option value="add">Add</option>
           <option value="update">Update</option>
           <option value="delete">Delete</option>
         </select> <br /> <br className="desktop-scope-breakpoint" />
-        <label >Type</label> <br/>
+        <label className="type-title" >Type</label> <br/>
         <select id="goals"  className="goal-select" value={type} onChange={handleTypeChange}>
-          <option value=""></option>
+          <option className="mobile-type-placeholder" value="">- TYPE -</option>
+          <option className="desktop-type-placeholder" value=""></option>
           <option value="users">User</option>
           <option value="scriptures">Scripture</option>
           <option value="questions">Question</option>

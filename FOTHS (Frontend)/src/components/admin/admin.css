@@ -217,3 +217,248 @@ input#answer.admin-textfield {background-color: #1d3461; color: white; border-co
   border-radius: 5px; /* Rounded corners */
   overflow: scroll;
 }
+
+@media screen and (max-width: 1011px) {
+  .user-nav-css {
+    width: 93.3%;
+    top: 65.3%;
+    height: 23.7%;
+    left: 3.2%;
+  }
+  .user-account-aside {
+    height: 17.3%;
+    left: 3.2%;
+    width: 93.1%;
+    top: 15.93%;
+    z-index: -1;
+  }
+  .utilities {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    top: 17.73%;
+    width: 1%;
+    height: 13.4%;
+    left: 5%;
+    font-size: 20px;
+  }
+  .foths-main {
+    top: 35.3%;
+    left: 3.2%;
+    width: 93.5%;
+    height: 28.2%;
+  }
+  .user-info-column {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 auto; /* Prevent shrinking or growing */
+    left: 5%;
+    top: 67.1%;
+    height: 19.6%;
+    width: 1%;
+  }
+  .user-info-card {
+    left: 13.4%;
+    top: 67.1%;
+    height: 19.6%;
+    width: 21%;
+  }
+  .user-recent-activity {
+    left: 41.3%;
+    top: 67.1%;
+    height: 19.6%;
+    width: 21%;
+  }
+  .user-scope-display {
+    left: 69.2%;
+    top: 67.1%;
+    height: 19.6%;
+    width: 21%;
+  }
+  main.ua-study-window {
+    position: fixed;
+    top: 37.1%;
+    left: 5%;
+    height: 24%;
+    width: 85.1%;
+  }
+  main#ua-window {
+    position: fixed;
+    top: 39%;
+    left: 7%;
+    height: 20.8%;
+    width: 81.5%;
+  }
+  .util-bible {
+    position: fixed;
+    top: 17.73%;
+    left: 13.4%;
+    width: 44.1%;
+    height: 13.4%;
+    overflow: scroll;
+  }
+  .audio {
+    /* position: fixed; */
+    /* width: 140%; */
+    /* height: 13.5%; */
+    /* left: 82%; */
+    top: 17.71%;
+    /* height: 100%; */
+    /* left: 82%; */
+  }
+ 
+  .util-timer {
+    /* display: none; */
+    position: fixed;
+    width: 25.2%;
+    height: 13.5%;
+    left: 64.8%;
+    top: 17.71%;
+    justify-content: center;
+    align-items: center;
+    place-content: center;
+  }
+
+  .command-title, 
+  .type-title,
+  .desktop-command-placeholder, 
+  .desktop-type-placeholder {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1027px) {
+  .admin-header-element,
+  a.header-element-3 {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1012px) {
+  #mcp,
+  .mobile-command-placeholder,
+  .mobile-type-placeholder,
+  .mobile-record-details {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1011px) {
+  img.mobile-record-details {
+    height: 100%;
+  }
+  .desktop-record-details,
+  .desktop-control-center {
+    display: none;
+  }
+}
+@media screen and (max-width: 921px) {
+  .admin-header-element,
+  a.header-element-3 {
+    font-size: 16px;
+  }
+  
+}
+@media screen and (max-width: 737px) {
+  .admin-header-element {
+    width: 22%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .user-info-column {
+    left: 5%;
+    top: 67.1%;
+    height: 19.6%;
+    width: 2%;
+  }
+  .utilities {
+    top: 17.73%;
+    width: 2%;
+    height: 13.4%;
+    left: 5%;
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 604px) {
+  .admin-header-element {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 580px) {
+  .foths-from-account {
+    display: none;
+  }
+}
+@media screen and (max-width: 579px) {
+  .play-foths-from-account {
+    display: none;
+  }
+}
+@media screen and (max-width: 530px) {
+  .util-bible {
+    left: 14%;
+  }
+  .user-info-column {
+    left: 5%;
+    top: 67.1%;
+    height: 19.6%;
+    width: 2%;
+  }
+  .utilities {
+    top: 17.73%;
+    width: 2%;
+    height: 13.4%;
+    left: 5%;
+    font-size: 20px;
+    /* display: none; */
+  }
+  div.admin-header-element {
+    display: none;
+  }
+  a#card-hyperlink.admin-header-element { 
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 497px) {
+  a.footer-eiBible-link {
+    font-size: 14px;
+  }
+
+  .footer-notepad-link,
+  .footer-about-link,
+  .account-footer-admin-link {
+    font-size: 14px;
+  }
+
+  .user-info-column {
+    display: none;
+  }
+
+  .user-info-card {
+    left: 5%;
+    width: 23%;
+  }
+
+  .user-recent-activity {
+    left: 36%;
+    width: 23%;
+  }
+
+  .user-scope-display {
+    left: 66.8%;
+    width: 23%;
+  }
+
+  .utilities {
+    display: none;
+  }
+
+  .util-bible {
+    left: 5%;
+  }
+
+  .util-timer {
+    left: 56.8%;
+    width: 33%;
+  }
+}

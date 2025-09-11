@@ -75,7 +75,7 @@ const Admin = () => {
 
             {/* Dynamic Component that receives user input to display in another element */}
             <div className="user-account-aside">
-                <div className="utilities">Database Query</div>
+                <div className="utilities"><img src="src/components/admin/images/MobileControlCenter.svg" className="mobile-faith" alt="mobile-faith-image" /><div className="desktop-control-center">Database Query</div></div>
                 <div className="util-bible"><AdminQuery setFetchedData={setFetchedData} setSelectedType={setSelectedType} userData={userData} questionData={questionData} scriptureData={scriptureData}/> </div>
                 <div className="util-timer"><Music/></div>
                 <div id="app"></div>
@@ -90,7 +90,7 @@ const Admin = () => {
             </div>
 
             <div className="user-nav-css">
-                <div className="user-info-column">Query Details</div>
+                <div className="user-info-column"><img src="src/components/admin/images/MobileRecordDetails.svg" className="mobile-record-details" alt="mobile-faith-image" /><div className="desktop-record-details">Record Details</div></div>
                 
                 <div className="user-info-card">
                     <p className="user-info-title">{getTitle()}</p>

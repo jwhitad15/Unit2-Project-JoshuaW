@@ -2832,7 +2832,10 @@ p.welcome-title {
   .about-story-card {font-size: xx-small;}
 }
 @media screen and (max-width: 497px) {
-  .footer-eBible-link {font-size: 14.5px;}
+  .footer-eBible-link {font-size: 18px;}
+}
+@media screen and (max-width: 488px) {
+  .footer-eBible-link {font-size: 16px;}
 }
 @media screen and (max-width: 486px) {
 .footer-copyright {font-size: 8px;}
