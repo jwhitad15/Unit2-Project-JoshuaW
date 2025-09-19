@@ -41,6 +41,7 @@
   }
 
   #ua-window {
+    position: sticky;
     border: inset;
     border-radius: 4px;
     border-color: #1d3461;
@@ -128,6 +129,7 @@ input#answer.admin-textfield {background-color: #1d3461; color: white; border-co
 
 /* Admin Fetch Table CSS */
 .fetch-table {
+  position: relative;
   width: 105%; /* Reduce table width */
   border-collapse: collapse; /* Ensure borders don't overlap */
   margin-top: 181px;
@@ -218,11 +220,39 @@ input#answer.admin-textfield {background-color: #1d3461; color: white; border-co
   overflow: scroll;
 }
 
+@media screen and (max-width: 1559px) {
+  .admin-textfield {
+    width: 80%;
+}
+}
+@media screen and (max-width: 1200px) {
+  .admin-textfield::placeholder {
+    font-size: 14px;
+}
+}
+@media screen and (max-width: 1100px) {
+  .admin-textfield::placeholder {
+    font-size: 12px;
+}
+}
+
 @media screen and (max-width: 1011px) {
+  .admin-textfield::placeholder {
+    font-size: 16px;
+}
+main.ua-fetch-window { 
+  top: 35.3%;
+  left: 3.2%;
+  width: 89%;
+  height: 5%;
+  position: fixed;
+  background-color: #cdc5b4;
+}
+
   .user-nav-css {
     width: 93.3%;
-    top: 65.3%;
-    height: 23.7%;
+    top: 71.7%;
+    height: 17.3%;
     left: 3.2%;
   }
   .user-account-aside {
@@ -243,50 +273,53 @@ input#answer.admin-textfield {background-color: #1d3461; color: white; border-co
     font-size: 20px;
   }
   .foths-main {
-    top: 35.3%;
+    top: 42.5%;
     left: 3.2%;
     width: 93.5%;
-    height: 28.2%;
+    height: 27.4%;
   }
   .user-info-column {
     display: flex;
     justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
     left: 5%;
-    top: 67.1%;
-    height: 19.6%;
+    top: 73.5%;
+    height: 13.2%;
     width: 1%;
   }
   .user-info-card {
     left: 13.4%;
-    top: 67.1%;
-    height: 19.6%;
+    top: 73.5%;
+    height: 13.2%;
     width: 21%;
+    overflow: scroll;
   }
   .user-recent-activity {
     left: 41.3%;
-    top: 67.1%;
-    height: 19.6%;
+    top: 73.5%;
+    height: 13.2%;
     width: 21%;
+    overflow: scroll;
   }
   .user-scope-display {
     left: 69.2%;
-    top: 67.1%;
-    height: 19.6%;
+    top: 73.5%;
+    height: 13.2%;
     width: 21%;
+    overflow: scroll;
   }
   main.ua-study-window {
     position: fixed;
-    top: 37.1%;
+    top: 44.3%;
     left: 5%;
-    height: 24%;
+    height: 23.2%;
     width: 85.1%;
   }
   main#ua-window {
     position: fixed;
-    top: 39%;
+    top: 46.2%;
     left: 7%;
-    height: 20.8%;
+    height: 20%;
     width: 81.5%;
   }
   .util-bible {
@@ -366,8 +399,8 @@ input#answer.admin-textfield {background-color: #1d3461; color: white; border-co
 @media screen and (max-width: 700px) {
   .user-info-column {
     left: 5%;
-    top: 67.1%;
-    height: 19.6%;
+    top: 73.5%;
+    height: 13.4%;
     width: 2%;
   }
   .utilities {
@@ -378,9 +411,19 @@ input#answer.admin-textfield {background-color: #1d3461; color: white; border-co
     font-size: 20px;
   }
 }
+@media screen and (max-width: 630px) {
+.admin-textfield::placeholder {
+  font-size: 14px;
+}
+}
 @media screen and (max-width: 604px) {
   .admin-header-element {
     font-size: 14px;
+  }
+}
+@media screen and (max-width: 600px) {
+  main.ua-fetch-window {
+    flex-direction: row;
   }
 }
 @media screen and (min-width: 580px) {
@@ -388,8 +431,16 @@ input#answer.admin-textfield {background-color: #1d3461; color: white; border-co
     display: none;
   }
 }
+@media screen and (min-width: 579px) {
+  .ua-fetch-placeholder-mobile {
+    display: none;
+  }
+}
 @media screen and (max-width: 579px) {
   .play-foths-from-account {
+    display: none;
+  }
+  .ua-fetch-placeholder-mobile {
     display: none;
   }
 }
@@ -399,8 +450,8 @@ input#answer.admin-textfield {background-color: #1d3461; color: white; border-co
   }
   .user-info-column {
     left: 5%;
-    top: 67.1%;
-    height: 19.6%;
+    top: 73.4%;
+    height: 13.4%;
     width: 2%;
   }
   .utilities {
