@@ -220,9 +220,18 @@ input#answer.admin-textfield {background-color: #1d3461; color: white; border-co
   overflow: scroll;
 }
 
+/* ADD more linked components next time - don't try to fit everything on one page. Make the user click thru */
 @media screen and (max-width: 1559px) {
   .admin-textfield {
     width: 80%;
+}
+.fruit-dropdown-select,
+  .difficulty-dropdown-select,
+  .translation-dropdown-select {
+    width: 100%;
+}
+.user-info-column {
+  font-size: 23px;
 }
 }
 @media screen and (max-width: 1200px) {
