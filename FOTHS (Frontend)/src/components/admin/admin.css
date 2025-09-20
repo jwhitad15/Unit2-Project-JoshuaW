@@ -519,10 +519,23 @@ main.ua-fetch-window {
 
   .util-bible {
     left: 5%;
+    width: 39%;
   }
 
   .util-timer {
-    left: 56.8%;
-    width: 33%;
+    left: 51.8%;
+    width: 38%;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .util-bible {
+    left: 5%;
+    width: 35%;
+  }
+
+  .util-timer {
+    left: 47.8%;
+    width: 42%;
   }
 }

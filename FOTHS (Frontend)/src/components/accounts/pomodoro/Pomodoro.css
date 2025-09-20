@@ -227,3 +227,15 @@ button {
     
     
   }
+
+  @media screen and (max-height: 808px) {
+    
+    .mobile-set,
+    .mobile-start,
+    .mobile-pause,
+    .mobile-reset {
+        font-size: xx-small;
+        /* left:  */
+    }
+    
+  }
