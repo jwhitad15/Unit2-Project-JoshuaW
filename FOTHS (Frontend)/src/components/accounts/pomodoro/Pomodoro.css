@@ -95,3 +95,135 @@ button {
     -webkit-box-shadow: 0 0 10px #fff;
     box-shadow: 0 0 5px black;
   }
+
+  @media screen and (max-width: 1725px) {
+    
+    .desktop-pause,
+    .desktop-start,
+    .desktop-reset,
+    .desktop-set {
+        font-size: small;
+    }
+    
+  }
+  @media screen and (max-width: 1725px) {
+    
+    .desktop-pause,
+    .desktop-start,
+    .desktop-reset,
+    .desktop-set {
+        display: none;
+    }
+    
+  }
+  @media screen and (min-width: 1724px) {
+    
+    .mobile-pause,
+    .mobile-start,
+    .mobile-reset,
+    .mobile-set {
+        display: none;
+    }
+    
+  }
+  @media screen and (min-width: 1375px) {
+    
+    
+    
+  }
+  @media screen and (max-width: 1190px) {
+    
+    .mobile-pause,
+    .mobile-start,
+    .mobile-reset,
+    .mobile-set {
+       font-size: small;
+    }
+
+    input.pomoTextInput {
+        width: 50px;
+    } 
+    
+  }
+  @media screen and (max-width: 1111px) {
+    
+    .mobile-pause,
+    .mobile-start,
+    .mobile-reset,
+    .mobile-set {
+       font-size: x-small;
+    }
+    
+  }
+  @media screen and (max-width: 1031px) {
+    
+    .mobile-pause,
+    .mobile-start,
+    .mobile-reset,
+    .mobile-set {
+       font-size: xx-small;
+    }
+    
+  }
+  @media screen and (max-width: 1011px) {
+    
+    .desktop-set,
+    .desktop-start,
+    .desktop-pause,
+    .desktop-reset {
+        display: none;
+        
+    }
+
+    .mobile-pause,
+    .mobile-start,
+    .mobile-reset,
+    .mobile-set {
+       font-size: large;
+    }
+
+    input.pomoTextInput {
+        width: 80px;
+    }
+    
+  }
+  @media screen and (max-width: 714px) {
+    
+    .mobile-set,
+    .mobile-start,
+    .mobile-pause,
+    .mobile-reset {
+        font-size: small;
+    
+  }
+  }
+
+  @media screen and (max-width: 667px) {
+    
+    input.pomoTextInput {
+        width: 90px
+    }
+    
+  }
+  @media screen and (max-width: 628px) {
+    
+    input.pomoTextInput {
+        width: 65px
+    }
+    input.pomoTextInput::placeholder {
+        font-size: small;
+    }
+    
+    
+  }
+  @media screen and (max-width: 534px) {
+    
+    input.pomoTextInput {
+        width: 45px;;
+    }
+    input.pomoTextInput::placeholder {
+        display: none;
+    }
+    
+    
+  }

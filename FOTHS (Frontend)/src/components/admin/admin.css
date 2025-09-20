@@ -490,8 +490,12 @@ main.ua-fetch-window {
     font-size: 14px;
   }
 
-  .user-info-column {
+  
+  div.ua-user-info-card {
     display: none;
+  }
+  div.ua-user-recent-activity {
+    width: 43%;
   }
 
   .user-info-card {

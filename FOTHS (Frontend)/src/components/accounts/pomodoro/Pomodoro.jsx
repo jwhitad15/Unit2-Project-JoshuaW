@@ -1,5 +1,9 @@
 // Pomodoro Timer Component for User study sessions
 import React, { useState, useRef } from "react";
+import { IoPlayOutline } from "react-icons/io5";
+import { CiPause1 } from "react-icons/ci";
+import { RiResetLeftLine } from "react-icons/ri";
+import { IoMdCheckmark } from "react-icons/io";
 import './Pomodoro.css'
 
 const Pomodoro = () => {
@@ -69,13 +73,13 @@ const Pomodoro = () => {
 
                 <div className="pomoTimer" id="pomoTimer"> 
                     {formatTime(time)}
-                    <input type="number" className="pomoTextInput" placeholder="Enter Time" value={inputMinutes} onChange={handleInputChange} />
+                    <input type="number" className="pomoTextInput" placeholder="00 : 00" value={inputMinutes} onChange={handleInputChange} />
                 </div>
                 <div className="pomoButton">
-                    <button onClick={handleSetTimer}>Set</button>
-                    <button id="start" onClick={handleStart}>Start</button>
-                    <button id="pause" onClick={handlePause}>Pause</button>
-                    <button id="reset" onClick={handleReset}>Reset</button>
+                    <button onClick={handleSetTimer}><div className="desktop-set">Set</div><div className="mobile-set"><IoMdCheckmark /></div></button>
+                    <button id="start" onClick={handleStart}> <div className="desktop-start">Start</div><div className="mobile-start"><IoPlayOutline /></div></button>
+                    <button id="pause" onClick={handlePause}> <div className="desktop-pause">Pause</div><div className="mobile-pause"><CiPause1 /></div></button>
+                    <button id="reset" onClick={handleReset}> <div className="desktop-reset">Reset</div><div className="mobile-reset"><RiResetLeftLine /></div></button> 
                 </div>
 
            

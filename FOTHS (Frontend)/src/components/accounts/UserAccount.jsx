@@ -133,7 +133,6 @@ const UserAccount = () => {
                 const updateTimestamp = () => {
                     const now = new Date();
                     const formattedDate = now.toLocaleDateString("en-US", {
-                        weekday: "short",
                         year: "numeric",
                         month: "short",
                         day: "numeric",
