@@ -250,11 +250,6 @@
         font-size: 10px;
     }
 }
-/* @media screen and (max-width: 645px) {
-    label.answer-option-text {
-        font-size: 18px;
-    }
-} */
 @media screen and (max-width: 611px) {
     .quiz-submit-button {
         position: fixed;
