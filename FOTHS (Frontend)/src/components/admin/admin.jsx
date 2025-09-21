@@ -81,7 +81,7 @@ const Admin = () => {
                 <div id="app"></div>
             </div>
 
-            <div className="foths-main">
+            <div className="account-main">
                 <div className="foths-main-title"> Administrative Dashboard </div>
                 {renderComponent()}
                 <main className="ua-study-window"></main>
@@ -90,7 +90,7 @@ const Admin = () => {
             </div>
 
             <div className="user-nav-css">
-                <div className="user-info-column"><img src="src/components/admin/images/MobileDetailsImage.svg" className="mobile-record-details" alt="mobile-faith-image" /><div className="desktop-record-details">Details</div></div>
+                <div className="admin-info-column"><img src="src/components/admin/images/MobileDetailsImage.svg" className="mobile-record-details" alt="mobile-faith-image" /><div className="desktop-record-details">Details</div></div>
                 
                 <div className="user-info-card">
                     <p className="user-info-title">{getTitle()}</p>

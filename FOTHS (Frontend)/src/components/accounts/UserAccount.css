@@ -217,6 +217,7 @@
     width: 100px;
   }
 
+
 main#ua-window.ua-study-window {
   display: flex; 
   justify-content: center;
@@ -392,6 +393,29 @@ overflow: scroll;
   display: none;
 }
 
+.account-main {
+  display: flex;
+  place-content: center;
+  flex: 0 0 25vw;
+  background: #cdc5b4;
+  color: #85756e;
+  box-sizing: borderbox;
+  border: outset;
+  border-radius: 10px;
+  justify-content: space-evenly;
+
+  position: fixed;
+  right: 26%;
+  left: 26%;
+  top: 18%;
+  width: 48%;
+  height: 68%;
+
+  box-shadow: 8 14px 8px black;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0 0 5px black;
+}
+
 @media screen and (max-width: 1375px) {
   div.user-info-column {
     font-size: 16px;
@@ -409,6 +433,31 @@ overflow: scroll;
 @media screen and (max-width: 1011px) {
   img.mobile-record-details {
     height: 100%;
+  }
+  .account-main {
+    left: 3.2%;
+    width: 93.8%;
+    top: 42.7%;
+    height: 27.3%;
+    padding: 10px; /* Add padding inside the container */
+    gap: 10px; /* Add spacing between cards */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-evenly; /* Space cards evenly */
+    align-items: center; /* Align cards vertically */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Hide vertical overflow */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    background: #cdc5b4;
+    color: #85756e;
+    box-sizing: border-box;
+    border: outset;
+    border-radius: 10px;
+    position: fixed;
+  }
+  .intro-line, 
+  .welcome-title {
+    display: none;
   }
   .desktop-utilities,
   .usd-title {
@@ -439,7 +488,6 @@ div.usd-window {
     height: 68%;
     overflow: none;
   }
-  .user-info-card {}
  div.user-info-column {
     width: 18%;
     height: 4%;

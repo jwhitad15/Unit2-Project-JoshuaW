@@ -164,7 +164,7 @@ const UserAccount = () => {
                 <div id="app"></div>
             </div>
 
-            <div className="foths-main">
+            <div className="account-main">
                 <div className="foths-main-title"> Account Dashboard </div>
 
                 <main className="ua-study-window"> </main>

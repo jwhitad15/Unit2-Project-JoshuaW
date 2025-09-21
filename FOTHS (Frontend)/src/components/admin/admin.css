@@ -40,6 +40,25 @@
     font-size: 25px;
   }
 
+  .admin-info-column {
+    border: outset;
+    border: 3px outset white;
+    border-radius: 8px;
+    background-color: #a64444;
+    color: white;
+    place-content: center;
+    position: fixed;
+    top: 21%;
+    width: 12%;
+    height: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 8 14px 8px black;
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 5px black;
+   font-size: 26px;
+    }
+
   #ua-window {
     position: sticky;
     border: inset;
@@ -287,7 +306,7 @@ main.ua-fetch-window {
     width: 93.5%;
     height: 27.4%;
   }
-  .user-info-column {
+  .admin-info-column {
     display: flex;
     justify-content: center;
     flex: 0 0 auto; /* Prevent shrinking or growing */
@@ -392,6 +411,27 @@ main.ua-fetch-window {
   .desktop-control-center {
     display: none;
   }
+  .account-main {
+  left: 3.2%;
+  width: 93.8%;
+  top: 42.7%;
+  height: 27.3%;
+  padding: 10px; /* Add padding inside the container */
+  gap: 10px; /* Add spacing between cards */
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-evenly; /* Space cards evenly */
+  align-items: center; /* Align cards vertically */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Hide vertical overflow */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  background: #cdc5b4;
+  color: #85756e;
+  box-sizing: border-box;
+  border: outset;
+  border-radius: 10px;
+  position: fixed;
+}
 }
 @media screen and (max-width: 921px) {
   .admin-header-element,
@@ -406,7 +446,7 @@ main.ua-fetch-window {
   }
 }
 @media screen and (max-width: 700px) {
-  .user-info-column {
+  .admin-info-column {
     left: 5%;
     top: 73.5%;
     height: 13.4%;
@@ -457,7 +497,7 @@ main.ua-fetch-window {
   .util-bible {
     left: 14%;
   }
-  .user-info-column {
+  .admin-info-column {
     left: 5%;
     top: 73.4%;
     height: 13.4%;
@@ -525,6 +565,10 @@ main.ua-fetch-window {
   .util-timer {
     left: 51.8%;
     width: 38%;
+  }
+
+  .admin-info-column {
+    display: none;
   }
 }
 

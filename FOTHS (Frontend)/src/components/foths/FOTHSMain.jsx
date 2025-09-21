@@ -107,10 +107,10 @@ const FOTHSMain = () => {
             {/* Flexbox stylization to create columns & column cards */}
             <nav>
                 <div className="recent-activity">Resources</div>
-                <div className="recent-activity-card-1">
+                <div className="foths-intro" >
                     <p className="welcome-title">Welcome to FOTHS</p>
-                    <hr style={{width: "98%"}}/>
-                    <hr style={{width: "84%"}}/>
+                    <hr className="intro-line" style={{width: "98%"}}/>
+                    <hr className="intro-line" style={{width: "84%"}}/>
                     <br/>
                     <div className="intro-window" >
                         <p><b>FOTHS</b>, short for <b>Fruits of the Holy Spirit</b>, is an interactive, educational application designed to help users learn & retain the Bible.</p>
@@ -125,6 +125,7 @@ const FOTHSMain = () => {
 
                 <div className="recent-activity-card-2">
                     <div className="intro-window2" >
+                    <div className="intro-words">
                         <h2>Welcome to FOTHS</h2>
                         <p><b>FOTHS</b>, short for <b>Fruits of the Holy Spirit</b>, is an interactive, educational application designed to help users learn & retain the Bible.</p>
                         <p>This application comes equipped with 3 unique game modes: <b>Study, Recall, Quiz</b></p>
@@ -133,6 +134,7 @@ const FOTHSMain = () => {
                         <p>Additionally, FOTHS offers a wide variety of interactice tools like a Pomodoro timer, Bible fetching elements, and video resources.</p>
                         <p>Take some time to explore this application, and don't forget to become familiar with the user account page - it will be where you spend most of your time!</p>
                         <p>Happy learning!</p>
+                    </div>
                     </div>
                 </div>
          

@@ -2444,7 +2444,7 @@ p.welcome-title {
   .study-previous-button {
     font-size: 18px;
   }
-  .foths-main {
+  div.foths-main {
     left: 3.2%;
     width: 93.8%;
     top: 30.4%;
@@ -2480,12 +2480,14 @@ p.welcome-title {
     width: 16.8%;
     left: 28.6%;
     display: none;
+    animation: scroll-up 15s linear infinite;
   }
   .recent-activity-card-2 {
     top: 16.93%;
     height: 9.9%;
     width: 42%;
     left: 5%;
+    overflow: hidden;
     }
   .intro-window {
     display: none;
@@ -2493,6 +2495,10 @@ p.welcome-title {
   .intro-window2 {
     width: 100%;
   }
+  .intro-words {
+    animation: scroll-up 45s linear infinite;
+  }
+  
 
   .recent-activity-card-3 {
     top: 16.93%;
@@ -2509,9 +2515,9 @@ p.welcome-title {
   .mobile-response-custom-goal {left: 58.6%; top: 61.7%; width: 25%; height: 21.2%; z-index: 1;}
   .scope-card-1 {
     position: fixed;
-     left: 14%; 
+     left: 5%; 
      top: 60.3%; 
-     width: 31%; 
+     width: 41%; 
      height: 26.3%; 
      overflow: auto;}
   .scope-card-2 {
@@ -2523,8 +2529,8 @@ p.welcome-title {
     place-content: center;
     position: fixed;
     top: 60.3%;
-    width: 31%;
-    left: 55%;
+    width: 36.8%;
+    left: 53.2%;
     padding-left: 2%;
     padding-right: 2%;
     font-size: x-small;

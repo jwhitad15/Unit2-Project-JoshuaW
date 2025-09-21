@@ -221,6 +221,40 @@
         left: 44%;
     }
 }
+@media screen and (max-width: 645px) {
+    label.answer-option-text {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 585px) {
+    label.answer-option-text {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 535px) {
+    label.answer-option-text {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 482px) {
+    label.answer-option-text {
+        font-size: 12px;
+    }
+    input.checkbox-container {
+        width: 10px;
+        height: 10px;
+    }
+}
+@media screen and (max-width: 434px) {
+    label.answer-option-text {
+        font-size: 10px;
+    }
+}
+/* @media screen and (max-width: 645px) {
+    label.answer-option-text {
+        font-size: 18px;
+    }
+} */
 @media screen and (max-width: 611px) {
     .quiz-submit-button {
         position: fixed;
