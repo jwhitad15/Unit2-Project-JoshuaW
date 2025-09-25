@@ -22,7 +22,7 @@ const LoginForm = () => {
     
         try {
             // Make an API call to validate the username and password
-            const response = await fetch("http://localhost:8080/users/login", {
+            const response = await fetch("http://localhost:8080/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
