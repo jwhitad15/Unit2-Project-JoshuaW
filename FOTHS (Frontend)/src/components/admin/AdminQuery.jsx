@@ -26,37 +26,6 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
     setId(e.target.value);
   };
 
-   // Fetch the entity record for preview when "Update" is selected and an ID is provided
-   useEffect(() => {
-    if (command === "update" && id.trim()) {
-      const fetchPreviewData = async () => {
-        try {
-          const url = `http://localhost:8080/${type}/${id.trim()}`; // Construct the API URL
-          const response = await fetch(url, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-
-          if (!response.ok) {
-            throw new Error("Failed to fetch preview data.");
-          }
-
-          const data = await response.json();
-          setPreviewData(data); // Set the preview data
-          setErrorMessage(""); // Clear any previous error messages
-        } catch (error) {
-          setErrorMessage("Failed to fetch preview data. Please check the ID and try again.");
-          setPreviewData(null); // Clear preview data on error
-        }
-      };
-
-      fetchPreviewData();
-    } else {
-      setPreviewData(null); // Clear preview data if conditions are not met
-    }
-  }, [command, id, type]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,23 +35,6 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
       return;
     }
 
-    // Validation for "Add" or "Update" commands with "user" type
-    if ((command === "add" || command === "update") && type === "users") {
-      if (!userData || !userData.name || !userData.email || !userData.role) {
-        setErrorMessage("Please fill out all required fields for the user.");
-        return;
-      }
-    }
-
-     // Validation for "Add" or "Update" commands with "scripture" or "question" type
-     if ((command === "add" || command === "update") && (type === "scriptures" || type === "questions")) {
-      const dataToValidate = type === "scriptures" ? scriptureData : questionData;
-
-      if (!dataToValidate || !dataToValidate.title || !dataToValidate.content) {
-        setErrorMessage("All fields (except for Category) are required.");
-        return;
-      }
-    }
 
     if (command === "add" && type === "users") {
       try {
@@ -266,17 +218,19 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
 
         <label className="scope-presetGoals-banner"><hr/>PARAMETERS<hr/> <br/> </label>
 
-        <label htmlFor="goals">Command</label> <br/>
-        <select id="goals"   className="goal-select"  value={command} onChange={handleCommandChange} >
-          <option value=""></option>
+        <label className="command-title" htmlFor="goals">Command</label> <br/>
+        <select id="goals"   className="goal-select"  placeholder="Command" value={command} onChange={handleCommandChange} >
+          <option id="mcp" className="mobile-command-placeholder" value="">- COMMAND -</option>
+          <option className="desktop-command-placeholder" value=""></option>
           <option value="view">View</option>
           <option value="add">Add</option>
           <option value="update">Update</option>
           <option value="delete">Delete</option>
         </select> <br /> <br className="desktop-scope-breakpoint" />
-        <label >Type</label> <br/>
+        <label className="type-title" >Type</label> <br/>
         <select id="goals"  className="goal-select" value={type} onChange={handleTypeChange}>
-          <option value=""></option>
+          <option className="mobile-type-placeholder" value="">- TYPE -</option>
+          <option className="desktop-type-placeholder" value=""></option>
           <option value="users">User</option>
           <option value="scriptures">Scripture</option>
           <option value="questions">Question</option>

@@ -84,23 +84,22 @@ const FOTHSMain = () => {
             <aside>
                 <div className="scope">Scope</div>
                 <div className="scope-card-1"><UserInteraction/> </div>
-                <div className="scope-card-2"></div>
-                <div className="scope-card-3"> </div>
+                {/* <div className="scope-card-2"></div> */}
             </aside>
 
             <div className="foths-main">
                 <div className="foths-main-title"> Fruits of the Holy Spirit </div>
                 <div className="fruits-grid">
                     <div className="fruit-cards-row-1">
-                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1" onClick={() => handleFruitSelection('Faith')}><div className="responsive-fruit-card-text">Faith</div><FaithCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-2-hyperlink" className="fruit-card-2" onClick={() => handleFruitSelection('Love')}><div className="responsive-fruit-card-text">Love</div><LoveCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-3-hyperlink" className="fruit-card-3" onClick={() => handleFruitSelection('Peace')}><div className="responsive-fruit-card-text">Peace</div><PeaceCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-4-hyperlink" className="fruit-card-4" onClick={() => handleFruitSelection('Joy')}><div className="responsive-fruit-card-text">Joy</div><JoyCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-5-hyperlink" className="fruit-card-5" onClick={() => handleFruitSelection('Temperance')}><div className="responsive-fruit-card-text">Temperance</div><TemperanceCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-6-hyperlink" className="fruit-card-6" onClick={() => handleFruitSelection('Meekness')}><div className="responsive-fruit-card-text">Meekness</div><MeeknessCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-7-hyperlink" className="fruit-card-7" onClick={() => handleFruitSelection('Goodness')}><div className="responsive-fruit-card-text">Goodness</div><GoodnessCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-8-hyperlink" className="fruit-card-8" onClick={() => handleFruitSelection('Gentleness')}><div className="responsive-fruit-card-text">Gentleness</div><GentlenessCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-9-hyperlink" className="fruit-card-9" onClick={() => handleFruitSelection('Longsuffering')}><div className="responsive-fruit-card-text">Longsuffering</div><LongsufferingCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1" onClick={() => handleFruitSelection('Faith')}><div className="responsive-fruit-card-text">Faith</div><img src="src/components/foths/fruit/MobileFaith.png" className="mobile-faith" alt="mobile-faith-image" /><FaithCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-2-hyperlink" className="fruit-card-2" onClick={() => handleFruitSelection('Love')}><div className="responsive-fruit-card-text">Love</div><img src="src/components/foths/fruit/MobileLove.png" className="mobile-love" alt="mobile-love-image" /><LoveCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-3-hyperlink" className="fruit-card-3" onClick={() => handleFruitSelection('Peace')}><div className="responsive-fruit-card-text">Peace</div><img src="src/components/foths/fruit/MobilePeace.png" className="mobile-peace" alt="mobile-peace-image" /><PeaceCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-4-hyperlink" className="fruit-card-4" onClick={() => handleFruitSelection('Joy')}><div className="responsive-fruit-card-text">Joy</div><img src="src/components/foths/fruit/MobileJoy.png" className="mobile-joy" alt="mobile-joy-image" /><JoyCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-5-hyperlink" className="fruit-card-5" onClick={() => handleFruitSelection('Temperance')}><div className="responsive-fruit-card-text">Temperance</div><img src="src/components/foths/fruit/MobileTemperance.png" className="mobile-temperance" alt="mobile-temperance-image" /><TemperanceCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-6-hyperlink" className="fruit-card-6" onClick={() => handleFruitSelection('Meekness')}><div className="responsive-fruit-card-text">Meekness</div><img src="src/components/foths/fruit/MobileMeekness.png" className="mobile-meekness" alt="mobile-meekness-image" /><MeeknessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-7-hyperlink" className="fruit-card-7" onClick={() => handleFruitSelection('Goodness')}><div className="responsive-fruit-card-text">Goodness</div><img src="src/components/foths/fruit/MobileGoodness.png" className="mobile-goodness" alt="mobile-goodness" /><GoodnessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-8-hyperlink" className="fruit-card-8" onClick={() => handleFruitSelection('Gentleness')}><div className="responsive-fruit-card-text">Gentleness</div><img src="src/components/foths/fruit/MobileGentleness.png" className="mobile-gentleness" alt="mobile-gentleness-image" /><GentlenessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-9-hyperlink" className="fruit-card-9" onClick={() => handleFruitSelection('Longsuffering')}><div className="responsive-fruit-card-text">Longsuffering</div><img src="src/components/foths/fruit/MobileLongsuffering.png" className="mobile-longsuffering" alt="mobile-longsuffering-image" /><LongsufferingCard/></a>
                     </div>
                 </div>
             </div>
@@ -108,10 +107,10 @@ const FOTHSMain = () => {
             {/* Flexbox stylization to create columns & column cards */}
             <nav>
                 <div className="recent-activity">Resources</div>
-                <div className="recent-activity-card-1">
+                <div className="foths-intro" >
                     <p className="welcome-title">Welcome to FOTHS</p>
-                    <hr style={{width: "98%"}}/>
-                    <hr style={{width: "84%"}}/>
+                    <hr className="intro-line" style={{width: "98%"}}/>
+                    <hr className="intro-line" style={{width: "84%"}}/>
                     <br/>
                     <div className="intro-window" >
                         <p><b>FOTHS</b>, short for <b>Fruits of the Holy Spirit</b>, is an interactive, educational application designed to help users learn & retain the Bible.</p>
@@ -126,6 +125,7 @@ const FOTHSMain = () => {
 
                 <div className="recent-activity-card-2">
                     <div className="intro-window2" >
+                    <div className="intro-words">
                         <h2>Welcome to FOTHS</h2>
                         <p><b>FOTHS</b>, short for <b>Fruits of the Holy Spirit</b>, is an interactive, educational application designed to help users learn & retain the Bible.</p>
                         <p>This application comes equipped with 3 unique game modes: <b>Study, Recall, Quiz</b></p>
@@ -134,6 +134,7 @@ const FOTHSMain = () => {
                         <p>Additionally, FOTHS offers a wide variety of interactice tools like a Pomodoro timer, Bible fetching elements, and video resources.</p>
                         <p>Take some time to explore this application, and don't forget to become familiar with the user account page - it will be where you spend most of your time!</p>
                         <p>Happy learning!</p>
+                    </div>
                     </div>
                 </div>
          

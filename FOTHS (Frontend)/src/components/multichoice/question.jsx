@@ -1,7 +1,7 @@
 // Question component for displaying a quiz question and its options
 
 import React, {Component} from "react";
-import Options from "./Options";
+import Options from "./options";
 
 class Question extends Component{
     render() {

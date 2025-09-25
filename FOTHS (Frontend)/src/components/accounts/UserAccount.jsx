@@ -133,7 +133,6 @@ const UserAccount = () => {
                 const updateTimestamp = () => {
                     const now = new Date();
                     const formattedDate = now.toLocaleDateString("en-US", {
-                        weekday: "short",
                         year: "numeric",
                         month: "short",
                         day: "numeric",
@@ -159,13 +158,13 @@ const UserAccount = () => {
 
             {/* Dynamic Component that receives user input to display in another element */}
             <div className="user-account-aside">
-                <div className="utilities">Utilities</div>
+                <div className="utilities"><img src="src/components/accounts/images/MobileUtilitiesImage.svg" className="mobile-utilities" alt="mobile-utilities-image" /><div className="desktop-utilities">Utilities</div></div>
                 <div className="util-bible"><UtilBible/> </div>
                 <div className="util-timer"><Pomodoro/></div>
                 <div id="app"></div>
             </div>
 
-            <div className="foths-main">
+            <div className="account-main">
                 <div className="foths-main-title"> Account Dashboard </div>
 
                 <main className="ua-study-window"> </main>
@@ -301,6 +300,7 @@ const UserAccount = () => {
                     <p className="usd-title"><b>Video Resources</b></p> <br/>
                     <div className="usd-window">
                     <iframe 
+                    className="video"
                         width="100%" 
                         height="100%" 
                         src="https://www.youtube.com/embed/7tGDumsawjk?autoplay=1&mute=1" 

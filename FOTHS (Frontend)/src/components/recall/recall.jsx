@@ -2,8 +2,8 @@
 
 import React, {useState, useEffect, useContext} from "react";
 import { SelectionLogic } from "../foths/SelectionLogic.jsx"; // Import the context
-import FourElementHeader from "../header-components/FourElementHeader";
-import Footer from "../footer/Footer";
+import FourElementHeader from "../header-components/FourElementHeader.jsx";
+import Footer from "../footer/Footer.jsx";
 import 'reactjs-popup/dist/index.css'
 import './Recall.css';
 
