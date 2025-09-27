@@ -88,7 +88,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody com.foths.application.dto.LoginRequest loginRequest) {
         System.out.println("Login endpoint hit");
-        User user = userRepository.findByUsername(loginRequest.getUsername());
+        var user = userRepository.findByUsername(loginRequest.getUsername());
         if (user != null && user.getPassword().equals(loginRequest.getPassword())) {
             return ResponseEntity.ok(user);
         } else {

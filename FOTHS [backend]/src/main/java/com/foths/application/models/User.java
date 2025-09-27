@@ -11,7 +11,10 @@ package com.foths.application.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import java.util.Objects;
+import java.util.function.Supplier;
 
 // The User class is annotated with @Entity to indicate that it is a JPA entity and @Table to specify the table name in the database.
 // The class uses Lombok annotations @Getter and @Setter to automatically generate getter and setter methods
@@ -71,6 +74,14 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    public User orElseThrow(Object userNotFound) {
+        return null;
+    }
+
+    public <T> T orElseThrow(Supplier<UsernameNotFoundException> userNotFound) {
+        return null;
     }
 }
 

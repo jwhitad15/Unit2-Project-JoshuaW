@@ -28,6 +28,7 @@ const LoginForm = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(formData),
+                credentials: "include", // Include cookies for session management
             });
     
             console.log("Response status:", response.status);
@@ -38,28 +39,41 @@ const LoginForm = () => {
     
             const data = await response.json();
             console.log("Backend response:", data); // Debug the response structure
-    
-            // Check the response from the backend
-        if (data.username === formData.username && data.password === formData.password) {
-            // Store the user's first name in local storage
-            localStorage.setItem("firstName", data.firstName);
-            localStorage.setItem("fullName", data.firstName + " " + data.lastName); 
-            localStorage.setItem("email", data.email);
-            localStorage.setItem("username", data.username);    
-            localStorage.setItem("password", data.password); // Store the password for future use
+            localStorage.setItem("token", data.token);
 
-            // Check if both username and password contain the substring 'admin_'
-            if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {
+    
+            // Navigate based on user role
+            if (data.role === "ADMIN") {
                 console.log("Navigating to admin dashboard...");
                 navigate("/admin");
-            } else {
+            } else if (data.role === "USER") {
                 console.log("Navigating to user dashboard...");
                 navigate("/user-account");
-            }
             } else {
-                console.log("Invalid credentials.");
+                console.log("Unknown role. Redirecting to login.");
                 setIsNotValid(true);
             }
+        //     // Check the response from the backend
+        // if (data.username === formData.username && data.password === formData.password) {
+        //     // Store the user's first name in local storage
+        //     localStorage.setItem("firstName", data.firstName);
+        //     localStorage.setItem("fullName", data.firstName + " " + data.lastName); 
+        //     localStorage.setItem("email", data.email);
+        //     localStorage.setItem("username", data.username);    
+        //     localStorage.setItem("password", data.password); // Store the password for future use
+
+        //     // Check if both username and password contain the substring 'admin_'
+        //     if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {
+        //         console.log("Navigating to admin dashboard...");
+        //         navigate("/admin");
+        //     } else {
+        //         console.log("Navigating to user dashboard...");
+        //         navigate("/user-account");
+        //     }
+        //     } else {
+        //         console.log("Invalid credentials.");
+        //         setIsNotValid(true);
+        //     }
         } catch (error) {
             console.error("Error during login:", error);
             setIsNotValid(true);
@@ -95,7 +109,7 @@ const LoginForm = () => {
 
             <form >
      
-                <p style={{color: "#a64444"}}>Don't have an account? Click  <Link style={{color: "#a64444"}} id="card-hyperlink" to="/dashboard">here</Link> to return to the application! </p>
+                {/* <p style={{color: "#a64444"}}>Don't have an account? Click  <Link style={{color: "#a64444"}} id="card-hyperlink" to="/dashboard">here</Link> to return to the application! </p> */}
 
             </form>
 
