@@ -852,7 +852,7 @@ label {
  font-size: 26px;
 }
 
-.recent-activity-card-1 {
+.foths-intro {
   border: outset;
   border: 3px outset white;
   border-radius: 8px;
@@ -921,6 +921,7 @@ label {
   border: inset;
   border-color: #a64444;
   /* line-height: 1; */
+  top: 18.8%;
   height: 63%;
   position: grid;
   width: 100%;
@@ -2212,6 +2213,8 @@ p.welcome-title {
   box-shadow: 0 0 21px #1d3461;
 }
 
+
+
 @-webkit-keyframes my-animation {
   from {
     -webkit-transform: translateX(100%);
@@ -2474,7 +2477,7 @@ p.welcome-title {
     top: 18.8%;
     display: none;
   }
-  .recent-activity-card-1 {
+  .foths-intro {
     top: 16.93%;
     height: 9.9%;
     width: 16.8%;
