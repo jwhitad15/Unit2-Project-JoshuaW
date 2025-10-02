@@ -9,7 +9,7 @@
 
 package com.foths.application.controllers;
 
-import com.foths.application.dto.ValidateAnswerRequest;
+import com.foths.application.models.dto.ValidateAnswerRequest;
 import com.foths.application.models.Scripture;
 import com.foths.application.repositories.ScriptureRepository;
 import org.springframework.http.HttpStatus;

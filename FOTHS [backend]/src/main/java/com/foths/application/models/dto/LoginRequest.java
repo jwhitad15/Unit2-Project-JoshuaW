@@ -1,4 +1,4 @@
-package com.foths.application.dto;
+package com.foths.application.models.dto;
 
 import lombok.Getter;
 import lombok.Setter;
