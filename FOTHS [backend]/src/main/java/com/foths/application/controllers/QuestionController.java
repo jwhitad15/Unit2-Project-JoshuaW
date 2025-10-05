@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.List;
 
 // Controller class for handling CRUD operations on Question entities
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/questions")
 public class QuestionController {

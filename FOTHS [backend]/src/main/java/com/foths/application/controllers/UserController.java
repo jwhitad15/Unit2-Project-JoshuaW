@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.List;
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/users")
 public class UserController {
