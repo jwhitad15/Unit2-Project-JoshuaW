@@ -1,5 +1,8 @@
 package com.foths.application.configurations;
 
+import com.foths.application.security.CustomUserDetailService;
+import com.foths.application.security.JwtTokenUtil;
+import com.foths.application.security.TokenBlacklistService;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -19,7 +22,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private CustomUserDetailsService userDetailsService;
+    private CustomUserDetailService userDetailsService;
 
     @Autowired
     private TokenBlacklistService tokenBlacklistService;
@@ -32,7 +35,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     String jwtToken = null;
     String email = null;
 
-    if (requestTokenHeader != null && reqestTokenHeader.startsWith("Bearer ")) {
+    if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
         jwtToken = requestTokenHeader.substring(7);
 
         if (jwtToken != null && tokenBlacklistService.isTokenBlacklisted(jwtToken)) {
@@ -49,7 +52,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
     }
 
-    if (email != null && SecurityContextholder.getContext().getAuthentication() = null) {
+    if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
         UsernamePasswordAuthenticationToken authToken =

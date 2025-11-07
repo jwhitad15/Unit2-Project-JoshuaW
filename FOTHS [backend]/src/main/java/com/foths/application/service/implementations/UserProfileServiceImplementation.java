@@ -1,18 +1,18 @@
-package services.implementations;
+package com.foths.application.service.implementations;
 
 import com.foths.application.exceptions.ItemExistsException;
 import com.foths.application.models.UserProfile;
 import com.foths.application.models.dto.UserProfileDTO;
 import com.foths.application.repositories.UserProfileRepository;
+import com.foths.application.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import services.UserProfileService;
 
 @Service
 @RequiredArgsConstructor
-public class UserProfileServiceImplementation implements UserProfileService {
+public class UserProfileServiceImplementation extends UserProfileService {
 
     private final UserProfileRepository userProfileRepository;
     private final ModelMapper modelMapper;

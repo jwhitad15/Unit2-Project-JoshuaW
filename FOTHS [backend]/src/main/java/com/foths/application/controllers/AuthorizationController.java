@@ -3,8 +3,9 @@ package com.foths.application.controllers;
 import com.foths.application.io.UserProfileRequest;
 import com.foths.application.io.UserProfileResponse;
 import com.foths.application.models.dto.UserProfileDTO;
-import com.foths.application.util.JwtTokenUtil;
-import jakarta.servlet.http.HttpServlet;
+import com.foths.application.security.*;
+//import jakarta.servlet.http.HttpServlet;
+import com.foths.application.service.UserProfileService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +16,8 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import services.UserProfileService;
 
-import static jdk.internal.org.jline.utils.Colors.s;
+//import static jdk.internal.org.jline.utils.Colors.s;
 
 @RequiredArgsConstructor
 @RestController
@@ -36,12 +36,13 @@ public class AuthorizationController {
     public UserProfileResponse createUserProfile(@Valid @RequestBody UserProfileRequest userProfileRequest) {
         UserProfileDTO userProfileDTO = mapToUserProfileDTO(userProfileRequest);
         userProfileDTO = userProfileService.createUserProfile(userProfileDTO);
+        return mapToUserProfileResponse(userProfileDTO);
     }
 
     @PostMapping("/login")
-    public AuthenticationResponse authenticateUserProfile(@RequestBody AuthenicationResponse authenicationResponse) throws Exception {
+    public AuthenticationResponse authenticateUserProfile(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest);
-        final UserDetails userDetails = userDetailService.loadUserByUsername(authenticationRequestion.getEmail());
+        final UserDetails userDetails = userDetailService.loadUserByUsername(authenticationRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return new AuthenticationResponse(token, authenticationRequest.getEmail());
     }
