@@ -10,6 +10,7 @@
 package com.foths.application.controllers;
 
 import com.foths.application.models.User;
+import com.foths.application.models.dto.LoginRequest;
 import com.foths.application.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +21,6 @@ import java.util.Collections;
 import java.util.List;
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -86,7 +86,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody com.foths.application.dto.LoginRequest loginRequest) {
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
         System.out.println("Login endpoint hit");
         User user = userRepository.findByUsername(loginRequest.getUsername());
         if (user != null && user.getPassword().equals(loginRequest.getPassword())) {

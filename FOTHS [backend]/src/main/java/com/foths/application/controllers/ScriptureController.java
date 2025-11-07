@@ -9,7 +9,7 @@
 
 package com.foths.application.controllers;
 
-import com.foths.application.dto.ValidateAnswerRequest;
+import com.foths.application.models.dto.ValidateAnswerRequest;
 import com.foths.application.models.Scripture;
 import com.foths.application.repositories.ScriptureRepository;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/scriptures")
 public class ScriptureController {

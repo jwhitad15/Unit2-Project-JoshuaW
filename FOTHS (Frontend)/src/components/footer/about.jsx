@@ -32,6 +32,11 @@ const About = () => {
                     <p>Fruits of the Holy Spirit &copy; 2025 </p>
                     <p>a justOne talent</p>
                     <p>in association with JWMP</p>
+                    <br/>
+                    <b>Developers</b> 
+                    <br/>J. White | K. Gruenewald
+                    <br/>
+                    <br/>
                     <hr />
                     <h4>SPECS</h4>
                     <ul className="about-list">
