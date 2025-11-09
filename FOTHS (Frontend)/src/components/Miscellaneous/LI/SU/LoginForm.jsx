@@ -1,63 +1,3 @@
-// import React, { useState } from 'react';
-
-// const LoginForm = () => {
-//     const [username, setUsername] = useState('');
-//     const [password, setPassword] = useState('');
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         try {
-//             const res = await fetch('http://localhost:8080/auth/login', {
-//                 method: 'POST',
-//                 headers: { 'Content-Type': 'application/json' },
-//                 body: JSON.stringify({ username, password }),
-//                 credentials: 'include', // Use if relying on session cookies
-//             });
-
-//             if (!res.ok) {
-//                 const text = await res.text();
-//                 throw new Error(`Login failed ${res.status}: ${text}`);
-//             }
-
-//             const contentType = res.headers.get('content-type') || '';
-//             if (contentType.includes('application/json')) {
-//                 const data = await res.json();
-//                 console.log('Logged in', data);
-//                 // Handle success (e.g., redirect or save token)
-//             } else {
-//                 const text = await res.text();
-//                 console.warn('Expected JSON but got:', text);
-//             }
-//         } catch (err) {
-//             console.error('Error during login:', err);
-//         }
-//     };
-
-//     return (
-//         <form onSubmit={handleSubmit}>
-//             <input
-//                 type="text"
-//                 name="username"
-//                 placeholder="Username"
-//                 value={username}
-//                 onChange={(e) => setUsername(e.target.value)}
-//                 required
-//             />
-//             <input
-//                 type="password"
-//                 name="password"
-//                 placeholder="Password"
-//                 value={password}
-//                 onChange={(e) => setPassword(e.target.value)}
-//                 required
-//             />
-//             <button type="submit">Login</button>
-//         </form>
-//     );
-// };
-
-// export default LoginForm;
-
 // This page is for Admin to be able to login to the backend of the app and see all user accounts related to the app.
 // The login component navigates to a fetch feature that represents what it would be like to retrieve user account data.
 
@@ -82,45 +22,53 @@ const LoginForm = () => {
     
         try {
             // Make an API call to validate the username and password
-            const response = await fetch("http://localhost:8080/login", {
+            const response = await fetch("http://localhost:8080/auth/login", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: {"Content-Type": "application/json",},
                 body: JSON.stringify(formData),
+                credentials: 'include' // use if session cookie is expected
             });
     
+            const raw = await response.text(); // always read as text first
+            const contentType = (response.headers.get('content-type') || '').toLowerCase();
+
             console.log("Response status:", response.status);
     
             if (!response.ok) {
                 throw new Error("Failed to validate credentials");
             }
     
-            const data = await response.json();
-            console.log("Backend response:", data); // Debug the response structure
+               if (contentType && contentType.includes("application/json")) {
+                const data = JSON.parse(raw);
+                console.log("Login Success", data); // handles successful login (stores token, redirects, etc.)
+                } else {
+                console.warn('Expected JSON but received:', contentType || 'unknown', '\nBody:', raw);
+                // handle HTML response (likely an error page or redirect). Show message to user.
+                throw new Error('Unexpected response format from server');
+                }
+              
+                // Check the response from the backend
+                if (data.username === formData.username && data.password === formData.password) {
+                    // Store the user's first name in local storage
+                    localStorage.setItem("firstName", data.firstName);
+                    localStorage.setItem("fullName", data.firstName + " " + data.lastName); 
+                    localStorage.setItem("email", data.email);
+                    localStorage.setItem("username", data.username);    
+                    localStorage.setItem("password", data.password); // Store the password for future use
     
-            // Check the response from the backend
-        if (data.username === formData.username && data.password === formData.password) {
-            // Store the user's first name in local storage
-            localStorage.setItem("firstName", data.firstName);
-            localStorage.setItem("fullName", data.firstName + " " + data.lastName); 
-            localStorage.setItem("email", data.email);
-            localStorage.setItem("username", data.username);    
-            localStorage.setItem("password", data.password); // Store the password for future use
-
-            // Check if both username and password contain the substring 'admin_'
-            if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {
-                console.log("Navigating to admin dashboard...");
-                navigate("/admin");
-            } else {
-                console.log("Navigating to user dashboard...");
-                navigate("/user-account");
-            }
-            } else {
-                console.log("Invalid credentials.");
-                setIsNotValid(true);
-            }
-        } catch (error) {
+                    // Check if both username and password contain the substring 'admin_'
+                    if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {
+                        console.log("Navigating to admin dashboard...");
+                        navigate("/admin");
+                    } else {
+                        console.log("Navigating to user dashboard...");
+                        navigate("/user-account");
+                    }
+                } else {
+                    console.log("Invalid credentials.");
+                    setIsNotValid(true);
+                }
+            } catch (error) {
             console.error("Error during login:", error);
             setIsNotValid(true);
         }
