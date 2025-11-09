@@ -1,6 +1,7 @@
 // java
 package com.foths.application.security;
 
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.UUID;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @Component
 public class JwtTokenUtil {
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(@NotBlank String userDetails) {
         return UUID.randomUUID().toString();
     }
 
