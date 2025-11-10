@@ -1,8 +1,10 @@
 package com.foths.application.configurations;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -47,8 +49,16 @@ public class WebSecurityConfig {
                         .requestMatchers("/login", "/register", "/actuator/**", "/scriptures").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults());
+//                .formLogin(Customizer.withDefaults())
+//                .httpBasic(Customizer.withDefaults());
+                .formLogin(form -> form.disable())   // disable default form login if you handle it in your frontend
+                .httpBasic(basic -> basic.disable()) // important: disable HTTP Basic to avoid browser popup
+                .exceptionHandling(ex -> ex.authenticationEntryPoint((request, response, authException) -> {
+                    // return JSON body and avoid sending WWW-Authenticate
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                    response.getWriter().write("{\"error\":\"Unauthorized\"}");
+                }));
         return http.build();
     }
 

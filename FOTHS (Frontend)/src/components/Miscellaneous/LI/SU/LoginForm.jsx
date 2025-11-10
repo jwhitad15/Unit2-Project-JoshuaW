@@ -24,55 +24,57 @@ const LoginForm = () => {
             // Make an API call to validate the username and password
             const response = await fetch("http://localhost:8080/auth/login", {
                 method: "POST",
-                headers: {"Content-Type": "application/json",},
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Basic ${btoa(`${formData.username}:${formData.password}`)}` // Encode credentials in Base64
+                    },
                 body: JSON.stringify(formData),
-                credentials: 'include' // use if session cookie is expected
+                credentials: 'include' // useif susson cuokie is expected
             });
-    
+   
             const raw = await response.text(); // always read as text first
             const contentType = (response.headers.get('content-type') || '').toLowerCase();
-
-            console.log("Response status:", response.status);
+            // console.log("Response status:", response.status);
     
             if (!response.ok) {
                 throw new Error("Failed to validate credentials");
             }
     
-               if (contentType && contentType.includes("application/json")) {
-                const data = JSON.parse(raw);
-                console.log("Login Success", data); // handles successful login (stores token, redirects, etc.)
+            if (contentType && contentType.includes("application/json")) {
+            const data = JSON.parse(raw);
+            console.log("Login Success", data); // handles successful login (stores token, redirects, etc.)
+            } else {
+            console.warn('Expected JSON but received:', contentType || 'unknown', '\nBody:', raw);
+            // handle HTML response (likely an error page or redirect). Show message to user.
+            throw new Error('Unexpected response format from server');
+            }
+            
+            // Check the response from the backend
+            if (data.username === formData.username && data.password === formData.password) {
+                // Store the user's first name in local storage
+                localStorage.setItem("firstName", data.firstName);
+                localStorage.setItem("fullName", data.firstName + " " + data.lastName); 
+                localStorage.setItem("email", data.email);
+                localStorage.setItem("username", data.username);  
+                localStorage.setItem("password", data.password); // Store the password for future use
+
+                // Check if both username and password contain the substring 'admin_'
+                if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {
+                    console.log("Navigating to admin dashboard...");
+                    navigate("/admin");
                 } else {
-                console.warn('Expected JSON but received:', contentType || 'unknown', '\nBody:', raw);
-                // handle HTML response (likely an error page or redirect). Show message to user.
-                throw new Error('Unexpected response format from server');
+                    console.log("Navigating to user dashboard...");
+                    navigate("/user-account");
                 }
-              
-                // Check the response from the backend
-                if (data.username === formData.username && data.password === formData.password) {
-                    // Store the user's first name in local storage
-                    localStorage.setItem("firstName", data.firstName);
-                    localStorage.setItem("fullName", data.firstName + " " + data.lastName); 
-                    localStorage.setItem("email", data.email);
-                    localStorage.setItem("username", data.username);    
-                    localStorage.setItem("password", data.password); // Store the password for future use
-    
-                    // Check if both username and password contain the substring 'admin_'
-                    if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {
-                        console.log("Navigating to admin dashboard...");
-                        navigate("/admin");
-                    } else {
-                        console.log("Navigating to user dashboard...");
-                        navigate("/user-account");
-                    }
-                } else {
-                    console.log("Invalid credentials.");
-                    setIsNotValid(true);
-                }
-            } catch (error) {
-            console.error("Error during login:", error);
-            setIsNotValid(true);
-        }
-    };
+            } else {
+                console.log("Invalid credentials.");
+                setIsNotValid(true);
+            }
+        } catch (error) {
+        console.error("Error during login:", error);
+        setIsNotValid(true);
+    }
+};
 
     
 
