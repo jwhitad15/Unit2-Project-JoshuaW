@@ -2,6 +2,7 @@ package com.foths.application.controllers;
 
 import com.foths.application.security.AuthenticationRequest;
 import com.foths.application.security.JwtTokenUtil;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.foths.application.io.UserProfileRequest;
@@ -31,7 +32,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("auth/user")
 public class AuthorizationController {
 
     private final ModelMapper modelMapper;
@@ -51,6 +52,8 @@ public class AuthorizationController {
         this.tokenBlacklistService = tokenBlacklistService;
     }
 
+    public static record LoginRequest(String username, String password) {}
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
     public UserProfileResponse createUserProfile(@Valid @RequestBody UserProfileRequest userProfileRequest) {
@@ -67,18 +70,38 @@ public class AuthorizationController {
 //        return new AuthenticationResponse(token, authenticationRequest.getEmail());
 //    }
 
+//    @PostMapping("/login")
+//    public ResponseEntity<?> login(@RequestBody AuthenticationRequest req, HttpServletRequest servletRequest) {
+//        try {
+//            var authToken = new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword());
+//            var auth = authenticationManager.authenticate(authToken);
+//            SecurityContextHolder.getContext().setAuthentication(auth);
+//            servletRequest.getSession(true); // ensure session created if needed
+//            authenticationManager.authenticate(authToken);
+//            String token = jwtTokenUtil.generateToken(req.getUsername());
+//            // create session if needed
+//            servletRequest.getSession(true);
+//            return ResponseEntity.ok(Map.of("token", token));
+//        } catch (BadCredentialsException ex) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid credentials"));
+//        } catch (AuthenticationException ex) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Authentication failed"));
+//        }
+//    }
+
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthenticationRequest req, HttpServletRequest servletRequest) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest body, HttpServletRequest request) {
         try {
-            var authToken = new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword());
-            var auth = authenticationManager.authenticate(authToken);
+            Authentication auth = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(body.username(), body.password())
+            );
             SecurityContextHolder.getContext().setAuthentication(auth);
-            servletRequest.getSession(true); // ensure session created if needed
-            authenticationManager.authenticate(authToken);
-            String token = jwtTokenUtil.generateToken(req.getUsername());
-            // create session if needed
-            servletRequest.getSession(true);
-            return ResponseEntity.ok(Map.of("token", token));
+
+            // ensure session is created so the security context is stored
+            HttpSession session = request.getSession(true);
+            session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+
+            return ResponseEntity.ok(Map.of("status", "ok"));
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid credentials"));
         } catch (AuthenticationException ex) {

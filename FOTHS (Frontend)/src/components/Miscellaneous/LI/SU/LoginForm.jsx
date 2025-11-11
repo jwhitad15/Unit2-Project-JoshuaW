@@ -19,7 +19,10 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
+        // Debug log to verify form data
+        console.log("Submitting login form with data:", formData);
+
         try {
             // Make an API call to validate the username and password
             const response = await fetch("http://localhost:8080/auth/login", {
