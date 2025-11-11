@@ -51,8 +51,8 @@ public class WebSecurityConfig {
                 )
 //                .formLogin(Customizer.withDefaults())
 //                .httpBasic(Customizer.withDefaults());
-                .formLogin(form -> form.disable())   // disable default form login if you handle it in your frontend
-                .httpBasic(basic -> basic.disable()) // important: disable HTTP Basic to avoid browser popup
+                .formLogin(AbstractHttpConfigurer::disable)   // disable default form login if you handle it in your frontend
+//                .httpBasic(basic -> basic.disable()) // important: disable HTTP Basic to avoid browser popup
                 .exceptionHandling(ex -> ex.authenticationEntryPoint((request, response, authException) -> {
                     // return JSON body and avoid sending WWW-Authenticate
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

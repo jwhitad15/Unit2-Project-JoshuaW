@@ -24,29 +24,24 @@ const LoginForm = () => {
             // Make an API call to validate the username and password
             const response = await fetch("http://localhost:8080/auth/login", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Basic ${btoa(`${formData.username}:${formData.password}`)}` // Encode credentials in Base64
-                    },
-                body: JSON.stringify(formData),
-                credentials: 'include' // useif susson cuokie is expected
+                headers: { "Content-Type": "application/json",},
+                body: JSON.stringify(formData), // Send credentials in the request body
+                credentials: 'include' // Use if session cookies are expected
             });
    
-            const raw = await response.text(); // always read as text first
+            const raw = await response.text(); // Always read as text first
             const contentType = (response.headers.get('content-type') || '').toLowerCase();
-            // console.log("Response status:", response.status);
     
             if (!response.ok) {
                 throw new Error("Failed to validate credentials");
             }
     
             if (contentType && contentType.includes("application/json")) {
-            const data = JSON.parse(raw);
-            console.log("Login Success", data); // handles successful login (stores token, redirects, etc.)
+                const data = JSON.parse(raw);
+                console.log("Login Success", data); // Handles successful login (stores token, redirects, etc.)
             } else {
-            console.warn('Expected JSON but received:', contentType || 'unknown', '\nBody:', raw);
-            // handle HTML response (likely an error page or redirect). Show message to user.
-            throw new Error('Unexpected response format from server');
+                console.warn('Expected JSON but received:', contentType || 'unknown', '\nBody:', raw);
+                throw new Error('Unexpected response format from server');
             }
             
             // Check the response from the backend
