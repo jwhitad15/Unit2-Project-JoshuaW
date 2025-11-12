@@ -11,12 +11,17 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import java.util.List;
 
@@ -43,22 +48,25 @@ public class WebSecurityConfig {
                 .cors(Customizer.withDefaults()) // enable CORS using CorsConfigurationSource bean
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "api/*").permitAll()
                         .requestMatchers("/scriptures").permitAll()
                         .requestMatchers(HttpMethod.GET, "/questions").permitAll()
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/login", "/register", "/actuator/**", "/scriptures").permitAll()
                         .anyRequest().authenticated()
                 )
-//                .formLogin(Customizer.withDefaults())
-//                .httpBasic(Customizer.withDefaults());
-                .formLogin(AbstractHttpConfigurer::disable)   // disable default form login if you handle it in your frontend
-//                .httpBasic(basic -> basic.disable()) // important: disable HTTP Basic to avoid browser popup
-                .exceptionHandling(ex -> ex.authenticationEntryPoint((request, response, authException) -> {
-                    // return JSON body and avoid sending WWW-Authenticate
-                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                    response.getWriter().write("{\"error\":\"Unauthorized\"}");
-                }));
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .permitAll()
+                )
+                .logout(LogoutConfigurer::permitAll);
+//                .formLogin(AbstractHttpConfigurer::disable)   // disable default form login if you handle it in your frontend
+//                .exceptionHandling(ex -> ex.authenticationEntryPoint((request, response, authException) -> {
+//                    // return JSON body and avoid sending WWW-Authenticate
+//                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//                    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+//                    response.getWriter().write("{\"error\":\"Unauthorized\"}");
+//                }));
         return http.build();
     }
 
@@ -74,5 +82,16 @@ public class WebSecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService () {
+        UserDetails user =
+                User.builder()
+                        .username("user")
+                        .password(passwordEncoder().encode("password"))
+                        .roles("USER")
+                        .build();
+        return new InMemoryUserDetailsManager(user);
     }
 }

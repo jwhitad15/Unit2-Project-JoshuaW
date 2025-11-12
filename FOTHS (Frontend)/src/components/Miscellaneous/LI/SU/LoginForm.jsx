@@ -24,16 +24,35 @@ const LoginForm = () => {
         console.log("Submitting login form with data:", formData);
 
         try {
-            // Make an API call to validate the username and password
+        // Make an API call to validate the username and password
             const response = await fetch("http://localhost:8080/auth/login", {
                 method: "POST",
-                headers: { "Content-Type": "application/json",},
-                body: JSON.stringify(formData), // Send credentials in the request body
-                credentials: 'include' // Use if session cookies are expected
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+                credentials: 'include',
+                redirect: 'manual'
             });
-   
-            const raw = await response.text(); // Always read as text first
+const raw = await response.text(); // Always read as text first
             const contentType = (response.headers.get('content-type') || '').toLowerCase();
+
+            // Spring now returns JSON 200 on success or 401 on failure (see backend)
+            if (response.status === 200) {
+                // logged in
+                    window.location.href = '/'; // or update app state
+                    return;
+                }
+
+                if (response.status === 401) {
+                    setError('Invalid credentials');
+                    return;
+                }
+
+                // handle 302/303 if backend still sends redirect
+                if (response.type === 'opaqueredirect' || response.status === 302 || response.status === 303) {
+                    window.location.href = '/';
+                    return;
+                }
+
     
             if (!response.ok) {
                 throw new Error("Failed to validate credentials");
@@ -51,28 +70,30 @@ const LoginForm = () => {
             if (data.username === formData.username && data.password === formData.password) {
                 // Store the user's first name in local storage
                 localStorage.setItem("firstName", data.firstName);
-                localStorage.setItem("fullName", data.firstName + " " + data.lastName); 
+                localStorage.setItem("fullName", `${data.firstName} ${data.lastName}`);
                 localStorage.setItem("email", data.email);
-                localStorage.setItem("username", data.username);  
+                localStorage.setItem("username", data.username);    
                 localStorage.setItem("password", data.password); // Store the password for future use
 
-                // Check if both username and password contain the substring 'admin_'
-                if (formData.username.includes("admin_") && formData.password.includes("Admin:")) {
+                // Route based on the username
+                if (data.username.includes("admin_")) {
                     console.log("Navigating to admin dashboard...");
                     navigate("/admin");
                 } else {
                     console.log("Navigating to user dashboard...");
                     navigate("/user-account");
                 }
-            } else {
+            } else if (response.status === 401) {
                 console.log("Invalid credentials.");
                 setIsNotValid(true);
+            } else {
+                throw new Error("Unexpected response status: " + response.status);
             }
         } catch (error) {
-        console.error("Error during login:", error);
-        setIsNotValid(true);
-    }
-};
+            console.error("Error during login:", error);
+            setIsNotValid(true);
+        }
+    };
 
     
 
