@@ -1,76 +1,27 @@
-//package com.foths.application;
-//
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-//import org.springframework.security.web.SecurityFilterChain;
-//import org.springframework.web.cors.CorsConfiguration;
-//import org.springframework.web.cors.CorsConfigurationSource;
-//import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-//import org.springframework.web.filter.CorsFilter;
-//
-//import static org.springframework.security.config.Customizer.withDefaults;
-//
-//@org.springframework.context.annotation.Configuration
-//public class SecurityConfig {
-//
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http
-//                .cors(withDefaults())
-//                .csrf(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/", "/login", "/css/**").permitAll()
-//                        .anyRequest().authenticated()
-//                )
-//                .formLogin(form -> form
-//                        .loginPage("/login") // Optional: custom login page
-//                        .permitAll()
-//                );
-//        return http.build();
-//    }
-//
-//    @Bean
-//    public org.springframework.security.core.userdetails.UserDetailsService userDetailsService() {
-//        var user = org.springframework.security.core.userdetails.User
-//                .withUsername("admin_joshua")
-//                .password("{noop}Admin:Josh!") // {noop} means no password encoding
-//                .roles("ADMIN")
-//                .build();
-//        return new org.springframework.security.provisioning.InMemoryUserDetailsManager(user);
-//    }
-//
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.addAllowedOrigin("http://localhost:5173");
-//        config.addAllowedHeader("*");
-//        config.addAllowedMethod("*");
-//        config.setAllowCredentials(true);
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", config);
-//        return source;
-//    }
-//}
-
-// java
 package com.foths.application.configurations;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import java.util.List;
 
@@ -97,11 +48,25 @@ public class WebSecurityConfig {
                 .cors(Customizer.withDefaults()) // enable CORS using CorsConfigurationSource bean
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "api/*").permitAll()
                         .requestMatchers("/scriptures").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/questions").permitAll()
+                        .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/login", "/register", "/actuator/**", "/scriptures").permitAll()
                         .anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults());
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .permitAll()
+                )
+                .logout(LogoutConfigurer::permitAll);
+//                .formLogin(AbstractHttpConfigurer::disable)   // disable default form login if you handle it in your frontend
+//                .exceptionHandling(ex -> ex.authenticationEntryPoint((request, response, authException) -> {
+//                    // return JSON body and avoid sending WWW-Authenticate
+//                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//                    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+//                    response.getWriter().write("{\"error\":\"Unauthorized\"}");
+//                }));
         return http.build();
     }
 
@@ -117,5 +82,16 @@ public class WebSecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService () {
+        UserDetails user =
+                User.builder()
+                        .username("user")
+                        .password(passwordEncoder().encode("password"))
+                        .roles("USER")
+                        .build();
+        return new InMemoryUserDetailsManager(user);
     }
 }

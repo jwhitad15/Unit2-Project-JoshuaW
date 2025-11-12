@@ -28,6 +28,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route index path="/login" element={<LoginForm />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/start" element={<StartFoths />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/foths" element={<FOTHSMain />} />

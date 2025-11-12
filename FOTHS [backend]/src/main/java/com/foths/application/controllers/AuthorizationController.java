@@ -1,35 +1,58 @@
 package com.foths.application.controllers;
 
+import com.foths.application.security.AuthenticationRequest;
+import com.foths.application.security.JwtTokenUtil;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import com.foths.application.io.UserProfileRequest;
 import com.foths.application.io.UserProfileResponse;
 import com.foths.application.models.dto.UserProfileDTO;
 import com.foths.application.security.*;
-//import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServlet;
 import com.foths.application.service.UserProfileService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Map;
 
 //import static jdk.internal.org.jline.utils.Colors.s;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("auth/user")
 public class AuthorizationController {
 
     private final ModelMapper modelMapper;
     private final UserProfileService userProfileService;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
-    private final CustomUserDetailService userDetailService;
     private final TokenBlacklistService tokenBlacklistService;
+    private CustomUserDetailService customUserDetailService = null;
+
+    @Autowired
+    public AuthorizationController(ModelMapper modelMapper, UserProfileService userProfileService, AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, CustomUserDetailService userDetailService, TokenBlacklistService tokenBlacklistService) {
+        this.modelMapper = modelMapper;
+        this.userProfileService = userProfileService;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.customUserDetailService = customUserDetailService;
+        this.tokenBlacklistService = tokenBlacklistService;
+    }
+
+    public static record LoginRequest(String username, String password) {}
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
@@ -39,13 +62,68 @@ public class AuthorizationController {
         return mapToUserProfileResponse(userProfileDTO);
     }
 
+//    @PostMapping("/login")
+//    public AuthenticationResponse authenticateUserProfile(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+//        authenticate(authenticationRequest);
+//        final UserDetails userDetails = userDetailService.loadUserByUsername(authenticationRequest.getEmail());
+//        final String token = jwtTokenUtil.generateToken(userDetails);
+//        return new AuthenticationResponse(token, authenticationRequest.getEmail());
+//    }
+
+//    @PostMapping("/login")
+//    public ResponseEntity<?> login(@RequestBody AuthenticationRequest req, HttpServletRequest servletRequest) {
+//        try {
+//            var authToken = new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword());
+//            var auth = authenticationManager.authenticate(authToken);
+//            SecurityContextHolder.getContext().setAuthentication(auth);
+//            servletRequest.getSession(true); // ensure session created if needed
+//            authenticationManager.authenticate(authToken);
+//            String token = jwtTokenUtil.generateToken(req.getUsername());
+//            // create session if needed
+//            servletRequest.getSession(true);
+//            return ResponseEntity.ok(Map.of("token", token));
+//        } catch (BadCredentialsException ex) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid credentials"));
+//        } catch (AuthenticationException ex) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Authentication failed"));
+//        }
+//    }
+
     @PostMapping("/login")
-    public AuthenticationResponse authenticateUserProfile(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
-        authenticate(authenticationRequest);
-        final UserDetails userDetails = userDetailService.loadUserByUsername(authenticationRequest.getEmail());
-        final String token = jwtTokenUtil.generateToken(userDetails);
-        return new AuthenticationResponse(token, authenticationRequest.getEmail());
+    public ResponseEntity<?> login(@RequestBody LoginRequest body, HttpServletRequest request) {
+        try {
+            Authentication auth = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(body.username(), body.password())
+            );
+            SecurityContextHolder.getContext().setAuthentication(auth);
+
+            // ensure session is created so the security context is stored
+            HttpSession session = request.getSession(true);
+            session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+
+            return ResponseEntity.ok(Map.of("status", "ok"));
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid credentials"));
+        } catch (AuthenticationException ex) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Authentication failed"));
+        }
     }
+
+//    public ResponseEntity<?> login(@RequestBody AuthenticationRequest req, HttpServletRequest request) {
+//        try {
+//            UsernamePasswordAuthenticationToken token =
+//                    new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword());
+//            Authentication auth = authenticationManager.authenticate(token);
+//
+//            SecurityContextHolder.getContext().setAuthentication(auth);
+//            request.getSession(true); // ensure session created for session-based auth
+//
+//            return ResponseEntity.ok(Map.of("username", auth.getName()));
+//        } catch (AuthenticationException ex) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+//                    .body(Map.of("error", "Invalid credentials"));
+//        }
+//    }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping("/logout")
