@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import com.foths.application.security.RoleRedirectAuthenticationSuccessHandler;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -18,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -41,6 +43,14 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    // success handler bean - adjust frontend URLs if needed
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        String adminUrl = "http://localhost:5173/admin";
+        String userUrl = "http://localhost:5173/account";
+        return new RoleRedirectAuthenticationSuccessHandler(adminUrl, userUrl);
+    }
+
     // Minimal SecurityFilterChain — adjust matchers as needed for your app
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -57,6 +67,7 @@ public class WebSecurityConfig {
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .successHandler(authenticationSuccessHandler())
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);

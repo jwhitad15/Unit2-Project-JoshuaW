@@ -22,9 +22,9 @@ const LoginForm = () => {
 
         // Debug log to verify form data
         console.log("Submitting login form with data:", formData);
-
+    
         try {
-        // Make an API call to validate the username and password
+    // Make an API call to validate the username and password
             const response = await fetch("http://localhost:8080/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -32,12 +32,12 @@ const LoginForm = () => {
                 credentials: 'include',
                 redirect: 'manual'
             });
-const raw = await response.text(); // Always read as text first
+            const raw = await response.text(); // Always read as text first
             const contentType = (response.headers.get('content-type') || '').toLowerCase();
 
             // Spring now returns JSON 200 on success or 401 on failure (see backend)
-            if (response.status === 200) {
-                // logged in
+                if (response.status === 200) {
+                    // logged in
                     window.location.href = '/'; // or update app state
                     return;
                 }
@@ -61,6 +61,22 @@ const raw = await response.text(); // Always read as text first
             if (contentType && contentType.includes("application/json")) {
                 const data = JSON.parse(raw);
                 console.log("Login Success", data); // Handles successful login (stores token, redirects, etc.)
+
+                // Store user details in local storage
+                localStorage.setItem("firstName", data.firstName);
+                localStorage.setItem("fullName", `${data.firstName} ${data.lastName}`);
+                localStorage.setItem("email", data.email);
+                localStorage.setItem("username", data.username);
+                localStorage.setItem("password", data.password);
+
+                // Route based on the username
+                if (data.username && data.username.includes("admin_")) {
+                    console.log("Navigating to admin dashboard...");
+                    navigate("/admin");
+                } else {
+                    console.log("Navigating to user dashboard...");
+                    navigate("/user-account");
+                }
             } else {
                 console.warn('Expected JSON but received:', contentType || 'unknown', '\nBody:', raw);
                 throw new Error('Unexpected response format from server');
@@ -70,9 +86,9 @@ const raw = await response.text(); // Always read as text first
             if (data.username === formData.username && data.password === formData.password) {
                 // Store the user's first name in local storage
                 localStorage.setItem("firstName", data.firstName);
-                localStorage.setItem("fullName", `${data.firstName} ${data.lastName}`);
+                localStorage.setItem("fullName", `${data.firstName} ${data.lastName}`); 
                 localStorage.setItem("email", data.email);
-                localStorage.setItem("username", data.username);    
+                localStorage.setItem("username", data.username);  
                 localStorage.setItem("password", data.password); // Store the password for future use
 
                 // Route based on the username
@@ -90,10 +106,10 @@ const raw = await response.text(); // Always read as text first
                 throw new Error("Unexpected response status: " + response.status);
             }
         } catch (error) {
-            console.error("Error during login:", error);
-            setIsNotValid(true);
-        }
-    };
+        console.error("Error during login:", error);
+        setIsNotValid(true);
+    }
+};
 
     
 
@@ -106,12 +122,12 @@ const raw = await response.text(); // Always read as text first
 
                 <label> Username <br /> 
                     <CiUser className="icon" />
-                    <input className="textfield" type="text" name="username" value={formData.username} onChange={handleChange} required />
+                    <input className="textfield" type="text" name="username" autoComplete="username" value={formData.username} onChange={handleChange} required />
                 </label> <br /> 
 
                 <label> Password <br />
                     <CiLock className="icon" />
-                    <input className="textfield" type="password" name="password" value={formData.password} onChange={handleChange} required />
+                    <input className="textfield" type="password" name="password" autoComplete="current-password" value={formData.password} onChange={handleChange} required />
               
                 </label> <br /> <br />
 
