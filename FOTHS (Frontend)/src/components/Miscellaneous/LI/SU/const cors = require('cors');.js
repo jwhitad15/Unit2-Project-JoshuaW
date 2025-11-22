@@ -6,11 +6,14 @@ app.use(cors({
     credentials: true               // Allow cookies and credentials
 }));
 
+// Middleware to remove 'WWW-Authenticate' header from all responses
+app.use((req, res, next) => {
+    res.removeHeader('WWW-Authenticate');
+    next();
+});
+
 app.post('/auth/login', async (request, response) => {
     const { username, password } = request.body;
-
-    // Ensure no 'WWW-Authenticate' header is sent
-    response.removeHeader('WWW-Authenticate');
 
     // Replace this with your actual SQL database authentication logic
     try {
@@ -18,10 +21,9 @@ app.post('/auth/login', async (request, response) => {
         const isValidUser = await validateUserFromDatabase(username, password); // Replace with your actual function
 
         if (isValidUser) {
-            // Replace hardcoded values with actual data from the database
             const user = await validateUserFromDatabase(username, password); // Replace with your actual function to fetch user details
             return response.status(200).json({
-                username: user.username, // Use the actual username from the database
+                username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email

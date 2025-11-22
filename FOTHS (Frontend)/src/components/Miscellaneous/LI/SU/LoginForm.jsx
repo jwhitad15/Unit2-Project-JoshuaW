@@ -33,6 +33,7 @@ const LoginForm = () => {
                 redirect: 'manual'
             });
             const raw = await response.text(); // Always read as text first
+            console.log("Raw response text:", raw); // Debug log to see raw response
             const contentType = (response.headers.get('content-type') || '').toLowerCase();
 
             // Spring now returns JSON 200 on success or 401 on failure (see backend)
