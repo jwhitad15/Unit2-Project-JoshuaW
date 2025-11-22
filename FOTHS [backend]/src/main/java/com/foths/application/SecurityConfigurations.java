@@ -16,18 +16,18 @@ public class SecurityConfigurations {
         http
                 .csrf(AbstractHttpConfigurer::disable) // if needed
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "perform_login", "/error", "/register", "logout", "/css/**", "/js/**").permitAll() // public endpoints
+//                        .requestMatchers("/login", "perform_login", "/error", "/register", "logout", "/css/**", "/js/**").permitAll() // public endpoints
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")          // your custom login page
-                        .loginProcessingUrl("/perform_login")       // form action must post here
-                        .defaultSuccessUrl("/", true)
+//                        .loginProcessingUrl("/perform_login")       // form action must post here
+//                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
+//                        .logoutSuccessUrl("/login?logout")
                         .permitAll()
                 )
                 .httpBasic(AbstractHttpConfigurer::disable);  // 🚫 disable Basic Auth
