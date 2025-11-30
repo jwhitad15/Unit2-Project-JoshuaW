@@ -1,4 +1,4 @@
-package com.foths.application.services;
+package com.foths.application.security.services;
 
 import com.foths.application.models.User;
 import com.foths.application.repositories.UserRepository;

@@ -119,5 +119,9 @@ public class User {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
+    public User orElseThrow(Object o) {
+        return null;
+    }
 }
 
