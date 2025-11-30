@@ -8,9 +8,19 @@
 
 package com.foths.application.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.foths.application.UserDetails;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.CredentialsContainer;
+import org.springframework.security.core.SpringSecurityCoreVersion;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 // The User class is annotated with @Entity to indicate that it is a JPA entity and @Table to specify the table name in the database.
@@ -19,8 +29,34 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "user")
+@Data
+@Table(name = "user", uniqueConstraints =  {@UniqueConstraint(columnNames = "username"), @UniqueConstraint(columnNames = "email")})
 public class User {
+
+    private boolean accountNonLocked = true;
+    private boolean accountNonExpired = true;
+    private boolean credentialsNonExpired = true;
+    private boolean enabled = true;
+
+    private LocalDate credentialsExpiryDate;
+    private LocalDate accountExpiryDate;
+
+    private String twoFactorSecret;
+    private boolean isTwoFactorEnabled = false;
+    private String signUpMethod;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+    @JsonBackReference
+    @ToString.Exclude
+    private Roles roles;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
 
     // The id field is annotated with @Id and @GeneratedValue to indicate that it is the primary key and its value will be generated automatically.
     @Id
@@ -28,14 +64,24 @@ public class User {
     private int id;
 
     // The fields are annotated with @Column to map them to the corresponding columns in the database table.
+    @NotBlank
+    @Size(max = 31)
     @Column(name = "first_name")
     private String firstName;
+    @NotBlank
+    @Size(max = 31)
     @Column(name = "last_name")
     private String lastName;
+    @NotBlank
+    @Size(max = 52)
     @Column(name = "email")
     private String email;
+    @NotBlank
+    @Size(max = 31)
     @Column(name = "username")
     private String username;
+    @NotBlank
+    @Size(max = 31)
     @Column(name = "password")
     private String password;
 
@@ -47,6 +93,7 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
 // No-argument constructor for JPA that creates instances of the User class.
     public User() {};
 
