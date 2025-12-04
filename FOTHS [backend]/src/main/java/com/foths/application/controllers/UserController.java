@@ -11,7 +11,9 @@ package com.foths.application.controllers;
 
 import com.foths.application.models.User;
 import com.foths.application.models.dto.LoginRequest;
+import com.foths.application.models.dto.UserProfileDTO;
 import com.foths.application.repositories.UserRepository;
+import com.foths.application.security.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,27 +31,39 @@ import java.util.Objects;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
+
+//    @GetMapping("")
+//    public ResponseEntity<?> getUsers(@AuthenticationPrincipal UserDetails userDetails) {
+//        System.out.println(STR."User\{userDetails.getUsername()} is authenticated");
+//        List<User> allUsers = userRepository.findAll();
+//        return ResponseEntity.ok(allUsers);
+//    }
 
     @GetMapping("")
-    public ResponseEntity<?> getUsers(@AuthenticationPrincipal UserDetails userDetails) {
-        System.out.println(STR."User\{userDetails.getUsername()} is authenticated");
-        List<User> allUsers = userRepository.findAll();
-        return ResponseEntity.ok(allUsers);
+    public ResponseEntity<List<User>> getAllUsers() {
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
-    @GetMapping(value="/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getUserById(@PathVariable(value="userId") int userId) {
-        User currentUser = (User) userRepository.findById(userId).orElse(null);
-        if (currentUser != null) {
-            return new ResponseEntity<>(currentUser, HttpStatus.OK); // 200
-        } else {
-            String response = STR."User with ID of \{userId} not found.";
-            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
-        }
+//    @GetMapping(value="/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<?> getUserById(@PathVariable(value="userId") int userId) {
+//        User currentUser = (User) userRepository.findById(userId).orElse(null);
+//        if (currentUser != null) {
+//            return new ResponseEntity<>(currentUser, HttpStatus.OK); // 200
+//        } else {
+//            String response = STR."User with ID of \{userId} not found.";
+//            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
+//        }
+//    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserProfileDTO> getUser(@PathVariable Long userId) {
+        return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
     }
 
     @PostMapping("/create")
@@ -83,22 +97,28 @@ public class UserController {
         }
     }
 
-    @PutMapping("/update/{userId}")
-    public ResponseEntity<?> updateUser(@PathVariable(value="userId") int userId, @RequestBody User user, @AuthenticationPrincipal UserDetails userDetails) {
-        User currentUser = (User) userRepository.findById(userId).orElse(null);
-        if (currentUser != null) {
-            currentUser.setFirstName(user.getFirstName());
-            currentUser.setLastName(user.getLastName());
-            currentUser.setEmail(user.getEmail());
-            currentUser.setUsername(user.getUsername());
-            currentUser.setPassword(user.getPassword());
+//    @PutMapping("/update/{userId}")
+//    public ResponseEntity<?> updateUser(@PathVariable(value="userId") int userId, @RequestBody User user, @AuthenticationPrincipal UserDetails userDetails) {
+//        User currentUser = (User) userRepository.findById(userId).orElse(null);
+//        if (currentUser != null) {
+//            currentUser.setFirstName(user.getFirstName());
+//            currentUser.setLastName(user.getLastName());
+//            currentUser.setEmail(user.getEmail());
+//            currentUser.setUsername(user.getUsername());
+//            currentUser.setPassword(user.getPassword());
+//
+//            userRepository.save(currentUser);
+//            return new ResponseEntity<>(currentUser, HttpStatus.OK); // 200
+//        } else {
+//            String response = STR."User with ID of \{userId} not found.";
+//            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
+//        }
+//    }
 
-            userRepository.save(currentUser);
-            return new ResponseEntity<>(currentUser, HttpStatus.OK); // 200
-        } else {
-            String response = STR."User with ID of \{userId} not found.";
-            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
-        }
+    @PutMapping("/update-role/{userId}")
+    public ResponseEntity<String> updateUserRole(@RequestParam Long userId, @RequestParam String roleName) {
+        userService.updateUserRole(userId, roleName);
+        return ResponseEntity.ok(STR."User role updated to \{roleName} for user ID \{userId}");
     }
 
     @DeleteMapping(value="/delete/{userId}", produces=MediaType.APPLICATION_JSON_VALUE)

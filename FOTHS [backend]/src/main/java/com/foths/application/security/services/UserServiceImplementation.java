@@ -1,6 +1,10 @@
 package com.foths.application.security.services;
 
+import com.foths.application.models.AppRoles;
+import com.foths.application.models.Roles;
 import com.foths.application.models.User;
+import com.foths.application.models.dto.UserProfileDTO;
+import com.foths.application.repositories.RolesRepository;
 import com.foths.application.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +16,9 @@ public class UserServiceImplementation implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RolesRepository rolesRepository;
 
     @Override
     public User createUser(User user) {
@@ -35,6 +42,18 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    public void updateUserRole(Long userId, String roleName) {
+        User user = userRepository.findById(Math.toIntExact(userId)).orElseThrow(() ->
+                new RuntimeException(STR."User not found with id: \{userId}"));
+        AppRoles appRoles = AppRoles.valueOf(roleName);
+        Roles roles = rolesRepository.findByRoleName(appRoles).orElseThrow(() ->
+                new RuntimeException(STR."Role not found with name: \{roleName}"));
+
+        user.setRoles(roles);
+        userRepository.save(user);
+    }
+
+    @Override
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
@@ -42,6 +61,11 @@ public class UserServiceImplementation implements UserService {
     @Override
     public List<User> getAllUsers() {
         return List.of();
+    }
+
+    @Override
+    public UserProfileDTO getUserById(Long userId) {
+        return null;
     }
 
     @Override

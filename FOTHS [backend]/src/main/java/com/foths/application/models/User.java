@@ -65,23 +65,23 @@ public class User {
 
     // The fields are annotated with @Column to map them to the corresponding columns in the database table.
     @NotBlank
-    @Size(max = 31)
+    @Size(max = 310)
     @Column(name = "first_name")
     private String firstName;
     @NotBlank
-    @Size(max = 31)
+    @Size(max = 310)
     @Column(name = "last_name")
     private String lastName;
     @NotBlank
-    @Size(max = 52)
+    @Size(max = 520)
     @Column(name = "email")
     private String email;
     @NotBlank
-    @Size(max = 31)
+    @Size(max = 310)
     @Column(name = "username")
     private String username;
     @NotBlank
-    @Size(max = 31)
+    @Size(max = 310)
     @Column(name = "password")
     private String password;
 
@@ -97,7 +97,11 @@ public class User {
 // No-argument constructor for JPA that creates instances of the User class.
     public User() {};
 
-// The class also overrides the toString method to provide a string representation of the user object,
+    public User(String username) {
+        this.username = username;
+    }
+
+    // The class also overrides the toString method to provide a string representation of the user object,
 // which includes the user's id, first name, last name, email, username, and password.
     @Override
     public String toString() {
