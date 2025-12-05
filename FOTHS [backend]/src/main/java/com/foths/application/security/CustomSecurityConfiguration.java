@@ -11,20 +11,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -32,51 +29,23 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class CustomSecurityConfiguration {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) ->
                 requests
-                        .requestMatchers("/login", "/register", "/greet").permitAll()
-                        .requestMatchers("/public/**").permitAll() /* this permits all requests with "/public" in it*/
-                        .requestMatchers("/admin/**").denyAll() /* this denies anything with the endpoint with "/admin" in it */
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() /* this allows all OPTIONS requests */
+                        .requestMatchers("/login", "/register").permitAll()
                         .anyRequest().authenticated());
 //        http.formLogin(withDefaults());
         http.sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.csrf(AbstractHttpConfigurer::disable);
         http.httpBasic(withDefaults());
         return http.build();
     }
 
-//    @Bean
-//    public UserDetailsService userDetailService(DataSource dataSource, PasswordEncoder passwordEncoder) {
-//        JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
-//
-//        manager.setUsersByUsernameQuery("select username, password, enabled from `user` where username = ?");
-//        manager.setAuthoritiesByUsernameQuery("select username, authority from `authorities` where username = ?");
-//        manager.setUserExistsSql("select username from `user` where username = ?");
-//        manager.setCreateUserSql("insert into `user` (username, password, enabled) values (?,?,?)");
-//
-//        if (!manager.userExists("user")) {
-//            manager.createUser(
-//                    User.withUsername("user")
-//                            .password(passwordEncoder.encode("password"))
-//                            .roles("USER")
-//                            .build()
-//            );
-//        }
-//        if (!manager.userExists("admin")) {
-//            manager.createUser(
-//                    User.withUsername("admin")
-//                            .password(passwordEncoder.encode("password"))
-//                            .roles("ADMIN")
-//                            .build()
-//            );
-//        }
-//        return manager;
-//    }
 
 @Bean
 public CommandLineRunner initData(RolesRepository rolesRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -124,9 +93,6 @@ public CommandLineRunner initData(RolesRepository rolesRepository, UserRepositor
         }
     };
 }
-
-
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -64,9 +64,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public UserProfileDTO getUserById(Long userId) {
-        return null;
-    }
+    public UserProfileDTO getUserById(Long userId) {return null;}
 
     @Override
     public User getUserById(Integer id) {

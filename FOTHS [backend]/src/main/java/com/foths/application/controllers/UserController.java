@@ -17,6 +17,7 @@ import com.foths.application.security.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/users")
+@PreAuthorize("hasRole('ADMIN')")
 public class UserController {
 
     private final UserRepository userRepository;
@@ -38,28 +40,10 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @GetMapping("")
-//    public ResponseEntity<?> getUsers(@AuthenticationPrincipal UserDetails userDetails) {
-//        System.out.println(STR."User\{userDetails.getUsername()} is authenticated");
-//        List<User> allUsers = userRepository.findAll();
-//        return ResponseEntity.ok(allUsers);
-//    }
-
     @GetMapping("")
     public ResponseEntity<List<User>> getAllUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
-
-//    @GetMapping(value="/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<?> getUserById(@PathVariable(value="userId") int userId) {
-//        User currentUser = (User) userRepository.findById(userId).orElse(null);
-//        if (currentUser != null) {
-//            return new ResponseEntity<>(currentUser, HttpStatus.OK); // 200
-//        } else {
-//            String response = STR."User with ID of \{userId} not found.";
-//            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
-//        }
-//    }
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserProfileDTO> getUser(@PathVariable Long userId) {
@@ -97,23 +81,23 @@ public class UserController {
         }
     }
 
-//    @PutMapping("/update/{userId}")
-//    public ResponseEntity<?> updateUser(@PathVariable(value="userId") int userId, @RequestBody User user, @AuthenticationPrincipal UserDetails userDetails) {
-//        User currentUser = (User) userRepository.findById(userId).orElse(null);
-//        if (currentUser != null) {
-//            currentUser.setFirstName(user.getFirstName());
-//            currentUser.setLastName(user.getLastName());
-//            currentUser.setEmail(user.getEmail());
-//            currentUser.setUsername(user.getUsername());
-//            currentUser.setPassword(user.getPassword());
-//
-//            userRepository.save(currentUser);
-//            return new ResponseEntity<>(currentUser, HttpStatus.OK); // 200
-//        } else {
-//            String response = STR."User with ID of \{userId} not found.";
-//            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
-//        }
-//    }
+    @PutMapping("/update/{userId}")
+    public ResponseEntity<?> updateUser(@PathVariable(value="userId") int userId, @RequestBody User user, @AuthenticationPrincipal UserDetails userDetails) {
+        User currentUser = (User) userRepository.findById(userId).orElse(null);
+        if (currentUser != null) {
+            currentUser.setFirstName(user.getFirstName());
+            currentUser.setLastName(user.getLastName());
+            currentUser.setEmail(user.getEmail());
+            currentUser.setUsername(user.getUsername());
+            currentUser.setPassword(user.getPassword());
+
+            userRepository.save(currentUser);
+            return new ResponseEntity<>(currentUser, HttpStatus.OK); // 200
+        } else {
+            String response = STR."User with ID of \{userId} not found.";
+            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
+        }
+    }
 
     @PutMapping("/update-role/{userId}")
     public ResponseEntity<String> updateUserRole(@RequestParam Long userId, @RequestParam String roleName) {
