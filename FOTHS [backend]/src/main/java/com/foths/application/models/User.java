@@ -127,5 +127,9 @@ public class User {
     public User orElseThrow(Object o) {
         return null;
     }
+
+    public User orElse(Object o) {
+        return null;
+    }
 }
 

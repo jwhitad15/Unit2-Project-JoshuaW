@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -32,19 +34,46 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class CustomSecurityConfiguration {
 
+    // Expose AuthenticationManager for the controller
     @Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) ->
-                requests
-                        .requestMatchers("/login", "/register").permitAll()
-                        .anyRequest().authenticated());
-//        http.formLogin(withDefaults());
-        http.sessionManagement(session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.csrf(AbstractHttpConfigurer::disable);
-        http.httpBasic(withDefaults());
-        return http.build();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
     }
+
+//    @Bean
+//    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+//        http.
+//                cors(withDefaults() // enable CORS support so corsConfigurationSource is used
+//                .authorizeHttpRequests((requests) ->
+//                    requests
+//                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // allow preflight
+//                        .requestMatchers("authenticate", "/login", "/register").permitAll()
+//                        .anyRequest().authenticated());
+////        http.formLogin(withDefaults());
+//        http.sessionManagement(session ->
+//                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+//        http.csrf(AbstractHttpConfigurer::disable);
+//        http.httpBasic(withDefaults());
+//        return http.build();
+//    }
+
+@Bean
+SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+    http
+            .cors(withDefaults()) // use the new Cors(Customizer) API instead of cors().and()
+            .csrf(AbstractHttpConfigurer::disable)
+            .sessionManagement(session ->
+                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests((requests) ->
+                    requests
+                            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                            .requestMatchers("/authenticate", "/login", "/register").permitAll()
+                            .anyRequest().authenticated()
+            )
+            .httpBasic(withDefaults());
+
+    return http.build();
+}
 
 
 @Bean
