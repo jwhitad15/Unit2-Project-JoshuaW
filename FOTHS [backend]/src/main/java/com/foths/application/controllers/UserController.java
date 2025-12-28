@@ -14,6 +14,7 @@ import com.foths.application.models.dto.LoginRequest;
 import com.foths.application.models.dto.UserProfileDTO;
 import com.foths.application.repositories.UserRepository;
 import com.foths.application.security.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -38,9 +39,11 @@ import java.util.Objects;
 //@PreAuthorize("hasRole('ADMIN')")
 public class UserController {
 
+    @Autowired
     private final UserRepository userRepository;
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
+    @Autowired
     private final PasswordEncoder passwordEncoder;
 
     public UserController(UserRepository userRepository, UserService userService, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder) {
@@ -101,6 +104,17 @@ public class UserController {
         String username = request.getUsername();
         System.out.println("Authenticate attempt for username: " + username);
 
+        var user = userRepository.findByUsername(request.getUsername());
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("message", "Invalid username or password"));
+        }
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("message", "Invalid username or password"));
+        }
+
         // check user exists first
         var userOpt = userRepository.findByUsername(username);
         if (userOpt.isEmpty()) {
@@ -109,7 +123,7 @@ public class UserController {
                     .body(Map.of("error", "User not found"));
         }
 
-        User user = userOpt.get();
+//        User user = userOpt.get();
         String stored = user.getPassword();
         boolean looksLikeBCrypt = stored != null && (stored.startsWith("$2a$") || stored.startsWith("$2b$") || stored.startsWith("$2y$"));
         System.out.println("Stored password present=" + (stored != null) + " looksLikeBCrypt=" + looksLikeBCrypt + " length=" + (stored == null ? 0 : stored.length()));

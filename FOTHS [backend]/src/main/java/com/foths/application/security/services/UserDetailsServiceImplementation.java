@@ -21,7 +21,8 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = Optional.ofNullable(userRepository.findByUsername(username))
-                .orElseThrow(() -> new UsernameNotFoundException(STR."User Not Found with username: \{username}"));
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: "));
+
         
         return UserDetailsImplementation.build(user);
     }
