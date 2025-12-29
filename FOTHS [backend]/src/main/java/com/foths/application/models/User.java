@@ -127,5 +127,17 @@ public class User {
     public User orElseThrow(Object o) {
         return null;
     }
+
+    public User orElse(Object o) {
+        return null;
+    }
+
+    public User get() {
+        return null;
+    }
+
+    public boolean isEmpty() {
+        return false;
+    }
 }
 
