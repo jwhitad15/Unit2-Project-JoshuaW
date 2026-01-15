@@ -83,4 +83,25 @@ ALTER TABLE scope_activity ADD ActivityID VARCHAR(31);
 ALTER TABLE login_activity ADD UserID VARCHAR(31);    
 ALTER TABLE login_activity ADD ActivityID VARCHAR(31); 
 
+ALTER TABLE user ADD COLUMN enabled TINYINT(1) NOT NULL DEFAULT 1;
 
+CREATE TABLE  authorities (
+  username VARCHAR(50) NOT NULL,
+  authority  VARCHAR(50) NOT NULL,
+  CONSTRAINT fk_authorities_user FOREIGN KEY (username) REFERENCES user (username)
+);
+CREATE INDEX  ix_authorities_username ON authorities (username);
+
+-- (SQL) Find rows with NULLs
+SELECT id, email FROM user WHERE email IS NULL;
+SELECT id, first_name FROM user WHERE first_name IS NULL;
+SELECT id, last_name FROM user WHERE last_name IS NULL;
+SELECT id, password FROM user WHERE password IS NULL;
+
+SELECT id, email, first_name, last_name FROM user
+ WHERE email IS NULL OR first_name IS NULL OR last_name IS NULL;
+
+-- example: set placeholder values (choose meaningful placeholders)
+UPDATE user SET email = CONCAT('user', id, '@example.com') WHERE email IS NULL;
+UPDATE user SET first_name = 'Unknown' WHERE first_name IS NULL;
+UPDATE user SET last_name  = 'Unknown' WHERE last_name IS NULL;
