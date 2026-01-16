@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY . .
 
-WORKDIR /app/FOTHS\ [backend]
+WORKDIR "/app/FOTHS\ [backend]"
 
 RUN mvn clean package -DskipTests
 
