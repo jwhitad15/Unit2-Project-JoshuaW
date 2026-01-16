@@ -4,8 +4,11 @@ FROM maven:3.9.4-eclipse-temurin-17 AS build
 # Set working directory (quote for spaces and brackets)
 WORKDIR "/app/FOTHS [backend]"
 
-# Copy the full project into the container
-COPY ./FOTHS\ [backend] "/app/FOTHS [backend]"
+# Copy the full project into the container (no backslash, just quotes)
+COPY "FOTHS [backend]" "/app/FOTHS [backend]"
+
+# Verify the POM exists before building
+RUN if [ ! -f pom.xml ]; then echo "ERROR: pom.xml not found!" && exit 1; fi
 
 # Build the project without running tests
 RUN mvn clean package -DskipTests
