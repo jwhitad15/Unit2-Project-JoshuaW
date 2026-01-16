@@ -1,0 +1,25 @@
+/*
+-- Query: SELECT * FROM temperance_scripture
+LIMIT 0, 1000
+
+-- Date: 2026-01-13 20:45
+*/
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Proverbs 16:32','He that is slow to anger is better than the mighty; and he that ruleth his spirit than he that taketh a city.','Easy','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Romans 8:13','For if ye live after the flesh, ye shall die: but if ye through the Spirit do mortify the deeds of the body, ye shall live.','Easy','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Proverbs 25:28','He that hath no rule over his own spirit is like a city that is broken down, and without walls.','Easy','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Romans 8:6','For to be carnally minded is death; but to be spiritually minded is life and peace.','Easy','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('1 Peter 1:15','But as he which hath called you is holy, so be ye holy in all manner of conversation.','Easy','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('2 Timothy 1:7','For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.','Easy','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Colossians 3:5','Mortify therefore your members which are upon the earth; fornication, uncleanness, inordinate affection, evil concupiscence, and covetousness, which is idolatry:','Intermediate','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Romans 14:21','It is good neither to eat flesh, nor to drink wine, nor any thing whereby thy brother stumbleth, or is offended, or is made weak.','Difficult','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Galatians 5:23','Meekness, temperance: against such there is no law.','Easy','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('1 Corinthians 9:25-27','And every man that striveth for the mastery is temperate in all things. Now they do it to obtain a corruptible crown; but we an incorruptible. I therefore so run, not as uncertainly; so fight I, not as one that beateth the air: But I keep under my body, and bring it into subjection: lest that by any means, when I have preached to others, I myself should be a castaway.','Difficult','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Proverbs 23:1-3','When thou sittest to eat with a ruler, consider diligently what is before thee: And put a knife to thy throat, if thou be a man given to appetite. Be not desirous of his dainties: for they are deceitful meat.','Difficult','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Galatians 5:16','This I say then, Walk in the Spirit, and ye shall not fulfil the lust of the flesh.','Easy','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('2 Peter 1:5-6','And beside this, giving all diligence, add to your faith virtue; and to virtue knowledge; And to knowledge temperance; and to temperance patience; and to patience godliness;','Difficult','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Titus 2:12','Teaching us that, denying unGodliness and worldly lusts, we should live soberly, righteously, and godly, in this present world.','Intermediate','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Romans 13:14','But put ye on the Lord Jesus Christ, and make not provision for the flesh, to fulfil the lusts thereof.','Intermediate','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Philippians 4:5','Let your moderation be known unto all men. The Lord is at hand.','Intermediate','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Proverbs 25:16','Hast thou found honey? eat so much as is sufficient for thee, lest thou be filled therewith, and vomit it.','Difficult','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Ecclesiastes 7:9','Be not hasty in thy spirit to be angry: for anger resteth in the bosom of fools.','Easy','KJV','Temperance','');
+INSERT INTO `` (`VERSE`,`SCRIPTURE`,`LOD`,`TRANSLATION`,`FRUIT`,`CATEGORY`) VALUES ('Titus 2:2','That the aged men be sober, grave, temperate, sound in faith, in charity, in patience.','Intermediate','KJV','Temperance','');
