@@ -1,26 +1,27 @@
 # ---------- Build stage ----------
-FROM maven:3.9.4-eclipse-temurin-17 AS build
+FROM maven:3.9.4-eclipse-temurin-21 AS build
 
-# Set working directory (updated to match your backend folder)
-WORKDIR "/app/foths-backend"
+# Set working directory
+WORKDIR /app
 
-# Copy the full project into the container
-COPY "foths-backend" "/app/foths-backend"
+# Copy the current directory (foths-backend) into the container
+COPY . .
 
 # Verify the POM exists before building
 RUN if [ ! -f pom.xml ]; then echo "ERROR: pom.xml not found!" && exit 1; fi
 
 # Build the project without running tests
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests -e -X
 
 # ---------- Runtime stage ----------
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:21-jre
 
 # Set working directory for runtime
 WORKDIR /app
 
 # Copy the built JAR from the build stage
-COPY --from=build "/app/foths-backend/target/" ./target/
+COPY --from=build /app/target ./target
 
 # Automatically run the first JAR in target/
-CMD java -jar $(ls target/*.jar | head -n 1)
+CMD ["sh", "-c", "java --enable-preview -jar target/$(ls target | grep '.jar' | head -n1)"]
+
