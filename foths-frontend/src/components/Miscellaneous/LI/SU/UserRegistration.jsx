@@ -10,7 +10,7 @@ function UserRegistration() {
 
     const handleClick = (e) => {
         e.preventDefault();
-        fetch('https://localhost:8080/users/create', {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/users/create`, {
             method: 'POST',
             body: JSON.stringify({
                 firstName: formData.firstName,

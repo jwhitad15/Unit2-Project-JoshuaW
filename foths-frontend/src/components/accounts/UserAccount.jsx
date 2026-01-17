@@ -51,7 +51,7 @@ const UserAccount = () => {
                     return;
                 }
     
-                let url = "http://localhost:8080";
+                let url = `${process.env.REACT_APP_BACKEND_URL}`;
     
                 // Determine the endpoint based on dropdown selections
                 if (selectedMode === "study" || selectedMode === "recall") {

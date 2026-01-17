@@ -174,7 +174,7 @@ const LoginForm = () => {
     console.log("Submitting login form with data:", formData);
 
     try {
-      const res = await fetch("http://localhost:8080/users/authenticate", {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/authenticate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

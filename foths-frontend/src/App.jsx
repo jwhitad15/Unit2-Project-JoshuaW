@@ -5,7 +5,7 @@ import StartFoths from './components/Miscellaneous/StartFoths';
 import Dashboard from './components/Miscellaneous/dashboard.jsx';
 import FOTHSMain from './components/foths/FOTHSMain';
 import GameMode from './components/foths/GameMode';
-import Study from './components/foths/Study';
+import Study from './components/foths/study';
 import Recall from './components/recall/Recall';
 import Multichoice from './components/multichoice/Multichoice';
 import About from './components/footer/About';

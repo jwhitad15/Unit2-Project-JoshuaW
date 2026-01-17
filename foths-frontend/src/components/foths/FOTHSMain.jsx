@@ -56,7 +56,7 @@ const FOTHSMain = () => {
 
     const fetchDailyScripture = async () => {
         try {
-                const response = await fetch('http://localhost:8080/scriptures');
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/scriptures`);
                 const data = await response.json();
 
         // Ensure the data is an array and contains scripture objects

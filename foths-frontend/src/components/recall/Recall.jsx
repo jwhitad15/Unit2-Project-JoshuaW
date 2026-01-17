@@ -39,7 +39,7 @@ import './Recall.css';
  
      const fetchScripture = async () => {
          try {
-             const response = await fetch('http://localhost:8080/scriptures'); // Fetch all scriptures
+             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/scriptures`); // Fetch all scriptures
              console.log('Response status:', response.status); 
              const data = await response.json();
              console.log('Scripture data fetched successfully:', data);
