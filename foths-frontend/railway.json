@@ -1,0 +1,13 @@
+{
+    "build": {
+      "command": "npm install && npm run build",
+      "publish_dir": "dist"
+    },
+    "env": {
+      "VITE_BACKEND_URL": "https://foths-production.up.railway.app"
+    },
+    "watch": [
+      "foths-frontend/src/**"
+    ]
+  }
+  
