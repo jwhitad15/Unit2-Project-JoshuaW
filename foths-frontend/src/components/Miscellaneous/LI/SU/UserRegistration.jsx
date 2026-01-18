@@ -10,7 +10,7 @@ function UserRegistration() {
 
     const handleClick = (e) => {
         e.preventDefault();
-        fetch(`${import.meta.env.VITE_BACKEND_URL}/users/create`, {
+        fetch(`${ApiHelper.baseUrl}/users/create`, {
             method: 'POST',
             body: JSON.stringify({
                 firstName: formData.firstName,

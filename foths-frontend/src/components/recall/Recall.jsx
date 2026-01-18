@@ -39,7 +39,7 @@ import './Recall.css';
  
      const fetchScripture = async () => {
          try {
-             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/scriptures`); // Fetch all scriptures
+             const response = await fetch(`${ApiHelper.baseUrl}/scriptures`); // Fetch all scriptures
              console.log('Response status:', response.status); 
              const data = await response.json();
              console.log('Scripture data fetched successfully:', data);

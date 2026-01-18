@@ -54,14 +54,14 @@ class Multichoice extends Component {
 
         try {
             // Fetch questions from the backend
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/questions`); // Replace with your backend endpoint
+            const response = await fetch(`${ApiHelper.baseUrl}/questions`); // Replace with your backend endpoint
             if (!response.ok) {
                 throw new Error(`Failed to fetch questions. Status: ${response.status}`);
             }
             const questionsData = await response.json();
     
             // Fetch scriptures from the backend
-            const scripturesResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/scriptures`); // Replace with your backend endpoint
+            const scripturesResponse = await fetch(`${ApiHelper.baseUrl}/scriptures`); // Replace with your backend endpoint
             if (!scripturesResponse.ok) {
                 throw new Error(`Failed to fetch scriptures. Status: ${scripturesResponse.status}`);
             }

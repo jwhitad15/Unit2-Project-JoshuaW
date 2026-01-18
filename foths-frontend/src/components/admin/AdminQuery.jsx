@@ -38,7 +38,7 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
 
     if (command === "add" && type === "users") {
       try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/users/create`;
+        const url = `${ApiHelper.baseUrl}/users/create`;
         console.log(userData) // Construct the API URL
         const response = await fetch(url, {
           method: "POST",
@@ -64,7 +64,7 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
     // Create operations based on the Command dropdown selection
     if (command === "add" && type === "questions") {
       try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/questions/add`;
+        const url = `${ApiHelper.baseUrl}/questions/add`;
         console.log(questionData) // Construct the API URL
         const response = await fetch(url, {
           method: "POST",
@@ -89,7 +89,7 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
 
     if (command === "add" && type === "scriptures") {
       try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/scriptures/add`;
+        const url = `${ApiHelper.baseUrl}/scriptures/add`;
         console.log(scriptureData) // Construct the API URL
         const response = await fetch(url, {
           method: "POST",
@@ -117,8 +117,8 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
       try {
         // Construct the API URL based on whether an ID is provided
         const url = id.trim()
-          ? `${import.meta.env.VITE_BACKEND_URL}/${id.trim()}` // Fetch specific record by ID
-          : `${import.meta.env.VITE_BACKEND_URL}/${type}`; // Fetch all records of the selected type
+          ? `${ApiHelper.baseUrl}/${id.trim()}` // Fetch specific record by ID
+          : `${ApiHelper.baseUrl}/${type}`; // Fetch all records of the selected type
   
         // Make an API call to fetch data
         const response = await fetch(url, {
@@ -155,7 +155,7 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
       }
 
       try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/${type}/update/${id.trim()}`; // Construct the API URL
+        const url = `${ApiHelper.baseUrl}/${type}/update/${id.trim()}`; // Construct the API URL
         const dataToUpdate = type === "users" ? userData : type === "questions" ? questionData : scriptureData;
 
         const response = await fetch(url, {
@@ -181,7 +181,7 @@ const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, s
       try {
         console.log("Fetching data with command:", command, "type:", type, "id:", id);
         let deleteID = id.trim()// Construct the API URL based on whether an ID is provided
-        const url = `${import.meta.env.VITE_BACKEND_URL}/${type}/${command}/${deleteID}` // Fetch specific record by ID
+        const url = `${ApiHelper.baseUrl}/${type}/${command}/${deleteID}` // Fetch specific record by ID
       // Fetch all records of the selected type
         console.log("API URL:", url);
       // Make an API call to fetch data
