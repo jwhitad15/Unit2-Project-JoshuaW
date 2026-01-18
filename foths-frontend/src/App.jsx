@@ -2,13 +2,13 @@ import './App.css';
 import './components/accounts/UserAccount.css'
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import StartFoths from './components/Miscellaneous/StartFoths';
-import Dashboard from './components/Miscellaneous/Dashboard.jsx';
+import Dashboard from './components/Miscellaneous/Dashboard';
 import FOTHSMain from './components/foths/FOTHSMain';
 import GameMode from './components/foths/GameMode';
-import Study from './components/foths/Study.jsx';
+import Study from './components/foths/Study';
 import Recall from './components/recall/Recall';
 import Multichoice from './components/multichoice/Multichoice';
-import About from './components/footer/About.jsx';
+import About from './components/footer/About';
 import LoginForm from './components/Miscellaneous/LI/SU/LoginForm';
 import Fetch from './components/fetch/Fetch';
 import Admin from './components/admin/Admin';
