@@ -51,7 +51,7 @@ const UserAccount = () => {
                     return;
                 }
     
-                let url = `${process.env.REACT_APP_BACKEND_URL}`;
+                let url = `${import.meta.env.VITE_BACKEND_URL}`;
     
                 // Determine the endpoint based on dropdown selections
                 if (selectedMode === "study" || selectedMode === "recall") {

@@ -31,7 +31,7 @@ const Study = () => {
 
     const fetchScripture = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/scriptures`);
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/scriptures`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
