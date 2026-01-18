@@ -2,7 +2,7 @@ import './App.css';
 import './components/accounts/UserAccount.css'
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import StartFoths from './components/Miscellaneous/StartFoths';
-import Dashboard from './components/Miscellaneous/dashboard.jsx';
+import Dashboard from './components/Miscellaneous/Dashboard.jsx';
 import FOTHSMain from './components/foths/FOTHSMain';
 import GameMode from './components/foths/GameMode';
 import Study from './components/foths/study';
