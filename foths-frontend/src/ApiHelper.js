@@ -1,5 +1,5 @@
 const ApiHelper = {
-    baseUrl: ApiHelper.baseUrl
+    baseUrl: import.meta.env.VITE_BACKEND_URL
   };
   
   export default ApiHelper;
