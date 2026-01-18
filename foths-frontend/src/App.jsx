@@ -1,21 +1,21 @@
 import './App.css';
 import './components/accounts/UserAccount.css'
 import { Routes, Route, HashRouter } from 'react-router-dom';
-import StartFoths from './components/Miscellaneous/StartFoths.jsx';
+import StartFoths from './components/Miscellaneous/StartFoths';
 import Dashboard from './components/Miscellaneous/Dashboard.jsx';
-import FOTHSMain from './components/foths/FOTHSMain.jsx';
-import GameMode from './components/foths/GameMode.jsx';
-import Study from './components/foths/Study.jsx';
-import Recall from './components/recall/Recall.jsx';
-import Multichoice from './components/multichoice/Multichoice.jsx';
+import FOTHSMain from './components/foths/FOTHSMain';
+import GameMode from './components/foths/GameMode';
+import Study from './components/foths/study.jsx';
+import Recall from './components/recall/Recall';
+import Multichoice from './components/multichoice/Multichoice';
 import About from './components/footer/About.jsx';
-import LoginForm from './components/Miscellaneous/LI/SU/LoginForm.jsx';
-import Fetch from './components/fetch/Fetch.jsx';
-import Admin from './components/admin/Admin.jsx';
-import UserLogin from './components/Miscellaneous/LI/SU/UserLogin.jsx';
-import UserRegistration from './components/Miscellaneous/LI/SU/UserRegistration.jsx';
-import Registration from './components/Miscellaneous/LI/SU/Registration.jsx';
-import UserAccount from './components/accounts/UserAccount.jsx';
+import LoginForm from './components/Miscellaneous/LI/SU/LoginForm';
+import Fetch from './components/fetch/Fetch';
+import Admin from './components/admin/Admin';
+import UserLogin from './components/Miscellaneous/LI/SU/UserLogin';
+import UserRegistration from './components/Miscellaneous/LI/SU/UserRegistration';
+import Registration from './components/Miscellaneous/LI/SU/Registration';
+import UserAccount from './components/accounts/UserAccount';
 
 
 // All of my main components are plugged into the App component
