@@ -149,3 +149,6 @@ public CommandLineRunner initData(RolesRepository rolesRepository, UserRepositor
         return source;
     }
 }
+
+//Deployment URL Frontend: https://foths-frontend-production.up.railway.app
+//Deployment URL Backend: https://foths-backend-production.up.railway.app
