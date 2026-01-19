@@ -10,7 +10,7 @@ import Recall from './components/recall/Recall';
 import Multichoice from './components/multichoice/Multichoice';
 import About from './components/footer/About';
 import LoginForm from './components/Miscellaneous/LI/SU/LoginForm';
-import Fetch from './components/fetch/Fetch';
+import Fetch from './components/fetch/Fetch'; 
 import Admin from './components/admin/Admin';
 import UserLogin from './components/Miscellaneous/LI/SU/UserLogin';
 import UserRegistration from './components/Miscellaneous/LI/SU/UserRegistration';
