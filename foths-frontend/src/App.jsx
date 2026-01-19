@@ -5,7 +5,6 @@ import StartFoths from './components/Miscellaneous/StartFoths';
 import Dashboard from './components/Miscellaneous/Dashboard';
 import FOTHSMain from './components/foths/FOTHSMain';
 import GameMode from './components/foths/GameMode';
-import Study from './components/foths/Study';
 import Recall from './components/recall/Recall';
 import Multichoice from './components/multichoice/Multichoice';
 import About from './components/footer/About';
@@ -16,6 +15,7 @@ import UserLogin from './components/Miscellaneous/LI/SU/UserLogin';
 import UserRegistration from './components/Miscellaneous/LI/SU/UserRegistration';
 import Registration from './components/Miscellaneous/LI/SU/Registration';
 import UserAccount from './components/accounts/UserAccount';
+import Study from './components/foths/Study';
 
 // I HOPE THIS DEPLOYMENT WORKS...EVERYTHING IS CORRECT!!!!
 
