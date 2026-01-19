@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserInteraction from "./UserInteraction";
 import FourElementHeader from "../header-components/FourElementHeader";
-import Footer from "../footer/footer.jsx";
+import Footer from "../footer/Footer.jsx";
 import FaithCard from "./fruit/FaithCard";
 import LoveCard from "./fruit/LoveCard";
 import PeaceCard from "./fruit/PeaceCard";
