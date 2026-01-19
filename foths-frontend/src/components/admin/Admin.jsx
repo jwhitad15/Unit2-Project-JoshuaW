@@ -6,7 +6,7 @@ import AdminQuery from "./AdminQuery";
 import Music from "./Music";
 import AdminHeader from "../header-components/AdminHeader";
 import FetchDataComponent from "./FetchDataComponent";
-import './admin.css';
+import './admin.css'; 
 import AccountFooter from "../footer/AccountFooter";
 
 
