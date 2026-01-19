@@ -15,7 +15,7 @@ import UserLogin from './components/Miscellaneous/LI/SU/UserLogin';
 import UserRegistration from './components/Miscellaneous/LI/SU/UserRegistration';
 import Registration from './components/Miscellaneous/LI/SU/Registration';
 import UserAccount from './components/accounts/UserAccount';
-import Study from './components/foths/Study';
+import Study from './components/foths/study';
 
 // I HOPE THIS DEPLOYMENT WORKS...EVERYTHING IS CORRECT!!!!
 
