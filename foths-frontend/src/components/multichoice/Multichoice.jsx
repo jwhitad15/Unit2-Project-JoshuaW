@@ -1,6 +1,6 @@
 import React, { Component, useContext } from "react";
 import { SelectionLogic } from "../foths/SelectionLogic";
-import './Multichoice.css'
+import './multichoice.css'
 import Score from "./Score";
 import FourElementHeader from "../header-components/FourElementHeader";
 import Footer from "../footer/Footer";
