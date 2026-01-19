@@ -18,3 +18,5 @@ public class FothsApplication {
 	}
 
 }
+
+//Deployment ready
