@@ -54,7 +54,9 @@ public class Question {
     // The class also overrides the toString method to provide a string representation of the question object,
     // which includes the id, questions, answer, level of difficulty (lod), translation, fruit, and category.
     @Override
-    public String toString() { return STR."\{fruit}_\{id} | \{category} | \{questions}[\{answer}] | \{lod} | \{translation} | \{category}"; }
+    public String toString() { return fruit + "_" + id + " | " + category + " | " +
+            questions + "[" + answer + "] | " +
+            lod + " | " + translation + " | " + category; }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

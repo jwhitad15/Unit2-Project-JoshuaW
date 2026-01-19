@@ -28,6 +28,8 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<maven.compiler.release>21</maven.compiler.release>
+		<maven.compiler.compilerArgs>--enable-preview</maven.compiler.compilerArgs>
 	</properties>
 	<dependencies>
 
@@ -96,14 +98,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<jvmArguments>--enable-preview</jvmArguments>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
 				<configuration>
 					<source>21</source>
 					<target>21</target>
-					<compilerArgs>--enable-preview</compilerArgs>
+					<release>21</release>
+					<compilerArgs><arg>--enable-preview</arg></compilerArgs>
 				</configuration>
 			</plugin>
 		</plugins>
