@@ -1,3 +1,5 @@
+// LIVE URL: https://foths-frontend-production.up.railway.app/
+
 import './App.css';
 import './components/accounts/UserAccount.css'
 import { Routes, Route, HashRouter } from 'react-router-dom';
