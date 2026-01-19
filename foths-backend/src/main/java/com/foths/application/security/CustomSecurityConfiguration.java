@@ -139,7 +139,7 @@ public CommandLineRunner initData(RolesRepository rolesRepository, UserRepositor
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         // use the exact origin your frontend runs on; do NOT use "*" when allowCredentials is true
-        config.setAllowedOriginPatterns(List.of("http://localhost:5173"));
+        config.setAllowedOriginPatterns(List.of("http://localhost:5173", "https://foths-frontend-production.up.railway.app"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
