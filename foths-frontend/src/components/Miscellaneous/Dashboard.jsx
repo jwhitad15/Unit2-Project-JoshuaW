@@ -1,4 +1,4 @@
-import Footer from "../footer/footer";
+import Footer from "../Miscellaneous/footer";
 import FourElementHeader from "../header-components/FourElementHeader";
 
 const Dashboard = () => {
