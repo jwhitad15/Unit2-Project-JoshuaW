@@ -3,7 +3,7 @@
 // #117f9e;
 
 import React from "react";
-import './Admin.css';
+import './admin.css';
 
 const FetchDataComponent = ({ fetchedData, onCellClick}) => {
 

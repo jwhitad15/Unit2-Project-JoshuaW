@@ -2,7 +2,7 @@
 
 import React from "react";
 import ExitProgram from "./ExitProgram";
-import '../admin/Admin.css'
+import '../admin/admin.css'
 
 
 

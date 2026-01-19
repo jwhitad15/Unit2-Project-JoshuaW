@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './Admin.css';
+import './admin.css';
 
 const QuestionFetch = ({setQuestionData}) => {
 
