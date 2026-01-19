@@ -2,7 +2,7 @@
 
 
 import FourElementHeader from "../header-components/FourElementHeader";
-import Footer from "./Footer";
+import Footer from "./footer";
 
 
 const About = () => {

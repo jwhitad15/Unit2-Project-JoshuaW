@@ -7,7 +7,7 @@ import FOTHSMain from './components/foths/FOTHSMain';
 import GameMode from './components/foths/GameMode';
 import Recall from './components/recall/Recall';
 import Multichoice from './components/multichoice/Multichoice';
-import About from './components/footer/About';
+import About from './components/footer/about';
 import LoginForm from './components/Miscellaneous/LI/SU/LoginForm';
 import Fetch from './components/fetch/Fetch'; 
 import Admin from './components/admin/Admin';

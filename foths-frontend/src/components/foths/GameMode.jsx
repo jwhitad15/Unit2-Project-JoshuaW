@@ -1,5 +1,5 @@
 import FourElementHeader from "../header-components/FourElementHeader";
-import Footer from "../footer/Footer";
+import Footer from "../footer/footer.jsx";
 import { SelectionLogic } from "./SelectionLogic.jsx"; // Import the context
 import React, { useContext } from "react";
 
