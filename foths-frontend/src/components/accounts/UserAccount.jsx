@@ -5,7 +5,7 @@ import './UserAccount.css';
 import './pomodoro/Pomodoro.css';
 import UtilBible from "./UtilBible";
 import Pomodoro from "./pomodoro/Pomodoro";
-import '../recall/Recall.css';
+import '../recall/recall.css';
 import AdminHeader from "../header-components/AdminHeader";
 import AccountFooter from "../footer/AccountFooter";
 
