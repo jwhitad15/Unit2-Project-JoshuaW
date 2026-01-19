@@ -66,6 +66,7 @@ public class CustomSecurityConfiguration {
 //                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 //        http.csrf(AbstractHttpConfigurer::disable);
 //        http.httpBasic(withDefaults());
+//        http.logout(withDefaults());
 //        return http.build();
 //    }
 
