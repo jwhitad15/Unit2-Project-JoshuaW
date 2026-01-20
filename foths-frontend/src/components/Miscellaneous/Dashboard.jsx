@@ -1,5 +1,7 @@
 import Footer from "../footer/Footer";
 import FourElementHeader from "../header-components/FourElementHeader";
+import FOTHS_Logo from "../Miscellaneous/FOTHS_Logo.png";
+
 const Dashboard = () => {
 
     return (
@@ -11,7 +13,7 @@ const Dashboard = () => {
 
             <main>
                 <div className="dashboard-title"> To Play a Game, Select a Game Card Below! </div> 
-                <a href="./#/foths" id="foths-card-hyperlink" className="FOTHS-dashboard-card"><img src="src/components/Miscellaneous/FOTHS_Logo.png" className="FOTHS-logo" alt="graphic-of-orange-fruit" width="90%"/></a> 
+                <a href="./#/foths" id="foths-card-hyperlink" className="FOTHS-dashboard-card"><img src={FOTHS_Logo.png} className="FOTHS-logo" alt="graphic-of-orange-fruit" width="90%"/></a> 
                 
             </main>
 
