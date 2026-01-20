@@ -81,7 +81,7 @@ SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Excepti
                             .requestMatchers("/authenticate", "/login", "/register").permitAll()
                             .anyRequest().authenticated()
             )
-            .httpBasic(withDefaults());
+            .httpBasic(AbstractHttpConfigurer::disable);
 
     return http.build();
 }
