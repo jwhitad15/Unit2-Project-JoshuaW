@@ -78,7 +78,7 @@ SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Excepti
             .authorizeHttpRequests((requests) ->
                     requests
                             .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                            .requestMatchers("/authenticate", "/login", "/register").permitAll()
+                            .requestMatchers("/users/authenticate", "/login", "/register").permitAll()
                             .anyRequest().authenticated()
             )
             .httpBasic(AbstractHttpConfigurer::disable);
