@@ -11,6 +11,16 @@ import MeeknessCard from "./fruit/MeeknessCard";
 import GoodnessCard from "./fruit/GoodnessCard";
 import GentlenessCard from "./fruit/GentlenessCard";
 import LongsufferingCard from "./fruit/LongsufferingCard";
+import mobileFaith from "./fruit/MobileFaith.png";
+import mobileLove from "./fruit/MobileLove.png";
+import mobilePeace from "./fruit/MobilePeace.png";
+import mobileJoy from "./fruit/MobileJoy.png";
+import mobileTemperance from "./fruit/MobileTemperance.png";
+import mobileMeekness from "./fruit/MobileMeekness.png";
+import mobileGoodness from "./fruit/MobileGoodness.png";
+import mobileGentleness from "./fruit/MobileGentleness.png";
+import mobileLongsuffering from "./fruit/MobileLongsuffering.png";
+
 import { SelectionLogic } from "./SelectionLogic.jsx"; // Import the context
 
 
@@ -93,16 +103,16 @@ const FOTHSMain = () => {
                     <div className="fruit-cards-row-1">
                         <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1" onClick={() => handleFruitSelection('Faith')}>
                             <div className="responsive-fruit-card-text">Faith</div>
-                                <img src="src/components/foths/fruit/MobileFaith.png" className="mobile-faith" alt="mobile-faith-image" /><FaithCard/>
+                                <img src={mobileFaith} className="mobile-faith" alt="mobile-faith-image" /><FaithCard/>
                         </a>
-                        <a href="./#/game-mode" id="fruit-card-2-hyperlink" className="fruit-card-2" onClick={() => handleFruitSelection('Love')}><div className="responsive-fruit-card-text">Love</div><img src="src/components/foths/fruit/MobileLove.png" className="mobile-love" alt="mobile-love-image" /><LoveCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-3-hyperlink" className="fruit-card-3" onClick={() => handleFruitSelection('Peace')}><div className="responsive-fruit-card-text">Peace</div><img src="src/components/foths/fruit/MobilePeace.png" className="mobile-peace" alt="mobile-peace-image" /><PeaceCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-4-hyperlink" className="fruit-card-4" onClick={() => handleFruitSelection('Joy')}><div className="responsive-fruit-card-text">Joy</div><img src="src/components/foths/fruit/MobileJoy.png" className="mobile-joy" alt="mobile-joy-image" /><JoyCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-5-hyperlink" className="fruit-card-5" onClick={() => handleFruitSelection('Temperance')}><div className="responsive-fruit-card-text">Temperance</div><img src="src/components/foths/fruit/MobileTemperance.png" className="mobile-temperance" alt="mobile-temperance-image" /><TemperanceCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-6-hyperlink" className="fruit-card-6" onClick={() => handleFruitSelection('Meekness')}><div className="responsive-fruit-card-text">Meekness</div><img src="src/components/foths/fruit/MobileMeekness.png" className="mobile-meekness" alt="mobile-meekness-image" /><MeeknessCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-7-hyperlink" className="fruit-card-7" onClick={() => handleFruitSelection('Goodness')}><div className="responsive-fruit-card-text">Goodness</div><img src="src/components/foths/fruit/MobileGoodness.png" className="mobile-goodness" alt="mobile-goodness" /><GoodnessCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-8-hyperlink" className="fruit-card-8" onClick={() => handleFruitSelection('Gentleness')}><div className="responsive-fruit-card-text">Gentleness</div><img src="src/components/foths/fruit/MobileGentleness.png" className="mobile-gentleness" alt="mobile-gentleness-image" /><GentlenessCard/></a>
-                        <a href="./#/game-mode" id="fruit-card-9-hyperlink" className="fruit-card-9" onClick={() => handleFruitSelection('Longsuffering')}><div className="responsive-fruit-card-text">Longsuffering</div><img src="src/components/foths/fruit/MobileLongsuffering.png" className="mobile-longsuffering" alt="mobile-longsuffering-image" /><LongsufferingCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-2-hyperlink" className="fruit-card-2" onClick={() => handleFruitSelection('Love')}><div className="responsive-fruit-card-text">Love</div><img src={mobileLove} className="mobile-love" alt="mobile-love-image" /><LoveCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-3-hyperlink" className="fruit-card-3" onClick={() => handleFruitSelection('Peace')}><div className="responsive-fruit-card-text">Peace</div><img src={mobilePeace} className="mobile-peace" alt="mobile-peace-image" /><PeaceCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-4-hyperlink" className="fruit-card-4" onClick={() => handleFruitSelection('Joy')}><div className="responsive-fruit-card-text">Joy</div><img src={mobileJoy} className="mobile-joy" alt="mobile-joy-image" /><JoyCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-5-hyperlink" className="fruit-card-5" onClick={() => handleFruitSelection('Temperance')}><div className="responsive-fruit-card-text">Temperance</div><img src={mobileTemperance} className="mobile-temperance" alt="mobile-temperance-image" /><TemperanceCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-6-hyperlink" className="fruit-card-6" onClick={() => handleFruitSelection('Meekness')}><div className="responsive-fruit-card-text">Meekness</div><img src={mobileMeekness} className="mobile-meekness" alt="mobile-meekness-image" /><MeeknessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-7-hyperlink" className="fruit-card-7" onClick={() => handleFruitSelection('Goodness')}><div className="responsive-fruit-card-text">Goodness</div><img src={mobileGoodness} className="mobile-goodness" alt="mobile-goodness" /><GoodnessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-8-hyperlink" className="fruit-card-8" onClick={() => handleFruitSelection('Gentleness')}><div className="responsive-fruit-card-text">Gentleness</div><img src={mobileGentleness} className="mobile-gentleness" alt="mobile-gentleness-image" /><GentlenessCard/></a>
+                        <a href="./#/game-mode" id="fruit-card-9-hyperlink" className="fruit-card-9" onClick={() => handleFruitSelection('Longsuffering')}><div className="responsive-fruit-card-text">Longsuffering</div><img src={mobileLongsuffering} className="mobile-longsuffering" alt="mobile-longsuffering-image" /><LongsufferingCard/></a>
                     </div>
                 </div>
             </div>
