@@ -1,4 +1,4 @@
-export const ApiHelper = {
+const ApiHelper = {
     baseUrl: import.meta.env.VITE_BACKEND_URL
   };
   
