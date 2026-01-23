@@ -9,9 +9,13 @@
 
 package com.foths.application.controllers;
 
+import com.foths.application.models.User;
 import com.foths.application.models.dto.ValidateAnswerRequest;
 import com.foths.application.models.Scripture;
 import com.foths.application.repositories.ScriptureRepository;
+import com.foths.application.repositories.UserRepository;
+import com.foths.application.security.JwtUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,22 +30,72 @@ public class ScriptureController {
 
     private final ScriptureRepository scriptureRepository;
 
-    public ScriptureController(ScriptureRepository scriptureRepository) {this.scriptureRepository = scriptureRepository;}
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public ScriptureController(ScriptureRepository scriptureRepository, JwtUtil jwtUtil, UserRepository userRepository) {
+        this.scriptureRepository = scriptureRepository;
+        this.jwtUtil = jwtUtil;
+        this.userRepository = userRepository;}
 
     @GetMapping("")
-    public ResponseEntity<?> getAllScriptures() {
+    public ResponseEntity<?> getAllScriptures(@RequestHeader("Authorization") String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Collections.singletonMap("error", "Unauthorized"));
+        }
+
+        String token = authHeader.substring(7);
+        String username;
+        try {
+            username = jwtUtil.extractUsername(token);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Collections.singletonMap("error", "Invalid token"));
+        }
+
+        User user = userRepository.findByUsername(username).orElse(null);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Collections.singletonMap("error", "Invalid user"));
+        }
+
         List<Scripture> allScriptures = scriptureRepository.findAll();
         return ResponseEntity.ok(allScriptures);
     }
 
     @GetMapping(value="/{scriptureId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getScriptureById(@PathVariable(value="scriptureId") int scriptureId) {
-        Scripture currentScripture = (Scripture) scriptureRepository.findById(scriptureId).orElse(null);
+    public ResponseEntity<?> getScriptureById(@RequestHeader("Authorization") String authHeader,
+                                              @PathVariable(value="scriptureId") int scriptureId) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Collections.singletonMap("error", "Unauthorized"));
+        }
+
+        String token = authHeader.substring(7);
+        String username;
+        try {
+            username = jwtUtil.extractUsername(token);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Collections.singletonMap("error", "Invalid token"));
+        }
+
+        User user = userRepository.findByUsername(username).orElse(null);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Collections.singletonMap("error", "Invalid user"));
+        }
+
+        Scripture currentScripture = scriptureRepository.findById(scriptureId).orElse(null);
         if (currentScripture != null) {
-            return new ResponseEntity<>(currentScripture, HttpStatus.OK); // 200
+            return new ResponseEntity<>(currentScripture, HttpStatus.OK);
         } else {
-            String response = STR."User with ID of \{scriptureId} not found.";
-            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
+            String response = "Scripture with ID of " + scriptureId + " not found.";
+            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -65,7 +119,7 @@ public class ScriptureController {
             scriptureRepository.save(currentScripture);
             return new ResponseEntity<>(currentScripture, HttpStatus.OK); // 200
         } else {
-            String response = STR."User with ID of \{scriptureId} not found.";
+            String response = STR."Scripture with ID of \{scriptureId} not found.";
             return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
         }
     }
@@ -77,7 +131,7 @@ public class ScriptureController {
             scriptureRepository.deleteById(scriptureId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204
         } else {
-            String response = STR."Question with ID of \{scriptureId} not found.";
+            String response = STR."Scripture with ID of \{scriptureId} not found.";
             return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
         }
     }

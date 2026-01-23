@@ -170,56 +170,100 @@ const LoginForm = () => {
     setFormData((input) => ({...input, [name]: value}));
   }
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log("Submitting login form with data:", formData);
+
+  //   try {
+  //     const res = await fetch(`${ApiHelper.baseUrl}/users/authenticate`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(formData)
+  //     });
+
+  //     // Network-level fetch succeeded; inspect status
+  //     const text = await res.text();
+  //     const contentType = (res.headers.get('content-type') || '').toLowerCase();
+  //     console.log("Response status:", res.status, "content-type:", contentType, "body:", text);
+
+  //     if (res.status === 200) {
+  //       const data = contentType.includes("application/json") ? JSON.parse(text) : null;
+  //       if (data) {
+  //         localStorage.setItem("firstName", data.firstName || "");
+  //         localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
+  //         localStorage.setItem("email", data.email || "");
+  //         localStorage.setItem("username", data.username || "");
+  //         // do not store plaintext password in production
+  //       }
+  //       if (data && data.username && data.username.includes("admin_")) {
+  //         navigate("/admin");
+  //       } else {
+  //         navigate("/user-account");
+  //       }
+  //       return;
+  //     }
+
+  //     if (res.status === 401) {
+  //       console.log("Invalid credentials.");
+  //       setIsNotValid(true);
+  //       return;
+  //     }
+
+  //     // any other non-ok status
+  //     console.warn("Unexpected response:", res.status, text);
+  //     setIsNotValid(true);
+
+  //   } catch (error) {
+  //     // Likely CORS or network error; check backend console & network tab
+  //     console.error("Error during login:", error);
+  //     setIsNotValid(true);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitting login form with data:", formData);
 
     try {
-      const res = await fetch(`${ApiHelper.baseUrl}/users/authenticate`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-        credentials: 'include'
-      });
+        const res = await fetch(`${ApiHelper.baseUrl}/users/authenticate`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+        });
 
-      // Network-level fetch succeeded; inspect status
-      const text = await res.text();
-      const contentType = (res.headers.get('content-type') || '').toLowerCase();
-      console.log("Response status:", res.status, "content-type:", contentType, "body:", text);
-
-      if (res.status === 200) {
-        const data = contentType.includes("application/json") ? JSON.parse(text) : null;
-        if (data) {
-          localStorage.setItem("firstName", data.firstName || "");
-          localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
-          localStorage.setItem("email", data.email || "");
-          localStorage.setItem("username", data.username || "");
-          // do not store plaintext password in production
+        if (!res.ok) {
+            if (res.status === 401) {
+                setIsNotValid(true);
+            }
+            throw new Error(`Login failed with status ${res.status}`);
         }
-        if (data && data.username && data.username.includes("admin_")) {
-          navigate("/admin");
+
+        const data = await res.json(); // parse JSON
+        console.log("Login success:", data);
+
+        // Store JWT token
+        if (data.token) {
+            localStorage.setItem("jwtToken", data.token);
+        }
+
+        // Optional: store other user info
+        localStorage.setItem("username", data.username || "");
+        localStorage.setItem("firstName", data.firstName || "");
+        localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
+        localStorage.setItem("email", data.email || "");
+
+        // Navigate based on admin
+        if (data.username && data.username.includes("admin_")) {
+            navigate("/admin");
         } else {
-          navigate("/user-account");
+            navigate("/user-account");
         }
-        return;
-      }
-
-      if (res.status === 401) {
-        console.log("Invalid credentials.");
-        setIsNotValid(true);
-        return;
-      }
-
-      // any other non-ok status
-      console.warn("Unexpected response:", res.status, text);
-      setIsNotValid(true);
 
     } catch (error) {
-      // Likely CORS or network error; check backend console & network tab
-      console.error("Error during login:", error);
-      setIsNotValid(true);
+        console.error("Error during login:", error);
+        setIsNotValid(true);
     }
-  };
+};
 
   return (
     <div className="login-signup" >
