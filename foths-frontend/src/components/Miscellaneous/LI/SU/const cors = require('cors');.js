@@ -12,6 +12,13 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/scriptures', (req, res) => {
+    if (!req.cookies || !req.cookies.sessionId) {
+        return res.status(403).json({ error: 'Unauthorized' });
+    }
+    // Fetch scriptures logic here
+});
+
 app.post('/auth/login', async (request, response) => {
     const { username, password } = request.body;
 
