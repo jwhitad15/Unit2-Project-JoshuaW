@@ -34,7 +34,11 @@ const Study = () => {
         try {
             const response = await fetch(`${ApiHelper.baseUrl}/scriptures`, {
                 method: "GET",
-                credentials: "include" // <-- send cookies for authentication
+                headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+                // credentials: "include" // <-- send cookies for authentication
             });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
