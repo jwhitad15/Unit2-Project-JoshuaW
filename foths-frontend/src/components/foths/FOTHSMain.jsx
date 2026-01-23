@@ -78,6 +78,7 @@ const FOTHSMain = () => {
         }
         } catch (error) {
             console.error('Error fetching scripturey:', error);
+            console.log("ApiHelper.baseUrl =", ApiHelper?.baseUrl);
             setDailyScripture("Sorry, no scripture available today.");
         }
     };
