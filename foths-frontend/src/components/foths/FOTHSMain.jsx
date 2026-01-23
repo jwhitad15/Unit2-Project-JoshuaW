@@ -11,6 +11,7 @@ import MeeknessCard from "./fruit/MeeknessCard";
 import GoodnessCard from "./fruit/GoodnessCard";
 import GentlenessCard from "./fruit/GentlenessCard";
 import LongsufferingCard from "./fruit/LongsufferingCard";
+
 import mobileFaith from "./fruit/MobileFaith.png";
 import mobileLove from "./fruit/MobileLove.png";
 import mobilePeace from "./fruit/MobilePeace.png";
