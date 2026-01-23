@@ -69,6 +69,7 @@ const FOTHSMain = () => {
         try {
                 const response = await fetch(`${ApiHelper.baseUrl}/scriptures`);
                 const data = await response.json();
+                console.log("Get this shit figured out!");
 
         // Ensure the data is an array and contains scripture objects
         if (Array.isArray(data) && data.length > 0 && data[0].verse && data[0].scripture) {
