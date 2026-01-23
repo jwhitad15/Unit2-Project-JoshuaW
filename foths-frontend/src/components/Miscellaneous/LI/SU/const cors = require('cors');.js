@@ -2,7 +2,7 @@ const cors = require('cors');
 
 // Enable CORS for all routes
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow requests from your frontend
+    origin: 'https://foths-frontend-production.up.railway.app', // Allow requests from your frontend
     credentials: true               // Allow cookies and credentials
 }));
 
