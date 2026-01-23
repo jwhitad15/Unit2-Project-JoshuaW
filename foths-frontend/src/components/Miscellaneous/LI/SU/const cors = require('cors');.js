@@ -1,10 +1,11 @@
 const cors = require('cors');
 
 // Enable CORS for all routes
-// app.use(cors({
-//     origin: 'https://foths-frontend-production.up.railway.app', // Allow requests from your frontend
-//     credentials: true               // Allow cookies and credentials
-// }));
+app.use(cors({
+    origin: 'https://foths-frontend-production.up.railway.app', // Allow requests from your frontend
+    methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+    credentials: true               // Allow cookies and credentials
+}));
 
 // Middleware to remove 'WWW-Authenticate' header from all responses
 app.use((req, res, next) => {
