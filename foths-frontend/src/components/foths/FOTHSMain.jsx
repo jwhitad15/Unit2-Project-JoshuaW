@@ -21,7 +21,7 @@ import mobileMeekness from "./fruit/MobileMeekness.png";
 import mobileGoodness from "./fruit/MobileGoodness.png";
 import mobileGentleness from "./fruit/MobileGentleness.png";
 import mobileLongsuffering from "./fruit/MobileLongsuffering.png";
-
+import ApiHelper from "../../ApiHelper.js";
 import { SelectionLogic } from "./SelectionLogic.jsx"; // Import the context
 
 
