@@ -62,14 +62,17 @@ const Study = () => {
     // };
     
     const fetchScripture = async () => {
+
+        console.log("ApiHelper baseUrl:", ApiHelper.baseUrl);
+        console.log("JWT Token:", token);
+        
         const token = localStorage.getItem("jwtToken"); // get JWT from localStorage
         if (!token) {
             alert("You must login first!");
             return;
         }
 
-        console.log("ApiHelper baseUrl:", ApiHelper.baseUrl);
-        console.log("JWT Token:", token);
+        
     
         try {
             const response = await fetch(`${ApiHelper.baseUrl}/scriptures`, {
