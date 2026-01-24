@@ -63,9 +63,6 @@ const Study = () => {
     
     const fetchScripture = async () => {
 
-        console.log("ApiHelper baseUrl:", ApiHelper.baseUrl);
-        console.log("JWT Token:", token);
-        
         const token = localStorage.getItem("jwtToken"); // get JWT from localStorage
         if (!token) {
             alert("You must login first!");
@@ -78,12 +75,15 @@ const Study = () => {
             const response = await fetch(`${ApiHelper.baseUrl}/scriptures`, {
                 method: "GET",
                 headers: {
-                    "Authorization": `Bearer ${token}`,
+                    "Authorization": `Bearer ${token.trim()}`,
                     "Content-Type": "application/json"
                 }
             });
     
             if (!response.ok) {
+                if (response.status === 403) {
+                    alert("Access denied: Your token may be invalid or expired.");
+                }
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
     
