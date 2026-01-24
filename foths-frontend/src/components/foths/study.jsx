@@ -63,15 +63,14 @@ const Study = () => {
     
     const fetchScripture = async () => {
 
-        const token = localStorage.getItem("jwtToken"); // get JWT from localStorage
-        if (!token) {
-            alert("You must login first!");
-            return;
-        }
-
+        // const token = localStorage.getItem("jwtToken"); // get JWT from localStorage
         
-    
         try {
+            const token = localStorage.getItem("jwtToken");
+            console.log("JWT Token from localStorage:", token);
+            if (!token) {
+                throw new Error("No JWT token found in localStorage");
+              }              
             const response = await fetch(`${ApiHelper.baseUrl}/scriptures`, {
                 method: "GET",
                 headers: {
@@ -79,14 +78,12 @@ const Study = () => {
                     "Content-Type": "application/json"
                 }
             });
-    
             if (!response.ok) {
                 if (response.status === 403) {
                     alert("Access denied: Your token may be invalid or expired.");
                 }
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-    
             const data = await response.json();
             console.log("Scripture data fetched successfully:", data);
     
@@ -97,7 +94,6 @@ const Study = () => {
             if (filtered.length > 0) {
                 setWordData(filtered[0]);
             }
-    
         } catch (error) {
             console.error("Error fetching scripture:", error);
             if (error.message.includes("CORS")) {
