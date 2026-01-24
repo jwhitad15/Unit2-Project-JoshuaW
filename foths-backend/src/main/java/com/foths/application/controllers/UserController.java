@@ -14,6 +14,8 @@ import com.foths.application.models.dto.LoginRequest;
 import com.foths.application.models.dto.UserProfileDTO;
 import com.foths.application.repositories.UserRepository;
 import com.foths.application.security.services.UserService;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +26,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.foths.application.security.JwtUtil;
@@ -103,90 +106,28 @@ public class UserController {
 //    }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<?> authenticate(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> authenticate(HttpServletRequest request, @RequestBody LoginRequest login) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword()
+                        login.getUsername(),
+                        login.getPassword()
                 )
         );
 
-        String token = jwtUtil.generateToken(request.getUsername());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        request.getSession(true); // <-- CRITICAL: creates session
 
-        return ResponseEntity.ok(
-                Map.of("token", token)
-        );
+        return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<?> me(Authentication authentication) {
+        return authentication != null && authentication.isAuthenticated()
+                ? ResponseEntity.ok().build()
+                : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
 
-//    @PostMapping("/authenticate")
-//    public ResponseEntity<?> authenticate(@RequestBody LoginRequest request) {
-//        String username = request.getUsername();
-//        System.out.println("Authenticate attempt for username: " + username);
-//
-//        var user = userRepository.findByUsername(request.getUsername());
-//        if (user == null) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//                    .body(Map.of("message", "Invalid username or password"));
-//        }
-//
-//        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//                    .body(Map.of("message", "Invalid username or password"));
-//        }
-//
-//        // check user exists first
-//        var userOpt = userRepository.findByUsername(username);
-//        if (userOpt.isEmpty()) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                    .contentType(MediaType.APPLICATION_JSON)
-//                    .body(Map.of("error", "User not found"));
-//        }
-//
-////        User user = userOpt.get();
-//        String stored = user.getPassword();
-//        boolean looksLikeBCrypt = stored != null && (stored.startsWith("$2a$") || stored.startsWith("$2b$") || stored.startsWith("$2y$"));
-//        System.out.println("Stored password present=" + (stored != null) + " looksLikeBCrypt=" + looksLikeBCrypt + " length=" + (stored == null ? 0 : stored.length()));
-//
-//        try {
-//            Authentication auth = authenticationManager.authenticate(
-//                    new UsernamePasswordAuthenticationToken(username, request.getPassword())
-//            );
-//            user.setPassword(null); // don't return password
-//            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(user);
-//        } catch (BadCredentialsException ex) {
-//            // Local-dev fallback: if stored password is not BCrypt and equals raw, accept (remove for prod)
-//            if (!looksLikeBCrypt && stored != null && Objects.equals(stored, request.getPassword())) {
-//                user.setPassword(null);
-//                return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(user);
-//            }
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//                    .contentType(MediaType.APPLICATION_JSON)
-//                    .body(Map.of("error", "Invalid credentials"));
-//        }
-//    }
-
-
-//    public ResponseEntity<?> authenticate(@RequestBody LoginRequest request) {
-//        try {
-//            assert authenticationManager != null;
-//            Authentication auth = authenticationManager.authenticate(
-//                    new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-//            );
-//            // Authentication success: return user info (omit sensitive fields in production)
-//            User user = userRepository.findByUsername(request.getUsername()).orElse(null);
-//            if (user == null) {
-//                return ResponseEntity.status(404).body("User not found");
-//            }
-//            // Optionally null out password before returning
-//            user.setPassword(null);
-//            return ResponseEntity.ok(user);
-//        } catch (BadCredentialsException ex) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//                    .body(Collections.singletonMap("error", "Invalid credentials"));
-//        }
-//    }
 
     @PutMapping("/update/{userId}")
     @PreAuthorize("hasRole('ADMIN')")

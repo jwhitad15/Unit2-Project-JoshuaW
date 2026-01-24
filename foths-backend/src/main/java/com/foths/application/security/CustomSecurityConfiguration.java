@@ -29,7 +29,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -51,36 +50,25 @@ public class CustomSecurityConfiguration {
         return new ProviderManager(List.of(provider));
     }
 
-//    @Bean
-//    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-//        http.
-//                cors(withDefaults() // enable CORS support so corsConfigurationSource is used
-//                .authorizeHttpRequests((requests) ->
-//                    requests
-//                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // allow preflight
-//                        .requestMatchers("authenticate", "/login", "/register").permitAll()
-//                        .anyRequest().authenticated());
-////        http.formLogin(withDefaults());
-//        http.sessionManagement(session ->
-//                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-//        http.csrf(AbstractHttpConfigurer::disable);
-//        http.httpBasic(withDefaults());
-//        http.logout(withDefaults());
-//        return http.build();
-//    }
-
 @Bean
-SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
     http
             .cors(Customizer.withDefaults()) // use the new Cors(Customizer) API instead of cors().and()
             .csrf(AbstractHttpConfigurer::disable)
             .sessionManagement(session ->
-                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                    session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                    .requestMatchers("/users/authenticate").permitAll()
+//                    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                    .requestMatchers("/", "/login", "/users/authenticate").permitAll()
                     .anyRequest().authenticated()
+            )
+            .formLogin(AbstractHttpConfigurer::disable)
+            .logout(logout -> logout
+                    .logoutUrl("/logout")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID")
             );
+
 //            .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}));
 
 //            .authorizeHttpRequests((requests) ->
