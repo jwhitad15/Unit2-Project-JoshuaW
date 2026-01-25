@@ -69,7 +69,7 @@ const FOTHSMain = () => {
         try {
         //   const token = localStorage.getItem("jwtToken");
       
-          const response = await fetch("https://foths-production.up.railway.app/scriptures", {
+          const response = await fetch(`${ApiHelper.baseUrl}/scriptures`, {
             method: "GET",
             credentials: "include", // Include cookies for session management
             // headers: {

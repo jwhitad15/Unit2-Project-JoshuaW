@@ -59,7 +59,7 @@ public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws 
                     session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
             .authorizeHttpRequests(auth -> auth
 //                    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                    .requestMatchers("/", "/login", "/users/authenticate").permitAll()
+                    .requestMatchers("/", "/login", "/users/authenticate", "/scriptures", "/scriptures/**").permitAll()
                     .anyRequest().authenticated()
             )
             .formLogin(AbstractHttpConfigurer::disable)
