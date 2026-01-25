@@ -169,7 +169,7 @@ const LoginForm = ({ setIsAuthenticated }) => {
       </form>
 
       <form >
-        <p style={{color: "#a64444"}}>Don't have an account? Click  <Link style={{color: "#a64444"}} id="card-hyperlink" to="/dashboard">here</Link> to return to the application!</p>
+        <p style={{color: "#a64444"}}>Don't have an account? Click  <Link style={{color: "#a64444"}} id="card-hyperlink" to="/user-registration">here</Link> to create one!</p>
       </form>
     </div>
   )
