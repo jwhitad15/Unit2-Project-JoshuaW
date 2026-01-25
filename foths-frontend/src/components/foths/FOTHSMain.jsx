@@ -65,34 +65,17 @@ const FOTHSMain = () => {
         }
     };
 
-    // const fetchDailyScripture = async () => {
-    //     try {
-    //             const response = await fetch(`${ApiHelper.baseUrl}/scriptures`);
-    //             const data = await response.json();
-
-    //     // Ensure the data is an array and contains scripture objects
-    //     if (Array.isArray(data) && data.length > 0 && data[0].verse && data[0].scripture) {
-    //         setDailyScripture(`${data[0].verse}: ${data[0].scripture}`);
-    //     } else {
-    //         throw new Error("Invalid data structure returned from API");
-    //     }
-    //     } catch (error) {
-    //         console.error('Error fetching scripturey:', error);
-    //         console.log("ApiHelper.baseUrl =", ApiHelper?.baseUrl);
-    //         setDailyScripture("Sorry, no scripture available today.");
-    //     }
-    // };
-
     const fetchDailyScripture = async () => {
         try {
-          const token = localStorage.getItem("jwtToken");
+        //   const token = localStorage.getItem("jwtToken");
       
           const response = await fetch(`${ApiHelper.baseUrl}/scriptures`, {
             method: "GET",
-            headers: {
-              "Authorization": `Bearer ${token}`,
-              "Content-Type": "application/json"
-            }
+            credentials: "include", // Include cookies for session management
+            // headers: {
+            //   "Authorization": `Bearer ${token}`,
+            //   "Content-Type": "application/json"
+            // }
           });
       
           if (!response.ok) {

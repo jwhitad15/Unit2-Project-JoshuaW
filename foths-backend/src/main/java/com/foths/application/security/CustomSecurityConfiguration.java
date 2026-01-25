@@ -69,16 +69,6 @@ public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws 
                     .deleteCookies("JSESSIONID")
             );
 
-//            .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}));
-
-//            .authorizeHttpRequests((requests) ->
-//                    requests
-//                            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                            .requestMatchers("/users/authenticate", "/login", "/register").permitAll()
-//                            .anyRequest().authenticated()
-//            )
-//            .httpBasic(AbstractHttpConfigurer::disable);
-
     return http.build();
 }
 
