@@ -79,8 +79,8 @@ const LoginForm = ({ setIsAuthenticated }) => {
             credentials: "include" // <--- CRITICAL for session cookie
         });
 
+        // Identifies that fetch succeeded; inspect status of 200
         if (res.status === 200) {
-          // Success: session now exists
           setIsNotValid(false);
           setIsAuthenticated(true); // Let's App know authentication is valid for allowing access to protected routes
 
