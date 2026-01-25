@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { CiUser, CiLock } from "react-icons/ci";
 import ApiHelper from "../../../../ApiHelper.js";
 
-const LoginForm = () => {
+const LoginForm = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: ""});
   const [isNotValid, setIsNotValid] = useState(false);
@@ -82,6 +82,8 @@ const LoginForm = () => {
         if (res.status === 200) {
           // Success: session now exists
           setIsNotValid(false);
+          setIsAuthenticated(true); // Let's App know authentication is valid for allowing access to protected routes
+
           // Redirect user based on username
           if (formData.username.includes("admin_")) {
             navigate("/admin", { replace: true });
