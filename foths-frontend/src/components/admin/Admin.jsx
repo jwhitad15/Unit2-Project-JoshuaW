@@ -10,7 +10,6 @@ import './admin.css';
 import AccountFooter from "../footer/AccountFooter";
 
 
-
 const Admin = () => {
     const [fetchedData, setFetchedData] = useState([]);
     const [selectedType, setSelectedType] = useState(""); 
