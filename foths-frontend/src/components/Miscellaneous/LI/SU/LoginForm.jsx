@@ -168,9 +168,9 @@ const LoginForm = ({ setIsAuthenticated }) => {
         <button type="submit" className="button-class">Login</button>
       </form>
 
-      <form >
+      {/* <form >
         <p style={{color: "#a64444"}}>Don't have an account? Click  <Link style={{color: "#a64444"}} id="card-hyperlink" to="/user-registration">here</Link> to create one!</p>
-      </form>
+      </form> */}
     </div>
   )
 }
