@@ -6,7 +6,7 @@ public class ResetUserPasswords {
 
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String hash = encoder.encode("SaintBartho25!");
+        String hash = encoder.encode("LaunchCodeFounder!");
         System.out.println(hash);
     }
 }
