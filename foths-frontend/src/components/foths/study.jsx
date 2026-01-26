@@ -29,37 +29,6 @@ const Study = () => {
             setWordData(filteredScriptures[prevIndex]);
         }
     };
-
-    // const fetchScripture = async () => {
-    //     try {
-    //         const response = await fetch(`${ApiHelper.baseUrl}/scriptures`, {
-    //             method: "GET",
-    //             headers: {
-    //             "Authorization": `Bearer ${token}`,
-    //             "Content-Type": "application/json"
-    //         }
-    //             // credentials: "include" // <-- send cookies for authentication
-    //         });
-    //         if (!response.ok) {
-    //             throw new Error(`HTTP error! status: ${response.status}`);
-    //         }
-    //         const data = await response.json();
-    //         console.log("Scripture data fetched successfully:", data);
-
-    //       // Filter scriptures based on the selected fruit
-    //         const filtered = data.filter((scripture) => scripture.fruit === fruitSelection);
-    //         setFilteredScriptures(filtered);
-
-    //         if (filtered.length > 0) {
-    //             setWordData(filtered[0]);
-    //         }
-    //     } catch (error) {
-    //         console.error("Error fetching scripture:", error);
-    //         if (error.message.includes('CORS')) {
-    //             alert('CORS error: Please check your backend configuration.');
-    //         }
-    //     }
-    // };
     
     const fetchScripture = async () => {
 
