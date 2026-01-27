@@ -83,8 +83,16 @@ const LoginForm = ({ setIsAuthenticated }) => {
         if (res.status === 200) {
           setIsNotValid(false);
           setIsAuthenticated(true); // Let's App know authentication is valid for allowing access to protected routes
-
-          const data = await res.json(); // parse the JSON response
+          // --- Safe JSON parsing ---
+          let data = {};
+          try {
+            const text = await res.text(); // read response as text first
+            data = text ? JSON.parse(text) : {}; // parse only if text exists
+          } catch (err) {
+            console.warn("Login response not JSON, skipping localStorage save.", err);
+            data = {};
+          }
+          // parse the JSON response
           localStorage.setItem("firstName", data.firstName || "");
           localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
           localStorage.setItem("email", data.email || "");
@@ -114,39 +122,6 @@ const LoginForm = ({ setIsAuthenticated }) => {
         setIsNotValid(true);
       }
 
-    //     if (!res.ok) {
-    //         if (res.status === 401) {
-    //             setIsNotValid(true);
-    //         }
-    //         throw new Error(`Login failed with status ${res.status}`);
-    //     }
-
-    //     const data = await res.json(); // parse JSON
-    //     console.log("Login success:", data);
-
-    //     // Store JWT token
-    //     // if (data.token) {
-    //     //     localStorage.setItem("jwtToken", data.token);
-    //     // }
-
-    //     // Optional: store other user info
-        
-    //     localStorage.setItem("username", data.username || "");
-    //     localStorage.setItem("firstName", data.firstName || "");
-    //     localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
-    //     localStorage.setItem("email", data.email || "");
-
-    //     // Navigate based on admin
-    //     if (data.username && data.username.includes("admin_")) {
-    //         navigate("/admin");
-    //     } else {
-    //         navigate("/user-account");
-    //     }
-
-    // } catch (error) {
-    //     console.error("Error during login:", error);
-    //     setIsNotValid(true);
-    // }
 };
 
   return (
