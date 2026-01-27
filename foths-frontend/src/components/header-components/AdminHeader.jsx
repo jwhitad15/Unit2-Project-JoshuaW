@@ -9,23 +9,28 @@ import { useEffect, useState } from "react";
 
 const AdminHeader = () => {
     // Retrieve the first name from local storage
-    const [firstName, setFirstName] = useState(
-        localStorage.getItem("firstName") || "Admin"
-        );
-        
-        useEffect(() => {
-        const handleStorageChange = () => {
-            const storedName = localStorage.getItem("firstName");
-            if (storedName) { setFirstName(storedName); }
-        };
-        
-            window.addEventListener("storage", handleStorageChange);
-            handleStorageChange(); // catch same-tab updates
-        
-        
-            return () => { window.removeEventListener("storage", handleStorageChange); };
+    const [firstName, setFirstName] = useState("Admin");
 
+
+// On mount, read localStorage and update firstName
+        useEffect(() => {
+        const storedName = localStorage.getItem("firstName");
+        if (storedName) {
+        setFirstName(storedName);
+        }
         }, []);
+
+        // Optional improvement: update firstName if localStorage changes while on the page
+        useEffect(() => {
+        const interval = setInterval(() => {
+        const storedName = localStorage.getItem("firstName");
+        if (storedName && storedName !== firstName) {
+        setFirstName(storedName);
+        }
+        }, 500); // check every 0.5 seconds
+
+        return () => clearInterval(interval); // cleanup
+        }, [firstName]);
 
     return (
         <header className="foths-header">
