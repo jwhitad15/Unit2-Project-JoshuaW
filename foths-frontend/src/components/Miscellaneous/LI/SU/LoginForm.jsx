@@ -84,6 +84,12 @@ const LoginForm = ({ setIsAuthenticated }) => {
           setIsNotValid(false);
           setIsAuthenticated(true); // Let's App know authentication is valid for allowing access to protected routes
 
+          const data = await res.json(); // parse the JSON response
+          localStorage.setItem("firstName", data.firstName || "");
+          localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
+          localStorage.setItem("email", data.email || "");
+          localStorage.setItem("username", data.username || "");
+
           // Redirect user based on username
           if (formData.username.includes("admin_")) {
             navigate("/admin", { replace: true });
