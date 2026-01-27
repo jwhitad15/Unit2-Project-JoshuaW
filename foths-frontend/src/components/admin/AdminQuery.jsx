@@ -1,6 +1,7 @@
 // Component that receives user input
 
 import React, { useState, useEffect } from "react";
+import ApiHelper from "../../ApiHelper.js";
 
 
 const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, scriptureData }) => {
