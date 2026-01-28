@@ -3,33 +3,16 @@
 import React from "react";
 import ExitProgram from "./ExitProgram";
 import '../admin/admin.css'
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../Miscellaneous/UserContext";
 
 
 
 const AdminHeader = () => {
-    // Retrieve the first name from local storage
-    const [firstName, setFirstName] = useState(localStorage.getItem("firstName") || "Admin");
+    const { userType } = useContext(UserContext);
+    const firstName = userInfo.firstName || (userType === "admin" ? "Admin" : "User");
 
-
-  // Update firstName on mount and whenever localStorage changes
-    useEffect(() => {
-    const handleStorageChange = () => {
-    const storedName = localStorage.getItem("firstName");
-    if (storedName) setFirstName(storedName);
-    };
-    
-    
-    // Listen for storage changes (works across tabs)
-    window.addEventListener("storage", handleStorageChange);
-    
-    
-    // Also update immediately in case localStorage was just set
-    handleStorageChange();
-    
-    
-    return () => window.removeEventListener("storage", handleStorageChange);
-    }, []);
+    console.log("AdminHeader sees firstName:", firstName, "userType:", userType);
 
     return (
         <header className="foths-header">

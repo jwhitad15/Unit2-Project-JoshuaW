@@ -48,7 +48,13 @@ const LoginForm = ({ setIsAuthenticated }) => {
 
           // Determine user type
           const userType = formData.username.includes("admin_") ? "admin" : "user";
-          loginUser(userType); // <-- Set in context
+          const userInfo = {
+            firstName: data.firstName || "",
+            lastName: data.lastName || "",
+            email: data.email || "",
+            username: data.username || "",
+            };
+          loginUser(userType, userInfo); // <-- Set in context
 
 
           // Navigate based on type

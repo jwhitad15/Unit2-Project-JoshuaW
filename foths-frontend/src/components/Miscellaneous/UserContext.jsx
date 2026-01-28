@@ -4,27 +4,38 @@ import { createContext, useState, useEffect } from "react";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [userType, setUserType] = useState(null); // "admin" or "user"
-
-  useEffect(() => {
-    // Optional: restore from localStorage on refresh
+    const [userType, setUserType] = useState(null); // "admin" or "user"
+    const [userInfo, setUserInfo] = useState({}); // { firstName, lastName, email, username }
+    
+    
+    useEffect(() => {
+    // restore from localStorage if present
     const savedType = localStorage.getItem("userType");
+    const savedInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
     if (savedType) setUserType(savedType);
-  }, []);
-
-  const loginUser = (type) => {
+    if (savedInfo.firstName) setUserInfo(savedInfo);
+    }, []);
+    
+    
+    const loginUser = (type, info = {}) => {
     setUserType(type);
+    setUserInfo(info);
     localStorage.setItem("userType", type);
-  };
-
-  const logoutUser = () => {
+    localStorage.setItem("userInfo", JSON.stringify(info));
+    };
+    
+    
+    const logoutUser = () => {
     setUserType(null);
+    setUserInfo({});
     localStorage.removeItem("userType");
-  };
-
-  return (
-    <UserContext.Provider value={{ userType, loginUser, logoutUser }}>
-      {children}
+    localStorage.removeItem("userInfo");
+    };
+    
+    
+    return (
+    <UserContext.Provider value={{ userType, userInfo, loginUser, logoutUser }}>
+    {children}
     </UserContext.Provider>
-  );
-};
+    );
+    };
