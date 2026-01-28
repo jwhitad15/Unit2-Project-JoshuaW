@@ -11,7 +11,8 @@ COPY . .
 RUN if [ ! -f pom.xml ]; then echo "ERROR: pom.xml not found!" && exit 1; fi
 
 # Build the project without running tests
-RUN mvn clean package -DskipTests -e -X
+ENV MAVEN_OPTS="-Xmx512m -Xms128m"
+RUN mvn clean package -DskipTests
 
 # ---------- Runtime stage ----------
 FROM eclipse-temurin:21-jre
