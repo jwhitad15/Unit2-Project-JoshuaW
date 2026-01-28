@@ -46,6 +46,10 @@ const LoginForm = ({ setIsAuthenticated }) => {
           localStorage.setItem("email", data.email || "");
           localStorage.setItem("username", data.username || "");
 
+          console.log(firstName, "has logged in successfully as", formData.username);
+          console.log(username, "is logged in bitch");
+          console.log(email);
+
           // Determine user type
           const userType = formData.username.includes("admin_") ? "admin" : "user";
           const userInfo = {
