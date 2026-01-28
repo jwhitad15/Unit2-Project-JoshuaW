@@ -9,33 +9,32 @@ import { useEffect, useState } from "react";
 
 const AdminHeader = () => {
     // Retrieve the first name from local storage
-    const [firstName, setFirstName] = useState("Admin");
+    const [firstName, setFirstName] = useState(localStorage.getItem("firstName") || "Admin");
 
 
-// On mount, read localStorage and update firstName
-        useEffect(() => {
-        const storedName = localStorage.getItem("firstName");
-        if (storedName) {
-        setFirstName(storedName);
-        }
-        }, []);
-
-        // Optional improvement: update firstName if localStorage changes while on the page
-        useEffect(() => {
-        const interval = setInterval(() => {
-        const storedName = localStorage.getItem("firstName");
-        if (storedName && storedName !== firstName) {
-        setFirstName(storedName);
-        }
-        }, 500); // check every 0.5 seconds
-
-        return () => clearInterval(interval); // cleanup
-        }, [firstName]);
+  // Update firstName on mount and whenever localStorage changes
+    useEffect(() => {
+    const handleStorageChange = () => {
+    const storedName = localStorage.getItem("firstName");
+    if (storedName) setFirstName(storedName);
+    };
+    
+    
+    // Listen for storage changes (works across tabs)
+    window.addEventListener("storage", handleStorageChange);
+    
+    
+    // Also update immediately in case localStorage was just set
+    handleStorageChange();
+    
+    
+    return () => window.removeEventListener("storage", handleStorageChange);
+    }, []);
 
     return (
         <header className="foths-header">
-            <a href="./#/dashboard" id="card-hyperlink" className="admin-header-element"> Dashboard</a>
-            <div className="admin-header-element">Welcome, {firstName}</div>
+            <a href="./#/dashboard" id="card-hyperlink" className="admin-header-element"> Dashboard </a>
+            <div className="admin-header-element">Welcome, {firstName} </div>
             <ExitProgram />
         </header>
     );
