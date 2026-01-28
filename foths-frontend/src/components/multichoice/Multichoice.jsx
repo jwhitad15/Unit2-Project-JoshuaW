@@ -4,7 +4,7 @@ import './multichoice.css'
 import Score from "./Score";
 import FourElementHeader from "../header-components/FourElementHeader";
 import Footer from "../footer/Footer";
-import ApiHelper from "../../ApiHelper.js";
+import ApiHelper from "../../classes/ApiHelper.js";
 
 class Multichoice extends Component {
     static contextType = SelectionLogic; // Use contextType to access the SelectionLogic context

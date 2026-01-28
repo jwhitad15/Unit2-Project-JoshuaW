@@ -1,7 +1,6 @@
 import Footer from "../footer/Footer";
 import FourElementHeader from "../header-components/FourElementHeader";
 import FOTHS_Logo from "../Miscellaneous/FOTHS_Logo.png";
-import ApiHelper from "../../ApiHelper";
 
 const Dashboard = () => {
 

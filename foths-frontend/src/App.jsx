@@ -19,6 +19,7 @@ import UserRegistration from './components/Miscellaneous/LI/SU/UserRegistration'
 import Registration from './components/Miscellaneous/LI/SU/Registration';
 import UserAccount from './components/accounts/UserAccount';
 import Study from './components/foths/study';
+import { UserProvider } from './components/Miscellaneous/UserContext';
 
 // I HOPE THIS DEPLOYMENT WORKS...EVERYTHING IS CORRECT!!!!
 
@@ -42,32 +43,34 @@ function App() {
 
   return (
     <>
-    <HashRouter>
-      <Routes>
+    <UserProvider>
+      <HashRouter>
+        <Routes>
 
-        {/* PUBLIC ROUTES */}
-        <Route index path="/" element={<LoginForm setIsAuthenticated={setIsAuthenticated} />} />
+          {/* PUBLIC ROUTES */}
+          <Route index path="/" element={<LoginForm setIsAuthenticated={setIsAuthenticated} />} />
 
-        {/* PROTECTED ROUTES */}
-        <Route path="/start" element={isAuthenticated ? <StartFoths /> : <Navigate to="/" />} />
-        <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} />
-        <Route path="/foths" element={isAuthenticated ? <FOTHSMain /> : <Navigate to="/" />} />
-        <Route path="/game-mode" element={isAuthenticated ? <GameMode /> : <Navigate to="/" />} />
-        <Route path="/study" element={isAuthenticated ? <Study /> : <Navigate to="/" />} />
-        <Route path="/recall" element={isAuthenticated ? <Recall /> : <Navigate to="/" />} />
-        <Route path="/multichoice" element={isAuthenticated ? <Multichoice /> : <Navigate to="/" />} />
-        <Route path="/about" element={isAuthenticated ? <About /> : <Navigate to="/" />} />
-        <Route path="/fetch" element={isAuthenticated ? <Fetch /> : <Navigate to="/" />} />
-        <Route path="/admin" element={isAuthenticated ? <Admin /> : <Navigate to="/" />} />
-        <Route path="/user-account" element={isAuthenticated ? <UserAccount /> : <Navigate to="/" />} />
-        <Route path="/user-registration" element={isAuthenticated ? <UserRegistration /> : <Navigate to="/" />} />
-        <Route path="/registration" element={isAuthenticated ? <Registration /> : <Navigate to="/" />} />
+          {/* PROTECTED ROUTES */}
+          <Route path="/start" element={isAuthenticated ? <StartFoths /> : <Navigate to="/" />} />
+          <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} />
+          <Route path="/foths" element={isAuthenticated ? <FOTHSMain /> : <Navigate to="/" />} />
+          <Route path="/game-mode" element={isAuthenticated ? <GameMode /> : <Navigate to="/" />} />
+          <Route path="/study" element={isAuthenticated ? <Study /> : <Navigate to="/" />} />
+          <Route path="/recall" element={isAuthenticated ? <Recall /> : <Navigate to="/" />} />
+          <Route path="/multichoice" element={isAuthenticated ? <Multichoice /> : <Navigate to="/" />} />
+          <Route path="/about" element={isAuthenticated ? <About /> : <Navigate to="/" />} />
+          <Route path="/fetch" element={isAuthenticated ? <Fetch /> : <Navigate to="/" />} />
+          <Route path="/admin" element={isAuthenticated ? <Admin /> : <Navigate to="/" />} />
+          <Route path="/user-account" element={isAuthenticated ? <UserAccount /> : <Navigate to="/" />} />
+          <Route path="/user-registration" element={isAuthenticated ? <UserRegistration /> : <Navigate to="/" />} />
+          <Route path="/registration" element={isAuthenticated ? <Registration /> : <Navigate to="/" />} />
 
-        {/* CATCH ALL */}
-        <Route path="*" element={<Navigate to="/" />} />
+          {/* CATCH ALL */}
+          <Route path="*" element={<Navigate to="/" />} />
 
-      </Routes>
-    </HashRouter>
+        </Routes>
+      </HashRouter>
+    </UserProvider>
     </>
   );
 }

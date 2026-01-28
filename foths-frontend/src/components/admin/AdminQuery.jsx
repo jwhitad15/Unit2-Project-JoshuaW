@@ -261,7 +261,7 @@
 
 
 import React, { useState } from "react";
-import ApiHelper from "../../ApiHelper.js";
+import ApiHelper from "../../classes/ApiHelper.js";
 
 const AdminQuery = ({ setFetchedData, setSelectedType, userData, questionData, scriptureData }) => {
 

@@ -1,6 +1,5 @@
 // About page for the FOTHS app
 
-
 import FourElementHeader from "../header-components/FourElementHeader";
 import Footer from "./Footer";
 

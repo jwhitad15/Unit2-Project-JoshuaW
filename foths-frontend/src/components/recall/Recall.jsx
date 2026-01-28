@@ -6,7 +6,7 @@ import FourElementHeader from "../header-components/FourElementHeader.jsx";
 import Footer from "../footer/Footer.jsx";
 import 'reactjs-popup/dist/index.css'
 import './recall.css';
-import ApiHelper from "../../ApiHelper.js";
+import ApiHelper from "../../classes/ApiHelper.js";
 
  
  const Recall = () => {
