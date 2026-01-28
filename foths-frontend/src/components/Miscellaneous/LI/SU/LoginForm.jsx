@@ -33,12 +33,13 @@ const LoginForm = ({ setIsAuthenticated }) => {
 
         // Identifies that fetch succeeded; inspect status of 200
         if (res.status === 200) {
+            
+          const text = await res.text(); // read response as text first
+          const data = text ? JSON.parse(text) : {}; // parse only if text exists
+
           setIsNotValid(false);
           setIsAuthenticated(true); // Let's App know authentication is valid for allowing access to protected routes
           // --- Safe JSON parsing ---      
-          
-          const text = await res.text(); // read response as text first
-          const data = text ? JSON.parse(text) : {}; // parse only if text exists
          
           // parse the JSON response
           localStorage.setItem("firstName", data.firstName || "");
