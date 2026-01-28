@@ -6,9 +6,11 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { CiUser, CiLock } from "react-icons/ci";
 import ApiHelper from "../../../../classes/ApiHelper.js";
+import { UserContext } from "../../UserContext.jsx";
 
 const LoginForm = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
+  const { loginUser } = useContext(UserContext);
   const [formData, setFormData] = useState({ username: "", password: ""});
   const [isNotValid, setIsNotValid] = useState(false);
 
@@ -16,7 +18,6 @@ const LoginForm = ({ setIsAuthenticated }) => {
     const { name, value } = e.target;
     setFormData((input) => ({...input, [name]: value}));
   }
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,26 +36,25 @@ const LoginForm = ({ setIsAuthenticated }) => {
           setIsNotValid(false);
           setIsAuthenticated(true); // Let's App know authentication is valid for allowing access to protected routes
           // --- Safe JSON parsing ---      
-          let data = {};
-          try {
-            const text = await res.text(); // read response as text first
-            data = text ? JSON.parse(text) : {}; // parse only if text exists
-          } catch (err) {
-            console.warn("Login response not JSON, skipping localStorage save.", err);
-            data = {};
-          }
+          
+          const text = await res.text(); // read response as text first
+          const data = text ? JSON.parse(text) : {}; // parse only if text exists
+         
           // parse the JSON response
           localStorage.setItem("firstName", data.firstName || "");
           localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
           localStorage.setItem("email", data.email || "");
           localStorage.setItem("username", data.username || "");
 
-          // Redirect user based on username
-          if (formData.username.includes("admin_")) {
-            navigate("/admin", { replace: true });
-          } else {
-            navigate("/user-account", { replace: true });
-          }
+          // Determine user type
+          const userType = formData.username.includes("admin_") ? "admin" : "user";
+          loginUser(userType); // <-- Set in context
+
+
+          // Navigate based on type
+          if (userType === "admin") navigate("/admin", { replace: true });
+          else navigate("/user-account", { replace: true });
+
           return;
         }
   
@@ -67,7 +67,6 @@ const LoginForm = ({ setIsAuthenticated }) => {
         // Unexpected status
         console.warn("Unexpected login response:", res.status);
         setIsNotValid(true);
-  
       } catch (error) {
         console.error("Error during login:", error);
         setIsNotValid(true);
