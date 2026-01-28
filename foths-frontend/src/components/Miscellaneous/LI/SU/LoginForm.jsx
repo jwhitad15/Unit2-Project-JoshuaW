@@ -11,7 +11,7 @@ import { UserContext } from "../../UserContext.jsx";
 const LoginForm = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
   const { loginUser } = useContext(UserContext);
-  const [formData, setFormData] = useState({ username: "", password: ""});
+  const [formData, setFormData] = useState({ username: "", password: "", firstName: "", lastName: "", email: "" });
   const [isNotValid, setIsNotValid] = useState(false);
 
   const handleChange = (e) => {
