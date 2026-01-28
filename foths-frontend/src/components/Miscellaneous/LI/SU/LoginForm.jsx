@@ -17,112 +17,111 @@ const LoginForm = ({ setIsAuthenticated }) => {
     setFormData((input) => ({...input, [name]: value}));
   }
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log("Submitting login form with data:", formData);
-
-  //   try {
-  //     const res = await fetch(`${ApiHelper.baseUrl}/users/authenticate`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(formData)
-  //     });
-
-  //     // Network-level fetch succeeded; inspect status
-  //     const text = await res.text();
-  //     const contentType = (res.headers.get('content-type') || '').toLowerCase();
-  //     console.log("Response status:", res.status, "content-type:", contentType, "body:", text);
-
-  //     if (res.status === 200) {
-  //       const data = contentType.includes("application/json") ? JSON.parse(text) : null;
-  //       if (data) {
-  //         localStorage.setItem("firstName", data.firstName || "");
-  //         localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
-  //         localStorage.setItem("email", data.email || "");
-  //         localStorage.setItem("username", data.username || "");
-  //         // do not store plaintext password in production
-  //       }
-  //       if (data && data.username && data.username.includes("admin_")) {
-  //         navigate("/admin");
-  //       } else {
-  //         navigate("/user-account");
-  //       }
-  //       return;
-  //     }
-
-  //     if (res.status === 401) {
-  //       console.log("Invalid credentials.");
-  //       setIsNotValid(true);
-  //       return;
-  //     }
-
-  //     // any other non-ok status
-  //     console.warn("Unexpected response:", res.status, text);
-  //     setIsNotValid(true);
-
-  //   } catch (error) {
-  //     // Likely CORS or network error; check backend console & network tab
-  //     console.error("Error during login:", error);
-  //     setIsNotValid(true);
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting login form with data:", formData);
-
+  
     try {
-        const res = await fetch(`${ApiHelper.baseUrl}/users/authenticate`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-            credentials: "include" // <--- CRITICAL for session cookie
-        });
-
-        // Identifies that fetch succeeded; inspect status of 200
-        if (res.status === 200) {
-          setIsNotValid(false);
-          setIsAuthenticated(true); // Let's App know authentication is valid for allowing access to protected routes
-          // --- Safe JSON parsing ---
-          let data = {};
-          try {
-            const text = await res.text(); // read response as text first
-            data = text ? JSON.parse(text) : {}; // parse only if text exists
-          } catch (err) {
-            console.warn("Login response not JSON, skipping localStorage save.", err);
-            data = {};
-          }
-          // parse the JSON response
-          localStorage.setItem("firstName", data.firstName || "");
-          localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
-          localStorage.setItem("email", data.email || "");
-          localStorage.setItem("username", data.username || "");
-
-          // Redirect user based on username
-          if (formData.username.includes("admin_")) {
-            navigate("/admin", { replace: true });
-          } else {
-            navigate("/user-account", { replace: true });
-          }
-          return;
-        }
+      const res = await fetch(`${ApiHelper.baseUrl}/users/authenticate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+        credentials: "include"
+      });
   
-        if (res.status === 401) {
-          // Invalid credentials
-          setIsNotValid(true);
-          return;
-        }
-  
-        // Unexpected status
-        console.warn("Unexpected login response:", res.status);
+      if (res.status !== 200) {
         setIsNotValid(true);
+        return;
+      }
   
-      } catch (error) {
-        console.error("Error during login:", error);
+      setIsNotValid(false);
+      setIsAuthenticated(true);
+  
+      // 🔑 FETCH AUTHENTICATED USER PROFILE (SOURCE OF TRUTH)
+      const profileRes = await fetch(`${ApiHelper.baseUrl}/users/me`, {
+        method: "GET",
+        credentials: "include"
+      });
+  
+      if (profileRes.ok) {
+        const user = await profileRes.json();
+  
+        localStorage.setItem("firstName", user.firstName);
+        localStorage.setItem("lastName", user.lastName);
+        localStorage.setItem("fullName", `${user.firstName} ${user.lastName}`);
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("username", user.username);
+  
+        if (user.username.startsWith("admin_")) {
+          navigate("/admin", { replace: true });
+        } else {
+          navigate("/user-account", { replace: true });
+        }
+      } else {
         setIsNotValid(true);
       }
+  
+    } catch (err) {
+      console.error("Login error:", err);
+      setIsNotValid(true);
+    }
+  };
+  
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     console.log("Submitting login form with data:", formData);
 
-};
+//     try {
+//         const res = await fetch(`${ApiHelper.baseUrl}/users/authenticate`, {
+//             method: "POST",
+//             headers: { "Content-Type": "application/json" },
+//             body: JSON.stringify(formData),
+//             credentials: "include" // <--- CRITICAL for session cookie
+//         });
+
+//         // Identifies that fetch succeeded; inspect status of 200
+//         if (res.status === 200) {
+//           setIsNotValid(false);
+//           setIsAuthenticated(true); // Let's App know authentication is valid for allowing access to protected routes
+//           // --- Safe JSON parsing ---
+//           let data = {};
+//           try {
+//             const text = await res.text(); // read response as text first
+//             data = text ? JSON.parse(text) : {}; // parse only if text exists
+//           } catch (err) {
+//             console.warn("Login response not JSON, skipping localStorage save.", err);
+//             data = {};
+//           }
+//           // parse the JSON response
+//           localStorage.setItem("firstName", data.firstName || "");
+//           localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
+//           localStorage.setItem("email", data.email || "");
+//           localStorage.setItem("username", data.username || "");
+
+//           // Redirect user based on username
+//           if (formData.username.includes("admin_")) {
+//             navigate("/admin", { replace: true });
+//           } else {
+//             navigate("/user-account", { replace: true });
+//           }
+//           return;
+//         }
+  
+//         if (res.status === 401) {
+//           // Invalid credentials
+//           setIsNotValid(true);
+//           return;
+//         }
+  
+//         // Unexpected status
+//         console.warn("Unexpected login response:", res.status);
+//         setIsNotValid(true);
+  
+//       } catch (error) {
+//         console.error("Error during login:", error);
+//         setIsNotValid(true);
+//       }
+
+// };
 
   return (
     <div className="login-signup" >
