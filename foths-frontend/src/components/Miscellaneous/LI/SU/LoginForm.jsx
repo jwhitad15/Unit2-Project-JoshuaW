@@ -41,10 +41,10 @@ const LoginForm = ({ setIsAuthenticated }) => {
           const data = text ? JSON.parse(text) : {}; // parse only if text exists
          
           // parse the JSON response
-          localStorage.setItem("firstName", formData.firstName || "");
-          localStorage.setItem("fullName", `${formData.firstName || ""} ${formData.lastName || ""}`);
-          localStorage.setItem("email", formData.email || "");
-          localStorage.setItem("username", formData.username || "");
+          localStorage.setItem("firstName", data.firstName || "");
+          localStorage.setItem("fullName", `${data.firstName || ""} ${data.lastName || ""}`);
+          localStorage.setItem("email", data.email || "");
+          localStorage.setItem("username", data.username || formData.username);
 
           console.log(formData.firstName, "has logged in successfully as", formData.username);
           console.log(formData.username, "is logged in bitch");
