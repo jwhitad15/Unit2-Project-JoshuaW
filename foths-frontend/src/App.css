@@ -38,9 +38,13 @@
 }
 
 #jwmp-hyperlink {
-  /* color: white; */
-  color: #1d3461;
+  color: white;
   text-decoration: none;
+}
+
+button#jwmp-button:hover {
+  background-color: #1d3461;
+  color: white;
 }
 
 .personal-goals {
