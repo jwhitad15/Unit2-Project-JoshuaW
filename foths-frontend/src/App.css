@@ -38,7 +38,8 @@
 }
 
 #jwmp-hyperlink {
-  color: white;
+  /* color: white; */
+  color: #1d3461;
   text-decoration: none;
 }
 

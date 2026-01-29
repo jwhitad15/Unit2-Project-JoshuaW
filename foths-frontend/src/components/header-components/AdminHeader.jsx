@@ -18,7 +18,7 @@ const AdminHeader = () => {
     return (
         <header className="foths-header">
             <a href="./#/dashboard" id="card-hyperlink" className="admin-header-element"> Dashboard </a>
-            <div className="admin-header-element">Welcome, {firstName} </div>
+            <div className="admin-header-element">Welcome to FOTHS! </div>
             <ExitProgram />
         </header>
     );
