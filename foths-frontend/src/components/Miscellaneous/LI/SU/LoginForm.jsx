@@ -33,7 +33,6 @@ const LoginForm = ({ setIsAuthenticated }) => {
 
         // Identifies that fetch succeeded; inspect status of 200
         if (res.status === 200) {
-            
           const text = await res.text(); // read response as text first
           const data = text ? JSON.parse(text) : {}; // parse only if text exists
 
