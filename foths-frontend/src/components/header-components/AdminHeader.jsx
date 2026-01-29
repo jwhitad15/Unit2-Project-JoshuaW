@@ -10,7 +10,7 @@ import { UserContext } from "../Miscellaneous/UserContext";
 
 const AdminHeader = () => {
     const { userType } = useContext(UserContext);
-    const firstName = localStorage.getItem("firstName") || (userType === "admin" ? "Admin" : firstName);
+    const firstName = localStorage.getItem("firstName") || (userType === "admin" ? "Admin" : "User");
 
     console.log("AdminHeader sees firstName:", firstName, "userType:", userType);
 
