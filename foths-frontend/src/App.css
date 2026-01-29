@@ -42,7 +42,7 @@
   text-decoration: none;
 }
 
-button#jwmp-button:hover {
+button#jwmp-hyperlink.footer-admin-link:hover {
   background-color: #1d3461;
   color: white;
 }
