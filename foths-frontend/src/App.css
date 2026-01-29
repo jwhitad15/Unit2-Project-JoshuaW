@@ -2113,6 +2113,9 @@ p.welcome-title {
   box-shadow: 0 0 5px black;
   font-size: 18px;
 }
+.footer-admin-link:hover {
+  background-color: #1d3461;
+}
 .footer-about-link {
   border-style: outset;
   border: 3px outset white;
