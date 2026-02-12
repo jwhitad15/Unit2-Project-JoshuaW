@@ -116,10 +116,7 @@ const FOTHSMain = () => {
                 <div className="foths-main-title"> Fruits of the Holy Spirit </div>
                 <div className="fruits-grid">
                     <div className="fruit-cards-row-1">
-                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1" onClick={() => handleFruitSelection('Faith')}>
-                            <div className="responsive-fruit-card-text">Faith</div>
-                                <img src={mobileFaith} className="mobile-faith" alt="mobile-faith-image" /><FaithCard/>
-                        </a>
+                        <a href="./#/game-mode" id="fruit-card-1-hyperlink" className="fruit-card-1" onClick={() => handleFruitSelection('Faith')}> <div className="responsive-fruit-card-text">Faith</div> <img src={mobileFaith} className="mobile-faith" alt="mobile-faith-image" /><FaithCard/> </a>
                         <a href="./#/game-mode" id="fruit-card-2-hyperlink" className="fruit-card-2" onClick={() => handleFruitSelection('Love')}><div className="responsive-fruit-card-text">Love</div><img src={mobileLove} className="mobile-love" alt="mobile-love-image" /><LoveCard/></a>
                         <a href="./#/game-mode" id="fruit-card-3-hyperlink" className="fruit-card-3" onClick={() => handleFruitSelection('Peace')}><div className="responsive-fruit-card-text">Peace</div><img src={mobilePeace} className="mobile-peace" alt="mobile-peace-image" /><PeaceCard/></a>
                         <a href="./#/game-mode" id="fruit-card-4-hyperlink" className="fruit-card-4" onClick={() => handleFruitSelection('Joy')}><div className="responsive-fruit-card-text">Joy</div><img src={mobileJoy} className="mobile-joy" alt="mobile-joy-image" /><JoyCard/></a>
